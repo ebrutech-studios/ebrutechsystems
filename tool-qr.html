@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QR Kod Üretici — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">🔳 QR Kod Üretici</h1>
+<p class="lead" style="margin:14px 0 26px">Link, metin veya WhatsApp için anında QR kod oluştur ve indir.</p>
+<div class="controls">
+<div class="field"><label>İçerik (link / metin)</label><input id="txt" placeholder="https://ebrutechsystems.com"></div>
+<button id="go" class="btn btn-primary">QR Oluştur</button></div>
+<div id="preview" class="preview hidden"><div id="qr" style="display:inline-block;background:#fff;padding:16px;border-radius:12px"></div><br>
+<button id="dl" class="btn btn-ghost" style="margin-top:14px">PNG İndir</button></div>
+</div></div></section>
+<script src="assets/js/site.js"></script>
+<script>
+let qr=null;
+document.getElementById("go").onclick=()=>{const v=document.getElementById("txt").value.trim();if(!v){ETSlib.toast("Önce içerik girin");return;}
+document.getElementById("qr").innerHTML="";document.getElementById("preview").classList.remove("hidden");
+qr=new QRCode(document.getElementById("qr"),{text:v,width:240,height:240,colorDark:"#0a0a0b",colorLight:"#ffffff"});};
+document.getElementById("dl").onclick=()=>{const c=document.querySelector("#qr canvas");if(!c)return;
+const a=document.createElement("a");a.href=c.toDataURL("image/png");a.download="ebrutech-qr.png";a.click();ETSlib.toast("İndiriliyor ✓");};
+</script></body></html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Watermark Ekle — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">💧 Watermark Ekle</h1>
+<p class="lead" style="margin:14px 0 26px">Görsellerine metin filigranı ekle. Marka koruması ve telif için.</p>
+<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli buraya sürükle</b> veya tıkla</p><input id="file" type="file" accept="image/*" class="hidden"></div>
+<div id="panel" class="controls hidden">
+<div class="field"><label>Filigran metni</label><input id="txt" value="© EbruTech Studios"></div>
+<div class="row"><div class="field"><label>Konum</label><select id="pos"><option value="br">Sağ alt</option><option value="bl">Sol alt</option><option value="tr">Sağ üst</option><option value="tl">Sol üst</option><option value="center">Orta</option></select></div>
+<div class="field"><label>Saydamlık: <span id="oVal">60</span>%</label><input id="op" type="range" min="10" max="100" value="60"></div></div>
+<button id="go" class="btn btn-primary">Filigran Ekle & İndir</button></div>
+<div id="preview" class="preview hidden"><canvas id="cv" style="max-width:100%;border-radius:10px"></canvas></div>
+</div></div></section>
+<script src="assets/js/site.js"></script>
+<script>
+let imgEl=null;const dz=document.getElementById("dz"),file=document.getElementById("file"),cv=document.getElementById("cv");
+dz.onclick=()=>file.click();
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);};
+file.onchange=e=>{if(e.target.files[0])load(e.target.files[0]);};
+function load(f){const r=new FileReader();r.onload=ev=>{imgEl=new Image();imgEl.onload=()=>{
+document.getElementById("preview").classList.remove("hidden");document.getElementById("panel").classList.remove("hidden");draw();
+};imgEl.src=ev.target.result;};r.readAsDataURL(f);}
+["txt","pos","op"].forEach(id=>document.getElementById(id).oninput=draw);
+document.getElementById("op").addEventListener("input",()=>document.getElementById("oVal").textContent=document.getElementById("op").value);
+function draw(){if(!imgEl)return;cv.width=imgEl.naturalWidth;cv.height=imgEl.naturalHeight;
+const ctx=cv.getContext("2d");ctx.drawImage(imgEl,0,0);
+const fs=Math.max(18,cv.width*0.04);ctx.font="700 "+fs+"px Manrope,sans-serif";
+ctx.fillStyle="rgba(255,255,255,"+(document.getElementById("op").value/100)+")";
+ctx.strokeStyle="rgba(0,0,0,"+(document.getElementById("op").value/200)+")";ctx.lineWidth=fs/12;
+const t=document.getElementById("txt").value,m=ctx.measureText(t).width,p=fs*0.7;let x,y;
+const pos=document.getElementById("pos").value;
+if(pos==="br"){x=cv.width-m-p;y=cv.height-p;}else if(pos==="bl"){x=p;y=cv.height-p;}
+else if(pos==="tr"){x=cv.width-m-p;y=fs+p;}else if(pos==="tl"){x=p;y=fs+p;}
+else{x=(cv.width-m)/2;y=cv.height/2;}
+ctx.strokeText(t,x,y);ctx.fillText(t,x,y);}
+document.getElementById("go").onclick=()=>{cv.toBlob(b=>{const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="ebrutech-watermark.png";a.click();ETSlib.toast("İndiriliyor ✓");},"image/png");};
+</script></body></html>

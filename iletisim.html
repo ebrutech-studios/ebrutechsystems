@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>İletişim — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<section class="hero" style="padding-bottom:24px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">İletişim</span><h1 style="font-size:2.3rem">Projenizi konuşalım</h1>
+<p class="lead" style="margin:16px 0 28px">Aşağıdaki formu doldurun; bilgileri WhatsApp'a hazır mesaj olarak iletelim. En hızlı yanıt WhatsApp'tan gelir.</p>
+<div class="card">
+<div class="field" style="margin-bottom:14px"><label>Ad Soyad</label><input id="ad"></div>
+<div class="field" style="margin-bottom:14px"><label>Hizmet Türü</label><select id="hizmet">
+<option>Web Sitesi</option><option>Mobil Uygulama</option><option>Logo / Kurumsal Kimlik</option><option>Kartvizit Tasarımı</option><option>Sosyal Medya Tasarımı</option><option>Pro Üyelik Desteği</option><option>Diğer</option></select></div>
+<div class="field" style="margin-bottom:18px"><label>Mesajınız</label><input id="mesaj" placeholder="Kısaca ihtiyacınızı yazın"></div>
+<button id="send" class="btn btn-wa" style="width:100%;justify-content:center">WhatsApp'tan Gönder</button>
+</div>
+<div class="grid g-3" style="margin-top:22px">
+<div class="card reveal"><h3 style="font-size:1.05rem">WhatsApp</h3><p style="color:var(--txt-dim);font-size:.88rem">En hızlı kanal, anında dönüş.</p></div>
+<div class="card reveal"><h3 style="font-size:1.05rem">E-posta</h3><p style="color:var(--txt-dim);font-size:.88rem">Detaylı talepler için.</p></div>
+<div class="card reveal"><h3 style="font-size:1.05rem">Çalışma</h3><p style="color:var(--txt-dim);font-size:.88rem">İhtiyaca göre özel teklif.</p></div>
+</div>
+</div></div></section>
+<script src="assets/js/site.js"></script>
+<script>document.addEventListener("DOMContentLoaded",()=>{
+document.getElementById("send").onclick=()=>{
+const ad=document.getElementById("ad").value||"-",h=document.getElementById("hizmet").value,m=document.getElementById("mesaj").value||"-";
+const msg=`Merhaba EbruTech Studios!%0A%0AAd: ${ad}%0AHizmet: ${h}%0AMesaj: ${m}`;
+window.open("https://wa.me/"+ETS.whatsapp+"?text="+msg,"_blank");
+ETSlib.toast("WhatsApp açılıyor ✓");};
+});</script></body></html>

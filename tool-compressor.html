@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resim Sıkıştırıcı — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">⚡ Resim Sıkıştırıcı</h1>
+<p class="lead" style="margin:14px 0 26px">Kaliteyi koruyarak dosya boyutunu küçült. Web ve e-posta için ideal.</p>
+<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli buraya sürükle</b> veya tıkla</p><input id="file" type="file" accept="image/*" class="hidden"></div>
+<div id="panel" class="controls hidden">
+<div class="field"><label>Sıkıştırma kalitesi: <span id="qVal">70</span>%</label><input id="q" type="range" min="10" max="95" value="70"></div>
+<button id="go" class="btn btn-primary">Sıkıştır & İndir</button>
+<p id="info" style="color:var(--txt-faint);font-size:.86rem"></p></div>
+<div id="preview" class="preview hidden"><img id="img"></div>
+</div></div></section>
+<script src="assets/js/site.js"></script>
+<script>
+let imgEl=null,origSize=0;
+const dz=document.getElementById("dz"),file=document.getElementById("file");
+dz.onclick=()=>file.click();
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);};
+file.onchange=e=>{if(e.target.files[0])load(e.target.files[0]);};
+function load(f){origSize=f.size;const r=new FileReader();r.onload=ev=>{imgEl=new Image();imgEl.onload=()=>{
+document.getElementById("img").src=imgEl.src;document.getElementById("preview").classList.remove("hidden");
+document.getElementById("panel").classList.remove("hidden");
+document.getElementById("info").textContent="Orijinal: "+(origSize/1024).toFixed(0)+" KB";
+};imgEl.src=ev.target.result;};r.readAsDataURL(f);}
+const q=document.getElementById("q");q.oninput=()=>document.getElementById("qVal").textContent=q.value;
+document.getElementById("go").onclick=()=>{if(!imgEl)return;
+const c=document.createElement("canvas");c.width=imgEl.naturalWidth;c.height=imgEl.naturalHeight;
+const ctx=c.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(imgEl,0,0);
+c.toBlob(b=>{const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="ebrutech-compressed.jpg";a.click();
+document.getElementById("info").textContent="Orijinal: "+(origSize/1024).toFixed(0)+" KB → Yeni: "+(b.size/1024).toFixed(0)+" KB (%"+(100-Math.round(b.size/origSize*100))+" küçüldü)";
+ETSlib.toast("Sıkıştırıldı ✓");},"image/jpeg",q.value/100);};
+</script></body></html>

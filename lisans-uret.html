@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lisans Üretici (Yönetici)</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<section class="hero"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Yönetici · Gizli Sayfa</span><h1 style="font-size:2rem">🔑 Lisans Kodu Üretici</h1>
+<p class="lead" style="margin:14px 0 24px">Shopier'den sipariş gelince burada kod üret, alıcıya WhatsApp/e-posta ile gönder. Bu sayfa menüde görünmez.</p>
+<div class="card"><div class="field"><label>Kaç kod üretilsin?</label><input id="n" type="number" value="5" min="1" max="50"></div>
+<button id="go" class="btn btn-primary" style="margin-top:14px">Üret</button>
+<div id="out" style="margin-top:18px;font-family:monospace;font-size:1.05rem;line-height:2;letter-spacing:.05em"></div></div>
+</div></div></section>
+<script src="assets/js/site.js"></script>
+<script>
+function rand4(){const c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";let s="";for(let i=0;i<4;i++)s+=c[Math.floor(Math.random()*c.length)];return s;}
+document.getElementById("go").onclick=()=>{
+const n=Math.min(50,Math.max(1,+document.getElementById("n").value));let html="";
+for(let i=0;i<n;i++){const a=rand4();const b=ETSlib._hash(a+ETS.licenseSalt);html+="ETS-"+a+"-"+b+"<br>";}
+document.getElementById("out").innerHTML=html;};
+</script></body></html>

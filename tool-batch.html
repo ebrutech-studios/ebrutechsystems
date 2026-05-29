@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Toplu İşlem (Pro) — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Pro Araç</span><h1 style="font-size:2.2rem">🗂️ Toplu İşlem</h1>
+<p class="lead" style="margin:14px 0 26px">Onlarca görseli aynı anda sıkıştır ve indir. Pro üyelere özel.</p>
+<div id="gate" class="card" style="text-align:center;padding:40px">
+<div style="font-size:2.4rem;margin-bottom:10px">🔒</div>
+<h3>Bu araç Pro üyelere özel</h3>
+<p style="color:var(--txt-dim);margin:8px 0 20px">Pro'ya geçerek toplu işlemi ve diğer gelişmiş araçları açın.</p>
+<div class="row" style="max-width:380px;margin:0 auto"><a href="fiyatlandirma.html" class="btn btn-primary">Pro'ya Geç</a><a href="pro.html" class="btn btn-ghost">Kodum Var</a></div></div>
+<div id="tool" class="hidden">
+<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Birden fazla görsel seç</b> veya sürükle</p><input id="file" type="file" accept="image/*" multiple class="hidden"></div>
+<div class="controls"><div class="field"><label>Kalite: <span id="qVal">75</span>%</label><input id="q" type="range" min="10" max="95" value="75"></div>
+<button id="go" class="btn btn-primary hidden">Hepsini İşle & İndir</button><p id="info" style="color:var(--txt-faint);font-size:.86rem"></p></div></div>
+</div></div></section>
+<script src="assets/js/site.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+if(ETSlib.isPro()){document.getElementById("gate").classList.add("hidden");document.getElementById("tool").classList.remove("hidden");}
+let files=[];const dz=document.getElementById("dz"),file=document.getElementById("file");
+if(dz){dz.onclick=()=>file.click();
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");add(e.dataTransfer.files);};
+file.onchange=e=>add(e.target.files);}
+function add(fl){files=[...fl];document.getElementById("info").textContent=files.length+" görsel seçildi";document.getElementById("go").classList.remove("hidden");}
+const q=document.getElementById("q");if(q)q.oninput=()=>document.getElementById("qVal").textContent=q.value;
+const go=document.getElementById("go");if(go)go.onclick=async()=>{
+for(const f of files){await new Promise(res=>{const r=new FileReader();r.onload=ev=>{const im=new Image();im.onload=()=>{
+const c=document.createElement("canvas");c.width=im.naturalWidth;c.height=im.naturalHeight;
+const ctx=c.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(im,0,0);
+c.toBlob(b=>{const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="ets-"+f.name.replace(/\.[^.]+$/,"")+".jpg";a.click();res();},"image/jpeg",q.value/100);};im.src=ev.target.result;};r.readAsDataURL(f);});}
+ETSlib.toast(files.length+" görsel işlendi ✓");};
+});
+</script></body></html>

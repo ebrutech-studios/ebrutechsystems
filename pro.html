@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pro Aktivasyon — EbruTech Studios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<section class="hero"><div class="wrap">
+  <div class="tool-shell">
+    <span class="eyebrow">Pro Aktivasyon</span>
+    <h1 style="font-size:2.3rem">Lisans kodunuzu girin</h1>
+    <p class="lead" style="margin:16px 0 28px">Shopier'den satın aldıktan sonra size iletilen <b>ETS-XXXX-XXXX</b> formatındaki kodu aşağıya girin. Pro özellikleri bu cihazda anında açılır.</p>
+    <div class="card">
+      <div id="status" class="field" style="margin-bottom:14px"></div>
+      <div class="field"><label>Lisans Kodu</label>
+        <input id="lic" placeholder="ETS-XXXX-XXXX" style="text-transform:uppercase;letter-spacing:.1em;font-weight:700"></div>
+      <div class="row" style="margin-top:16px">
+        <button id="activate" class="btn btn-primary">Pro'yu Aktive Et</button>
+        <a href="fiyatlandirma.html" class="btn btn-ghost">Henüz almadım</a>
+      </div>
+    </div>
+    <p style="color:var(--txt-faint);font-size:.84rem;margin-top:16px">Kodunuz çalışmıyor mu? <a id="wa-help" target="_blank" style="color:var(--accent)">WhatsApp'tan yazın</a>, hemen yardımcı olalım.</p>
+  </div>
+</div></section>
+<script src="assets/js/site.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const st=document.getElementById("status");
+  document.getElementById("wa-help").href=ETSlib.wa("Merhaba, Pro lisans kodumda sorun yaşıyorum.");
+  function render(){
+    if(ETSlib.isPro()){st.innerHTML='<div style="background:rgba(200,255,46,.12);color:var(--accent);padding:12px 14px;border-radius:12px;font-weight:700">✓ Pro üyeliğiniz bu cihazda aktif.</div>';}
+    else{st.innerHTML='';}
+  }
+  render();
+  document.getElementById("activate").addEventListener("click",()=>{
+    const code=document.getElementById("lic").value;
+    if(ETSlib.activatePro(code)){ETSlib.toast("Pro aktive edildi! 🎉");render();}
+    else{ETSlib.toast("Geçersiz kod. Lütfen kontrol edin.");}
+  });
+});
+</script>
+</body>
+</html>
