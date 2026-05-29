@@ -19,7 +19,7 @@ const ETS = {
   },
   // Pro lisans anahtarı doğrulaması (client-side checksum).
   // SATIŞ SONRASI: alıcıya bu kuralla üretilmiş bir kod gönderilir.
-  licenseSalt: "ETS2026"
+  licenseSalt: "EbruGizli2026X"
 };
 
 /* ---- Navigasyon yapısı (TEK kaynak) ---- */
