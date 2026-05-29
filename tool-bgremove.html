@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arka Plan Kaldırıcı — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+.bg-checker{background-image:linear-gradient(45deg,#222 25%,transparent 25%),linear-gradient(-45deg,#222 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#222 75%),linear-gradient(-45deg,transparent 75%,#222 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}
+.progress{height:8px;background:var(--surface-2);border-radius:99px;overflow:hidden;margin-top:14px}
+.progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#c8ff2e,#9bdb00);transition:width .3s}
+</style></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Pro Araç · Yapay Zeka</span><h1 style="font-size:2.2rem">✂️ Arka Plan Kaldırıcı</h1>
+<p class="lead" style="margin:14px 0 20px">Tek tıkla arka planı sil. Yapay zeka modeli tamamen senin cihazında çalışır — görselin hiçbir yere yüklenmez.</p>
+<div class="card" style="background:rgba(255,176,32,.08);border-color:rgba(255,176,32,.3);padding:14px 16px;margin-bottom:20px">
+<p style="font-size:.86rem;color:var(--txt-dim)">⚠️ İlk kullanımda yapay zeka modeli (~40MB) indirilir; bu yüzden ilk işlem biraz uzun sürebilir. Wi-Fi önerilir. Sonraki işlemler hızlıdır.</p></div>
+
+<div id="gate" class="card hidden" style="text-align:center;padding:40px">
+<div style="font-size:2.4rem;margin-bottom:10px">🔒</div><h3>Bu araç Pro üyelere özel</h3>
+<p style="color:var(--txt-dim);margin:8px 0 20px">Pro'ya geçerek arka plan kaldırıcıyı ve diğer gelişmiş araçları açın.</p>
+<div class="row" style="max-width:380px;margin:0 auto"><a href="fiyatlandirma.html" class="btn btn-primary">Pro'ya Geç</a><a href="pro.html" class="btn btn-ghost">Kodum Var</a></div></div>
+
+<div id="tool">
+<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli seç</b> veya sürükle<br><span style="color:var(--txt-faint);font-size:.85rem">İnsan, ürün, nesne fotoğrafları için ideal</span></p><input id="file" type="file" accept="image/*" class="hidden"></div>
+<div id="status" class="hidden"><p id="statusTxt" style="color:var(--txt-dim);font-size:.9rem">Hazırlanıyor...</p><div class="progress"><i id="bar"></i></div></div>
+<div class="grid g-2" id="results" style="margin-top:22px"></div>
+<button id="dl" class="btn btn-primary hidden" style="margin-top:18px">Şeffaf PNG İndir</button>
+</div>
+</div></div></section>
+<script src="assets/js/site.js"></script>
+<script type="module">
+const LIB="https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5";
+let removeFn=null,resultBlob=null;
+const dz=document.getElementById("dz"),file=document.getElementById("file");
+const status=document.getElementById("status"),statusTxt=document.getElementById("statusTxt"),bar=document.getElementById("bar");
+const results=document.getElementById("results"),dl=document.getElementById("dl");
+if(!ETSlib.isPro()){document.getElementById("gate").classList.remove("hidden");document.getElementById("tool").classList.add("hidden");}
+dz.onclick=()=>file.click();
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])run(e.dataTransfer.files[0]);};
+file.onchange=e=>{if(e.target.files[0])run(e.target.files[0]);};
+async function ensureLib(){
+  if(removeFn)return;
+  statusTxt.textContent="Yapay zeka kütüphanesi yükleniyor...";
+  const mod=await import(LIB+"/+esm");
+  removeFn=mod.removeBackground;
+}
+async function run(f){
+  try{
+    dl.classList.add("hidden");results.innerHTML="";
+    status.classList.remove("hidden");bar.style.width="8%";
+    await ensureLib();
+    const origURL=URL.createObjectURL(f);
+    results.innerHTML=`<div class="preview"><p style="font-size:.8rem;color:var(--txt-faint);margin-bottom:8px">Orijinal</p><img src="${origURL}"></div>
+      <div class="preview bg-checker"><p style="font-size:.8rem;color:var(--txt-faint);margin-bottom:8px">Sonuç</p><div id="outImg" style="min-height:120px;display:grid;place-items:center;color:var(--txt-faint)">İşleniyor...</div></div>`;
+    const config={progress:(key,cur,tot)=>{
+      const pct=Math.round(cur/tot*100);
+      if(key.includes("fetch")){statusTxt.textContent="Model indiriliyor... %"+pct;bar.style.width=(10+pct*0.6)+"%";}
+      else{statusTxt.textContent="Arka plan kaldırılıyor... %"+pct;bar.style.width=(70+pct*0.3)+"%";}
+    }};
+    const blob=await removeFn(f,config);
+    resultBlob=blob;
+    const outURL=URL.createObjectURL(blob);
+    document.getElementById("outImg").outerHTML=`<img src="${outURL}">`;
+    bar.style.width="100%";statusTxt.textContent="Tamamlandı ✓";
+    dl.classList.remove("hidden");
+    setTimeout(()=>status.classList.add("hidden"),1200);
+    ETSlib.toast("Arka plan kaldırıldı ✓");
+  }catch(e){
+    console.error(e);statusTxt.textContent="Hata oluştu. İnternet bağlantını kontrol et ve tekrar dene.";
+    ETSlib.toast("İşlem başarısız");
+  }
+}
+dl.onclick=()=>{if(!resultBlob)return;const a=document.createElement("a");a.href=URL.createObjectURL(resultBlob);a.download="ebrutech-seffaf.png";a.click();ETSlib.toast("İndiriliyor ✓");};
+</script></body></html>
