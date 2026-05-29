@@ -8,15 +8,6 @@ const ETS = {
   brand: "EbruTech Studios",
   whatsapp: "905414792972",
   email: "info@ebrutechsystems.com",
-  // Shopier ürün linkleri — Shopier panelinden ürün oluşturup linki buraya yapıştır
-  shopier: {
-    pro_monthly:  "https://www.shopier.com/ETS-PRO-AYLIK",
-    pro_yearly:   "https://www.shopier.com/ETS-PRO-YILLIK",
-    pkg_kartvizit:"https://www.shopier.com/ETS-KARTVIZIT",
-    pkg_logo:     "https://www.shopier.com/ETS-LOGO",
-    pkg_web:      "https://www.shopier.com/ETS-WEB",
-    pkg_sosyal:   "https://www.shopier.com/ETS-SOSYAL"
-  },
   // Pro lisans anahtarı doğrulaması (client-side checksum).
   // SATIŞ SONRASI: alıcıya bu kuralla üretilmiş bir kod gönderilir.
   licenseSalt: "EbruGizli2026X"
