@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sosyal Medya Boyutlandırıcı — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">📱 Sosyal Medya Boyutlandırıcı</h1>
+<p class="lead" style="margin:14px 0 26px">Görselini Instagram, Story, YouTube ve daha fazlası için doğru ölçüye getir. Hazır şablonlar.</p>
+<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli seç</b> veya sürükle</p><input id="file" type="file" accept="image/*" class="hidden"></div>
+<div id="panel" class="controls hidden">
+<div class="field"><label>Platform / Format</label><select id="preset">
+<option value="1080x1080">Instagram Kare (1080×1080)</option>
+<option value="1080x1350">Instagram Dikey (1080×1350)</option>
+<option value="1080x1920">Story / Reels (1080×1920)</option>
+<option value="1200x630">Facebook / Link (1200×630)</option>
+<option value="1280x720">YouTube Küçük Resim (1280×720)</option>
+<option value="1500x500">Twitter/X Kapak (1500×500)</option>
+<option value="1584x396">LinkedIn Kapak (1584×396)</option>
+</select></div>
+<div class="field"><label>Sığdırma</label><select id="mode">
+<option value="cover">Doldur (kırpılabilir)</option>
+<option value="contain">Sığdır (boşluk kalabilir)</option>
+</select></div>
+<div class="field" id="bgWrap"><label>Arka plan rengi (boşluklar için)</label><input id="bg" type="color" value="#0a0a0b" style="height:46px;padding:4px"></div>
+<button id="go" class="btn btn-primary">Boyutlandır & İndir</button></div>
+<div id="preview" class="preview hidden"><canvas id="cv" style="max-width:100%;border-radius:10px"></canvas></div>
+</div></div></section>
+<script src="assets/js/site.js"></script>
+<script>
+let imgEl=null;const dz=document.getElementById("dz"),file=document.getElementById("file"),cv=document.getElementById("cv");
+dz.onclick=()=>file.click();
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);};
+file.onchange=e=>{if(e.target.files[0])load(e.target.files[0]);};
+function load(f){const r=new FileReader();r.onload=ev=>{imgEl=new Image();imgEl.onload=()=>{
+document.getElementById("preview").classList.remove("hidden");document.getElementById("panel").classList.remove("hidden");draw();};imgEl.src=ev.target.result;};r.readAsDataURL(f);}
+["preset","mode","bg"].forEach(id=>document.getElementById(id).oninput=draw);
+document.getElementById("mode").addEventListener("change",()=>{document.getElementById("bgWrap").style.display=document.getElementById("mode").value==="contain"?"block":"none";});
+function draw(){
+  if(!imgEl)return;
+  const [w,h]=document.getElementById("preset").value.split("x").map(Number);
+  cv.width=w;cv.height=h;const ctx=cv.getContext("2d");
+  const mode=document.getElementById("mode").value;
+  ctx.fillStyle=document.getElementById("bg").value;ctx.fillRect(0,0,w,h);
+  const ir=imgEl.naturalWidth/imgEl.naturalHeight,cr=w/h;let dw,dh,dx,dy;
+  if(mode==="cover"?ir>cr:ir<cr){dh=h;dw=h*ir;}else{dw=w;dh=w/ir;}
+  if(mode==="contain"){if(ir>cr){dw=w;dh=w/ir;}else{dh=h;dw=h*ir;}}
+  dx=(w-dw)/2;dy=(h-dh)/2;ctx.drawImage(imgEl,dx,dy,dw,dh);
+}
+document.getElementById("go").onclick=()=>{cv.toBlob(b=>{const a=document.createElement("a");a.href=URL.createObjectURL(b);
+a.download="ebrutech-"+document.getElementById("preset").value+".png";a.click();ETSlib.toast("İndiriliyor ✓");},"image/png");};
+</script></body></html>
