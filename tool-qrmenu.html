@@ -1,10 +1,24 @@
 <!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>QR Menü Oluşturucu — EbruTech Studios</title>
+<title>QR Menü Oluşturucu — Kafe & Restoran (Pro) — EbruTech Studios</title>
+<meta name="description" content="QR Menü Oluşturucu — Kafe & Restoran (Pro). Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-qrmenu.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="QR Menü Oluşturucu — Kafe & Restoran (Pro) — EbruTech Studios">
+<meta property="og:description" content="QR Menü Oluşturucu — Kafe & Restoran (Pro). Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
+<meta property="og:url" content="https://ebrutechsystems.com/tool-qrmenu.html">
+<meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <style>.ln{display:grid;grid-template-columns:1fr 90px 32px;gap:8px;margin-bottom:8px}
 .ln input{padding:10px;border-radius:10px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-size:.88rem;width:100%}</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"QR Menü Oluşturucu","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-qrmenu.html"}
+</script>
 </head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
 <span class="eyebrow">Pro Araç · İşletme</span><h1 style="font-size:2.2rem">📱 QR Menü Oluşturucu</h1>
@@ -47,7 +61,7 @@ function items(){return [...lines.querySelectorAll(".ln")].map(l=>{const i=l.que
 function buildHTML(){
   const firma=document.getElementById("firma").value||"Menü";
   const rows=items().map(x=>`<div class="item"><span>${x.n}</span><span>${x.p} ₺</span></div>`).join("");
-  return `<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${firma} — Menü</title>
+  return `<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <style>body{margin:0;font-family:system-ui,sans-serif;background:#0a0a0b;color:#f4f4f2;padding:30px 20px}
 h1{text-align:center;font-size:2rem;margin-bottom:6px}.sub{text-align:center;color:#888;margin-bottom:30px;font-size:.9rem}
 .item{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #222;max-width:480px;margin:0 auto;font-size:1.05rem}
