@@ -28,6 +28,7 @@ window.ETSAuth = {
   auth, db,
   user: null,
   isPro: false,
+  proUntil: null,
   ready: false,
   _cbs: [],
 
@@ -36,7 +37,20 @@ window.ETSAuth = {
   async _checkPro(uid){
     try{
       const snap = await getDoc(doc(db,"users",uid));
-      return snap.exists() && snap.data().pro === true;
+      if(!snap.exists()) return false;
+      const d = snap.data();
+      // Yeni sistem: proUntil tarihi (string "2026-12-31" veya Firestore Timestamp)
+      if(d.proUntil){
+        let until;
+        if(typeof d.proUntil==="string") until=new Date(d.proUntil+"T23:59:59");
+        else if(d.proUntil.toDate) until=d.proUntil.toDate(); // Firestore Timestamp
+        else until=new Date(d.proUntil);
+        window.ETSAuth.proUntil = until;
+        return until.getTime() > Date.now();
+      }
+      // Eski sistem: pro:true (süresiz) — geriye uyumluluk
+      if(d.pro===true){ window.ETSAuth.proUntil=null; return true; }
+      return false;
     }catch(e){ console.error("Pro kontrol hatası",e); return false; }
   },
 

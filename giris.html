@@ -86,9 +86,14 @@ document.addEventListener("ets-auth",(e)=>{
     document.getElementById("authBox").classList.add("hidden");
     document.getElementById("loggedIn").classList.remove("hidden");
     document.getElementById("welcomeTxt").textContent="Hoş geldin, "+(user.displayName||user.email.split("@")[0]);
-    document.getElementById("proStatus").innerHTML=isPro
-      ? '<span style="color:var(--accent);font-weight:700">✓ Pro üyeliğin aktif</span>'
-      : 'Üyelik: Ücretsiz · <a href="fiyatlandirma.html" style="color:var(--accent)">Pro\'ya geç</a>';
+    if(isPro){
+      let txt='✓ Pro üyeliğin aktif';
+      const pu=window.ETSAuth.proUntil;
+      if(pu){const g=Math.ceil((pu-Date.now())/86400000);txt+=' · '+pu.toLocaleDateString('tr-TR')+' tarihine kadar ('+g+' gün)';}
+      document.getElementById("proStatus").innerHTML='<span style="color:var(--accent);font-weight:700">'+txt+'</span>';
+    }else{
+      document.getElementById("proStatus").innerHTML='Üyelik: Ücretsiz · <a href="fiyatlandirma.html" style="color:var(--accent)">Pro\'ya geç</a>';
+    }
   }else{
     document.getElementById("authBox").classList.remove("hidden");
     document.getElementById("loggedIn").classList.add("hidden");
