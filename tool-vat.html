@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KDV Hesaplama — EbruTech Studios</title>
+<meta name="description" content="KDV dahil ve hariç tutar hesaplama. %1, %10, %20 KDV oranları. Fiyata KDV ekleme veya çıkarma. Ücretsiz KDV hesaplama.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-vat.html">
+<meta property="og:title" content="KDV Hesaplama — EbruTech Studios"><meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png"><meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç · İşletme</span><h1 style="font-size:2.2rem">💰 KDV Hesaplama</h1>
+<p class="lead" style="margin:14px 0 26px">Fiyata KDV ekleyin veya KDV dahil fiyattan KDV'yi ayırın. Anında hesaplanır.</p>
+<div class="controls">
+<div class="field"><label>Tutar (₺)</label><input id="amount" type="number" placeholder="1000" value="1000"></div>
+<div class="field"><label>KDV Oranı</label><select id="rate"><option value="20">%20</option><option value="10">%10</option><option value="1">%1</option><option value="8">%8</option><option value="18">%18</option></select></div>
+<div class="field"><label>İşlem</label><select id="mode"><option value="add">KDV Ekle (tutar hariç)</option><option value="extract">KDV Ayır (tutar dahil)</option></select></div>
+</div>
+<div id="result" class="grid g-3" style="margin-top:20px"></div>
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const amount=document.getElementById("amount"),rate=document.getElementById("rate"),mode=document.getElementById("mode");
+function fmt(n){return n.toLocaleString("tr-TR",{minimumFractionDigits:2,maximumFractionDigits:2})+" ₺";}
+function card(n,l,hl){return `<div class="card" style="text-align:center;padding:18px"><div style="font-family:var(--font-display);font-size:1.5rem;color:${hl?'var(--accent)':'var(--txt)'}">${n}</div><div style="font-size:.82rem;color:var(--txt-faint)">${l}</div></div>`;}
+function calc(){
+  const a=parseFloat(amount.value)||0;const r=parseFloat(rate.value)/100;
+  let net,kdv,brut;
+  if(mode.value==="add"){net=a;kdv=a*r;brut=a+kdv;}
+  else{brut=a;net=a/(1+r);kdv=brut-net;}
+  document.getElementById("result").innerHTML=card(fmt(net),"KDV Hariç (Net)")+card(fmt(kdv),"KDV Tutarı",1)+card(fmt(brut),"KDV Dahil (Brüt)");
+}
+[amount,rate,mode].forEach(e=>e.oninput=calc);[rate,mode].forEach(e=>e.onchange=calc);calc();
+</script></body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kelime ve Karakter Sayıcı — EbruTech Studios</title>
+<meta name="description" content="Metninizdeki kelime, karakter, cümle ve paragraf sayısını anında öğrenin. Ücretsiz online kelime sayacı.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-wordcount.html">
+<meta property="og:title" content="Kelime ve Karakter Sayıcı — EbruTech Studios"><meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png"><meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>.ta{width:100%;min-height:180px;padding:14px;border-radius:12px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-size:1rem;resize:vertical;line-height:1.6}</style></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">🔢 Kelime ve Karakter Sayıcı</h1>
+<p class="lead" style="margin:14px 0 26px">Metninizi yazın veya yapıştırın; kelime, karakter, cümle ve paragraf sayısını anında görün.</p>
+<textarea id="t" class="ta" placeholder="Metni buraya yazın veya yapıştırın..."></textarea>
+<div class="grid g-4" id="stats" style="margin-top:18px"></div>
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const t=document.getElementById("t"),stats=document.getElementById("stats");
+function card(n,l){return `<div class="card" style="text-align:center;padding:18px"><div style="font-family:var(--font-display);font-size:1.9rem;color:var(--accent)">${n}</div><div style="font-size:.82rem;color:var(--txt-faint)">${l}</div></div>`;}
+function calc(){
+  const s=t.value;
+  const kelime=(s.trim().match(/\S+/g)||[]).length;
+  const karakter=s.length;
+  const karakterBosluksuz=s.replace(/\s/g,"").length;
+  const cumle=(s.match(/[.!?]+/g)||[]).length;
+  const paragraf=(s.split(/\n+/).filter(p=>p.trim()).length);
+  const dakika=Math.max(1,Math.ceil(kelime/200));
+  stats.innerHTML=card(kelime,"Kelime")+card(karakter,"Karakter")+card(karakterBosluksuz,"Karakter (boşluksuz)")+card(cumle,"Cümle")+card(paragraf,"Paragraf")+card("~"+dakika+" dk","Okuma süresi");
+}
+t.oninput=calc;calc();
+</script></body></html>

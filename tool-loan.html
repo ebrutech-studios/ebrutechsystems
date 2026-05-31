@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kredi Hesaplama — Aylık Taksit ve Faiz | EbruTech Studios</title>
+<meta name="description" content="Kredi tutarı, faiz oranı ve vadeye göre aylık taksit, toplam ödeme ve toplam faizi hesaplayın. Ücretsiz kredi hesaplama aracı.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-loan.html">
+<meta property="og:title" content="Kredi Hesaplama — EbruTech Studios"><meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png"><meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç · Finans</span><h1 style="font-size:2.2rem">🏦 Kredi Hesaplama</h1>
+<p class="lead" style="margin:14px 0 26px">Kredi tutarı, aylık faiz ve vadeyi girin; aylık taksit ve toplam ödemeyi görün.</p>
+<div class="controls">
+<div class="field"><label>Kredi Tutarı (₺)</label><input id="principal" type="number" value="100000"></div>
+<div class="field"><label>Aylık Faiz Oranı (%)</label><input id="rate" type="number" step="0.01" value="3.5"></div>
+<div class="field"><label>Vade (ay)</label><input id="months" type="number" value="36"></div>
+<button id="go" class="btn btn-primary">Hesapla</button></div>
+<div id="result" class="grid g-2" style="margin-top:20px"></div>
+<p style="color:var(--txt-faint);font-size:.82rem;margin-top:14px">Bu hesaplama bilgilendirme amaçlıdır; banka masrafları ve vergiler dahil değildir. Kesin değerler için bankanıza danışın.</p>
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+function fmt(n){return n.toLocaleString("tr-TR",{minimumFractionDigits:2,maximumFractionDigits:2})+" ₺";}
+function card(n,l,hl){return `<div class="card" style="text-align:center;padding:18px"><div style="font-family:var(--font-display);font-size:1.5rem;color:${hl?'var(--accent)':'var(--txt)'}">${n}</div><div style="font-size:.82rem;color:var(--txt-faint)">${l}</div></div>`;}
+document.getElementById("go").onclick=()=>{
+  const P=parseFloat(document.getElementById("principal").value)||0;
+  const r=(parseFloat(document.getElementById("rate").value)||0)/100;
+  const n=parseInt(document.getElementById("months").value)||0;
+  if(P<=0||n<=0){ETSlib.toast("Geçerli değerler gir");return;}
+  let taksit;
+  if(r===0)taksit=P/n;
+  else taksit=P*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  const toplam=taksit*n;const faiz=toplam-P;
+  document.getElementById("result").innerHTML=
+    card(fmt(taksit),"Aylık Taksit",1)+card(fmt(toplam),"Toplam Ödeme")+
+    card(fmt(faiz),"Toplam Faiz")+card(fmt(P),"Anapara");
+  ETSlib.toast("Hesaplandı ✓");
+};
+</script></body></html>

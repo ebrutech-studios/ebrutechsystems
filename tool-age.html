@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yaş Hesaplama — EbruTech Studios</title>
+<meta name="description" content="Doğum tarihinizden yaşınızı yıl, ay, gün olarak hesaplayın. Kaç gün yaşadığınızı öğrenin. Ücretsiz yaş hesaplama.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-age.html">
+<meta property="og:title" content="Yaş Hesaplama — EbruTech Studios"><meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png"><meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">🎂 Yaş Hesaplama</h1>
+<p class="lead" style="margin:14px 0 26px">Doğum tarihinizi girin; yaşınızı yıl, ay ve gün olarak hesaplayalım.</p>
+<div class="controls">
+<div class="field"><label>Doğum Tarihi</label><input id="dob" type="date"></div>
+<div class="field"><label>Hesaplama Tarihi (varsayılan bugün)</label><input id="target" type="date"></div>
+<button id="go" class="btn btn-primary">Hesapla</button></div>
+<div id="result" class="grid g-3" style="margin-top:20px"></div>
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+document.getElementById("target").valueAsDate=new Date();
+function card(n,l){return `<div class="card" style="text-align:center;padding:18px"><div style="font-family:var(--font-display);font-size:1.7rem;color:var(--accent)">${n}</div><div style="font-size:.82rem;color:var(--txt-faint)">${l}</div></div>`;}
+document.getElementById("go").onclick=()=>{
+  const dob=document.getElementById("dob").valueAsDate;
+  const target=document.getElementById("target").valueAsDate||new Date();
+  if(!dob){ETSlib.toast("Doğum tarihi gir");return;}
+  if(dob>target){ETSlib.toast("Doğum tarihi ileride olamaz");return;}
+  let y=target.getFullYear()-dob.getFullYear();
+  let m=target.getMonth()-dob.getMonth();
+  let d=target.getDate()-dob.getDate();
+  if(d<0){m--;d+=new Date(target.getFullYear(),target.getMonth(),0).getDate();}
+  if(m<0){y--;m+=12;}
+  const gun=Math.floor((target-dob)/86400000);
+  const hafta=Math.floor(gun/7);
+  const saat=gun*24;
+  document.getElementById("result").innerHTML=
+    card(y+" yıl "+m+" ay "+d+" gün","Tam yaşınız")+
+    card(gun.toLocaleString("tr-TR"),"Toplam gün")+
+    card(hafta.toLocaleString("tr-TR"),"Toplam hafta")+
+    card((y*12+m).toLocaleString("tr-TR"),"Toplam ay")+
+    card(saat.toLocaleString("tr-TR"),"Toplam saat")+
+    card(y,"Yaşınız (yıl)");
+  ETSlib.toast("Hesaplandı ✓");
+};
+</script></body></html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Birim Dönüştürücü — Uzunluk, Ağırlık, Sıcaklık | EbruTech Studios</title>
+<meta name="description" content="Metre, kilometre, kilogram, gram, Celsius, Fahrenheit ve daha fazlası arası anında birim dönüştürme. Ücretsiz online birim çevirici.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-unit.html">
+<meta property="og:title" content="Birim Dönüştürücü — EbruTech Studios"><meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png"><meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">📐 Birim Dönüştürücü</h1>
+<p class="lead" style="margin:14px 0 26px">Uzunluk, ağırlık, sıcaklık ve alan birimleri arasında anında dönüştürün.</p>
+<div class="controls">
+<div class="field"><label>Kategori</label><select id="cat"></select></div>
+<div class="row"><div class="field"><label>Değer</label><input id="val" type="number" value="1"></div>
+<div class="field"><label>Birim</label><select id="from"></select></div></div>
+<div style="text-align:center;color:var(--accent);font-size:1.4rem">↓</div>
+<div class="row"><div class="field"><label>Sonuç</label><input id="out" readonly style="font-weight:700"></div>
+<div class="field"><label>Birim</label><select id="to"></select></div></div>
+</div></div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+// her birim metre/kg/m2 cinsinden katsayı; sıcaklık özel
+const data={
+  "Uzunluk":{mm:0.001,cm:0.01,m:1,km:1000,inch:0.0254,foot:0.3048,mil:1609.34},
+  "Ağırlık":{mg:0.000001,g:0.001,kg:1,ton:1000,lb:0.453592,ons:0.0283495},
+  "Alan":{"m²":1,"km²":1000000,"hektar":10000,"dönüm":1000,"ft²":0.092903},
+  "Hacim":{ml:0.001,litre:1,"m³":1000,"galon":3.78541},
+  "Sıcaklık":{"°C":"C","°F":"F","K":"K"}
+};
+const cat=document.getElementById("cat"),from=document.getElementById("from"),to=document.getElementById("to"),val=document.getElementById("val"),out=document.getElementById("out");
+cat.innerHTML=Object.keys(data).map(k=>`<option>${k}</option>`).join("");
+function fillUnits(){
+  const u=Object.keys(data[cat.value]);
+  from.innerHTML=u.map(x=>`<option>${x}</option>`).join("");
+  to.innerHTML=u.map(x=>`<option>${x}</option>`).join("");
+  if(u.length>1)to.selectedIndex=1;
+  calc();
+}
+function calc(){
+  const c=data[cat.value];const v=parseFloat(val.value)||0;
+  if(cat.value==="Sıcaklık"){
+    let cel;const f=c[from.value],t=c[to.value];
+    if(f==="C")cel=v;else if(f==="F")cel=(v-32)*5/9;else cel=v-273.15;
+    let r;if(t==="C")r=cel;else if(t==="F")r=cel*9/5+32;else r=cel+273.15;
+    out.value=r.toLocaleString("tr-TR",{maximumFractionDigits:4});
+  }else{
+    const base=v*c[from.value];const r=base/c[to.value];
+    out.value=r.toLocaleString("tr-TR",{maximumFractionDigits:6});
+  }
+}
+cat.onchange=fillUnits;[from,to].forEach(e=>e.onchange=calc);val.oninput=calc;
+fillUnits();
+</script></body></html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Büyük Küçük Harf Dönüştürücü — EbruTech Studios</title>
+<meta name="description" content="Metni BÜYÜK harf, küçük harf, İlk Harf Büyük veya cümle düzenine çevirin. Türkçe karakter uyumlu. Ücretsiz.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-textcase.html">
+<meta property="og:title" content="Büyük Küçük Harf Dönüştürücü — EbruTech Studios"><meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png"><meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>.ta{width:100%;min-height:150px;padding:14px;border-radius:12px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-size:1rem;resize:vertical;line-height:1.6}</style></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">Aa Büyük/Küçük Harf Dönüştürücü</h1>
+<p class="lead" style="margin:14px 0 26px">Metninizi farklı harf düzenlerine çevirin. Türkçe karakterlere (İ, ı, Ş, Ğ) uyumlu.</p>
+<textarea id="t" class="ta" placeholder="Metni buraya yazın..."></textarea>
+<div class="controls" style="margin-top:14px">
+<div class="grid g-2">
+<button class="btn btn-ghost" data-m="upper">BÜYÜK HARF</button>
+<button class="btn btn-ghost" data-m="lower">küçük harf</button>
+<button class="btn btn-ghost" data-m="title">İlk Harfler Büyük</button>
+<button class="btn btn-ghost" data-m="sentence">Cümle düzeni</button>
+</div>
+<button id="copy" class="btn btn-primary">Kopyala</button></div>
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const t=document.getElementById("t");
+function trUpper(s){return s.replace(/i/g,"İ").replace(/ı/g,"I").toUpperCase();}
+function trLower(s){return s.replace(/I/g,"ı").replace(/İ/g,"i").toLowerCase();}
+document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{
+  const m=b.dataset.m;let s=t.value;
+  if(m==="upper")t.value=trUpper(s);
+  else if(m==="lower")t.value=trLower(s);
+  else if(m==="title")t.value=s.split(/(\s+)/).map(w=>w?trUpper(w.charAt(0))+trLower(w.slice(1)):w).join("");
+  else if(m==="sentence"){s=trLower(s);t.value=s.replace(/(^\s*\w|[.!?]\s*\w)/g,c=>trUpper(c));}
+  ETSlib.toast("Dönüştürüldü ✓");
+});
+document.getElementById("copy").onclick=()=>{if(t.value){navigator.clipboard.writeText(t.value);ETSlib.toast("Kopyalandı ✓");}};
+</script></body></html>
