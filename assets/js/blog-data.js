@@ -89,4 +89,84 @@ window.BLOG_POSTS = [
 <p>EbruTech PDF Birleştirici aracını açın. Birleştirmek istediğiniz PDF'leri seçin veya sürükleyin. Listede ok tuşlarıyla sıralamayı ayarlayın, gereksizleri çıkarın. "Birleştir" butonuna basın — tek PDF dosyanız anında iner.</p>
 <p>İhtiyaç duyarsanız aynı araç ailesinde resimden PDF oluşturma ve PDF sayfa düzenleme araçları da bulunuyor.</p>`
   }
+  ,{
+    id: "ucretsiz-qr-kod-olusturma",
+    baslik: "Ücretsiz QR Kod Nasıl Oluşturulur? (Link, WiFi, WhatsApp)",
+    ozet: "Web sitesi, menü, WhatsApp veya kartvizit için saniyeler içinde QR kod oluşturun. Ücretsiz, kayıtsız, tarayıcıda.",
+    tarih: "2026-05-15",
+    okuma: 3,
+    tool: "tool-qr.html",
+    icerik: `
+<p>QR kodlar artık her yerde: kafe menülerinde, kartvizitlerde, afişlerde, ürün etiketlerinde. Bir bağlantıyı, metni ya da iletişim bilgisini telefon kamerasıyla anında açılabilir hale getiriyorlar. Kendi QR kodunuzu oluşturmak ise hiç olmadığı kadar kolay.</p>
+<h2>QR kod ne işe yarar?</h2>
+<ul>
+<li><b>Web sitesi:</b> Afişe veya kartvizite koyun, müşteri tek okutuşta sitenize gelsin.</li>
+<li><b>WhatsApp:</b> Müşteriler doğrudan size mesaj atsın.</li>
+<li><b>Menü/katalog:</b> Dijital menünüze veya ürün listenize yönlendirin.</li>
+</ul>
+<h2>Nasıl oluşturulur?</h2>
+<p>EbruTech QR Kod Üretici aracını açın, yönlendirmek istediğiniz bağlantıyı veya metni yazın, "QR Oluştur" butonuna basın. Kodunuz anında ekranda belirir ve PNG olarak indirebilirsiniz. Baskıya hazırdır.</p>
+<p><b>İpucu:</b> QR kodu bastırırken yeterince büyük tutun ve etrafında boşluk bırakın; çok küçük kodlar okunmakta zorlanır.</p>`
+  },
+  {
+    id: "webp-jpg-png-donusturme",
+    baslik: "WebP, JPG, PNG Farkı ve Online Dönüştürme",
+    ozet: "Hangi resim formatı ne zaman kullanılır? WebP neden önemli? Formatlar arası ücretsiz dönüştürme nasıl yapılır?",
+    tarih: "2026-05-12",
+    okuma: 4,
+    tool: "tool-converter.html",
+    icerik: `
+<p>Resim formatları arasındaki farkı bilmek, hem web sitenizin hızı hem de görsel kaliteniz için önemli. En çok kullanılan üç format olan JPG, PNG ve WebP'nin her birinin güçlü olduğu yerler var.</p>
+<h2>Hangi format ne zaman?</h2>
+<ul>
+<li><b>JPG:</b> Fotoğraflar için ideal. Küçük dosya boyutu, geniş uyumluluk. Saydamlık desteklemez.</li>
+<li><b>PNG:</b> Logo, ikon, saydam arka planlı görseller için. Kalite yüksek ama dosya büyük.</li>
+<li><b>WebP:</b> Google'ın modern formatı. JPG kalitesini daha küçük boyutta sunar, saydamlığı da destekler. Web siteleri için en iyisi.</li>
+</ul>
+<h2>Neden WebP'ye geçmeli?</h2>
+<p>WebP, aynı görseli JPG'den %25-35 daha küçük dosyada saklar. Bu, web sitenizin daha hızlı açılması ve Google sıralamanızın iyileşmesi demek. Artık tüm modern tarayıcılar WebP'yi destekliyor.</p>
+<h2>Nasıl dönüştürülür?</h2>
+<p>EbruTech Format Dönüştürücü aracında görselinizi yükleyin, çıktı formatını seçin (PNG, JPG veya WebP), kaliteyi ayarlayıp indirin. İşlem tamamen tarayıcıda olur, dosyanız hiçbir yere yüklenmez.</p>`
+  },
+  {
+    id: "guclu-sifre-olusturma",
+    baslik: "Güçlü Şifre Nasıl Oluşturulur? (2026 Güvenlik Rehberi)",
+    ozet: "Hesaplarınızı korumak için güçlü, kırılması zor şifreler nasıl oluşturulur? Güvenli şifre üretmenin püf noktaları.",
+    tarih: "2026-05-08",
+    okuma: 4,
+    tool: "tool-password.html",
+    icerik: `
+<p>Zayıf şifreler, hesap ele geçirmelerinin en büyük sebebi. "123456" veya doğum tarihiniz gibi şifreler saniyeler içinde kırılır. Güçlü bir şifre ise sizi siber saldırılara karşı korur.</p>
+<h2>Güçlü şifrenin özellikleri</h2>
+<ul>
+<li><b>Uzunluk:</b> En az 12-16 karakter. Uzunluk, karmaşıklıktan daha önemlidir.</li>
+<li><b>Çeşitlilik:</b> Büyük/küçük harf, rakam ve sembol karışımı.</li>
+<li><b>Rastgelelik:</b> Anlamlı kelime veya kişisel bilgi içermemeli.</li>
+<li><b>Benzersizlik:</b> Her hesap için farklı şifre kullanın.</li>
+</ul>
+<h2>Neden rastgele şifre üreteci?</h2>
+<p>İnsan beyni gerçek rastgelelik üretemez; farkında olmadan tahmin edilebilir kalıplar kullanırız. Şifre üreteçleri ise kriptografik rastgelelik kullanarak tahmin edilmesi imkansız şifreler oluşturur.</p>
+<h2>Nasıl kullanılır?</h2>
+<p>EbruTech Şifre Üreticisi tamamen cihazınızda çalışır; ürettiği şifre hiçbir yere gönderilmez. Uzunluğu ayarlayın, karakter türlerini seçin, üretip kopyalayın. Şifrelerinizi güvenli bir parola yöneticisinde saklamanızı öneririz.</p>
+<p><b>Önemli:</b> Hiçbir şifrenizi e-posta veya mesajla paylaşmayın.</p>`
+  },
+  {
+    id: "fatura-fis-olusturma",
+    baslik: "Online Fatura ve Fiş Nasıl Oluşturulur? (Esnaf Rehberi)",
+    ozet: "Küçük işletmeler ve esnaf için hızlı, profesyonel fatura/fiş hazırlama. KDV otomatik hesaplı, PDF çıktılı.",
+    tarih: "2026-05-04",
+    okuma: 4,
+    tool: "tool-invoice.html",
+    icerik: `
+<p>Müşterinize profesyonel bir fatura veya fiş vermek, işletmenizin güvenilirliğini artırır. Pahalı muhasebe programlarına gerek kalmadan, hızlıca düzenli bir belge oluşturabilirsiniz.</p>
+<h2>Neden dijital fatura?</h2>
+<ul>
+<li><b>Profesyonel görünüm:</b> Düzenli, okunaklı belgeler müşteride güven oluşturur.</li>
+<li><b>Hız:</b> Kalemleri girin, KDV otomatik hesaplansın, PDF anında hazır olsun.</li>
+<li><b>Arşiv:</b> PDF olarak saklayın, istediğinizde tekrar erişin veya yazdırın.</li>
+</ul>
+<h2>Nasıl oluşturulur?</h2>
+<p>EbruTech Fatura/Fiş Oluşturucu aracında işletme adınızı, müşteri bilgisini ve belge numarasını girin. Ürün/hizmet kalemlerini adet ve birim fiyatıyla ekleyin. KDV oranını belirleyin — toplam otomatik hesaplanır. "PDF Oluştur" deyip indirin.</p>
+<p><b>Not:</b> Bu araç pratik belge hazırlama içindir. Resmi e-Fatura/e-Arşiv yükümlülükleriniz için mali müşavirinize danışın.</p>`
+  }
 ];
