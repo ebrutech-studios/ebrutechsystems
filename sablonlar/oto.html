@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- OTO SERVİS ŞABLONU — EbruTech Studios | CONFIG değerlerini düzenle -->
+<title>Usta Oto — Profesyonel Araç Servisi</title>
+<meta name="description" content="Usta Oto — motor, fren, bakım ve onarımda uzman kadro. Güvenilir araç servisi.">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e0f11;--bg2:#16181b;--surface:#1d2024;--text:#f0f2f4;--dim:#9aa0a8;--faint:#5f6770;
+  --accent:#e63946;--accent2:#c1121f;--steel:#3a86ff;--border:rgba(255,255,255,.08);
+  --hero-img:url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=80');
+  --fd:'Oswald',sans-serif;--fb:'Barlow',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.65}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--fd);font-weight:600;line-height:1.05;text-transform:uppercase;letter-spacing:.02em}
+header{position:sticky;top:0;z-index:50;background:rgba(14,15,17,.9);backdrop-filter:blur(12px);border-bottom:2px solid var(--accent)}
+nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{font-family:var(--fd);font-size:1.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:30px}.nav-links a{color:var(--dim);font-size:.92rem;font-weight:500;text-transform:uppercase;letter-spacing:.04em;transition:.2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:#fff!important;padding:11px 22px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;clip-path:polygon(8% 0,100% 0,92% 100%,0 100%)}
+@media(max-width:720px){.nav-links{display:none}}
+.hero{position:relative;min-height:86vh;display:flex;align-items:center;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:var(--hero-img) center/cover;opacity:.38}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,15,17,.6),var(--bg))}
+.hero-content{position:relative;z-index:2;max-width:660px}
+.hero .eyebrow{color:var(--accent);letter-spacing:.25em;text-transform:uppercase;font-size:.82rem;font-weight:600;margin-bottom:18px}
+.hero h1{font-size:clamp(3rem,8vw,6rem);margin-bottom:20px}
+.hero h1 span{color:var(--accent)}
+.hero p{font-size:1.2rem;color:var(--dim);margin-bottom:34px;max-width:520px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:16px 34px;font-weight:600;font-size:.95rem;text-transform:uppercase;letter-spacing:.05em;transition:.2s;border:none;cursor:pointer;clip-path:polygon(5% 0,100% 0,95% 100%,0 100%);font-family:var(--fd)}
+.btn:hover{background:var(--accent2)}
+.btn-outline{background:transparent;border:2px solid var(--border);color:var(--text)}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+section{padding:90px 0}
+.section-title{margin-bottom:50px}
+.section-title .eyebrow{color:var(--accent);letter-spacing:.25em;text-transform:uppercase;font-size:.82rem;font-weight:600}
+.section-title h2{font-size:clamp(2.2rem,5vw,3.4rem);margin-top:10px}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:720px){.services{grid-template-columns:1fr}}
+.service{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:30px 26px;transition:.2s}
+.service:hover{transform:translateY(-4px);border-left-color:var(--steel)}
+.service .icon{font-size:2.2rem;margin-bottom:14px}
+.service h3{font-size:1.4rem;margin-bottom:8px}
+.service p{color:var(--dim);font-size:.92rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat b{font-family:var(--fd);font-size:3rem;color:var(--accent);display:block}
+.stat span{color:var(--dim);font-size:.9rem;text-transform:uppercase;letter-spacing:.05em}
+.contact{background:var(--accent);padding:60px;text-align:center;clip-path:polygon(0 0,100% 0,100% 92%,0 100%)}
+.contact h2{font-size:2.6rem;margin-bottom:14px;color:#fff}
+.contact .info{display:flex;justify-content:center;gap:44px;flex-wrap:wrap;margin:28px 0;color:rgba(255,255,255,.9)}
+.contact .info b{display:block;font-family:var(--fd);font-size:1.3rem;margin-bottom:4px}
+.contact .btn{background:#0e0f11;color:#fff}
+footer{padding:40px 0;text-align:center;color:var(--faint);font-size:.85rem;border-top:1px solid var(--border)}
+footer a{color:var(--accent)}
+.reveal{opacity:0;transform:translateY(20px);transition:.7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+</style></head><body>
+<header><div class="wrap"><nav>
+<a href="#" class="logo">USTA <span>OTO</span></a>
+<div class="nav-links"><a href="#hizmetler">Hizmetler</a><a href="#neden">Neden Biz</a><a href="#iletisim">İletişim</a></div>
+<a href="#iletisim" class="nav-cta">Randevu</a>
+</nav></div></header>
+<section class="hero"><div class="wrap"><div class="hero-content">
+<div class="eyebrow">Profesyonel Araç Servisi</div>
+<h1>Aracınız<br><span>emin ellerde</span></h1>
+<p>Motor, fren, bakım ve onarımda uzman kadromuzla güvenilir hizmet. Orijinal parça, garantili işçilik.</p>
+<div class="btn-row"><a href="#iletisim" class="btn">Randevu Al</a><a href="#hizmetler" class="btn btn-outline">Hizmetlerimiz</a></div>
+</div></div></section>
+<section id="hizmetler"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Ne Yapıyoruz</div><h2>Servis Hizmetleri</h2></div>
+<div class="services">
+<div class="service reveal"><div class="icon">🔧</div><h3>Periyodik Bakım</h3><p>Yağ, filtre, genel kontrol</p></div>
+<div class="service reveal"><div class="icon">🛑</div><h3>Fren Sistemi</h3><p>Balata, disk, hidrolik</p></div>
+<div class="service reveal"><div class="icon">⚙️</div><h3>Motor Onarımı</h3><p>Arıza tespiti, revizyon</p></div>
+<div class="service reveal"><div class="icon">❄️</div><h3>Klima Bakımı</h3><p>Gaz dolumu, temizlik</p></div>
+<div class="service reveal"><div class="icon">🔋</div><h3>Elektrik & Akü</h3><p>Arıza, akü değişimi</p></div>
+<div class="service reveal"><div class="icon">🛞</div><h3>Lastik & Rot Balans</h3><p>Değişim, ayar, denge</p></div>
+</div></div></section>
+<section id="neden" style="background:var(--bg2)"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Rakamlarla</div><h2>Neden Usta Oto?</h2></div>
+<div class="stats">
+<div class="stat reveal"><b>15+</b><span>Yıl Deneyim</span></div>
+<div class="stat reveal"><b>5000+</b><span>Mutlu Müşteri</span></div>
+<div class="stat reveal"><b>%100</b><span>Garantili İşçilik</span></div>
+<div class="stat reveal"><b>24s</b><span>Hızlı Servis</span></div>
+</div></div></section>
+<section id="iletisim"><div class="wrap"><div class="contact reveal">
+<h2>Hemen Randevu Alın</h2>
+<p style="color:rgba(255,255,255,.9)">Aracınızı bize emanet edin, gerisini biz halledelim.</p>
+<div class="info">
+<div><b>Adres</b>Sanayi Sitesi 4. Blok No:18</div>
+<div><b>Telefon</b>0555 444 33 22</div>
+<div><b>Saatler</b>Pzt-Cmt 08:30-18:30</div>
+</div>
+<a href="tel:05554443322" class="btn">Hemen Ara</a>
+</div></div></section>
+<footer><div class="wrap">
+<p>© 2026 Usta Oto — Tüm hakları saklıdır.</p>
+<p style="margin-top:8px">Web sitesi <a href="https://ebrutechsystems.com" target="_blank">EbruTech Studios</a> tarafından hazırlanmıştır.</p>
+</div></footer>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach((e,i)=>{e.style.transitionDelay=(i%3*0.08)+"s";io.observe(e)});
+</script></body></html>

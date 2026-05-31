@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- ============================================================
+     KAFE & RESTORAN ŞABLONU — EbruTech Studios
+     DÜZENLEME: Aşağıdaki CONFIG bölümündeki değerleri değiştir.
+     Görseli değiştirmek için: --hero-img URL'sini değiştir.
+     ============================================================ -->
+<title>Kahve Durağı — Şehrin Kalbinde Lezzet</title>
+<meta name="description" content="Kahve Durağı — taze kahve, ev yapımı tatlılar ve sıcak bir atmosfer. Sizi bekliyoruz.">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== CONFIG — RENKLER ===== */
+:root{
+  --bg:#1a1410; --bg2:#231a13; --surface:#2b2018;
+  --text:#f5ece0; --dim:#c9b8a3; --faint:#8a7a68;
+  --accent:#e8a04c; --accent2:#c97f2a;
+  --border:rgba(232,160,76,.18);
+  --hero-img:url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200&q=80');
+  --font-display:'Fraunces',serif; --font-body:'Manrope',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.1}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(26,20,16,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--accent)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:var(--dim);font-size:.95rem;transition:.2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:var(--bg)!important;padding:10px 20px;border-radius:30px;font-weight:600}
+@media(max-width:720px){.nav-links{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:84vh;display:flex;align-items:center;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:var(--hero-img) center/cover;opacity:.32}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,20,16,.5),var(--bg))}
+.hero-content{position:relative;z-index:2;max-width:640px}
+.hero .eyebrow{color:var(--accent);letter-spacing:.2em;text-transform:uppercase;font-size:.8rem;font-weight:700;margin-bottom:20px}
+.hero h1{font-size:clamp(2.8rem,7vw,5rem);margin-bottom:22px}
+.hero p{font-size:1.2rem;color:var(--dim);margin-bottom:34px;max-width:500px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--bg);padding:15px 30px;border-radius:30px;font-weight:700;font-size:1rem;transition:.2s;border:none;cursor:pointer}
+.btn:hover{background:var(--accent2);transform:translateY(-2px)}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+
+section{padding:90px 0}
+.section-title{text-align:center;margin-bottom:54px}
+.section-title .eyebrow{color:var(--accent);letter-spacing:.2em;text-transform:uppercase;font-size:.8rem;font-weight:700}
+.section-title h2{font-size:clamp(2rem,5vw,3rem);margin-top:12px}
+
+/* menü */
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 50px}
+@media(max-width:720px){.menu-grid{grid-template-columns:1fr}}
+.menu-item{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:16px 0;border-bottom:1px dashed var(--border)}
+.menu-item .name{font-weight:600}
+.menu-item .desc{font-size:.85rem;color:var(--faint);margin-top:2px}
+.menu-item .price{color:var(--accent);font-family:var(--font-display);font-size:1.2rem;font-weight:600;white-space:nowrap}
+
+/* özellikler */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:720px){.features{grid-template-columns:1fr}}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:32px 26px;text-align:center}
+.feature .icon{font-size:2.2rem;margin-bottom:14px}
+.feature h3{font-size:1.25rem;margin-bottom:10px}
+.feature p{color:var(--dim);font-size:.95rem}
+
+/* iletişim */
+.contact{background:var(--bg2);border-radius:24px;padding:54px;text-align:center;border:1px solid var(--border)}
+.contact h2{font-size:2.2rem;margin-bottom:16px}
+.contact .info{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin:30px 0;color:var(--dim)}
+.contact .info b{color:var(--text);display:block;font-size:1.1rem;margin-bottom:4px;font-family:var(--font-display)}
+
+footer{border-top:1px solid var(--border);padding:36px 0;text-align:center;color:var(--faint);font-size:.88rem}
+footer a{color:var(--accent)}
+.reveal{opacity:0;transform:translateY(20px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ============ CONFIG: İŞLETME BİLGİLERİ ============ -->
+<header><div class="wrap"><nav>
+  <a href="#" class="logo">Kahve Durağı</a>
+  <div class="nav-links">
+    <a href="#menu">Menü</a>
+    <a href="#hakkimizda">Hakkımızda</a>
+    <a href="#iletisim">İletişim</a>
+  </div>
+  <a href="#iletisim" class="nav-cta">Rezervasyon</a>
+</nav></div></header>
+
+<section class="hero"><div class="wrap"><div class="hero-content">
+  <div class="eyebrow">Şehrin Kalbinde</div>
+  <h1>Her yudumda<br>bir hikaye</h1>
+  <p>Taze kavrulmuş çekirdekler, ev yapımı tatlılar ve sizi evinizde hissettiren sıcak bir atmosfer.</p>
+  <div class="btn-row">
+    <a href="#menu" class="btn">Menüyü Gör</a>
+    <a href="#iletisim" class="btn btn-outline">Bize Ulaşın</a>
+  </div>
+</div></div></section>
+
+<section id="menu"><div class="wrap">
+  <div class="section-title reveal"><div class="eyebrow">Lezzetlerimiz</div><h2>Menü</h2></div>
+  <div class="menu-grid">
+    <div class="menu-item reveal"><div><div class="name">Türk Kahvesi</div><div class="desc">Geleneksel, közde pişmiş</div></div><div class="price">45₺</div></div>
+    <div class="menu-item reveal"><div><div class="name">Latte</div><div class="desc">İtalyan espresso, buharlı süt</div></div><div class="price">60₺</div></div>
+    <div class="menu-item reveal"><div><div class="name">Filtre Kahve</div><div class="desc">Günün çekirdeği</div></div><div class="price">50₺</div></div>
+    <div class="menu-item reveal"><div><div class="name">Cheesecake</div><div class="desc">Ev yapımı, frambuazlı</div></div><div class="price">75₺</div></div>
+    <div class="menu-item reveal"><div><div class="name">San Sebastian</div><div class="desc">Yanık cheesecake</div></div><div class="price">80₺</div></div>
+    <div class="menu-item reveal"><div><div class="name">Sıcak Çikolata</div><div class="desc">Belçika çikolatası</div></div><div class="price">65₺</div></div>
+  </div>
+</div></section>
+
+<section id="hakkimizda" style="background:var(--bg2)"><div class="wrap">
+  <div class="section-title reveal"><div class="eyebrow">Hikayemiz</div><h2>Neden Biz?</h2></div>
+  <div class="features">
+    <div class="feature reveal"><div class="icon">☕</div><h3>Taze Kahve</h3><p>Her gün taze kavrulan, özenle seçilmiş çekirdekler.</p></div>
+    <div class="feature reveal"><div class="icon">🍰</div><h3>Ev Yapımı</h3><p>Tatlılarımız her sabah kendi mutfağımızda hazırlanır.</p></div>
+    <div class="feature reveal"><div class="icon">🛋️</div><h3>Sıcak Atmosfer</h3><p>Çalışmak, sohbet etmek veya dinlenmek için ideal mekan.</p></div>
+  </div>
+</div></section>
+
+<section id="iletisim"><div class="wrap">
+  <div class="contact reveal">
+    <h2>Sizi Bekliyoruz</h2>
+    <p style="color:var(--dim)">Rezervasyon ve sorularınız için bize ulaşın.</p>
+    <div class="info">
+      <div><b>Adres</b>Atatürk Cad. No:12, Merkez</div>
+      <div><b>Telefon</b>0555 123 45 67</div>
+      <div><b>Saatler</b>Her gün 08:00 - 23:00</div>
+    </div>
+    <a href="tel:05551234567" class="btn">Hemen Ara</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <p>© 2026 Kahve Durağı — Tüm hakları saklıdır.</p>
+  <p style="margin-top:8px">Web sitesi <a href="https://ebrutechsystems.com" target="_blank">EbruTech Studios</a> tarafından hazırlanmıştır.</p>
+</div></footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach((e,i)=>{e.style.transitionDelay=(i%3*0.08)+"s";io.observe(e)});
+</script>
+</body>
+</html>
