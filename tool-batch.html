@@ -7,18 +7,29 @@
 <p class="lead" style="margin:14px 0 26px">Onlarca görseli aynı anda sıkıştır ve indir. Pro üyelere özel.</p>
 <div id="gate" class="card" style="text-align:center;padding:40px">
 <div style="font-size:2.4rem;margin-bottom:10px">🔒</div>
-<h3>Bu araç Pro üyelere özel</h3>
-<p style="color:var(--txt-dim);margin:8px 0 20px">Pro'ya geçerek toplu işlemi ve diğer gelişmiş araçları açın.</p>
-<div class="row" style="max-width:380px;margin:0 auto"><a href="fiyatlandirma.html" class="btn btn-primary">Pro'ya Geç</a><a href="pro.html" class="btn btn-ghost">Kodum Var</a></div></div>
+<h3 id="gateTitle">Yükleniyor...</h3>
+<p id="gateDesc" style="color:var(--txt-dim);margin:8px 0 20px"></p>
+<div id="gateBtns" class="row" style="max-width:380px;margin:0 auto"></div></div>
 <div id="tool" class="hidden">
 <div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Birden fazla görsel seç</b> veya sürükle</p><input id="file" type="file" accept="image/*" multiple class="hidden"></div>
 <div class="controls"><div class="field"><label>Kalite: <span id="qVal">75</span>%</label><input id="q" type="range" min="10" max="95" value="75"></div>
 <button id="go" class="btn btn-primary hidden">Hepsini İşle & İndir</button><p id="info" style="color:var(--txt-faint);font-size:.86rem"></p></div></div>
 </div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
-if(ETSlib.isPro()){document.getElementById("gate").classList.add("hidden");document.getElementById("tool").classList.remove("hidden");}
+function applyGate(user,isPro){
+  const gate=document.getElementById("gate"),tool=document.getElementById("tool");
+  const t=document.getElementById("gateTitle"),d=document.getElementById("gateDesc"),b=document.getElementById("gateBtns");
+  if(isPro){gate.classList.add("hidden");tool.classList.remove("hidden");return;}
+  gate.classList.remove("hidden");tool.classList.add("hidden");
+  if(!user){t.textContent="Giriş yapman gerekiyor";d.textContent="Bu araç Pro üyelere özel. Önce giriş yap.";
+    b.innerHTML='<a href="giris.html" class="btn btn-primary">Giriş Yap</a><a href="fiyatlandirma.html" class="btn btn-ghost">Pro Nedir?</a>';}
+  else{t.textContent="Bu araç Pro üyelere özel";d.textContent="Hesabın var ama Pro değil. Pro'ya geçmek için WhatsApp'tan bize ulaş.";
+    b.innerHTML='<a href="fiyatlandirma.html" class="btn btn-primary">Pro\'ya Geç</a>';}
+}
+document.addEventListener("ets-auth",(e)=>applyGate(e.detail.user,e.detail.isPro));
 let files=[];const dz=document.getElementById("dz"),file=document.getElementById("file");
 if(dz){dz.onclick=()=>file.click();
 dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");

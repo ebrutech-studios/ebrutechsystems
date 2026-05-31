@@ -45,7 +45,7 @@
         <li>PDF araçları erişimi</li>
         <li>Öncelikli WhatsApp desteği</li>
       </ul>
-      <a id="buy-monthly" class="btn btn-wa" target="_blank">WhatsApp Pro Al</a>
+      <a id="buy-monthly" class="btn btn-wa" target="_blank">WhatsApp'tan Pro Al</a>
     </div>
 
     <div class="plan reveal">
@@ -58,13 +58,10 @@
         <li>Yeni araçlara erken erişim</li>
         <li>Yıllık fiyat kilidi</li>
       </ul>
-      <a id="buy-yearly" class="btn btn-ghost" target="_blank">WhatsApp Yıllık Al</a>
+      <a id="buy-yearly" class="btn btn-ghost" target="_blank">WhatsApp'tan Yıllık Al</a>
     </div>
   </div>
-  <p style="text-align:center;color:var(--txt-faint);font-size:.86rem;margin-top:20px">
-    Ödeme sonrası Shopier üzerinden lisans kodunuz iletilir. Kodu
-    <a href="pro.html" style="color:var(--accent)">aktivasyon sayfasından</a> girerek Pro'yu açarsınız.
-  </p>
+  <p style="text-align:center;color:var(--txt-faint);font-size:.86rem;margin-top:20px">Pro üyelik için WhatsApp'tan iletişime geçin. Ödeme sonrası hesabınız Pro olarak işaretlenir; <a href="giris.html" style="color:var(--accent)">giriş yaparak</a> tüm Pro araçlara erişirsiniz.</p>
 </div></section>
 
 <section><div class="wrap">
@@ -86,16 +83,17 @@
   </div>
 </div></section>
 
+<script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
-  const s=ETS.shopier;
-  document.getElementById("buy-monthly").href=s.pro_monthly;
-  document.getElementById("buy-yearly").href=s.pro_yearly;
-  document.getElementById("pkg-kartvizit").href=s.pkg_kartvizit;
-  document.getElementById("pkg-logo").href=s.pkg_logo;
-  document.getElementById("pkg-web").href=s.pkg_web;
-  document.getElementById("pkg-sosyal").href=s.pkg_sosyal;
+  const link=(id,urun)=>{const el=document.getElementById(id);if(el){el.href=ETSlib.wa("Merhaba EbruTech Studios! "+urun+" hakkında bilgi almak ve sipariş vermek istiyorum.");el.target="_blank";}};
+  link("buy-monthly","Pro Aylık üyelik (149₺/ay)");
+  link("buy-yearly","Pro Yıllık üyelik (1.490₺/yıl)");
+  link("pkg-kartvizit","Kartvizit Tasarımı paketi (250₺)");
+  link("pkg-logo","Logo Tasarımı paketi (750₺)");
+  link("pkg-web","Tek Sayfa Web paketi (2.500₺)");
+  link("pkg-sosyal","Sosyal Medya Seti paketi (500₺)");
   document.getElementById("wa-quote").href=ETSlib.wa("Merhaba EbruTech Studios, özel bir proje için teklif almak istiyorum.");
 });
 </script>
