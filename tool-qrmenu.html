@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QR Menü Oluşturucu — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<style>.ln{display:grid;grid-template-columns:1fr 90px 32px;gap:8px;margin-bottom:8px}
+.ln input{padding:10px;border-radius:10px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-size:.88rem;width:100%}</style>
+</head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Pro Araç · İşletme</span><h1 style="font-size:2.2rem">📱 QR Menü Oluşturucu</h1>
+<p class="lead" style="margin:14px 0 26px">Kafe/restoran için dijital menü hazırla. Tek dosya HTML indir, sunucuna koy, QR'ı masalara as.</p>
+<div id="gate" class="card hidden" style="text-align:center;padding:40px">
+<div style="font-size:2.4rem;margin-bottom:10px">🔒</div><h3 id="gateTitle">Yükleniyor...</h3>
+<p id="gateDesc" style="color:var(--txt-dim);margin:8px 0 20px"></p><div id="gateBtns" class="row" style="max-width:380px;margin:0 auto"></div></div>
+<div id="tool" class="hidden"><div class="controls">
+<div class="field"><label>İşletme Adı</label><input id="firma" placeholder="Kafe Nova"></div>
+<div class="field"><label>Menü Kalemleri</label>
+<div class="ln" style="font-size:.78rem;color:var(--txt-faint)"><span>Ürün</span><span>Fiyat ₺</span><span></span></div>
+<div id="lines"></div>
+<button id="addLine" class="btn btn-ghost" style="margin-top:6px">+ Ürün Ekle</button></div>
+<button id="preview" class="btn btn-ghost">Önizle</button>
+<button id="dlHtml" class="btn btn-primary">Menü HTML İndir</button>
+<div class="field"><label>Menü yayınladığın adres (QR için)</label><input id="url" placeholder="https://siteniz.com/menu.html"></div>
+<button id="dlQr" class="btn btn-ghost">QR Kod Üret & İndir</button>
+<div id="qr" style="display:inline-block;background:#fff;padding:14px;border-radius:12px;margin-top:6px"></div>
+</div></div></div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+function applyGate(user,isPro){const gate=document.getElementById("gate"),tool=document.getElementById("tool");
+const t=document.getElementById("gateTitle"),d=document.getElementById("gateDesc"),b=document.getElementById("gateBtns");
+if(isPro){gate.classList.add("hidden");tool.classList.remove("hidden");return;}
+gate.classList.remove("hidden");tool.classList.add("hidden");
+if(!user){t.textContent="Giriş yapman gerekiyor";d.textContent="Bu araç Pro üyelere özel. Önce giriş yap.";
+b.innerHTML='<a href="giris.html" class="btn btn-primary">Giriş Yap</a><a href="fiyatlandirma.html" class="btn btn-ghost">Pro Nedir?</a>';}
+else{t.textContent="Bu araç Pro üyelere özel";d.textContent="Hesabın var ama Pro değil. WhatsApp\u0027tan ulaş.";
+b.innerHTML='<a href="fiyatlandirma.html" class="btn btn-primary">Pro\u0027ya Geç</a>';}}
+document.addEventListener("ets-auth",(e)=>applyGate(e.detail.user,e.detail.isPro));
+
+const lines=document.getElementById("lines");
+function addLine(n="",p=""){const div=document.createElement("div");div.className="ln";
+  div.innerHTML=`<input placeholder="Ürün adı" value="${n}"><input type="number" placeholder="0" value="${p}"><button class="btn btn-ghost" style="padding:8px">✕</button>`;
+  div.querySelector("button").onclick=()=>div.remove();lines.appendChild(div);}
+document.getElementById("addLine").onclick=()=>addLine();
+addLine("Türk Kahvesi","45");addLine("Latte","60");
+function items(){return [...lines.querySelectorAll(".ln")].map(l=>{const i=l.querySelectorAll("input");return{n:i[0].value,p:i[1].value};}).filter(x=>x.n);}
+function buildHTML(){
+  const firma=document.getElementById("firma").value||"Menü";
+  const rows=items().map(x=>`<div class="item"><span>${x.n}</span><span>${x.p} ₺</span></div>`).join("");
+  return `<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${firma} — Menü</title>
+<style>body{margin:0;font-family:system-ui,sans-serif;background:#0a0a0b;color:#f4f4f2;padding:30px 20px}
+h1{text-align:center;font-size:2rem;margin-bottom:6px}.sub{text-align:center;color:#888;margin-bottom:30px;font-size:.9rem}
+.item{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #222;max-width:480px;margin:0 auto;font-size:1.05rem}
+.item span:last-child{color:#c8ff2e;font-weight:700}.foot{text-align:center;color:#555;font-size:.78rem;margin-top:40px}</style></head>
+<body><h1>${firma}</h1><div class="sub">Dijital Menü</div>${rows}<div class="foot">EbruTech Studios ile hazırlandı</div></body></html>`;
+}
+document.getElementById("preview").onclick=()=>{const w=window.open();w.document.write(buildHTML());w.document.close();};
+document.getElementById("dlHtml").onclick=()=>{const blob=new Blob([buildHTML()],{type:"text/html"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="menu.html";a.click();ETSlib.toast("menu.html indiriliyor ✓");};
+document.getElementById("dlQr").onclick=()=>{const url=document.getElementById("url").value.trim();if(!url){ETSlib.toast("Önce menü adresini gir");return;}
+  document.getElementById("qr").innerHTML="";new QRCode(document.getElementById("qr"),{text:url,width:220,height:220,colorDark:"#0a0a0b",colorLight:"#fff"});
+  setTimeout(()=>{const c=document.querySelector("#qr canvas");if(c){const a=document.createElement("a");a.href=c.toDataURL();a.download="menu-qr.png";a.click();ETSlib.toast("QR indiriliyor ✓");}},300);};
+</script></body></html>

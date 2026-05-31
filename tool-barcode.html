@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Barkod Üreticisi — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Pro Araç · İşletme</span><h1 style="font-size:2.2rem">▥ Barkod Üreticisi</h1>
+<p class="lead" style="margin:14px 0 26px">Ürünleriniz için barkod oluşturun. CODE128, EAN-13 ve daha fazlası. PNG indirin.</p>
+<div id="gate" class="card hidden" style="text-align:center;padding:40px">
+<div style="font-size:2.4rem;margin-bottom:10px">🔒</div><h3 id="gateTitle">Yükleniyor...</h3>
+<p id="gateDesc" style="color:var(--txt-dim);margin:8px 0 20px"></p><div id="gateBtns" class="row" style="max-width:380px;margin:0 auto"></div></div>
+<div id="tool" class="hidden"><div class="controls">
+<div class="field"><label>Barkod İçeriği</label><input id="val" value="1234567890" placeholder="Ürün kodu / numara"></div>
+<div class="field"><label>Barkod Tipi</label><select id="type">
+<option value="CODE128">CODE128 (genel)</option><option value="EAN13">EAN-13 (13 hane)</option>
+<option value="EAN8">EAN-8 (8 hane)</option><option value="UPC">UPC (12 hane)</option><option value="CODE39">CODE39</option></select></div>
+<div id="err" style="display:none;padding:10px 12px;border-radius:10px;background:rgba(255,80,80,.12);color:#ff8080;font-size:.86rem"></div>
+<div class="preview" style="background:#fff;text-align:center"><svg id="bc"></svg></div>
+<button id="dl" class="btn btn-primary">PNG İndir</button>
+</div></div></div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+function applyGate(user,isPro){const gate=document.getElementById("gate"),tool=document.getElementById("tool");
+const t=document.getElementById("gateTitle"),d=document.getElementById("gateDesc"),b=document.getElementById("gateBtns");
+if(isPro){gate.classList.add("hidden");tool.classList.remove("hidden");gen();return;}
+gate.classList.remove("hidden");tool.classList.add("hidden");
+if(!user){t.textContent="Giriş yapman gerekiyor";d.textContent="Bu araç Pro üyelere özel. Önce giriş yap.";
+b.innerHTML='<a href="giris.html" class="btn btn-primary">Giriş Yap</a><a href="fiyatlandirma.html" class="btn btn-ghost">Pro Nedir?</a>';}
+else{t.textContent="Bu araç Pro üyelere özel";d.textContent="Hesabın var ama Pro değil. WhatsApp\u0027tan ulaş.";
+b.innerHTML='<a href="fiyatlandirma.html" class="btn btn-primary">Pro\u0027ya Geç</a>';}}
+document.addEventListener("ets-auth",(e)=>applyGate(e.detail.user,e.detail.isPro));
+const err=document.getElementById("err");
+function gen(){
+  const val=document.getElementById("val").value,type=document.getElementById("type").value;
+  try{JsBarcode("#bc",val,{format:type,width:2,height:90,fontSize:16,margin:12});err.style.display="none";}
+  catch(e){err.style.display="block";err.textContent="Bu içerik "+type+" formatına uygun değil. Hane sayısını kontrol et.";}
+}
+document.getElementById("val").oninput=gen;
+document.getElementById("type").onchange=gen;
+document.getElementById("dl").onclick=()=>{
+  const svg=document.getElementById("bc");const xml=new XMLSerializer().serializeToString(svg);
+  const img=new Image();img.onload=()=>{const c=document.createElement("canvas");c.width=img.width;c.height=img.height;
+    const ctx=c.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0);
+    const a=document.createElement("a");a.href=c.toDataURL("image/png");a.download="ebrutech-barkod.png";a.click();ETSlib.toast("İndiriliyor ✓");};
+  img.src="data:image/svg+xml;base64,"+btoa(unescape(encodeURIComponent(xml)));
+};
+</script></body></html>
