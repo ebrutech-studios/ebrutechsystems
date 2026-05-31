@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDF'den Resme — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Pro Araç</span><h1 style="font-size:2.2rem">📄→🖼️ PDF'den Resme</h1>
+<p class="lead" style="margin:14px 0 26px">PDF sayfalarını yüksek kaliteli PNG görsellere dönüştür. Her sayfa ayrı dosya.</p>
+
+<div id="gate" class="card hidden" style="text-align:center;padding:40px">
+<div style="font-size:2.4rem;margin-bottom:10px">🔒</div><h3 id="gateTitle">Yükleniyor...</h3>
+<p id="gateDesc" style="color:var(--txt-dim);margin:8px 0 20px"></p>
+<div id="gateBtns" class="row" style="max-width:380px;margin:0 auto"></div></div>
+
+<div id="tool" class="hidden">
+<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>PDF seç</b> veya sürükle</p><input id="file" type="file" accept="application/pdf" class="hidden"></div>
+<div id="status" style="color:var(--txt-dim);font-size:.9rem;margin-top:14px"></div>
+<div id="pages" class="grid g-2" style="margin-top:20px"></div>
+</div>
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.0.379/build/pdf.min.mjs" type="module"></script>
+<script type="module">
+import * as pdfjsLib from "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.0.379/build/pdf.min.mjs";
+pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.0.379/build/pdf.worker.min.mjs";
+
+function applyGate(user,isPro){
+  const gate=document.getElementById("gate"),tool=document.getElementById("tool");
+  const t=document.getElementById("gateTitle"),d=document.getElementById("gateDesc"),b=document.getElementById("gateBtns");
+  if(isPro){gate.classList.add("hidden");tool.classList.remove("hidden");return;}
+  gate.classList.remove("hidden");tool.classList.add("hidden");
+  if(!user){t.textContent="Giriş yapman gerekiyor";d.textContent="Bu araç Pro üyelere özel. Önce giriş yap.";
+    b.innerHTML='<a href="giris.html" class="btn btn-primary">Giriş Yap</a><a href="fiyatlandirma.html" class="btn btn-ghost">Pro Nedir?</a>';}
+  else{t.textContent="Bu araç Pro üyelere özel";d.textContent="Hesabın var ama Pro değil. Pro'ya geçmek için WhatsApp'tan ulaş.";
+    b.innerHTML='<a href="fiyatlandirma.html" class="btn btn-primary">Pro\'ya Geç</a>';}
+}
+document.addEventListener("ets-auth",(e)=>applyGate(e.detail.user,e.detail.isPro));
+
+const dz=document.getElementById("dz"),file=document.getElementById("file"),status=document.getElementById("status"),pages=document.getElementById("pages");
+dz.onclick=()=>file.click();
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])render(e.dataTransfer.files[0]);};
+file.onchange=e=>{if(e.target.files[0])render(e.target.files[0]);};
+async function render(f){
+  try{
+    pages.innerHTML="";status.textContent="PDF okunuyor...";
+    const buf=await f.arrayBuffer();const pdf=await pdfjsLib.getDocument({data:buf}).promise;
+    status.textContent=pdf.numPages+" sayfa bulundu, dönüştürülüyor...";
+    for(let i=1;i<=pdf.numPages;i++){
+      const page=await pdf.getPage(i);const vp=page.getViewport({scale:2});
+      const c=document.createElement("canvas");c.width=vp.width;c.height=vp.height;
+      await page.render({canvasContext:c.getContext("2d"),viewport:vp}).promise;
+      const url=c.toDataURL("image/png");
+      const card=document.createElement("div");card.className="card";card.style.cssText="text-align:center;padding:12px";
+      card.innerHTML=`<img src="${url}" style="border-radius:8px;margin-bottom:10px"><br><button class="btn btn-ghost" style="width:100%;justify-content:center">Sayfa ${i} İndir</button>`;
+      card.querySelector("button").onclick=()=>{const a=document.createElement("a");a.href=url;a.download="ebrutech-sayfa-"+i+".png";a.click();ETSlib.toast("Sayfa "+i+" indiriliyor ✓");};
+      pages.appendChild(card);
+    }
+    status.textContent=pdf.numPages+" sayfa hazır. İndirmek için butonlara bas.";
+  }catch(e){console.error(e);status.textContent="Hata: PDF okunamadı.";}
+}
+</script></body></html>
