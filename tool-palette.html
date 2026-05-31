@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Renk Paleti Çıkarıcı — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">🎨 Renk Paleti Çıkarıcı</h1>
+<p class="lead" style="margin:14px 0 26px">Fotoğraftan baskın renkleri çıkar, HEX kodlarını kopyala. Tasarım ve marka çalışmaları için.</p>
+<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli seç</b> veya sürükle</p><input id="file" type="file" accept="image/*" class="hidden"></div>
+<div id="preview" class="preview hidden"><img id="img" style="max-height:240px;margin:0 auto"></div>
+<div id="palette" class="grid g-3" style="margin-top:20px"></div>
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const dz=document.getElementById("dz"),file=document.getElementById("file");
+dz.onclick=()=>file.click();
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);};
+file.onchange=e=>{if(e.target.files[0])load(e.target.files[0]);};
+function load(f){const r=new FileReader();r.onload=ev=>{const im=new Image();im.onload=()=>{
+document.getElementById("img").src=im.src;document.getElementById("preview").classList.remove("hidden");extract(im);};im.src=ev.target.result;};r.readAsDataURL(f);}
+function extract(im){
+  const c=document.createElement("canvas");const W=120,H=Math.round(120*im.naturalHeight/im.naturalWidth);
+  c.width=W;c.height=H;const ctx=c.getContext("2d");ctx.drawImage(im,0,0,W,H);
+  const data=ctx.getImageData(0,0,W,H).data;
+  // basit kantizasyon: renkleri grupla, en sık 6 grup
+  const buckets={};
+  for(let i=0;i<data.length;i+=4){
+    const r=data[i]>>4<<4,g=data[i+1]>>4<<4,b=data[i+2]>>4<<4;
+    const key=r+","+g+","+b;buckets[key]=(buckets[key]||0)+1;
+  }
+  const top=Object.entries(buckets).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const pal=document.getElementById("palette");pal.innerHTML="";
+  top.forEach(([key])=>{
+    const [r,g,b]=key.split(",").map(Number);
+    const hex="#"+[r,g,b].map(x=>x.toString(16).padStart(2,"0")).join("").toUpperCase();
+    const card=document.createElement("div");card.className="card";card.style.cssText="cursor:pointer;text-align:center;padding:0;overflow:hidden";
+    card.innerHTML=`<div style="height:90px;background:${hex}"></div><div style="padding:12px"><b style="font-family:monospace">${hex}</b><br><span style="font-size:.78rem;color:var(--txt-faint)">kopyalamak için tıkla</span></div>`;
+    card.onclick=()=>{navigator.clipboard.writeText(hex);ETSlib.toast(hex+" kopyalandı ✓");};
+    pal.appendChild(card);
+  });
+}
+</script></body></html>

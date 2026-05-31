@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resim Kırpma — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+.crop-stage{position:relative;display:inline-block;max-width:100%;touch-action:none;user-select:none}
+.crop-stage img{display:block;max-width:100%;border-radius:10px}
+.crop-box{position:absolute;border:2px solid var(--accent);box-shadow:0 0 0 9999px rgba(0,0,0,.55);cursor:move}
+.crop-handle{position:absolute;width:16px;height:16px;background:var(--accent);border-radius:50%;border:2px solid #000}
+.crop-handle.br{right:-8px;bottom:-8px;cursor:nwse-resize}
+</style></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">✂️ Resim Kırpma</h1>
+<p class="lead" style="margin:14px 0 26px">Görseli istediğin alana kırp. Serbest veya sabit oranlarla. Tarayıcıda çalışır.</p>
+<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli seç</b> veya sürükle</p><input id="file" type="file" accept="image/*" class="hidden"></div>
+<div id="panel" class="controls hidden">
+<div class="field"><label>Oran</label><select id="ratio">
+<option value="free">Serbest</option><option value="1">1:1 (Kare)</option><option value="1.7778">16:9</option>
+<option value="0.5625">9:16 (Dikey)</option><option value="1.3333">4:3</option><option value="0.75">3:4</option></select></div>
+<button id="go" class="btn btn-primary">Kırp & İndir</button></div>
+<div id="stageWrap" class="preview hidden" style="text-align:center"><div class="crop-stage" id="stage"><img id="img"><div class="crop-box" id="box"><div class="crop-handle br" id="handle"></div></div></div></div>
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+let img=document.getElementById("img"),box=document.getElementById("box"),stage=document.getElementById("stage");
+let crop={x:20,y:20,w:200,h:200},ratio="free";
+const dz=document.getElementById("dz"),file=document.getElementById("file");
+dz.onclick=()=>file.click();
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);};
+file.onchange=e=>{if(e.target.files[0])load(e.target.files[0]);};
+function load(f){const r=new FileReader();r.onload=ev=>{img.onload=()=>{
+  document.getElementById("stageWrap").classList.remove("hidden");document.getElementById("panel").classList.remove("hidden");
+  const w=img.clientWidth,h=img.clientHeight;crop={x:w*0.1,y:h*0.1,w:w*0.5,h:h*0.5};applyRatio();render();
+};img.src=ev.target.result;};r.readAsDataURL(f);}
+document.getElementById("ratio").onchange=e=>{ratio=e.target.value;applyRatio();render();};
+function applyRatio(){if(ratio!=="free"){crop.h=crop.w/parseFloat(ratio);}}
+function render(){box.style.left=crop.x+"px";box.style.top=crop.y+"px";box.style.width=crop.w+"px";box.style.height=crop.h+"px";}
+// taşıma
+let drag=null;
+box.addEventListener("pointerdown",e=>{if(e.target.id==="handle")return;drag={px:e.clientX,py:e.clientY,ox:crop.x,oy:crop.y};box.setPointerCapture(e.pointerId);});
+box.addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.px,dy=e.clientY-drag.py;
+  crop.x=Math.max(0,Math.min(img.clientWidth-crop.w,drag.ox+dx));crop.y=Math.max(0,Math.min(img.clientHeight-crop.h,drag.oy+dy));render();});
+box.addEventListener("pointerup",()=>drag=null);
+// boyutlandırma
+let rs=null,handle=document.getElementById("handle");
+handle.addEventListener("pointerdown",e=>{e.stopPropagation();rs={px:e.clientX,py:e.clientY,ow:crop.w,oh:crop.h};handle.setPointerCapture(e.pointerId);});
+handle.addEventListener("pointermove",e=>{if(!rs)return;const dx=e.clientX-rs.px;
+  crop.w=Math.max(40,Math.min(img.clientWidth-crop.x,rs.ow+dx));
+  if(ratio!=="free")crop.h=crop.w/parseFloat(ratio);else crop.h=Math.max(40,Math.min(img.clientHeight-crop.y,rs.oh+(e.clientY-rs.py)));
+  render();});
+handle.addEventListener("pointerup",()=>rs=null);
+document.getElementById("go").onclick=()=>{
+  const sx=img.naturalWidth/img.clientWidth,sy=img.naturalHeight/img.clientHeight;
+  const c=document.createElement("canvas");c.width=crop.w*sx;c.height=crop.h*sy;
+  c.getContext("2d").drawImage(img,crop.x*sx,crop.y*sy,crop.w*sx,crop.h*sy,0,0,c.width,c.height);
+  c.toBlob(b=>{const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="ebrutech-kirpildi.png";a.click();ETSlib.toast("İndiriliyor ✓");},"image/png");
+};
+</script></body></html>
