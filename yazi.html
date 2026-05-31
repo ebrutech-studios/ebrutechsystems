@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yazı — EbruTech Studios</title>
+<meta name="description" content="EbruTech Studios blog yazısı.">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>.article{max-width:720px;margin:0 auto}.article h2{font-size:1.5rem;margin:30px 0 12px}
+.article p{color:var(--txt-dim);margin-bottom:16px;line-height:1.75}.article ul{margin:0 0 16px 0;padding-left:22px;color:var(--txt-dim)}
+.article li{margin-bottom:8px;line-height:1.65}.article b{color:var(--txt)}</style></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="article">
+<a href="blog.html" style="color:var(--accent);font-size:.9rem;font-weight:600">← Tüm yazılar</a>
+<div id="meta" style="margin-top:18px"></div>
+<h1 id="baslik" style="font-size:2.2rem;margin:10px 0 20px">Yükleniyor...</h1>
+<div id="icerik"></div>
+<div id="cta" style="margin-top:36px"></div>
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/blog-data.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const id=new URLSearchParams(location.search).get("id");
+const post=(window.BLOG_POSTS||[]).find(p=>p.id===id);
+if(!post){
+  document.getElementById("baslik").textContent="Yazı bulunamadı";
+  document.getElementById("icerik").innerHTML='<p style="color:var(--txt-dim)">Bu yazı mevcut değil. <a href="blog.html" style="color:var(--accent)">Tüm yazılara dön</a>.</p>';
+}else{
+  document.title=post.baslik+" — EbruTech Studios";
+  let m=document.querySelector('meta[name="description"]');if(m)m.content=post.ozet;
+  document.getElementById("meta").innerHTML=`<span class="eyebrow" style="margin:0">${new Date(post.tarih).toLocaleDateString('tr-TR')} · ${post.okuma} dk okuma</span>`;
+  document.getElementById("baslik").textContent=post.baslik;
+  document.getElementById("icerik").innerHTML=post.icerik;
+  if(post.tool){
+    document.getElementById("cta").innerHTML=`<div class="callout"><h2 style="font-size:1.4rem;margin-bottom:10px">Hemen deneyin</h2>
+    <p class="lead" style="margin:0 auto 18px">Bu rehberde anlatılan aracı ücretsiz kullanın.</p>
+    <a href="${post.tool}" class="btn btn-primary btn-lg">Aracı Aç →</a></div>`;
+  }
+  // JSON-LD Article
+  const ld=document.createElement("script");ld.type="application/ld+json";
+  ld.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":post.baslik,"description":post.ozet,"datePublished":post.tarih,"author":{"@type":"Organization","name":"EbruTech Studios"},"publisher":{"@type":"Organization","name":"EbruTech Studios"}});
+  document.head.appendChild(ld);
+}
+</script></body></html>

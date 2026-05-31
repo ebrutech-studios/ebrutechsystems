@@ -13,6 +13,7 @@ const NAV = [
   ["tools.html","Araçlar"],
   ["hizmetler.html","Hizmetler"],
   ["fiyatlandirma.html","Fiyatlandırma"],
+  ["blog.html","Blog"],
   ["iletisim.html","İletişim"]
 ];
 
