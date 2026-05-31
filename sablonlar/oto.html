@@ -58,10 +58,31 @@ section{padding:90px 0}
 footer{padding:40px 0;text-align:center;color:var(--faint);font-size:.85rem;border-top:1px solid var(--border)}
 footer a{color:var(--accent)}
 .reveal{opacity:0;transform:translateY(20px);transition:.7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:720px){.gallery{grid-template-columns:repeat(2,1fr)}}
+.gal{aspect-ratio:1;background:linear-gradient(135deg,#1d2024,#16181b);display:flex;align-items:center;justify-content:center;font-size:2.4rem;transition:.2s;border:1px solid var(--border)}
+.gal:hover{transform:scale(1.04);border-color:var(--accent)}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:720px){.reviews{grid-template-columns:1fr}}
+.review{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);padding:28px}
+.review .stars{color:var(--accent);margin-bottom:12px;letter-spacing:2px}
+.review p{color:var(--dim);font-size:.95rem;margin-bottom:16px;font-style:italic}
+.review .who{font-weight:600;font-size:.92rem}
+.faq{max-width:760px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:1.05rem;font-family:var(--fd);text-transform:uppercase;letter-spacing:.02em}
+.faq-q span{color:var(--accent);transition:.3s;font-size:1.4rem;line-height:1}
+.faq-a{max-height:0;overflow:hidden;transition:.3s;color:var(--dim)}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:20px}
+.faq-item.open .faq-q span{transform:rotate(45deg)}
+.hours-box{max-width:480px;margin:0 auto 30px;background:var(--surface);border:1px solid var(--border);border-top:3px solid var(--accent);padding:34px}
+.hours-box .row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);color:var(--dim)}
+.hours-box .row b{color:var(--text)}.hours-box .row:last-child{border:none}
 </style></head><body>
 <header><div class="wrap"><nav>
 <a href="#" class="logo">USTA <span>OTO</span></a>
-<div class="nav-links"><a href="#hizmetler">Hizmetler</a><a href="#neden">Neden Biz</a><a href="#iletisim">İletişim</a></div>
+<div class="nav-links"><a href="#hizmetler">Hizmetler</a><a href="#galeri">Galeri</a><a href="#yorumlar">Yorumlar</a><a href="#neden">Neden Biz</a><a href="#iletisim">İletişim</a></div>
 <a href="#iletisim" class="nav-cta">Randevu</a>
 </nav></div></header>
 <section class="hero"><div class="wrap"><div class="hero-content">
@@ -88,7 +109,33 @@ footer a{color:var(--accent)}
 <div class="stat reveal"><b>%100</b><span>Garantili İşçilik</span></div>
 <div class="stat reveal"><b>24s</b><span>Hızlı Servis</span></div>
 </div></div></section>
-<section id="iletisim"><div class="wrap"><div class="contact reveal">
+<section id="galeri"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Servisimizden</div><h2>Galeri</h2></div>
+<div class="gallery">
+<div class="gal reveal">🔧</div><div class="gal reveal">🚗</div><div class="gal reveal">⚙️</div><div class="gal reveal">🛞</div>
+<div class="gal reveal">🔩</div><div class="gal reveal">🛠️</div><div class="gal reveal">🚙</div><div class="gal reveal">⚡</div>
+</div></div></section>
+<section id="yorumlar"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Müşteri Görüşleri</div><h2>Bize Güvenenler</h2></div>
+<div class="reviews">
+<div class="review reveal"><div class="stars">★★★★★</div><p>"Dürüst ve işini bilen bir usta. Aracımı her zaman buraya getiriyorum, fiyatlar da gayet uygun."</p><div class="who">— Hasan K.</div></div>
+<div class="review reveal"><div class="stars">★★★★★</div><p>"Arızayı hızlıca buldular ve aynı gün hallettiler. Garantili işçilik, içim rahat."</p><div class="who">— Serkan A.</div></div>
+<div class="review reveal"><div class="stars">★★★★★</div><p>"Yıllardır buraya geliyorum. Güvenilir, kaliteli ve şeffaf bir servis. Kesinlikle tavsiye."</p><div class="who">— Mehmet Y.</div></div>
+</div></div></section>
+<section id="sss" style="background:var(--bg2)"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Merak Edilenler</div><h2>Sıkça Sorulan Sorular</h2></div>
+<div class="faq">
+<div class="faq-item reveal"><div class="faq-q">Keşif/arıza tespiti ücretli mi?<span>+</span></div><div class="faq-a">Ön arıza tespiti çoğu durumda ücretsizdir. Detaylı ekspertiz için bilgi verebiliriz.</div></div>
+<div class="faq-item reveal"><div class="faq-q">Orijinal parça kullanıyor musunuz?<span>+</span></div><div class="faq-a">Evet, talebe göre orijinal veya muadil kaliteli parça seçeneği sunuyoruz. Garantili çalışıyoruz.</div></div>
+<div class="faq-item reveal"><div class="faq-q">İşlem ne kadar sürer?<span>+</span></div><div class="faq-a">İşlemin türüne göre değişir. Çoğu bakım aynı gün tamamlanır, size önceden süre bilgisi veririz.</div></div>
+<div class="faq-item reveal"><div class="faq-q">Randevu gerekli mi?<span>+</span></div><div class="faq-a">Yoğunluğu önlemek için randevu öneririz. Telefon veya WhatsApp'tan hızlıca planlayabiliriz.</div></div>
+</div></div></section>
+<section id="iletisim"><div class="wrap"><div class="hours-box reveal">
+<h3 style="text-align:center;font-family:var(--fd);text-transform:uppercase;font-size:1.5rem;margin-bottom:18px">Çalışma Saatleri</h3>
+<div class="row"><span>Pazartesi - Cumartesi</span><b>08:30 - 18:30</b></div>
+<div class="row"><span>Pazar</span><b>Kapalı</b></div>
+</div>
+<div class="contact reveal">
 <h2>Hemen Randevu Alın</h2>
 <p style="color:rgba(255,255,255,.9)">Aracınızı bize emanet edin, gerisini biz halledelim.</p>
 <div class="info">
@@ -105,4 +152,5 @@ footer a{color:var(--accent)}
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.12});
 document.querySelectorAll(".reveal").forEach((e,i)=>{e.style.transitionDelay=(i%3*0.08)+"s";io.observe(e)});
+document.querySelectorAll(".faq-q").forEach(q=>q.onclick=()=>q.parentElement.classList.toggle("open"));
 </script></body></html>

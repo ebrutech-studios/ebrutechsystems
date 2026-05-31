@@ -83,6 +83,29 @@ footer{border-top:1px solid var(--border);padding:36px 0;text-align:center;color
 footer a{color:var(--accent)}
 .reveal{opacity:0;transform:translateY(20px);transition:.7s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
+
+/* zengin bölümler */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:720px){.gallery{grid-template-columns:repeat(2,1fr)}}
+.gal{aspect-ratio:1;border-radius:14px;background:linear-gradient(135deg,#2b2018,#1a1410);display:flex;align-items:center;justify-content:center;font-size:2.4rem;transition:.2s;border:1px solid var(--border)}
+.gal:hover{transform:scale(1.04);border-color:var(--accent)}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:720px){.reviews{grid-template-columns:1fr}}
+.review{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px}
+.review .stars{color:var(--accent);margin-bottom:12px;letter-spacing:2px}
+.review p{color:var(--dim);font-size:.95rem;margin-bottom:16px;font-style:italic}
+.review .who{font-weight:600;font-size:.92rem}
+.faq{max-width:760px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:1.05rem}
+.faq-q span{color:var(--accent);transition:.3s;font-size:1.4rem;line-height:1}
+.faq-a{max-height:0;overflow:hidden;transition:.3s;color:var(--dim)}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:20px}
+.faq-item.open .faq-q span{transform:rotate(45deg)}
+.hours-box{max-width:480px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:34px}
+.hours-box .row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);color:var(--dim)}
+.hours-box .row b{color:var(--text)}
+.hours-box .row:last-child{border:none}
 </style>
 </head>
 <body>
@@ -92,6 +115,8 @@ footer a{color:var(--accent)}
   <a href="#" class="logo">Kahve Durağı</a>
   <div class="nav-links">
     <a href="#menu">Menü</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#yorumlar">Yorumlar</a>
     <a href="#hakkimizda">Hakkımızda</a>
     <a href="#iletisim">İletişim</a>
   </div>
@@ -129,7 +154,39 @@ footer a{color:var(--accent)}
   </div>
 </div></section>
 
+<section id="galeri"><div class="wrap">
+  <div class="section-title reveal"><div class="eyebrow">Mekanımız</div><h2>Galeri</h2></div>
+  <div class="gallery">
+    <div class="gal reveal">☕</div><div class="gal reveal">🍰</div><div class="gal reveal">🥐</div><div class="gal reveal">🪑</div>
+    <div class="gal reveal">📚</div><div class="gal reveal">🌿</div><div class="gal reveal">🍮</div><div class="gal reveal">🫖</div>
+  </div>
+</div></section>
+
+<section id="yorumlar" style="background:var(--bg2)"><div class="wrap">
+  <div class="section-title reveal"><div class="eyebrow">Müşteri Görüşleri</div><h2>Ne Diyorlar?</h2></div>
+  <div class="reviews">
+    <div class="review reveal"><div class="stars">★★★★★</div><p>"Şehrin en iyi kahvesi burada. Atmosfer harika, çalışmak için de ideal bir mekan."</p><div class="who">— Deniz A.</div></div>
+    <div class="review reveal"><div class="stars">★★★★★</div><p>"Tatlıları ev yapımı ve gerçekten taze. San Sebastian cheesecake bir harika!"</p><div class="who">— Merve T.</div></div>
+    <div class="review reveal"><div class="stars">★★★★★</div><p>"Güler yüzlü personel, sıcak bir ortam. Artık her sabah kahvemi buradan alıyorum."</p><div class="who">— Okan B.</div></div>
+  </div>
+</div></section>
+
+<section id="sss"><div class="wrap">
+  <div class="section-title reveal"><div class="eyebrow">Merak Edilenler</div><h2>Sıkça Sorulan Sorular</h2></div>
+  <div class="faq">
+    <div class="faq-item reveal"><div class="faq-q">Rezervasyon gerekli mi?<span>+</span></div><div class="faq-a">Kalabalık saatler için rezervasyon öneririz. WhatsApp veya telefondan kolayca yer ayırtabilirsiniz.</div></div>
+    <div class="faq-item reveal"><div class="faq-q">Vegan/glutensiz seçenek var mı?<span>+</span></div><div class="faq-a">Evet, bitkisel süt alternatifleri ve glutensiz tatlı seçeneklerimiz mevcuttur.</div></div>
+    <div class="faq-item reveal"><div class="faq-q">Wi-Fi ve çalışma alanı var mı?<span>+</span></div><div class="faq-a">Ücretsiz hızlı Wi-Fi ve priz erişimli rahat çalışma alanlarımız bulunuyor.</div></div>
+    <div class="faq-item reveal"><div class="faq-q">Paket servis yapıyor musunuz?<span>+</span></div><div class="faq-a">Evet, tüm içecek ve tatlılarımızı paket olarak alabilir veya popüler platformlardan sipariş verebilirsiniz.</div></div>
+  </div>
+</div></section>
+
 <section id="iletisim"><div class="wrap">
+  <div class="hours-box reveal" style="margin-bottom:30px">
+    <h3 style="text-align:center;font-size:1.4rem;margin-bottom:18px">Çalışma Saatleri</h3>
+    <div class="row"><span>Pazartesi - Cuma</span><b>08:00 - 23:00</b></div>
+    <div class="row"><span>Cumartesi - Pazar</span><b>09:00 - 24:00</b></div>
+  </div>
   <div class="contact reveal">
     <h2>Sizi Bekliyoruz</h2>
     <p style="color:var(--dim)">Rezervasyon ve sorularınız için bize ulaşın.</p>
@@ -150,6 +207,7 @@ footer a{color:var(--accent)}
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.12});
 document.querySelectorAll(".reveal").forEach((e,i)=>{e.style.transitionDelay=(i%3*0.08)+"s";io.observe(e)});
+document.querySelectorAll(".faq-q").forEach(q=>q.onclick=()=>q.parentElement.classList.toggle("open"));
 </script>
 </body>
 </html>
