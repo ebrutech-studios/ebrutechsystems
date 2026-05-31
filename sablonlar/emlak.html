@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- EMLAK ŞABLONU — EbruTech Studios | CONFIG: değerleri düzenle, --hero-img değiştir -->
+<title>Prestij Emlak — Hayalinizdeki Eve Bir Adım</title>
+<meta name="description" content="Prestij Emlak — satılık ve kiralık konutlar, güvenilir danışmanlık. Hayalinizdeki evi birlikte bulalım.">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c1424;--bg2:#111d33;--surface:#16243f;--text:#eef3fb;--dim:#9fb0c9;
+  --faint:#64789a;--accent:#3b82f6;--accent2:#2563eb;--gold:#f0b429;--border:rgba(255,255,255,.09);
+  --hero-img:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80');
+  --fd:'Sora',sans-serif;--fb:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.65}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--fd);font-weight:700;line-height:1.12}
+header{position:sticky;top:0;z-index:50;background:rgba(12,20,36,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{font-family:var(--fd);font-size:1.4rem;font-weight:800}.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:28px}.nav-links a{color:var(--dim);font-size:.93rem;transition:.2s}.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--accent);color:#fff!important;padding:11px 22px;border-radius:10px;font-weight:600}
+@media(max-width:760px){.nav-links{display:none}}
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:var(--hero-img) center/cover;opacity:.35}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,20,36,.55),var(--bg))}
+.hero-content{position:relative;z-index:2;max-width:660px}
+.hero .eyebrow{display:inline-block;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;font-size:.8rem;font-weight:700;margin-bottom:18px}
+.hero h1{font-size:clamp(2.6rem,6.5vw,4.6rem);margin-bottom:20px}
+.hero p{font-size:1.18rem;color:var(--dim);margin-bottom:32px;max-width:520px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:15px 30px;border-radius:11px;font-weight:600;font-size:1rem;transition:.2s;border:none;cursor:pointer}
+.btn:hover{background:var(--accent2);transform:translateY(-2px)}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+section{padding:88px 0}
+.section-title{text-align:center;margin-bottom:52px}
+.section-title .eyebrow{color:var(--accent);letter-spacing:.18em;text-transform:uppercase;font-size:.8rem;font-weight:700}
+.section-title h2{font-size:clamp(2rem,4.5vw,3rem);margin-top:12px}
+/* galeri (ilanlar) */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:860px){.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.gallery{grid-template-columns:1fr}}
+.prop{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:.2s}
+.prop:hover{transform:translateY(-4px);border-color:var(--accent)}
+.prop .img{aspect-ratio:4/3;background:linear-gradient(135deg,#1e3a5f,#16243f);position:relative;display:flex;align-items:center;justify-content:center;font-size:2.5rem}
+.prop .tag{position:absolute;top:12px;left:12px;background:var(--gold);color:#3a2a00;font-size:.72rem;font-weight:700;padding:5px 10px;border-radius:6px}
+.prop .body{padding:20px}
+.prop h3{font-size:1.15rem;margin-bottom:6px}
+.prop .loc{color:var(--faint);font-size:.85rem;margin-bottom:12px}
+.prop .price{color:var(--accent);font-family:var(--fd);font-size:1.4rem;font-weight:700}
+.prop .meta{display:flex;gap:14px;margin-top:10px;color:var(--dim);font-size:.82rem;border-top:1px solid var(--border);padding-top:12px}
+/* yorumlar */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:760px){.reviews{grid-template-columns:1fr}}
+.review{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px}
+.review .stars{color:var(--gold);margin-bottom:12px}
+.review p{color:var(--dim);font-size:.95rem;margin-bottom:16px;font-style:italic}
+.review .who{font-weight:600;font-size:.92rem}
+/* sss */
+.faq{max-width:760px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:1.05rem}
+.faq-q span{color:var(--accent);transition:.3s;font-size:1.4rem;line-height:1}
+.faq-a{max-height:0;overflow:hidden;transition:.3s;color:var(--dim)}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:20px}
+.faq-item.open .faq-q span{transform:rotate(45deg)}
+/* saatler + iletişim */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:760px){.info-grid{grid-template-columns:1fr}}
+.hours{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:30px}
+.hours h3{font-size:1.3rem;margin-bottom:18px}
+.hours .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);color:var(--dim)}
+.hours .row b{color:var(--text)}
+.contact-box{background:var(--accent);border-radius:16px;padding:36px;display:flex;flex-direction:column;justify-content:center}
+.contact-box h3{font-size:1.5rem;margin-bottom:10px;color:#fff}
+.contact-box p{color:rgba(255,255,255,.85);margin-bottom:8px}
+.contact-box .btn{background:#fff;color:var(--accent2);margin-top:14px;align-self:flex-start}
+footer{padding:40px 0;text-align:center;color:var(--faint);font-size:.85rem;border-top:1px solid var(--border)}
+footer a{color:var(--accent)}
+.reveal{opacity:0;transform:translateY(20px);transition:.7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+</style></head><body>
+<header><div class="wrap"><nav>
+<a href="#" class="logo">Prestij <span>Emlak</span></a>
+<div class="nav-links"><a href="#ilanlar">İlanlar</a><a href="#yorumlar">Yorumlar</a><a href="#sss">SSS</a><a href="#iletisim">İletişim</a></div>
+<a href="#iletisim" class="nav-cta">Bize Ulaşın</a>
+</nav></div></header>
+<section class="hero"><div class="wrap"><div class="hero-content">
+<span class="eyebrow">Güvenilir Gayrimenkul Danışmanlığı</span>
+<h1>Hayalinizdeki eve<br>bir adım kaldı</h1>
+<p>Satılık ve kiralık konutlarda uzman danışmanlık. Doğru evi, doğru fiyata, güvenle bulmanız için yanınızdayız.</p>
+<div class="btn-row"><a href="#ilanlar" class="btn">İlanları Gör</a><a href="#iletisim" class="btn btn-outline">Danışmanlık Al</a></div>
+</div></div></section>
+<section id="ilanlar"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Portföyümüz</div><h2>Öne Çıkan İlanlar</h2></div>
+<div class="gallery">
+<div class="prop reveal"><div class="img">🏡<span class="tag">SATILIK</span></div><div class="body"><h3>3+1 Bahçeli Daire</h3><div class="loc">📍 Merkez Mahallesi</div><div class="price">4.250.000₺</div><div class="meta"><span>3+1</span><span>140 m²</span><span>2. Kat</span></div></div></div>
+<div class="prop reveal"><div class="img">🏢<span class="tag">SATILIK</span></div><div class="body"><h3>2+1 Yeni Bina</h3><div class="loc">📍 Yenişehir</div><div class="price">2.800.000₺</div><div class="meta"><span>2+1</span><span>95 m²</span><span>5. Kat</span></div></div></div>
+<div class="prop reveal"><div class="img">🏘️<span class="tag" style="background:var(--accent);color:#fff">KİRALIK</span></div><div class="body"><h3>1+1 Eşyalı Daire</h3><div class="loc">📍 Üniversite Bölgesi</div><div class="price">12.000₺<span style="font-size:.8rem;color:var(--faint)">/ay</span></div><div class="meta"><span>1+1</span><span>55 m²</span><span>Eşyalı</span></div></div></div>
+<div class="prop reveal"><div class="img">🏠<span class="tag">SATILIK</span></div><div class="body"><h3>4+1 Villa</h3><div class="loc">📍 Sahil Yolu</div><div class="price">8.900.000₺</div><div class="meta"><span>4+1</span><span>240 m²</span><span>Müstakil</span></div></div></div>
+<div class="prop reveal"><div class="img">🌆<span class="tag" style="background:var(--accent);color:#fff">KİRALIK</span></div><div class="body"><h3>3+1 Lüks Rezidans</h3><div class="loc">📍 İş Merkezi</div><div class="price">25.000₺<span style="font-size:.8rem;color:var(--faint)">/ay</span></div><div class="meta"><span>3+1</span><span>160 m²</span><span>Havuzlu</span></div></div></div>
+<div class="prop reveal"><div class="img">🏞️<span class="tag">SATILIK</span></div><div class="body"><h3>Yatırımlık Arsa</h3><div class="loc">📍 Gelişim Bölgesi</div><div class="price">1.500.000₺</div><div class="meta"><span>500 m²</span><span>İmarlı</span><span>Köşe</span></div></div></div>
+</div></div></section>
+<section id="yorumlar" style="background:var(--bg2)"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Müşteri Görüşleri</div><h2>Bize Güvendiler</h2></div>
+<div class="reviews">
+<div class="review reveal"><div class="stars">★★★★★</div><p>"Ev arayışımızda çok yardımcı oldular. Bütçemize uygun, tam istediğimiz evi buldular. Teşekkürler!"</p><div class="who">— Ahmet Y.</div></div>
+<div class="review reveal"><div class="stars">★★★★★</div><p>"Profesyonel ve dürüst bir ekip. Satış sürecinin her aşamasında yanımızdaydılar."</p><div class="who">— Selin K.</div></div>
+<div class="review reveal"><div class="stars">★★★★★</div><p>"Kiralık dairemi çok hızlı buldular. İletişimleri kusursuzdu, kesinlikle tavsiye ederim."</p><div class="who">— Murat D.</div></div>
+</div></div></section>
+<section id="sss"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Merak Edilenler</div><h2>Sıkça Sorulan Sorular</h2></div>
+<div class="faq">
+<div class="faq-item reveal"><div class="faq-q">Komisyon oranınız nedir?<span>+</span></div><div class="faq-a">Satış işlemlerinde yasal komisyon oranları uygulanır. Detaylı bilgi için bizimle iletişime geçebilirsiniz.</div></div>
+<div class="faq-item reveal"><div class="faq-q">Ev gösterimi için randevu gerekli mi?<span>+</span></div><div class="faq-a">Evet, size en uygun zamanı ayarlamak için önceden randevu almanızı rica ederiz. WhatsApp'tan hızlıca planlayabiliriz.</div></div>
+<div class="faq-item reveal"><div class="faq-q">Kredi konusunda yardımcı oluyor musunuz?<span>+</span></div><div class="faq-a">Evet, anlaşmalı bankalarımızla konut kredisi süreçlerinde size rehberlik ediyoruz.</div></div>
+<div class="faq-item reveal"><div class="faq-q">Portföyünüzde kaç ilan var?<span>+</span></div><div class="faq-a">Sürekli güncellenen geniş bir portföyümüz var. Aradığınız kriterlere uygun ilanları sizinle paylaşabiliriz.</div></div>
+</div></div></section>
+<section id="iletisim" style="background:var(--bg2)"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">İletişim</div><h2>Bize Ulaşın</h2></div>
+<div class="info-grid">
+<div class="hours reveal"><h3>Çalışma Saatleri</h3>
+<div class="row"><span>Pazartesi - Cuma</span><b>09:00 - 19:00</b></div>
+<div class="row"><span>Cumartesi</span><b>10:00 - 17:00</b></div>
+<div class="row"><span>Pazar</span><b>Kapalı</b></div>
+<div class="row" style="border:none"><span>Adres</span><b>Merkez Cad. No:45</b></div>
+</div>
+<div class="contact-box reveal"><h3>Hemen Arayın</h3><p>Sorularınız için bize ulaşın, size en kısa sürede dönüş yapalım.</p><p>📞 0555 123 45 67</p><a href="tel:05551234567" class="btn">Hemen Ara</a></div>
+</div></div></section>
+<footer><div class="wrap"><p>© 2026 Prestij Emlak — Tüm hakları saklıdır.</p><p style="margin-top:8px">Web sitesi <a href="https://ebrutechsystems.com" target="_blank">EbruTech Studios</a> tarafından hazırlanmıştır.</p></div></footer>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.1});
+document.querySelectorAll(".reveal").forEach((e,i)=>{e.style.transitionDelay=(i%3*0.08)+"s";io.observe(e)});
+document.querySelectorAll(".faq-q").forEach(q=>q.onclick=()=>q.parentElement.classList.toggle("open"));
+</script></body></html>

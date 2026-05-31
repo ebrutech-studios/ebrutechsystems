@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- DOKTOR/KLİNİK ŞABLONU — EbruTech Studios | CONFIG değerlerini düzenle -->
+<title>Sağlık Kliniği — Güvenilir Sağlık Hizmeti</title>
+<meta name="description" content="Sağlık Kliniği — uzman hekim kadrosu, modern teknoloji, güler yüzlü hizmet. Randevu alın.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6fbfb;--bg2:#eaf5f5;--surface:#fff;--text:#15302f;--dim:#5a7574;--faint:#90a8a7;
+  --accent:#0fa3a3;--accent2:#0b8585;--coral:#ff7a59;--border:rgba(15,48,47,.1);
+  --hero-img:url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1200&q=80');
+  --fd:'DM Serif Display',serif;--fb:'DM Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.65}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--fd);font-weight:400;line-height:1.15}
+header{position:sticky;top:0;z-index:50;background:rgba(246,251,251,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{font-family:var(--fd);font-size:1.5rem}.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:28px}.nav-links a{color:var(--dim);font-size:.93rem;font-weight:500;transition:.2s}.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:#fff!important;padding:11px 22px;border-radius:30px;font-weight:600}
+@media(max-width:760px){.nav-links{display:none}}
+.hero{position:relative;min-height:84vh;display:flex;align-items:center;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:var(--hero-img) center/cover;opacity:.9}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(246,251,251,.95) 42%,rgba(246,251,251,.35))}
+.hero-content{position:relative;z-index:2;max-width:600px}
+.hero .eyebrow{display:inline-block;color:var(--accent);letter-spacing:.16em;text-transform:uppercase;font-size:.8rem;font-weight:700;margin-bottom:18px}
+.hero h1{font-size:clamp(2.6rem,6.5vw,4.6rem);margin-bottom:20px}
+.hero p{font-size:1.18rem;color:var(--dim);margin-bottom:32px;max-width:480px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:15px 32px;border-radius:30px;font-weight:600;font-size:1rem;transition:.2s;border:none;cursor:pointer}
+.btn:hover{background:var(--accent2);transform:translateY(-2px)}
+.btn-outline{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+section{padding:88px 0}
+.section-title{text-align:center;margin-bottom:52px}
+.section-title .eyebrow{color:var(--accent);letter-spacing:.16em;text-transform:uppercase;font-size:.8rem;font-weight:700}
+.section-title h2{font-size:clamp(2rem,4.5vw,3rem);margin-top:10px}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:760px){.services{grid-template-columns:1fr}}
+.svc{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:32px 26px;text-align:center;transition:.2s;box-shadow:0 6px 24px -12px rgba(15,48,47,.12)}
+.svc:hover{transform:translateY(-4px)}
+.svc .icon{font-size:2.4rem;margin-bottom:14px}
+.svc h3{font-size:1.4rem;margin-bottom:8px}
+.svc p{color:var(--dim);font-size:.92rem}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:760px){.gallery{grid-template-columns:repeat(2,1fr)}}
+.gal{aspect-ratio:1;border-radius:14px;background:linear-gradient(135deg,#d4eeee,#eaf5f5);display:flex;align-items:center;justify-content:center;font-size:2.5rem;transition:.2s}
+.gal:hover{transform:scale(1.04)}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:760px){.reviews{grid-template-columns:1fr}}
+.review{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px;box-shadow:0 6px 24px -14px rgba(15,48,47,.12)}
+.review .stars{color:var(--coral);margin-bottom:12px}
+.review p{color:var(--dim);font-size:.95rem;margin-bottom:16px;font-style:italic}
+.review .who{font-weight:600;font-size:.92rem}
+.faq{max-width:760px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:1.05rem}
+.faq-q span{color:var(--accent);transition:.3s;font-size:1.4rem;line-height:1}
+.faq-a{max-height:0;overflow:hidden;transition:.3s;color:var(--dim)}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:20px}
+.faq-item.open .faq-q span{transform:rotate(45deg)}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:760px){.info-grid{grid-template-columns:1fr}}
+.hours{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:30px;box-shadow:0 6px 24px -14px rgba(15,48,47,.12)}
+.hours h3{font-size:1.4rem;margin-bottom:18px}
+.hours .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);color:var(--dim)}
+.hours .row b{color:var(--text)}
+.contact-box{background:var(--accent);border-radius:18px;padding:36px;display:flex;flex-direction:column;justify-content:center}
+.contact-box h3{font-size:1.6rem;margin-bottom:10px;color:#fff}
+.contact-box p{color:rgba(255,255,255,.9);margin-bottom:8px}
+.contact-box .btn{background:#fff;color:var(--accent2);margin-top:14px;align-self:flex-start}
+footer{padding:40px 0;text-align:center;color:var(--faint);font-size:.85rem;border-top:1px solid var(--border)}
+footer a{color:var(--accent)}
+.reveal{opacity:0;transform:translateY(20px);transition:.7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+</style></head><body>
+<header><div class="wrap"><nav>
+<a href="#" class="logo">Sağlık <span>Kliniği</span></a>
+<div class="nav-links"><a href="#hizmetler">Hizmetler</a><a href="#galeri">Kliniğimiz</a><a href="#yorumlar">Yorumlar</a><a href="#sss">SSS</a><a href="#iletisim">İletişim</a></div>
+<a href="#iletisim" class="nav-cta">Randevu Al</a>
+</nav></div></header>
+<section class="hero"><div class="wrap"><div class="hero-content">
+<span class="eyebrow">Sağlığınız Emin Ellerde</span>
+<h1>Güvenilir sağlık<br>hizmeti</h1>
+<p>Uzman hekim kadromuz ve modern teknolojimizle, sağlığınız için en iyi hizmeti sunuyoruz.</p>
+<div class="btn-row"><a href="#iletisim" class="btn">Randevu Al</a><a href="#hizmetler" class="btn btn-outline">Hizmetlerimiz</a></div>
+</div></div></section>
+<section id="hizmetler"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Uzmanlık Alanlarımız</div><h2>Hizmetlerimiz</h2></div>
+<div class="services">
+<div class="svc reveal"><div class="icon">🩺</div><h3>Genel Muayene</h3><p>Kapsamlı sağlık kontrolü ve değerlendirme</p></div>
+<div class="svc reveal"><div class="icon">🦷</div><h3>Diş Sağlığı</h3><p>Tedavi, implant, estetik diş hekimliği</p></div>
+<div class="svc reveal"><div class="icon">❤️</div><h3>Kardiyoloji</h3><p>Kalp sağlığı kontrol ve takibi</p></div>
+<div class="svc reveal"><div class="icon">🔬</div><h3>Laboratuvar</h3><p>Hızlı ve güvenilir tahlil hizmetleri</p></div>
+<div class="svc reveal"><div class="icon">👶</div><h3>Çocuk Sağlığı</h3><p>Pediatri ve aşı takip hizmetleri</p></div>
+<div class="svc reveal"><div class="icon">🧠</div><h3>Check-up</h3><p>Detaylı sağlık tarama paketleri</p></div>
+</div></div></section>
+<section id="galeri" style="background:var(--bg2)"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Kliniğimizden</div><h2>Modern Tesisimiz</h2></div>
+<div class="gallery">
+<div class="gal reveal">🏥</div><div class="gal reveal">🩻</div><div class="gal reveal">💉</div><div class="gal reveal">🔬</div>
+<div class="gal reveal">🛏️</div><div class="gal reveal">🧬</div><div class="gal reveal">⚕️</div><div class="gal reveal">🩺</div>
+</div></div></section>
+<section id="yorumlar"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Hasta Görüşleri</div><h2>Bizi Tercih Ettiler</h2></div>
+<div class="reviews">
+<div class="review reveal"><div class="stars">★★★★★</div><p>"Çok ilgili ve güler yüzlü bir ekip. Doktor bey her şeyi detaylıca anlattı, kendimi güvende hissettim."</p><div class="who">— Fatma A.</div></div>
+<div class="review reveal"><div class="stars">★★★★★</div><p>"Modern bir klinik, hijyen kusursuz. Randevu sistemi çok pratik, beklemeden muayene oldum."</p><div class="who">— Kemal T.</div></div>
+<div class="review reveal"><div class="stars">★★★★★</div><p>"Diş tedavim için geldim, sonuçtan çok memnunum. Herkese gönül rahatlığıyla tavsiye ederim."</p><div class="who">— Zeynep B.</div></div>
+</div></div></section>
+<section id="sss" style="background:var(--bg2)"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Merak Edilenler</div><h2>Sıkça Sorulan Sorular</h2></div>
+<div class="faq">
+<div class="faq-item reveal"><div class="faq-q">Randevu nasıl alabilirim?<span>+</span></div><div class="faq-a">Telefon veya WhatsApp üzerinden kolayca randevu alabilirsiniz. Size en uygun saati birlikte belirleriz.</div></div>
+<div class="faq-item reveal"><div class="faq-q">Anlaşmalı kurumlar var mı?<span>+</span></div><div class="faq-a">Birçok özel sağlık sigortası ve kurumla anlaşmamız bulunmaktadır. Detaylar için bizi arayabilirsiniz.</div></div>
+<div class="faq-item reveal"><div class="faq-q">Acil durumlarda hizmet veriyor musunuz?<span>+</span></div><div class="faq-a">Çalışma saatleri içinde acil durumlara öncelik veriyoruz. Lütfen önce telefonla bilgi verin.</div></div>
+<div class="faq-item reveal"><div class="faq-q">Tahlil sonuçları ne zaman çıkıyor?<span>+</span></div><div class="faq-a">Çoğu tahlil sonucu aynı gün veya ertesi gün hazır olur, dijital olarak da paylaşabiliriz.</div></div>
+</div></div></section>
+<section id="iletisim"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">İletişim</div><h2>Bize Ulaşın</h2></div>
+<div class="info-grid">
+<div class="hours reveal"><h3>Çalışma Saatleri</h3>
+<div class="row"><span>Pazartesi - Cuma</span><b>08:30 - 18:00</b></div>
+<div class="row"><span>Cumartesi</span><b>09:00 - 14:00</b></div>
+<div class="row"><span>Pazar</span><b>Kapalı</b></div>
+<div class="row" style="border:none"><span>Adres</span><b>Sağlık Cad. No:8</b></div>
+</div>
+<div class="contact-box reveal"><h3>Randevu Hattı</h3><p>Sağlığınız için bir telefon kadar yakınınızdayız.</p><p>📞 0555 234 56 78</p><a href="tel:05552345678" class="btn">Hemen Ara</a></div>
+</div></div></section>
+<footer><div class="wrap"><p>© 2026 Sağlık Kliniği — Tüm hakları saklıdır.</p><p style="margin-top:8px">Web sitesi <a href="https://ebrutechsystems.com" target="_blank">EbruTech Studios</a> tarafından hazırlanmıştır.</p></div></footer>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.1});
+document.querySelectorAll(".reveal").forEach((e,i)=>{e.style.transitionDelay=(i%3*0.07)+"s";io.observe(e)});
+document.querySelectorAll(".faq-q").forEach(q=>q.onclick=()=>q.parentElement.classList.toggle("open"));
+</script></body></html>
