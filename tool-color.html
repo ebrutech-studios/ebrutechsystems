@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Renk Kodu Dönüştürücü — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç · Geliştirici</span><h1 style="font-size:2.2rem">🌈 Renk Kodu Dönüştürücü</h1>
+<p class="lead" style="margin:14px 0 26px">HEX, RGB ve HSL arasında anında dönüştür. Renk seç veya kod gir.</p>
+<div class="controls">
+<div class="field"><label>Renk Seç</label><input id="picker" type="color" value="#c8ff2e" style="height:60px;padding:4px;cursor:pointer"></div>
+<div id="swatch" style="height:80px;border-radius:12px;border:1px solid var(--border);background:#c8ff2e"></div>
+<div class="field"><label>HEX</label><input id="hex" value="#C8FF2E"></div>
+<div class="field"><label>RGB</label><input id="rgb" readonly></div>
+<div class="field"><label>HSL</label><input id="hsl" readonly></div>
+<p style="color:var(--txt-faint);font-size:.82rem">Değerlere tıklayınca kopyalanır.</p>
+</div></div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const picker=document.getElementById("picker"),hex=document.getElementById("hex"),rgb=document.getElementById("rgb"),hsl=document.getElementById("hsl"),sw=document.getElementById("swatch");
+function hexToRgb(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");
+  const n=parseInt(h,16);return{r:(n>>16)&255,g:(n>>8)&255,b:n&255};}
+function rgbToHsl(r,g,b){r/=255;g/=255;b/=255;const mx=Math.max(r,g,b),mn=Math.min(r,g,b);let h,s,l=(mx+mn)/2;
+  if(mx===mn){h=s=0;}else{const d=mx-mn;s=l>.5?d/(2-mx-mn):d/(mx+mn);
+  switch(mx){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;case b:h=(r-g)/d+4;break;}h/=6;}
+  return{h:Math.round(h*360),s:Math.round(s*100),l:Math.round(l*100)};}
+function update(h){
+  const valid=/^#?[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/.test(h.replace("#",""));
+  if(!valid)return;
+  const hx="#"+h.replace("#","").toUpperCase();
+  const {r,g,b}=hexToRgb(hx);const {h:H,s:S,l:L}=rgbToHsl(r,g,b);
+  hex.value=hx;rgb.value=`rgb(${r}, ${g}, ${b})`;hsl.value=`hsl(${H}, ${S}%, ${L}%)`;
+  sw.style.background=hx;picker.value=hx.length===7?hx:picker.value;
+}
+picker.oninput=()=>update(picker.value);
+hex.oninput=()=>update(hex.value);
+[hex,rgb,hsl].forEach(el=>el.addEventListener("click",()=>{if(el.value){navigator.clipboard.writeText(el.value);ETSlib.toast(el.value+" kopyalandı ✓");}}));
+update("#C8FF2E");
+</script></body></html>

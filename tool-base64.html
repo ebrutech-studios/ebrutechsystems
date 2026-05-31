@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Base64 Encode / Decode — EbruTech Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>.ta{width:100%;min-height:130px;padding:14px;border-radius:12px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-family:monospace;font-size:.9rem;resize:vertical}</style>
+</head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç · Geliştirici</span><h1 style="font-size:2.2rem">🔐 Base64 Encode / Decode</h1>
+<p class="lead" style="margin:14px 0 26px">Metni Base64'e çevir veya Base64'ten çöz. Türkçe karakter destekli.</p>
+<div class="controls">
+<div class="field"><label>Metin</label><textarea id="text" class="ta" placeholder="Merhaba dünya"></textarea></div>
+<div class="row"><button id="enc" class="btn btn-primary">→ Base64 Yap</button><button id="dec" class="btn btn-ghost">← Çöz</button><button id="copy" class="btn btn-ghost">Kopyala</button></div>
+<div id="err" style="display:none;padding:10px 12px;border-radius:10px;background:rgba(255,80,80,.12);color:#ff8080;font-size:.86rem"></div>
+<div class="field"><label>Sonuç</label><textarea id="res" class="ta" readonly></textarea></div>
+</div></div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const text=document.getElementById("text"),res=document.getElementById("res"),err=document.getElementById("err");
+function e(m){err.style.display=m?"block":"none";err.textContent=m||"";}
+document.getElementById("enc").onclick=()=>{try{res.value=btoa(unescape(encodeURIComponent(text.value)));e("");ETSlib.toast("Kodlandı ✓");}catch(x){e("Kodlama hatası.");}};
+document.getElementById("dec").onclick=()=>{try{res.value=decodeURIComponent(escape(atob(text.value.trim())));e("");ETSlib.toast("Çözüldü ✓");}catch(x){e("Geçersiz Base64.");}};
+document.getElementById("copy").onclick=()=>{if(!res.value)return;navigator.clipboard.writeText(res.value);ETSlib.toast("Kopyalandı ✓");};
+</script></body></html>
