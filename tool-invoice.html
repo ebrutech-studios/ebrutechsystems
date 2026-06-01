@@ -1,44 +1,80 @@
 <!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fatura ve Fiş Oluşturucu (Pro) — EbruTech Studios</title>
-<meta name="description" content="Fatura ve Fiş Oluşturucu (Pro). Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
+<meta name="description" content="Fatura ve Fiş Oluşturucu (Pro). İşletme bilgileri, logo, iskonto, belge tipi ve otomatik kayıt. Tarayıcıda çalışır, hızlı ve güvenli.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-invoice.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EbruTech Studios">
 <meta property="og:title" content="Fatura ve Fiş Oluşturucu (Pro) — EbruTech Studios">
-<meta property="og:description" content="Fatura ve Fiş Oluşturucu (Pro). Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
+<meta property="og:description" content="İşletme bilgileri, logo, iskonto, belge tipi ve otomatik kayıt ile profesyonel fatura/fiş hazırlayın.">
 <meta property="og:url" content="https://ebrutechsystems.com/tool-invoice.html">
 <meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
 <meta property="og:locale" content="tr_TR">
 <meta name="twitter:card" content="summary_large_image">
-
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
-<style>.ln{display:grid;grid-template-columns:1fr 70px 90px 32px;gap:8px;margin-bottom:8px}
-.ln input{padding:10px;border-radius:10px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-size:.88rem;width:100%}</style>
+<style>
+.ln{display:grid;grid-template-columns:1fr 64px 84px 64px 90px 30px;gap:6px;margin-bottom:8px;align-items:center}
+.ln input{padding:9px;border-radius:9px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-size:.85rem;width:100%}
+.ln .tut{font-size:.82rem;color:var(--txt-dim);text-align:right;padding-right:4px}
+.ln-head{font-size:.74rem;color:var(--txt-faint);display:grid;grid-template-columns:1fr 64px 84px 64px 90px 30px;gap:6px;margin-bottom:4px}
+.sum{background:var(--bg-2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-top:14px}
+.sum .r{display:flex;justify-content:space-between;padding:5px 0;color:var(--txt-dim);font-size:.92rem}
+.sum .r.big{border-top:1px solid var(--border);margin-top:6px;padding-top:10px;color:var(--txt);font-weight:700;font-size:1.15rem}
+.sum .r.big b{color:var(--accent)}
+.saved{font-size:.78rem;color:var(--txt-faint);text-align:center;margin-top:8px}
+.logo-prev{max-height:54px;border-radius:8px;margin-top:8px}
+@media(max-width:560px){.ln,.ln-head{grid-template-columns:1fr 50px 70px 50px 74px 26px;gap:4px}.ln input{padding:7px;font-size:.78rem}}
+</style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Fatura ve Fiş Oluşturucu (Pro)","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-invoice.html"}
 </script>
 </head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
 <span class="eyebrow">Pro Araç · İşletme</span><h1 style="font-size:2.2rem">🧾 Fatura / Fiş Oluşturucu</h1>
-<p class="lead" style="margin:14px 0 26px">Profesyonel fatura/fiş hazırla, PDF indir. KDV otomatik hesaplanır.</p>
+<p class="lead" style="margin:14px 0 26px">Profesyonel fatura, fiş, teklif veya proforma hazırla. İşletme bilgilerin, logon ve iskonto dahil — PDF indir. Bilgilerin tarayıcında otomatik saklanır.</p>
+
 <div id="gate" class="card hidden" style="text-align:center;padding:40px">
 <div style="font-size:2.4rem;margin-bottom:10px">🔒</div><h3 id="gateTitle">Yükleniyor...</h3>
 <p id="gateDesc" style="color:var(--txt-dim);margin:8px 0 20px"></p><div id="gateBtns" class="row" style="max-width:380px;margin:0 auto"></div></div>
+
 <div id="tool" class="hidden"><div class="controls">
-<div class="row"><div class="field"><label>İşletme Adı</label><input id="firma" placeholder="EbruTech Studios"></div>
-<div class="field"><label>Belge No</label><input id="no" placeholder="2026-001"></div></div>
-<div class="row"><div class="field"><label>Müşteri</label><input id="musteri" placeholder="Müşteri adı"></div>
-<div class="field"><label>Tarih</label><input id="tarih" type="date"></div></div>
-<div class="field"><label>Kalemler</label>
-<div class="ln" style="font-size:.78rem;color:var(--txt-faint)"><span>Açıklama</span><span>Adet</span><span>Birim ₺</span><span></span></div>
-<div id="lines"></div>
-<button id="addLine" class="btn btn-ghost" style="margin-top:6px">+ Satır Ekle</button></div>
-<div class="row"><div class="field"><label>KDV %</label><input id="kdv" type="number" value="20"></div>
-<div class="field"><label>Toplam</label><input id="total" readonly style="font-weight:700"></div></div>
-<button id="go" class="btn btn-primary">PDF Oluştur & İndir</button>
-</div></div></div></div></section>
+
+  <div class="field"><label>Belge Tipi</label>
+  <select id="tip"><option value="FATURA">Fatura</option><option value="FİŞ">Fiş</option><option value="TEKLİF">Teklif</option><option value="PROFORMA FATURA">Proforma Fatura</option></select></div>
+
+  <h3 style="font-size:1rem;margin:10px 0 2px;color:var(--txt-dim)">İşletme Bilgileri</h3>
+  <div class="row"><div class="field"><label>İşletme Adı</label><input id="firma" placeholder="EbruTech Studios"></div>
+  <div class="field"><label>Vergi Dairesi / No</label><input id="vergi" placeholder="Kadıköy V.D. / 1234567890"></div></div>
+  <div class="field"><label>İşletme Adresi</label><input id="adres" placeholder="Atatürk Cad. No:12, İstanbul"></div>
+  <div class="row"><div class="field"><label>Telefon</label><input id="telefon" placeholder="0555 123 45 67"></div>
+  <div class="field"><label>IBAN (opsiyonel)</label><input id="iban" placeholder="TR.. .... .... ...."></div></div>
+  <div class="field"><label>Logo (opsiyonel)</label><input id="logo" type="file" accept="image/*">
+  <img id="logoPrev" class="logo-prev hidden" alt="logo önizleme"></div>
+
+  <h3 style="font-size:1rem;margin:16px 0 2px;color:var(--txt-dim)">Müşteri & Belge</h3>
+  <div class="row"><div class="field"><label>Müşteri</label><input id="musteri" placeholder="Müşteri adı / firması"></div>
+  <div class="field"><label>Belge No</label><input id="no" placeholder="2026-001"></div></div>
+  <div class="row"><div class="field"><label>Tarih</label><input id="tarih" type="date"></div>
+  <div class="field"><label>Para Birimi</label><select id="cur"><option value="₺">₺ TL</option><option value="$">$ USD</option><option value="€">€ EUR</option></select></div></div>
+
+  <h3 style="font-size:1rem;margin:16px 0 2px;color:var(--txt-dim)">Kalemler</h3>
+  <div class="ln-head"><span>Açıklama</span><span>Adet</span><span>Birim</span><span>KDV%</span><span>Tutar</span><span></span></div>
+  <div id="lines"></div>
+  <button id="addLine" class="btn btn-ghost" style="margin-top:6px">+ Satır Ekle</button>
+
+  <div class="row" style="margin-top:14px"><div class="field"><label>İskonto (%)</label><input id="iskonto" type="number" value="0" min="0" max="100"></div>
+  <div class="field"><label>Not (opsiyonel)</label><input id="not" placeholder="Teşekkür ederiz!"></div></div>
+
+  <div class="sum" id="sumBox"></div>
+
+  <div class="row" style="margin-top:16px">
+  <button id="go" class="btn btn-primary">PDF Oluştur & İndir</button>
+  <button id="clear" class="btn btn-ghost">Temizle</button></div>
+  <div class="saved" id="savedNote"></div>
+
+</div></div>
+</div></div></section>
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
@@ -52,42 +88,125 @@ else{t.textContent="Bu araç Pro üyelere özel";d.textContent="Hesabın var ama
 b.innerHTML='<a href="fiyatlandirma.html" class="btn btn-primary">Pro\u0027ya Geç</a>';}}
 document.addEventListener("ets-auth",(e)=>applyGate(e.detail.user,e.detail.isPro));
 
-const lines=document.getElementById("lines");
-function addLine(desc="",qty="1",price=""){
+const KEY="ets_fatura_v2";
+const $=id=>document.getElementById(id);
+const lines=$("lines");
+let logoData="";
+
+function addLine(desc="",qty="1",price="",kdv="20"){
   const div=document.createElement("div");div.className="ln";
-  div.innerHTML=`<input placeholder="Ürün/hizmet" value="${desc}"><input type="number" value="${qty}" min="0"><input type="number" placeholder="0" value="${price}" min="0"><button class="btn btn-ghost" style="padding:8px">✕</button>`;
-  div.querySelector("button").onclick=()=>{div.remove();calc();};
-  div.querySelectorAll("input").forEach(i=>i.oninput=calc);
+  div.innerHTML=`<input placeholder="Ürün/hizmet" value="${desc}">
+    <input type="number" value="${qty}" min="0">
+    <input type="number" placeholder="0" value="${price}" min="0">
+    <input type="number" value="${kdv}" min="0">
+    <span class="tut">0</span>
+    <button class="btn btn-ghost" style="padding:6px 8px">✕</button>`;
+  div.querySelector("button").onclick=()=>{div.remove();calc();save();};
+  div.querySelectorAll("input").forEach(i=>i.oninput=()=>{calc();save();});
   lines.appendChild(div);calc();
 }
 function rows(){return [...lines.querySelectorAll(".ln")].map(l=>{const i=l.querySelectorAll("input");
-  return{desc:i[0].value,qty:parseFloat(i[1].value)||0,price:parseFloat(i[2].value)||0};});}
+  return{desc:i[0].value,qty:parseFloat(i[1].value)||0,price:parseFloat(i[2].value)||0,kdv:parseFloat(i[3].value)||0,el:l};});}
+
 function calc(){
-  const ara=rows().reduce((s,r)=>s+r.qty*r.price,0);
-  const kdv=ara*(parseFloat(document.getElementById("kdv").value)||0)/100;
-  document.getElementById("total").value=(ara+kdv).toFixed(2)+" ₺";
+  let ara=0,toplamKdv=0;
+  rows().forEach(r=>{const t=r.qty*r.price;ara+=t;toplamKdv+=t*r.kdv/100;
+    r.el.querySelector(".tut").textContent=t.toFixed(2);});
+  const isk=parseFloat($("iskonto").value)||0;
+  const iskTutar=ara*isk/100;
+  const araIsk=ara-iskTutar;
+  const kdvSonra=ara>0?toplamKdv*(araIsk/ara):0;
+  const genel=araIsk+kdvSonra;
+  const cur=$("cur").value;
+  const f=n=>n.toLocaleString("tr-TR",{minimumFractionDigits:2,maximumFractionDigits:2})+" "+cur;
+  let html=`<div class="r"><span>Ara Toplam</span><span>${f(ara)}</span></div>`;
+  if(isk>0)html+=`<div class="r"><span>İskonto (%${isk})</span><span>- ${f(iskTutar)}</span></div>`;
+  html+=`<div class="r"><span>KDV</span><span>${f(kdvSonra)}</span></div>
+    <div class="r big"><span>GENEL TOPLAM</span><b>${f(genel)}</b></div>`;
+  $("sumBox").innerHTML=html;
+  return{ara,iskTutar,isk,kdvSonra,genel,cur};
 }
-document.getElementById("addLine").onclick=()=>addLine();
-document.getElementById("kdv").oninput=calc;
-addLine();
-document.getElementById("tarih").valueAsDate=new Date();
-document.getElementById("go").onclick=()=>{
-  const {jsPDF}=window.jspdf;const d=new jsPDF();
-  const firma=document.getElementById("firma").value||"İşletme";
-  d.setFontSize(20);d.text(firma,20,24);
-  d.setFontSize(10);d.text("Belge No: "+(document.getElementById("no").value||"-"),20,34);
-  d.text("Tarih: "+(document.getElementById("tarih").value||"-"),20,40);
-  d.text("Müşteri: "+(document.getElementById("musteri").value||"-"),20,46);
-  d.line(20,52,190,52);
-  let y=62;d.setFont(undefined,"bold");d.text("Açıklama",20,y);d.text("Adet",120,y);d.text("Birim",145,y);d.text("Tutar",170,y);d.setFont(undefined,"normal");y+=8;
-  let ara=0;
-  rows().forEach(r=>{const tut=r.qty*r.price;ara+=tut;
-    d.text(String(r.desc).slice(0,45),20,y);d.text(String(r.qty),120,y);d.text(r.price.toFixed(2),145,y);d.text(tut.toFixed(2),170,y);y+=7;});
-  const kdvO=parseFloat(document.getElementById("kdv").value)||0;const kdv=ara*kdvO/100;
-  y+=4;d.line(120,y,190,y);y+=8;
-  d.text("Ara Toplam:",120,y);d.text(ara.toFixed(2)+" TL",170,y);y+=7;
-  d.text("KDV (%"+kdvO+"):",120,y);d.text(kdv.toFixed(2)+" TL",170,y);y+=7;
-  d.setFont(undefined,"bold");d.text("GENEL TOPLAM:",120,y);d.text((ara+kdv).toFixed(2)+" TL",170,y);
-  d.save("ebrutech-fatura.pdf");ETSlib.toast("PDF indiriliyor ✓");
+
+function save(){
+  const data={tip:$("tip").value,firma:$("firma").value,vergi:$("vergi").value,adres:$("adres").value,
+    telefon:$("telefon").value,iban:$("iban").value,musteri:$("musteri").value,no:$("no").value,
+    tarih:$("tarih").value,cur:$("cur").value,iskonto:$("iskonto").value,not:$("not").value,logo:logoData,
+    rows:rows().map(r=>({desc:r.desc,qty:r.qty,price:r.price,kdv:r.kdv}))};
+  try{localStorage.setItem(KEY,JSON.stringify(data));
+    $("savedNote").textContent="✓ Bilgiler tarayıcına otomatik kaydedildi";}catch(e){}
+}
+function load(){
+  let d;try{d=JSON.parse(localStorage.getItem(KEY));}catch(e){}
+  if(!d){addLine();return false;}
+  $("tip").value=d.tip||"FATURA";$("firma").value=d.firma||"";$("vergi").value=d.vergi||"";
+  $("adres").value=d.adres||"";$("telefon").value=d.telefon||"";$("iban").value=d.iban||"";
+  $("musteri").value=d.musteri||"";$("no").value=d.no||"";$("tarih").value=d.tarih||"";
+  $("cur").value=d.cur||"₺";$("iskonto").value=d.iskonto||"0";$("not").value=d.not||"";
+  if(d.logo){logoData=d.logo;const p=$("logoPrev");p.src=logoData;p.classList.remove("hidden");}
+  if(d.rows&&d.rows.length)d.rows.forEach(r=>addLine(r.desc,r.qty,r.price,r.kdv));else addLine();
+  return true;
+}
+
+function nextNo(){
+  const cur=$("no").value.trim();
+  const m=cur.match(/^(.*?)(\d+)\s*$/);
+  if(m){const num=(parseInt(m[2])+1).toString().padStart(m[2].length,"0");return m[1]+num;}
+  const y=new Date().getFullYear();return y+"-001";
+}
+
+$("addLine").onclick=()=>{addLine();save();};
+["tip","firma","vergi","adres","telefon","iban","musteri","no","tarih","cur","iskonto","not"].forEach(id=>{
+  $(id).oninput=()=>{calc();save();};$(id).onchange=()=>{calc();save();};});
+
+$("logo").onchange=e=>{const file=e.target.files[0];if(!file)return;
+  const r=new FileReader();r.onload=()=>{logoData=r.result;const p=$("logoPrev");p.src=logoData;p.classList.remove("hidden");save();};
+  r.readAsDataURL(file);};
+
+$("clear").onclick=()=>{if(confirm("Tüm bilgiler silinsin mi?")){localStorage.removeItem(KEY);location.reload();}};
+
+$("go").onclick=()=>{
+  const {jsPDF}=window.jspdf;const d=new jsPDF();const c=calc();
+  const cur=$("cur").value;
+  let y=18;
+  if(logoData){try{d.addImage(logoData,"PNG",150,12,45,22);}catch(e){}}
+  d.setFontSize(22);d.setFont(undefined,"bold");d.text($("tip").value,20,y);y+=10;
+  d.setFontSize(10);d.setFont(undefined,"normal");
+  if($("firma").value){d.setFont(undefined,"bold");d.text($("firma").value,20,y);y+=5;d.setFont(undefined,"normal");}
+  if($("adres").value){d.text(d.splitTextToSize($("adres").value,110),20,y);y+=5;}
+  if($("telefon").value){d.text("Tel: "+$("telefon").value,20,y);y+=5;}
+  if($("vergi").value){d.text("VD/VKN: "+$("vergi").value,20,y);y+=5;}
+  y+=4;
+  d.text("Belge No: "+($("no").value||"-"),20,y);d.text("Tarih: "+($("tarih").value||"-"),120,y);y+=6;
+  d.text("Müşteri: "+($("musteri").value||"-"),20,y);y+=6;
+  d.line(20,y,190,y);y+=8;
+  d.setFont(undefined,"bold");
+  d.text("Açıklama",20,y);d.text("Adet",110,y);d.text("Birim",130,y);d.text("KDV%",152,y);d.text("Tutar",172,y);
+  d.setFont(undefined,"normal");y+=3;d.line(20,y,190,y);y+=6;
+  rows().forEach(r=>{const t=r.qty*r.price;
+    const desc=d.splitTextToSize(String(r.desc||"-"),85);
+    d.text(desc,20,y);d.text(String(r.qty),110,y);d.text(r.price.toFixed(2),130,y);
+    d.text("%"+r.kdv,152,y);d.text(t.toFixed(2),172,y);
+    y+=Math.max(6,desc.length*5);
+    if(y>250){d.addPage();y=20;}
+  });
+  y+=2;d.line(120,y,190,y);y+=8;
+  d.text("Ara Toplam:",120,y);d.text(c.ara.toFixed(2)+" "+cur,172,y);y+=6;
+  if(c.isk>0){d.text("İskonto (%"+c.isk+"):",120,y);d.text("-"+c.iskTutar.toFixed(2)+" "+cur,172,y);y+=6;}
+  d.text("KDV:",120,y);d.text(c.kdvSonra.toFixed(2)+" "+cur,172,y);y+=7;
+  d.setFont(undefined,"bold");d.setFontSize(12);
+  d.text("GENEL TOPLAM:",120,y);d.text(c.genel.toFixed(2)+" "+cur,172,y);y+=10;
+  d.setFont(undefined,"normal");d.setFontSize(9);
+  if($("iban").value){d.text("IBAN: "+$("iban").value,20,y);y+=5;}
+  if($("not").value){d.text($("not").value,20,y);y+=5;}
+  d.setFontSize(8);d.setTextColor(150);
+  d.text("EbruTech Studios ile hazırlanmıştır — ebrutechsystems.com",20,288);
+  const ad=($("tip").value+"-"+($("no").value||"belge")).replace(/\s/g,"_");
+  d.save(ad+".pdf");
+  $("no").value=nextNo();save();
+  ETSlib.toast("PDF indirildi, belge no güncellendi ✓");
 };
+
+load();
+if(!$("tarih").value)$("tarih").valueAsDate=new Date();
+calc();
 </script></body></html>
