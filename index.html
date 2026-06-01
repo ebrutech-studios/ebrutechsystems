@@ -43,6 +43,14 @@
   "url":"https://ebrutechsystems.com"
 }
 </script>
+<style>
+.qa-card{position:relative;border:1px solid var(--border-strong);transition:.2s;overflow:hidden}
+.qa-card::after{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--accent);transform:scaleY(0);transition:.25s;transform-origin:bottom}
+.qa-card:hover{transform:translateY(-4px);border-color:var(--accent)}
+.qa-card:hover::after{transform:scaleY(1)}
+.qa-card .ico{font-size:2.2rem}
+.qa-go{color:var(--accent);font-weight:600;font-size:.9rem;margin-top:auto;display:inline-block}
+</style>
 </head>
 <body>
 
@@ -54,10 +62,17 @@
     <a href="tools.html" class="btn btn-primary btn-lg">Araçları Aç →</a>
     <a href="hizmetler.html" class="btn btn-ghost btn-lg">Hizmetleri İncele</a>
   </div>
-  <div class="hero-stats">
-    <div class="s"><b>%100</b><span>Tarayıcıda işlenir</span></div>
-    <div class="s"><b>0₺</b><span>Temel araçlar ücretsiz</span></div>
-    <div class="s"><b>24sa</b><span>Tasarım teslim süresi</span></div>
+</div></section>
+
+<section id="hizli-erisim" style="padding-top:20px;padding-bottom:50px"><div class="wrap">
+  <div class="section-head reveal" style="margin-bottom:28px"><span class="eyebrow">Hızlı Erişim</span><h2>Ne yapmak istersiniz?</h2><p class="lead">Tüm bölümlere tek tıkla ulaşın.</p></div>
+  <div class="grid g-3">
+    <a class="card reveal qa-card" href="tools.html"><span class="ico">🧰</span><h3>Araçlar</h3><p>28 ücretsiz online araç: resim, PDF, QR, hesaplama ve daha fazlası.</p><span class="qa-go">Araçları aç →</span></a>
+    <a class="card reveal qa-card" href="hazir-siteler.html"><span class="ico">🌐</span><h3>Hazır Web Siteleri</h3><p>İşletmeniz için sektörünüze özel hazır site şablonları.</p><span class="qa-go">Şablonları gör →</span></a>
+    <a class="card reveal qa-card" href="muhasebe.html"><span class="ico">📊</span><h3>Muhasebe</h3><p>İşletmeniz için pratik muhasebe ve takip araçları.</p><span class="qa-go">Muhasebeyi aç →</span></a>
+    <a class="card reveal qa-card" href="hizmetler.html"><span class="ico">🎨</span><h3>Hizmetler</h3><p>Web, mobil uygulama, logo ve grafik tasarım hizmetleri.</p><span class="qa-go">Hizmetleri gör →</span></a>
+    <a class="card reveal qa-card" href="blog.html"><span class="ico">📝</span><h3>Blog</h3><p>Rehberler ve ipuçları: araçları en iyi şekilde kullanın.</p><span class="qa-go">Yazıları oku →</span></a>
+    <a class="card reveal qa-card" href="fiyatlandirma.html"><span class="ico">⭐</span><h3>Pro Üyelik</h3><p>Gelişmiş araçların kilidini açın, sınırsız kullanın.</p><span class="qa-go">Pro'yu keşfet →</span></a>
   </div>
 </div></section>
 
