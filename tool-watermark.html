@@ -15,41 +15,55 @@
 <link rel="stylesheet" href="assets/css/site.css"><script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Resme Filigran (Watermark) Ekleme","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-watermark.html"}
 </script>
-</head><body>
+</head>
+<body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
-<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">💧 Watermark Ekle</h1>
-<p class="lead" style="margin:14px 0 26px">Görsellerine metin filigranı ekle. Marka koruması ve telif için.</p>
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">💧 Filigran (Watermark) Ekle</h1>
+<p class="lead" style="margin:14px 0 26px">Görsellerine metin filigranı ekle. Konum, renk, boyut ve saydamlık senin kontrolünde.</p>
 <div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli buraya sürükle</b> veya tıkla</p><input id="file" type="file" accept="image/*" class="hidden"></div>
 <div id="panel" class="controls hidden">
-<div class="field"><label>Filigran metni</label><input id="txt" value="© EbruTech Studios"></div>
-<div class="row"><div class="field"><label>Konum</label><select id="pos"><option value="br">Sağ alt</option><option value="bl">Sol alt</option><option value="tr">Sağ üst</option><option value="tl">Sol üst</option><option value="center">Orta</option></select></div>
-<div class="field"><label>Saydamlık: <span id="oVal">60</span>%</label><input id="op" type="range" min="10" max="100" value="60"></div></div>
+<div class="field"><label>Filigran Metni</label><input id="txt" placeholder="© Markanız" value="© EbruTech"></div>
+<div class="row"><div class="field"><label>Konum</label>
+<select id="pos"><option value="br">Sağ Alt</option><option value="bl">Sol Alt</option><option value="tr">Sağ Üst</option><option value="tl">Sol Üst</option><option value="center">Orta</option><option value="tile">Tüm Yüzey (desen)</option></select></div>
+<div class="field"><label>Renk</label><input id="color" type="color" value="#ffffff" style="height:42px;padding:4px"></div></div>
+<div class="field"><label>Boyut: <span id="sVal">5</span>%</label><input id="size" type="range" min="2" max="15" value="5"></div>
+<div class="field"><label>Saydamlık: <span id="oVal">50</span>%</label><input id="op" type="range" min="10" max="100" value="50"></div>
 <button id="go" class="btn btn-primary">Filigran Ekle & İndir</button></div>
-<div id="preview" class="preview hidden"><canvas id="cv" style="max-width:100%;border-radius:10px"></canvas></div>
+<div id="preview" class="preview hidden"><canvas id="cv"></canvas></div>
 </div></div></section>
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-let imgEl=null;const dz=document.getElementById("dz"),file=document.getElementById("file"),cv=document.getElementById("cv");
+let imgEl=null,origName="resim";
+const $=id=>document.getElementById(id);
+const dz=$("dz"),file=$("file"),cv=$("cv");
 dz.onclick=()=>file.click();
 dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");
 dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);};
 file.onchange=e=>{if(e.target.files[0])load(e.target.files[0]);};
-function load(f){const r=new FileReader();r.onload=ev=>{imgEl=new Image();imgEl.onload=()=>{
-document.getElementById("preview").classList.remove("hidden");document.getElementById("panel").classList.remove("hidden");draw();
+function load(f){origName=(f.name||"resim").replace(/\.[^.]+$/,"");const r=new FileReader();r.onload=ev=>{imgEl=new Image();imgEl.onload=()=>{
+$("preview").classList.remove("hidden");$("panel").classList.remove("hidden");draw();
 };imgEl.src=ev.target.result;};r.readAsDataURL(f);}
-["txt","pos","op"].forEach(id=>document.getElementById(id).oninput=draw);
-document.getElementById("op").addEventListener("input",()=>document.getElementById("oVal").textContent=document.getElementById("op").value);
+["txt","pos","color","size","op"].forEach(id=>{$(id).oninput=draw;$(id).onchange=draw;});
+$("size").oninput=()=>{$("sVal").textContent=$("size").value;draw();};
+$("op").oninput=()=>{$("oVal").textContent=$("op").value;draw();};
 function draw(){if(!imgEl)return;cv.width=imgEl.naturalWidth;cv.height=imgEl.naturalHeight;
 const ctx=cv.getContext("2d");ctx.drawImage(imgEl,0,0);
-const fs=Math.max(18,cv.width*0.04);ctx.font="700 "+fs+"px Manrope,sans-serif";
-ctx.fillStyle="rgba(255,255,255,"+(document.getElementById("op").value/100)+")";
-ctx.strokeStyle="rgba(0,0,0,"+(document.getElementById("op").value/200)+")";ctx.lineWidth=fs/12;
-const t=document.getElementById("txt").value,m=ctx.measureText(t).width,p=fs*0.7;let x,y;
-const pos=document.getElementById("pos").value;
-if(pos==="br"){x=cv.width-m-p;y=cv.height-p;}else if(pos==="bl"){x=p;y=cv.height-p;}
-else if(pos==="tr"){x=cv.width-m-p;y=fs+p;}else if(pos==="tl"){x=p;y=fs+p;}
-else{x=(cv.width-m)/2;y=cv.height/2;}
-ctx.strokeText(t,x,y);ctx.fillText(t,x,y);}
-document.getElementById("go").onclick=()=>{cv.toBlob(b=>{const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="ebrutech-watermark.png";a.click();ETSlib.toast("İndiriliyor ✓");},"image/png");};
+const txt=$("txt").value||"";if(!txt){cv.style.maxWidth="100%";cv.style.height="auto";return;}
+const fs=cv.width*parseInt($("size").value)/100;
+ctx.font="bold "+fs+"px Arial";ctx.fillStyle=$("color").value;ctx.globalAlpha=parseInt($("op").value)/100;
+const m=ctx.measureText(txt);const pad=fs*0.5;const pos=$("pos").value;
+if(pos==="tile"){ctx.globalAlpha=parseInt($("op").value)/100*0.7;
+const stepX=m.width+fs*2,stepY=fs*3;
+for(let y=fs;y<cv.height+stepY;y+=stepY)for(let x=0;x<cv.width;x+=stepX)ctx.fillText(txt,x,y);
+}else{let x,y;
+if(pos==="br"){x=cv.width-m.width-pad;y=cv.height-pad;ctx.textBaseline="bottom";}
+else if(pos==="bl"){x=pad;y=cv.height-pad;ctx.textBaseline="bottom";}
+else if(pos==="tr"){x=cv.width-m.width-pad;y=pad;ctx.textBaseline="top";}
+else if(pos==="tl"){x=pad;y=pad;ctx.textBaseline="top";}
+else{x=(cv.width-m.width)/2;y=cv.height/2;ctx.textBaseline="middle";}
+ctx.fillText(txt,x,y);}
+ctx.globalAlpha=1;cv.style.maxWidth="100%";cv.style.height="auto";}
+$("go").onclick=()=>{if(!imgEl)return;cv.toBlob(b=>{
+const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=origName+"-filigranli.png";a.click();ETSlib.toast("İndirildi ✓");},"image/png");};
 </script></body></html>
