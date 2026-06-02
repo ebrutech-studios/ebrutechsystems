@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CV / Özgeçmiş Oluşturucu — Ücretsiz Profesyonel CV | EbruTech Studios</title>
-<meta name="description" content="Ücretsiz profesyonel CV/özgeçmiş oluşturucu. 3 şablon, fotoğraf, canlı önizleme ve PDF indirme. Tarayıcıda çalışır, verileriniz cihazınızda kalır.">
+<meta name="description" content="Ücretsiz profesyonel CV/özgeçmiş oluşturucu. 6 şablon, fotoğraf, yetenek çubukları, sertifika/proje bölümleri, canlı önizleme ve PDF indirme.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-cv.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EbruTech Studios">
 <meta property="og:title" content="CV / Özgeçmiş Oluşturucu — EbruTech Studios">
-<meta property="og:description" content="Ücretsiz profesyonel CV oluşturucu. 3 şablon, fotoğraf, canlı önizleme ve PDF indirme.">
+<meta property="og:description" content="Ücretsiz profesyonel CV oluşturucu. 6 şablon, fotoğraf, yetenek çubukları, canlı önizleme ve PDF.">
 <meta property="og:url" content="https://ebrutechsystems.com/tool-cv.html">
 <meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
 <meta property="og:locale" content="tr_TR">
@@ -18,19 +18,16 @@
 .cv-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
 @media(max-width:900px){.cv-wrap{grid-template-columns:1fr}}
 .cv-form .field{margin-bottom:12px}
-.cv-form input,.cv-form textarea{padding:9px 11px;border-radius:9px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-size:.88rem;width:100%;font-family:inherit}
+.cv-form input,.cv-form textarea,.cv-form select{padding:9px 11px;border-radius:9px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-size:.88rem;width:100%;font-family:inherit}
 .cv-form textarea{resize:vertical;min-height:60px}
-.cv-form h3{font-size:1rem;color:var(--txt-dim);margin:18px 0 8px;display:flex;justify-content:space-between;align-items:center}
+.cv-form h3{font-size:1rem;color:var(--txt-dim);margin:18px 0 8px;display:flex;justify-content:space-between;align-items:center;gap:8px}
 .cv-form .sub{border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:10px;position:relative}
 .cv-form .rm{position:absolute;top:8px;right:8px;background:none;border:none;color:var(--txt-faint);cursor:pointer;font-size:1.1rem}
-.cv-form .addbtn{font-size:.8rem;padding:6px 12px}
-/* önizleme panel */
+.cv-form .addbtn{font-size:.8rem;padding:6px 12px;white-space:nowrap}
 .cv-prevwrap{position:sticky;top:80px}
 .cv-toolbar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
 .cv-paper{background:#fff;color:#222;border-radius:8px;overflow:hidden;box-shadow:0 10px 40px -10px rgba(0,0,0,.5);font-family:Arial,sans-serif;font-size:11px;line-height:1.5;aspect-ratio:1/1.414}
-.cv-scale{transform-origin:top left}
-/* preview shared */
-#cvDoc{width:100%;height:100%;padding:0;box-sizing:border-box}
+#cvDoc{width:100%;height:100%;box-sizing:border-box}
 #cvDoc h1{font-size:22px;margin:0 0 2px}
 #cvDoc .role{font-size:13px;opacity:.85;margin-bottom:8px}
 #cvDoc .sec-title{font-size:13px;font-weight:bold;text-transform:uppercase;letter-spacing:.04em;margin:12px 0 6px;padding-bottom:3px}
@@ -41,6 +38,9 @@
 #cvDoc .contact{font-size:10.5px}
 #cvDoc .tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:10px;margin:2px}
 #cvDoc .photo{width:80px;height:80px;border-radius:50%;object-fit:cover}
+#cvDoc .skillbar{height:6px;border-radius:4px;background:#ddd;overflow:hidden;margin:3px 0 7px}
+#cvDoc .skillbar>div{height:100%;border-radius:4px}
+.lvlsel{margin-top:6px}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"CV / Özgeçmiş Oluşturucu","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-cv.html"}
@@ -48,11 +48,15 @@
 </head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap" style="max-width:1200px">
 <span class="eyebrow">Ücretsiz Araç</span><h1 style="font-size:2.2rem">📄 CV / Özgeçmiş Oluşturucu</h1>
-<p class="lead" style="margin:14px 0 26px">Profesyonel bir CV'yi dakikalar içinde hazırla. Bilgilerini gir, şablonu seç, PDF indir. Her şey tarayıcında — verilerin cihazından çıkmaz, otomatik kaydedilir.</p>
+<p class="lead" style="margin:14px 0 26px">Profesyonel bir CV'yi dakikalar içinde hazırla. 6 şablon, fotoğraf, yetenek çubukları ve daha fazlası. Her şey tarayıcında — verilerin otomatik kaydedilir.</p>
 
 <div class="cv-wrap">
-<!-- SOL: FORM -->
 <div class="cv-form">
+  <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+    <button id="ornek" class="btn btn-ghost addbtn">✨ Örnek Doldur</button>
+    <button id="temizle" class="btn btn-ghost addbtn">🗑 Temizle</button>
+  </div>
+
   <h3 style="margin-top:0">Kişisel Bilgiler</h3>
   <div class="field"><label>Fotoğraf (opsiyonel)</label><input id="foto" type="file" accept="image/*"></div>
   <div class="row"><div class="field"><label>Ad Soyad</label><input id="ad" placeholder="Ahmet Yılmaz"></div>
@@ -65,23 +69,28 @@
 
   <h3>İş Deneyimi <button class="btn btn-ghost addbtn" data-add="exp">+ Ekle</button></h3>
   <div id="expList"></div>
-
   <h3>Eğitim <button class="btn btn-ghost addbtn" data-add="edu">+ Ekle</button></h3>
   <div id="eduList"></div>
-
   <h3>Yetenekler <button class="btn btn-ghost addbtn" data-add="skill">+ Ekle</button></h3>
   <div id="skillList"></div>
-
   <h3>Diller <button class="btn btn-ghost addbtn" data-add="lang">+ Ekle</button></h3>
   <div id="langList"></div>
+  <h3>Sertifikalar <button class="btn btn-ghost addbtn" data-add="cert">+ Ekle</button></h3>
+  <div id="certList"></div>
+  <h3>Projeler <button class="btn btn-ghost addbtn" data-add="proj">+ Ekle</button></h3>
+  <div id="projList"></div>
+  <h3>Referanslar <button class="btn btn-ghost addbtn" data-add="ref">+ Ekle</button></h3>
+  <div id="refList"></div>
+  <h3>Hobiler / İlgi Alanları <button class="btn btn-ghost addbtn" data-add="hobi">+ Ekle</button></h3>
+  <div id="hobiList"></div>
 </div>
 
-<!-- SAĞ: ÖNİZLEME -->
 <div class="cv-prevwrap">
   <div class="cv-toolbar">
-    <select id="tema" class="btn btn-ghost" style="padding:8px">
-      <option value="modern">Modern</option><option value="klasik">Klasik</option><option value="renkli">Renkli</option></select>
-    <input id="renk" type="color" value="#2563eb" class="btn btn-ghost" style="height:38px;padding:4px" title="Vurgu rengi">
+    <select id="tema" style="flex:1;min-width:120px">
+      <option value="modern">Modern</option><option value="klasik">Klasik</option><option value="renkli">Renkli</option>
+      <option value="minimal">Minimal</option><option value="koyu">Koyu</option><option value="kurumsal">Kurumsal</option></select>
+    <input id="renk" type="color" value="#2563eb" style="height:38px;width:46px;padding:4px;border-radius:9px;border:1px solid var(--border-strong);background:var(--bg-2)" title="Vurgu rengi">
     <button id="pdf" class="btn btn-primary" style="flex:1">PDF İndir</button>
   </div>
   <div class="cv-paper"><div id="cvDoc"></div></div>
@@ -93,10 +102,10 @@
 <script src="assets/js/site.js"></script>
 <script>
 const $=id=>document.getElementById(id);
-const KEY="ets_cv_v1";
+const KEY="ets_cv_v2";
 let fotoData="";
+const LVL='<select data-k="seviye" class="lvlsel"><option value="">Seviye (ops.)</option><option value="20">Başlangıç</option><option value="40">Temel</option><option value="60">Orta</option><option value="80">İyi</option><option value="100">Uzman</option></select>';
 
-// dinamik bölüm şablonları
 const tmpl={
   exp:()=>`<div class="sub"><button class="rm">✕</button>
     <input data-k="pozisyon" placeholder="Pozisyon" style="margin-bottom:6px">
@@ -108,20 +117,30 @@ const tmpl={
     <input data-k="bolum" placeholder="Bölüm / Derece" style="margin-bottom:6px">
     <input data-k="tarih" placeholder="2018 - 2022"></div>`,
   skill:()=>`<div class="sub" style="padding:8px"><button class="rm">✕</button>
-    <input data-k="ad" placeholder="Yetenek (örn. JavaScript)"></div>`,
+    <input data-k="ad" placeholder="Yetenek (örn. JavaScript)">${LVL}</div>`,
   lang:()=>`<div class="sub" style="padding:8px"><button class="rm">✕</button>
     <div class="row"><input data-k="ad" placeholder="Dil (örn. İngilizce)">
-    <input data-k="seviye" placeholder="Seviye (örn. İleri)"></div></div>`
+    <input data-k="seviyeTxt" placeholder="Seviye (örn. İleri)"></div></div>`,
+  cert:()=>`<div class="sub" style="padding:8px"><button class="rm">✕</button>
+    <input data-k="ad" placeholder="Sertifika adı" style="margin-bottom:6px">
+    <div class="row"><input data-k="kurum" placeholder="Veren kurum"><input data-k="yil" placeholder="Yıl"></div></div>`,
+  proj:()=>`<div class="sub"><button class="rm">✕</button>
+    <input data-k="ad" placeholder="Proje adı" style="margin-bottom:6px">
+    <textarea data-k="aciklama" placeholder="Proje açıklaması..."></textarea></div>`,
+  ref:()=>`<div class="sub" style="padding:8px"><button class="rm">✕</button>
+    <input data-k="ad" placeholder="Ad Soyad" style="margin-bottom:6px">
+    <div class="row"><input data-k="firma" placeholder="Firma / Ünvan"><input data-k="iletisim" placeholder="Telefon / e-posta"></div></div>`,
+  hobi:()=>`<div class="sub" style="padding:8px"><button class="rm">✕</button>
+    <input data-k="ad" placeholder="Hobi / ilgi alanı"></div>`
 };
-const lists={exp:"expList",edu:"eduList",skill:"skillList",lang:"langList"};
+const lists={exp:"expList",edu:"eduList",skill:"skillList",lang:"langList",cert:"certList",proj:"projList",ref:"refList",hobi:"hobiList"};
 
 function addItem(type,data){
-  const wrap=document.createElement("div");
-  wrap.innerHTML=tmpl[type]();
+  const wrap=document.createElement("div");wrap.innerHTML=tmpl[type]();
   const node=wrap.firstElementChild;
   if(data)node.querySelectorAll("[data-k]").forEach(i=>{if(data[i.dataset.k]!=null)i.value=data[i.dataset.k];});
   node.querySelector(".rm").onclick=()=>{node.remove();render();save();};
-  node.querySelectorAll("input,textarea").forEach(i=>i.oninput=()=>{render();save();});
+  node.querySelectorAll("input,textarea,select").forEach(i=>{i.oninput=()=>{render();save();};i.onchange=()=>{render();save();};});
   $(lists[type]).appendChild(node);
 }
 document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>{addItem(b.dataset.add);render();save();});
@@ -134,9 +153,9 @@ function data(){
   return {ad:$("ad").value,unvan:$("unvan").value,email:$("email").value,tel:$("tel").value,
     sehir:$("sehir").value,web:$("web").value,ozet:$("ozet").value,foto:fotoData,
     tema:$("tema").value,renk:$("renk").value,
-    exp:collectList("exp"),edu:collectList("edu"),skill:collectList("skill"),lang:collectList("lang")};
+    exp:collectList("exp"),edu:collectList("edu"),skill:collectList("skill"),lang:collectList("lang"),
+    cert:collectList("cert"),proj:collectList("proj"),ref:collectList("ref"),hobi:collectList("hobi")};
 }
-
 function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
 function render(){
@@ -148,54 +167,99 @@ function render(){
   const eduHTML=d.edu.filter(e=>e.okul||e.bolum).map(e=>`<div class="item">
     <div class="top"><span>${esc(e.okul)}</span><span class="sub">${esc(e.tarih)}</span></div>
     <div class="sub">${esc(e.bolum)}</div></div>`).join("");
-  const skillHTML=d.skill.filter(s=>s.ad).map(s=>`<span class="tag" style="background:${renk}22;color:${renk}">${esc(s.ad)}</span>`).join("");
-  const langHTML=d.lang.filter(l=>l.ad).map(l=>`<div style="font-size:10.5px;margin-bottom:3px"><b>${esc(l.ad)}</b>${l.seviye?" — "+esc(l.seviye):""}</div>`).join("");
+  // yetenek: seviye varsa çubuk, yoksa etiket
+  const skillsValid=d.skill.filter(s=>s.ad);
+  function skillBars(){return skillsValid.map(s=>s.seviye?
+    `<div style="margin-bottom:5px"><div style="font-size:10.5px;display:flex;justify-content:space-between"><span>${esc(s.ad)}</span></div><div class="skillbar"><div style="width:${s.seviye}%;background:${renk}"></div></div></div>`:
+    `<div class="contact" style="margin-bottom:2px">• ${esc(s.ad)}</div>`).join("");}
+  const skillTags=skillsValid.map(s=>`<span class="tag" style="background:${renk}22;color:${renk}">${esc(s.ad)}${s.seviye?"":""}</span>`).join("");
+  const langHTML=d.lang.filter(l=>l.ad).map(l=>`<div style="font-size:10.5px;margin-bottom:3px"><b>${esc(l.ad)}</b>${l.seviyeTxt?" — "+esc(l.seviyeTxt):""}</div>`).join("");
+  const certHTML=d.cert.filter(c=>c.ad).map(c=>`<div class="item"><div class="top"><span>${esc(c.ad)}</span><span class="sub">${esc(c.yil)}</span></div>${c.kurum?`<div class="sub">${esc(c.kurum)}</div>`:""}</div>`).join("");
+  const projHTML=d.proj.filter(p=>p.ad).map(p=>`<div class="item"><div class="top"><span>${esc(p.ad)}</span></div>${p.aciklama?`<div class="desc">${esc(p.aciklama)}</div>`:""}</div>`).join("");
+  const refHTML=d.ref.filter(r=>r.ad).map(r=>`<div class="item"><div class="top"><span>${esc(r.ad)}</span></div><div class="sub">${esc(r.firma)}${r.iletisim?" • "+esc(r.iletisim):""}</div></div>`).join("");
+  const hobiHTML=d.hobi.filter(h=>h.ad).map(h=>`<span class="tag" style="background:${renk}22;color:${renk}">${esc(h.ad)}</span>`).join("");
   const photo=d.foto?`<img class="photo" src="${d.foto}">`:"";
+  const st=(c)=>`color:${c}`;
   let html="";
 
-  if(d.tema==="modern"){
-    html=`<div style="display:flex;height:100%">
-      <div style="width:34%;background:${renk};color:#fff;padding:18px 14px;box-sizing:border-box">
+  // ana içerik blokları (sağ kolon / tek kolon için)
+  function mainBlocks(titleColor,borderStyle){
+    let h="";
+    if(d.ozet)h+=`<div class="sec-title" style="${titleColor};${borderStyle}">Hakkımda</div><div class="desc" style="margin-bottom:8px">${esc(d.ozet)}</div>`;
+    if(expHTML)h+=`<div class="sec-title" style="${titleColor};${borderStyle}">İş Deneyimi</div>${expHTML}`;
+    if(eduHTML)h+=`<div class="sec-title" style="${titleColor};${borderStyle}">Eğitim</div>${eduHTML}`;
+    if(projHTML)h+=`<div class="sec-title" style="${titleColor};${borderStyle}">Projeler</div>${projHTML}`;
+    if(certHTML)h+=`<div class="sec-title" style="${titleColor};${borderStyle}">Sertifikalar</div>${certHTML}`;
+    if(refHTML)h+=`<div class="sec-title" style="${titleColor};${borderStyle}">Referanslar</div>${refHTML}`;
+    return h;
+  }
+  // yan blok (modern/koyu sol panel)
+  function sideBlocks(light){
+    let h="";const tc=light?"opacity:.9":"";
+    h+=`<div style="font-size:11px;font-weight:bold;text-transform:uppercase;margin:10px 0 5px;${tc}">İletişim</div>`+contactBits.map(c=>`<div class="contact" style="margin-bottom:3px;word-break:break-word">${c}</div>`).join("");
+    if(skillsValid.length)h+=`<div style="font-size:11px;font-weight:bold;text-transform:uppercase;margin:14px 0 5px;${tc}">Yetenekler</div>${skillBars()}`;
+    if(langHTML)h+=`<div style="font-size:11px;font-weight:bold;text-transform:uppercase;margin:14px 0 5px;${tc}">Diller</div><div style="font-size:10px">${d.lang.filter(l=>l.ad).map(l=>`<div style="margin-bottom:2px">${esc(l.ad)}${l.seviyeTxt?" ("+esc(l.seviyeTxt)+")":""}</div>`).join("")}</div>`;
+    if(hobiHTML)h+=`<div style="font-size:11px;font-weight:bold;text-transform:uppercase;margin:14px 0 5px;${tc}">Hobiler</div><div>${d.hobi.filter(x=>x.ad).map(x=>`<div class="contact" style="margin-bottom:2px">• ${esc(x.ad)}</div>`).join("")}</div>`;
+    return h;
+  }
+
+  if(d.tema==="modern"||d.tema==="koyu"){
+    const dark=d.tema==="koyu";
+    const sideBg=dark?"#1f2430":renk;const pageBg=dark?"#181c24":"#fff";const txtCol=dark?"#e8ebf0":"#222";
+    html=`<div style="display:flex;height:100%;background:${pageBg};color:${txtCol}">
+      <div style="width:34%;background:${sideBg};color:#fff;padding:18px 14px;box-sizing:border-box">
         ${photo?`<div style="text-align:center;margin-bottom:12px">${photo}</div>`:""}
-        <div style="font-size:11px;font-weight:bold;text-transform:uppercase;margin:10px 0 5px;opacity:.9">İletişim</div>
-        ${contactBits.map(c=>`<div class="contact" style="margin-bottom:3px;word-break:break-word">${c}</div>`).join("")}
-        ${skillHTML?`<div style="font-size:11px;font-weight:bold;text-transform:uppercase;margin:14px 0 5px;opacity:.9">Yetenekler</div><div>${d.skill.filter(s=>s.ad).map(s=>`<div class="contact" style="margin-bottom:2px">• ${esc(s.ad)}</div>`).join("")}</div>`:""}
-        ${langHTML?`<div style="font-size:11px;font-weight:bold;text-transform:uppercase;margin:14px 0 5px;opacity:.9">Diller</div><div style="font-size:10px">${d.lang.filter(l=>l.ad).map(l=>`<div style="margin-bottom:2px">${esc(l.ad)}${l.seviye?" ("+esc(l.seviye)+")":""}</div>`).join("")}</div>`:""}
+        ${sideBlocks(true)}
       </div>
       <div style="width:66%;padding:20px 18px;box-sizing:border-box">
-        <h1 style="color:${renk}">${esc(d.ad)||"Ad Soyad"}</h1>
+        <h1 style="${st(dark?renk:renk)}">${esc(d.ad)||"Ad Soyad"}</h1>
         <div class="role">${esc(d.unvan)}</div>
-        ${d.ozet?`<div class="desc" style="margin-bottom:10px">${esc(d.ozet)}</div>`:""}
-        ${expHTML?`<div class="sec-title" style="color:${renk};border-bottom:2px solid ${renk}">İş Deneyimi</div>${expHTML}`:""}
-        ${eduHTML?`<div class="sec-title" style="color:${renk};border-bottom:2px solid ${renk}">Eğitim</div>${eduHTML}`:""}
+        ${mainBlocks(st(renk),`border-bottom:2px solid ${renk}`)}
       </div></div>`;
-  } else if(d.tema==="klasik"){
-    html=`<div style="padding:24px 26px;box-sizing:border-box;height:100%">
-      <div style="text-align:center;border-bottom:2px solid #222;padding-bottom:10px;margin-bottom:12px">
-        ${photo?`<div style="margin-bottom:8px">${photo}</div>`:""}
-        <h1 style="letter-spacing:1px">${esc(d.ad)||"Ad Soyad"}</h1>
+  } else if(d.tema==="klasik"||d.tema==="kurumsal"){
+    const kurumsal=d.tema==="kurumsal";
+    const headBg=kurumsal?renk:"transparent";const headCol=kurumsal?"#fff":"#222";
+    html=`<div style="height:100%;box-sizing:border-box;background:#fff">
+      <div style="text-align:${kurumsal?"left":"center"};background:${headBg};color:${headCol};padding:${kurumsal?"22px 26px":"24px 26px 10px"};${kurumsal?"":"border-bottom:2px solid #222;margin:0 26px"};display:${kurumsal&&photo?"flex":"block"};align-items:center;gap:16px">
+        ${kurumsal&&photo?photo:(photo&&!kurumsal?`<div style="margin-bottom:8px">${photo}</div>`:"")}
+        <div><h1 style="letter-spacing:1px">${esc(d.ad)||"Ad Soyad"}</h1>
         <div class="role">${esc(d.unvan)}</div>
-        <div class="contact" style="margin-top:6px">${contactBits.join(" • ")}</div></div>
-      ${d.ozet?`<div class="sec-title" style="border-bottom:1px solid #999">Hakkımda</div><div class="desc" style="margin-bottom:8px">${esc(d.ozet)}</div>`:""}
-      ${expHTML?`<div class="sec-title" style="border-bottom:1px solid #999">İş Deneyimi</div>${expHTML}`:""}
-      ${eduHTML?`<div class="sec-title" style="border-bottom:1px solid #999">Eğitim</div>${eduHTML}`:""}
-      ${skillHTML?`<div class="sec-title" style="border-bottom:1px solid #999">Yetenekler</div><div>${skillHTML}</div>`:""}
-      ${langHTML?`<div class="sec-title" style="border-bottom:1px solid #999">Diller</div>${langHTML}`:""}
+        <div class="contact" style="margin-top:6px;${kurumsal?"opacity:.95":""}">${contactBits.join(" • ")}</div></div></div>
+      <div style="padding:14px 26px">
+        ${mainBlocks(st(kurumsal?renk:"#222"),`border-bottom:1px solid ${kurumsal?renk:"#999"}`)}
+        ${skillsValid.length?`<div class="sec-title" style="${st(kurumsal?renk:"#222")};border-bottom:1px solid ${kurumsal?renk:"#999"}">Yetenekler</div>${d.skill.some(s=>s.seviye)?skillBars():`<div>${skillTags}</div>`}`:""}
+        ${langHTML?`<div class="sec-title" style="${st(kurumsal?renk:"#222")};border-bottom:1px solid ${kurumsal?renk:"#999"}">Diller</div>${langHTML}`:""}
+        ${hobiHTML?`<div class="sec-title" style="${st(kurumsal?renk:"#222")};border-bottom:1px solid ${kurumsal?renk:"#999"}">Hobiler</div><div>${hobiHTML}</div>`:""}
+      </div></div>`;
+  } else if(d.tema==="minimal"){
+    html=`<div style="padding:30px 30px;box-sizing:border-box;height:100%;background:#fff">
+      <h1 style="font-weight:300;letter-spacing:1px">${esc(d.ad)||"Ad Soyad"}</h1>
+      <div class="role" style="margin-bottom:4px">${esc(d.unvan)}</div>
+      <div class="contact" style="color:#888;margin-bottom:14px">${contactBits.join("  ·  ")}</div>
+      <div style="height:1px;background:#eee;margin-bottom:14px"></div>
+      ${mainBlocks("color:#111;font-weight:600","")}
+      ${skillsValid.length?`<div class="sec-title" style="color:#111">Yetenekler</div>${d.skill.some(s=>s.seviye)?skillBars():`<div>${skillTags}</div>`}`:""}
+      ${langHTML?`<div class="sec-title" style="color:#111">Diller</div>${langHTML}`:""}
+      ${hobiHTML?`<div class="sec-title" style="color:#111">Hobiler</div><div>${hobiHTML}</div>`:""}
     </div>`;
   } else { // renkli
-    html=`<div style="height:100%;box-sizing:border-box">
+    html=`<div style="height:100%;box-sizing:border-box;background:#fff">
       <div style="background:linear-gradient(135deg,${renk},${renk}cc);color:#fff;padding:22px 24px;display:flex;align-items:center;gap:16px">
         ${photo?`<img class="photo" style="border:3px solid #fff" src="${d.foto}">`:""}
         <div><h1>${esc(d.ad)||"Ad Soyad"}</h1><div class="role">${esc(d.unvan)}</div>
         <div class="contact" style="margin-top:6px;opacity:.95">${contactBits.join(" • ")}</div></div></div>
       <div style="padding:18px 24px">
         ${d.ozet?`<div class="desc" style="margin-bottom:10px;font-style:italic">${esc(d.ozet)}</div>`:""}
-        ${expHTML?`<div class="sec-title" style="color:${renk}">💼 İş Deneyimi</div>${expHTML}`:""}
-        ${eduHTML?`<div class="sec-title" style="color:${renk}">🎓 Eğitim</div>${eduHTML}`:""}
+        ${expHTML?`<div class="sec-title" style="${st(renk)}">💼 İş Deneyimi</div>${expHTML}`:""}
+        ${eduHTML?`<div class="sec-title" style="${st(renk)}">🎓 Eğitim</div>${eduHTML}`:""}
+        ${projHTML?`<div class="sec-title" style="${st(renk)}">🚀 Projeler</div>${projHTML}`:""}
+        ${certHTML?`<div class="sec-title" style="${st(renk)}">🏆 Sertifikalar</div>${certHTML}`:""}
         <div style="display:flex;gap:20px;flex-wrap:wrap">
-        ${skillHTML?`<div style="flex:1;min-width:120px"><div class="sec-title" style="color:${renk}">⚡ Yetenekler</div><div>${skillHTML}</div></div>`:""}
-        ${langHTML?`<div style="flex:1;min-width:120px"><div class="sec-title" style="color:${renk}">🌐 Diller</div>${langHTML}</div>`:""}
+        ${skillsValid.length?`<div style="flex:1;min-width:120px"><div class="sec-title" style="${st(renk)}">⚡ Yetenekler</div>${d.skill.some(s=>s.seviye)?skillBars():`<div>${skillTags}</div>`}</div>`:""}
+        ${langHTML?`<div style="flex:1;min-width:120px"><div class="sec-title" style="${st(renk)}">🌐 Diller</div>${langHTML}</div>`:""}
         </div>
+        ${refHTML?`<div class="sec-title" style="${st(renk)}">👥 Referanslar</div>${refHTML}`:""}
+        ${hobiHTML?`<div class="sec-title" style="${st(renk)}">🎯 Hobiler</div><div>${hobiHTML}</div>`:""}
       </div></div>`;
   }
   $("cvDoc").innerHTML=html;
@@ -206,10 +270,8 @@ function loadSaved(){
   let d;try{d=JSON.parse(localStorage.getItem(KEY));}catch(e){}
   if(!d){addItem("exp");addItem("edu");addItem("skill");return;}
   ["ad","unvan","email","tel","sehir","web","ozet"].forEach(k=>{if($(k)&&d[k]!=null)$(k).value=d[k];});
-  if(d.tema)$("tema").value=d.tema;if(d.renk)$("renk").value=d.renk;
-  if(d.foto)fotoData=d.foto;
-  (d.exp||[]).forEach(x=>addItem("exp",x));(d.edu||[]).forEach(x=>addItem("edu",x));
-  (d.skill||[]).forEach(x=>addItem("skill",x));(d.lang||[]).forEach(x=>addItem("lang",x));
+  if(d.tema)$("tema").value=d.tema;if(d.renk)$("renk").value=d.renk;if(d.foto)fotoData=d.foto;
+  ["exp","edu","skill","lang","cert","proj","ref","hobi"].forEach(t=>(d[t]||[]).forEach(x=>addItem(t,x)));
   if(!(d.exp||[]).length)addItem("exp");
 }
 
@@ -218,6 +280,25 @@ function loadSaved(){
 
 $("foto").onchange=e=>{const f=e.target.files[0];if(!f)return;
   const r=new FileReader();r.onload=()=>{fotoData=r.result;render();save();};r.readAsDataURL(f);};
+
+$("temizle").onclick=()=>{if(confirm("Tüm bilgiler silinsin mi?")){localStorage.removeItem(KEY);location.reload();}};
+
+$("ornek").onclick=()=>{
+  if(!confirm("Örnek veriyle doldurulsun mu? Mevcut bilgiler değişir."))return;
+  localStorage.removeItem(KEY);
+  const ornek={ad:"Ahmet Yılmaz",unvan:"Kıdemli Yazılım Geliştirici",email:"ahmet@ornek.com",tel:"0555 123 45 67",sehir:"İstanbul",web:"linkedin.com/in/ahmet",
+    ozet:"8 yılı aşkın deneyime sahip, web ve mobil uygulama geliştirmede uzman yazılımcı. Ekip liderliği ve çözüm odaklı yaklaşımıyla projelerde fark yaratır.",tema:"modern",renk:"#2563eb",
+    exp:[{pozisyon:"Senior Developer",sirket:"TechCorp A.Ş.",tarih:"2020 - 2025",aciklama:"5 kişilik ekibe liderlik, mikroservis mimarisi tasarımı, %40 performans artışı."},
+         {pozisyon:"Yazılım Geliştirici",sirket:"StartUp Ltd.",tarih:"2017 - 2020",aciklama:"Web ve mobil uygulama geliştirme, API entegrasyonları."}],
+    edu:[{okul:"İstanbul Teknik Üniversitesi",bolum:"Bilgisayar Mühendisliği",tarih:"2012 - 2016"}],
+    skill:[{ad:"JavaScript",seviye:"100"},{ad:"Python",seviye:"80"},{ad:"React",seviye:"80"},{ad:"SQL",seviye:"60"}],
+    lang:[{ad:"İngilizce",seviyeTxt:"İleri (C1)"},{ad:"Almanca",seviyeTxt:"Başlangıç"}],
+    cert:[{ad:"AWS Certified Developer",kurum:"Amazon",yil:"2023"}],
+    proj:[{ad:"E-Ticaret Platformu",aciklama:"Sıfırdan geliştirilen, günde 10.000+ ziyaretçili platform."}],
+    ref:[{ad:"Mehmet Demir",firma:"TechCorp - CTO",iletisim:"mehmet@ornek.com"}],
+    hobi:[{ad:"Fotoğrafçılık"},{ad:"Satranç"},{ad:"Koşu"}]};
+  localStorage.setItem(KEY,JSON.stringify(ornek));location.reload();
+};
 
 $("pdf").onclick=()=>{
   const node=$("cvDoc");
