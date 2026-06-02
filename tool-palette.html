@@ -20,6 +20,7 @@
 <span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">🎨 Renk Paleti Çıkarıcı</h1>
 <p class="lead" style="margin:14px 0 26px">Fotoğraftan baskın renkleri çıkar, HEX kodlarını kopyala. Tasarım ve marka çalışmaları için.</p>
 <div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli seç</b> veya sürükle</p><input id="file" type="file" accept="image/*" class="hidden"></div>
+<div id="cntWrap" class="field hidden" style="max-width:240px;margin:14px auto 0"><label>Renk sayısı: <span id="cntVal">8</span></label><input id="cnt" type="range" min="3" max="12" value="8"></div>
 <div id="preview" class="preview hidden"><img id="img" style="max-height:240px;margin:0 auto"></div>
 <div id="palette" class="grid g-3" style="margin-top:20px"></div>
 </div></div></section>
@@ -32,7 +33,7 @@ dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=(
 dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);};
 file.onchange=e=>{if(e.target.files[0])load(e.target.files[0]);};
 function load(f){const r=new FileReader();r.onload=ev=>{const im=new Image();im.onload=()=>{
-document.getElementById("img").src=im.src;document.getElementById("preview").classList.remove("hidden");extract(im);};im.src=ev.target.result;};r.readAsDataURL(f);}
+document.getElementById("img").src=im.src;window._lastImg=im;document.getElementById("preview").classList.remove("hidden");var cw=document.getElementById("cntWrap");if(cw)cw.classList.remove("hidden");extract(im);};im.src=ev.target.result;};r.readAsDataURL(f);}
 function extract(im){
   const c=document.createElement("canvas");const W=120,H=Math.round(120*im.naturalHeight/im.naturalWidth);
   c.width=W;c.height=H;const ctx=c.getContext("2d");ctx.drawImage(im,0,0,W,H);
@@ -43,15 +44,23 @@ function extract(im){
     const r=data[i]>>4<<4,g=data[i+1]>>4<<4,b=data[i+2]>>4<<4;
     const key=r+","+g+","+b;buckets[key]=(buckets[key]||0)+1;
   }
-  const top=Object.entries(buckets).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const top=Object.entries(buckets).sort((a,b)=>b[1]-a[1]).slice(0,parseInt((document.getElementById('cnt')||{value:8}).value)||8);
   const pal=document.getElementById("palette");pal.innerHTML="";
   top.forEach(([key])=>{
     const [r,g,b]=key.split(",").map(Number);
     const hex="#"+[r,g,b].map(x=>x.toString(16).padStart(2,"0")).join("").toUpperCase();
-    const card=document.createElement("div");card.className="card";card.style.cssText="cursor:pointer;text-align:center;padding:0;overflow:hidden";
+    const card=document.createElement("div");card.dataset.hex=hex;card.style.cursor="pointer";card.title="Kopyalamak için tıkla";card.className="card";card.style.cssText="cursor:pointer;text-align:center;padding:0;overflow:hidden";
     card.innerHTML=`<div style="height:90px;background:${hex}"></div><div style="padding:12px"><b style="font-family:monospace">${hex}</b><br><span style="font-size:.78rem;color:var(--txt-faint)">kopyalamak için tıkla</span></div>`;
     card.onclick=()=>{navigator.clipboard.writeText(hex);ETSlib.toast(hex+" kopyalandı ✓");};
     pal.appendChild(card);
   });
 }
+
+// renk sayısı slider
+(function(){const cnt=document.getElementById("cnt");if(cnt){cnt.oninput=()=>{document.getElementById("cntVal").textContent=cnt.value;if(window._lastImg)extract(window._lastImg);};}})();
+// kopyalama: palette'e tıkla
+document.getElementById("palette").addEventListener("click",e=>{
+  const card=e.target.closest("[data-hex]");if(!card)return;
+  navigator.clipboard.writeText(card.dataset.hex);ETSlib.toast(card.dataset.hex+" kopyalandı ✓");
+});
 </script></body></html>
