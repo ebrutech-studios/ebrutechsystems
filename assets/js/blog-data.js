@@ -169,4 +169,88 @@ window.BLOG_POSTS = [
 <p>EbruTech Fatura/Fiş Oluşturucu aracında işletme adınızı, müşteri bilgisini ve belge numarasını girin. Ürün/hizmet kalemlerini adet ve birim fiyatıyla ekleyin. KDV oranını belirleyin — toplam otomatik hesaplanır. "PDF Oluştur" deyip indirin.</p>
 <p><b>Not:</b> Bu araç pratik belge hazırlama içindir. Resmi e-Fatura/e-Arşiv yükümlülükleriniz için mali müşavirinize danışın.</p>`
   }
+  ,{
+    id: "kdv-hesaplama-nasil-yapilir",
+    baslik: "KDV Hesaplama Nasıl Yapılır? (Dahil & Hariç)",
+    ozet: "KDV dahil fiyattan KDV nasıl ayrılır, fiyata KDV nasıl eklenir? Tüm KDV oranlarıyla pratik hesaplama rehberi.",
+    tarih: "2026-05-30",
+    okuma: 4,
+    tool: "tool-vat.html",
+    icerik: `
+<p>KDV (Katma Değer Vergisi), neredeyse her alışverişte karşımıza çıkar. Esnaf, serbest çalışan ya da alışveriş yapan herkes zaman zaman "bu fiyata KDV dahil mi?" veya "KDV'yi nasıl ayırırım?" sorusuyla karşılaşır. İşte basit açıklaması.</p>
+<h2>KDV nedir?</h2>
+<p>KDV, mal ve hizmetlerin satışında eklenen bir vergidir. Türkiye'de yaygın oranlar %1, %10 ve %20'dir. Ürün veya hizmetin türüne göre oran değişir.</p>
+<h2>Fiyata KDV ekleme (hariç → dahil)</h2>
+<p>Elinizde KDV hariç (net) bir tutar varsa ve üzerine KDV eklemek istiyorsanız: <b>Net tutar × (1 + KDV oranı)</b>. Örneğin 1.000₺ + %20 KDV = 1.000 × 1,20 = 1.200₺.</p>
+<h2>KDV'yi ayırma (dahil → hariç)</h2>
+<p>Elinizdeki tutara KDV dahilse ve net tutarı bulmak istiyorsanız: <b>Dahil tutar ÷ (1 + KDV oranı)</b>. Örneğin 1.200₺ (KDV dahil) ÷ 1,20 = 1.000₺ net, KDV ise 200₺ olur.</p>
+<h2>Elle uğraşmadan hesaplayın</h2>
+<p>Bu işlemleri her seferinde elle yapmak yerine, EbruTech KDV Hesaplama aracını kullanabilirsiniz. Tutarı girin, oranı seçin, "ekle" veya "ayır" deyin — net, KDV ve brüt tutarı anında görün. Hızlı, hatasız ve ücretsiz.</p>
+<p><b>Not:</b> Resmi muhasebe işlemleriniz için mali müşavirinize danışmanızı öneririz; bu araç pratik hesaplama içindir.</p>`
+  },
+  {
+    id: "kredi-hesaplama-aylik-taksit",
+    baslik: "Kredi Hesaplama: Aylık Taksit Nasıl Bulunur?",
+    ozet: "Kredi tutarı, faiz oranı ve vadeye göre aylık taksitinizi ve toplam ödemeyi nasıl hesaplarsınız? Anlaşılır rehber.",
+    tarih: "2026-05-27",
+    okuma: 5,
+    tool: "tool-loan.html",
+    icerik: `
+<p>Kredi çekmeden önce aylık taksitin ne kadar olacağını bilmek, bütçenizi planlamanın en önemli adımıdır. Bankaların kullandığı hesaplama mantığını anlamak, sizi sürprizlerden korur.</p>
+<h2>Taksit neye göre belirlenir?</h2>
+<p>Aylık taksit üç şeye bağlıdır:</p>
+<ul>
+<li><b>Anapara:</b> Çektiğiniz kredi tutarı.</li>
+<li><b>Faiz oranı:</b> Bankanın uyguladığı aylık faiz yüzdesi.</li>
+<li><b>Vade:</b> Krediyi kaç ayda ödeyeceğiniz.</li>
+</ul>
+<h2>Nasıl hesaplanır?</h2>
+<p>Bankalar "annüite" denen bir formül kullanır; bu, her ay eşit taksit ödemenizi sağlar. Formül karmaşık görünse de mantığı basittir: vade uzadıkça aylık taksit düşer ama toplam ödediğiniz faiz artar. Vade kısaldıkça taksit yükselir ama toplam maliyet azalır.</p>
+<h2>Örnek</h2>
+<p>100.000₺ krediyi %3,5 aylık faizle 36 ay vadeyle çekerseniz, aylık taksit yaklaşık 4.928₺, toplam ödeme ise yaklaşık 177.400₺ olur. Yani faiz yükü ciddi olabilir — bu yüzden hesaplamak önemli.</p>
+<h2>Saniyeler içinde hesaplayın</h2>
+<p>EbruTech Kredi Hesaplama aracında tutar, faiz ve vadeyi girin; aylık taksit, toplam ödeme ve toplam faizi anında görün. Farklı vadeleri deneyerek size en uygun planı bulun.</p>
+<p><b>Not:</b> Bu hesaplama bilgilendirme amaçlıdır; banka masrafları ve sigortalar dahil değildir. Kesin rakam için bankanıza danışın.</p>`
+  },
+  {
+    id: "yas-hesaplama-gun-hesabi",
+    baslik: "Yaş Hesaplama: Kaç Gün Yaşadığınızı Öğrenin",
+    ozet: "Doğum tarihinizden tam yaşınızı yıl, ay, gün olarak hesaplayın. Kaç gün, hafta ve saat yaşadığınızı keşfedin.",
+    tarih: "2026-05-24",
+    okuma: 3,
+    tool: "tool-age.html",
+    icerik: `
+<p>Yaşınızı yıl olarak biliyorsunuz ama tam olarak kaç yıl, kaç ay ve kaç gündür yaşadığınızı hiç merak ettiniz mi? Ya da bir bebeğin kaç günlük olduğunu, iki tarih arasında tam olarak ne kadar zaman geçtiğini?</p>
+<h2>Yaş hesaplamak ne işe yarar?</h2>
+<ul>
+<li><b>Resmi işlemler:</b> Bazı başvurularda tam yaş veya gün hesabı gerekebilir.</li>
+<li><b>Sağlık:</b> Bebeklerde aşı ve gelişim takibi gün/ay üzerinden yapılır.</li>
+<li><b>Merak:</b> Doğumunuzdan bu yana kaç gün geçtiğini görmek keyiflidir.</li>
+</ul>
+<h2>Nasıl hesaplanır?</h2>
+<p>Yaş hesabı basit görünse de ay ve gün farkları, artık yıllar nedeniyle elle yapması zordur. Bir tarihten diğerine geçen tam süreyi bulmak için gün bazında hesap yapmak gerekir.</p>
+<h2>Tek tıkla öğrenin</h2>
+<p>EbruTech Yaş Hesaplama aracına doğum tarihinizi girin; tam yaşınızı (yıl, ay, gün) ve ayrıca toplam kaç gün, hafta, ay ve saat yaşadığınızı anında görün. İki tarih arasını hesaplamak için de kullanabilirsiniz.</p>`
+  },
+  {
+    id: "resimden-pdf-olusturma",
+    baslik: "Resimden PDF Nasıl Yapılır? (Telefon & Bilgisayar)",
+    ozet: "Fotoğraflarınızı tek bir PDF dosyasında birleştirin. Belge tarama, ödev, başvuru için pratik resim-PDF çözümü.",
+    tarih: "2026-05-20",
+    okuma: 3,
+    tool: "tool-img2pdf.html",
+    icerik: `
+<p>Bir belgeyi telefonla fotoğrafladınız ve PDF olarak göndermeniz gerekiyor. Ya da birkaç fotoğrafı tek bir düzenli dosyada birleştirmek istiyorsunuz. Resimden PDF oluşturmak, bunun en temiz yoludur.</p>
+<h2>Neden PDF?</h2>
+<ul>
+<li><b>Profesyonel görünüm:</b> Dağınık fotoğraflar yerine tek, düzenli bir belge.</li>
+<li><b>Uyumluluk:</b> PDF her cihazda aynı görünür, bozulmaz.</li>
+<li><b>Kolay paylaşım:</b> Tek dosya göndermek, birden çok resim göndermekten pratiktir.</li>
+</ul>
+<h2>Hangi durumlarda kullanılır?</h2>
+<p>Kimlik veya belge taraması, okul ödevleri, iş başvuruları, fatura arşivleme, sözleşme gönderimi — fotoğrafların PDF'e dönüştüğü sayısız durum var.</p>
+<h2>Nasıl yapılır?</h2>
+<p>EbruTech Resimden PDF aracını açın, fotoğraflarınızı seçin veya sürükleyin, sıralamayı ayarlayın ve "PDF oluştur" deyin. Tüm resimleriniz tek bir PDF dosyasında iner. İşlem tarayıcıda olur, fotoğraflarınız hiçbir sunucuya yüklenmez — gizliliğiniz korunur.</p>
+<p>Çok sayfalı belgeler için ideal; tarayıcıya ihtiyaç duymadan telefonunuzla profesyonel PDF'ler hazırlayabilirsiniz.</p>`
+  }
 ];
