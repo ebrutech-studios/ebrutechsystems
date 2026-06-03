@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- OTEL / PANSİYON ŞABLONU — EbruTech Studios | CONFIG değerlerini düzenle -->
+<title>Huzur Otel — Konforun Yeni Adresi</title>
+<meta name="description" content="Huzur Otel — deniz manzaralı odalar, kahvaltı dahil konaklama, eşsiz misafirperverlik. Şimdi rezervasyon yapın.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#10100e;--bg2:#1a1916;--surface:#211f1b;--text:#f5f1e8;--dim:#b8b0a0;--faint:#7d756a;
+  --accent:#c5a572;--accent2:#a8884f;--border:rgba(197,165,114,.22);
+  --hero-img:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80');
+  --fd:'Cormorant Garamond',serif;--fb:'Mulish',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.7;font-weight:300}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--fd);font-weight:600;line-height:1.1}
+header{position:sticky;top:0;z-index:50;background:rgba(16,16,14,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav{display:flex;align-items:center;justify-content:space-between;height:80px}
+.logo{font-family:var(--fd);font-size:1.7rem;font-weight:700;letter-spacing:.02em}.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:30px}.nav-links a{color:var(--dim);font-size:.92rem;letter-spacing:.03em;transition:.2s}.nav-links a:hover{color:var(--accent)}
+.nav-cta{border:1px solid var(--accent);color:var(--accent)!important;padding:11px 26px;font-weight:500;letter-spacing:.04em;transition:.2s}
+.nav-cta:hover{background:var(--accent);color:var(--bg)!important}
+@media(max-width:760px){.nav-links{display:none}}
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;text-align:center;justify-content:center}
+.hero::before{content:"";position:absolute;inset:0;background:var(--hero-img) center/cover;opacity:.5}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,16,14,.5),rgba(16,16,14,.85))}
+.hero-content{position:relative;z-index:2;max-width:760px}
+.hero .eyebrow{display:inline-block;color:var(--accent);letter-spacing:.35em;text-transform:uppercase;font-size:.8rem;margin-bottom:24px}
+.hero h1{font-size:clamp(3rem,8vw,5.8rem);margin-bottom:22px;font-weight:600}
+.hero p{font-size:1.2rem;color:var(--dim);margin-bottom:36px;max-width:540px;margin-left:auto;margin-right:auto}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--bg);padding:16px 40px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.85rem;transition:.3s;border:none;cursor:pointer}
+.btn:hover{background:var(--accent2)}
+.btn-outline{background:transparent;border:1px solid var(--text);color:var(--text)}
+.btn-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+section{padding:100px 0}
+.section-title{text-align:center;margin-bottom:60px}
+.section-title .eyebrow{color:var(--accent);letter-spacing:.3em;text-transform:uppercase;font-size:.78rem}
+.section-title h2{font-size:clamp(2.4rem,5vw,3.6rem);margin-top:14px}
+.rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:860px){.rooms{grid-template-columns:1fr}}
+.room{background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:.3s}
+.room:hover{transform:translateY(-6px);border-color:var(--accent)}
+.room .img{aspect-ratio:4/3;background:linear-gradient(135deg,#2a2620,#211f1b);display:flex;align-items:center;justify-content:center;font-size:3rem}
+.room .body{padding:26px}
+.room h3{font-size:1.6rem;margin-bottom:6px}
+.room .price{color:var(--accent);font-family:var(--fd);font-size:1.5rem;font-weight:600;margin:10px 0}
+.room .price small{font-size:.85rem;color:var(--faint);font-family:var(--fb)}
+.room p{color:var(--dim);font-size:.9rem}
+.amenities{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+@media(max-width:760px){.amenities{grid-template-columns:repeat(2,1fr)}}
+.amen .icon{font-size:2.2rem;margin-bottom:10px;color:var(--accent)}
+.amen h4{font-family:var(--fd);font-size:1.3rem;margin-bottom:4px}
+.amen p{color:var(--dim);font-size:.85rem}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:760px){.gallery{grid-template-columns:repeat(2,1fr)}}
+.gal{aspect-ratio:1;background:linear-gradient(135deg,#2a2620,#1a1916);display:flex;align-items:center;justify-content:center;font-size:2.4rem;transition:.3s;border:1px solid var(--border)}
+.gal:hover{transform:scale(1.04);border-color:var(--accent)}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:760px){.reviews{grid-template-columns:1fr}}
+.review{background:var(--surface);border:1px solid var(--border);padding:28px}
+.review .stars{color:var(--accent);margin-bottom:12px;letter-spacing:2px}
+.review p{color:var(--dim);font-size:.95rem;margin-bottom:16px;font-style:italic}
+.review .who{font-weight:600;font-size:.92rem;font-family:var(--fd);font-size:1.1rem}
+.faq{max-width:760px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:1.05rem}
+.faq-q span{color:var(--accent);transition:.3s;font-size:1.4rem;line-height:1}
+.faq-a{max-height:0;overflow:hidden;transition:.3s;color:var(--dim)}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:20px}
+.faq-item.open .faq-q span{transform:rotate(45deg)}
+.contact{background:var(--bg2);padding:64px;text-align:center;border:1px solid var(--border)}
+.contact h2{font-size:2.8rem;margin-bottom:16px}
+.contact .info{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin:30px 0;color:var(--dim)}
+.contact .info b{color:var(--text);display:block;font-family:var(--fd);font-size:1.2rem;margin-bottom:4px}
+footer{padding:40px 0;text-align:center;color:var(--faint);font-size:.85rem;border-top:1px solid var(--border)}
+footer a{color:var(--accent)}
+.reveal{opacity:0;transform:translateY(20px);transition:.7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+</style></head><body>
+<header><div class="wrap"><nav>
+<a href="#" class="logo">Huzur <span>Otel</span></a>
+<div class="nav-links"><a href="#odalar">Odalar</a><a href="#olanaklar">Olanaklar</a><a href="#galeri">Galeri</a><a href="#sss">SSS</a><a href="#iletisim">İletişim</a></div>
+<a href="#iletisim" class="nav-cta">Rezervasyon</a>
+</nav></div></header>
+<section class="hero"><div class="wrap"><div class="hero-content">
+<div class="eyebrow">Konforun Yeni Adresi</div>
+<h1>Huzurlu bir<br>konaklama</h1>
+<p>Deniz manzaralı odalar, zengin kahvaltı ve eşsiz misafirperverlik. Unutulmaz bir tatil sizi bekliyor.</p>
+<div class="btn-row"><a href="#iletisim" class="btn">Rezervasyon Yap</a><a href="#odalar" class="btn btn-outline">Odaları İncele</a></div>
+</div></div></section>
+<section id="odalar"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Konaklama</div><h2>Odalarımız</h2></div>
+<div class="rooms">
+<div class="room reveal"><div class="img">🛏️</div><div class="body"><h3>Standart Oda</h3><div class="price">1.200₺<small>/gece</small></div><p>Çift kişilik, klima, kahvaltı dahil, ücretsiz Wi-Fi.</p></div></div>
+<div class="room reveal"><div class="img">🌊</div><div class="body"><h3>Deniz Manzaralı</h3><div class="price">1.800₺<small>/gece</small></div><p>Balkonlu, deniz manzaralı, mini bar, kahvaltı dahil.</p></div></div>
+<div class="room reveal"><div class="img">👑</div><div class="body"><h3>Suit Oda</h3><div class="price">2.800₺<small>/gece</small></div><p>Geniş yaşam alanı, jakuzi, premium hizmet, kahvaltı dahil.</p></div></div>
+</div></div></section>
+<section id="olanaklar" style="background:var(--bg2)"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Olanaklar</div><h2>Size Sunduklarımız</h2></div>
+<div class="amenities">
+<div class="amen reveal"><div class="icon">🍳</div><h4>Kahvaltı</h4><p>Zengin açık büfe</p></div>
+<div class="amen reveal"><div class="icon">🏊</div><h4>Havuz</h4><p>Açık & kapalı havuz</p></div>
+<div class="amen reveal"><div class="icon">📶</div><h4>Wi-Fi</h4><p>Ücretsiz internet</p></div>
+<div class="amen reveal"><div class="icon">🅿️</div><h4>Otopark</h4><p>Ücretsiz vale</p></div>
+<div class="amen reveal"><div class="icon">🧖</div><h4>SPA</h4><p>Masaj & sauna</p></div>
+<div class="amen reveal"><div class="icon">🍽️</div><h4>Restoran</h4><p>A la carte mutfak</p></div>
+<div class="amen reveal"><div class="icon">🏖️</div><h4>Plaj</h4><p>Özel plaj erişimi</p></div>
+<div class="amen reveal"><div class="icon">🛎️</div><h4>7/24 Resepsiyon</h4><p>Kesintisiz hizmet</p></div>
+</div></div></section>
+<section id="galeri"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Otelimizden</div><h2>Galeri</h2></div>
+<div class="gallery">
+<div class="gal reveal">🏨</div><div class="gal reveal">🛏️</div><div class="gal reveal">🌊</div><div class="gal reveal">🏊</div>
+<div class="gal reveal">🍽️</div><div class="gal reveal">🌅</div><div class="gal reveal">🧖</div><div class="gal reveal">🍹</div>
+</div></div></section>
+<section id="yorumlar" style="background:var(--bg2)"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Misafir Görüşleri</div><h2>Konuklarımız Ne Diyor</h2></div>
+<div class="reviews">
+<div class="review reveal"><div class="stars">★★★★★</div><p>"Manzara muhteşemdi, personel çok ilgiliydi. Kahvaltı bir harikaydı. Kesinlikle tekrar geleceğiz."</p><div class="who">Aile Tatili</div></div>
+<div class="review reveal"><div class="stars">★★★★★</div><p>"Tertemiz odalar, huzurlu bir ortam. Balayımız için ideal bir seçimdi, teşekkürler."</p><div class="who">Balayı Çifti</div></div>
+<div class="review reveal"><div class="stars">★★★★★</div><p>"Konum mükemmel, denize sıfır. SPA hizmeti çok rahatlatıcıydı. Tavsiye ederim."</p><div class="who">İş Seyahati</div></div>
+</div></div></section>
+<section id="sss"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Merak Edilenler</div><h2>Sıkça Sorulan Sorular</h2></div>
+<div class="faq">
+<div class="faq-item reveal"><div class="faq-q">Giriş ve çıkış saatleri nedir?<span>+</span></div><div class="faq-a">Giriş 14:00, çıkış 12:00'dir. Erken giriş/geç çıkış için müsaitlik durumuna göre destek sağlarız.</div></div>
+<div class="faq-item reveal"><div class="faq-q">Kahvaltı dahil mi?<span>+</span></div><div class="faq-a">Evet, tüm oda tiplerinde zengin açık büfe kahvaltı fiyata dahildir.</div></div>
+<div class="faq-item reveal"><div class="faq-q">Evcil hayvan kabul ediyor musunuz?<span>+</span></div><div class="faq-a">Belirli oda tiplerinde evcil hayvan kabul ediyoruz. Lütfen rezervasyon sırasında belirtin.</div></div>
+<div class="faq-item reveal"><div class="faq-q">İptal koşulları nelerdir?<span>+</span></div><div class="faq-a">Girişten 48 saat öncesine kadar ücretsiz iptal hakkınız vardır. Detaylar için bizi arayın.</div></div>
+</div></div></section>
+<section id="iletisim" style="background:var(--bg2)"><div class="wrap"><div class="contact reveal">
+<h2>Rezervasyon Yapın</h2>
+<p style="color:var(--dim)">Unutulmaz bir konaklama için bizi arayın.</p>
+<div class="info">
+<div><b>Adres</b>Sahil Yolu No:1, Antalya</div>
+<div><b>Telefon</b>0555 789 01 23</div>
+<div><b>Resepsiyon</b>7/24 Açık</div>
+</div>
+<a href="tel:05557890123" class="btn">Hemen Ara</a>
+</div></div></section>
+<footer><div class="wrap"><p>© 2026 Huzur Otel — Tüm hakları saklıdır.</p><p style="margin-top:8px">Web sitesi <a href="https://ebrutechsystems.com" target="_blank">EbruTech Studios</a> tarafından hazırlanmıştır.</p></div></footer>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.1});
+document.querySelectorAll(".reveal").forEach((e,i)=>{e.style.transitionDelay=(i%3*0.07)+"s";io.observe(e)});
+document.querySelectorAll(".faq-q").forEach(q=>q.onclick=()=>q.parentElement.classList.toggle("open"));
+</script></body></html>
