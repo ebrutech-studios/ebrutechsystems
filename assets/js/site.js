@@ -11,7 +11,6 @@ const ETS = {
 const NAV = [
   ["index.html","Ana Sayfa"],
   ["tools.html","Araçlar"],
-  ["muhasebe.html","Muhasebe"],
   ["hizmetler.html","Hizmetler"],
   ["hazir-siteler.html","Hazır Siteler"],
   ["fiyatlandirma.html","Fiyatlandırma"],
