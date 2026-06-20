@@ -36,11 +36,12 @@ dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=(
 dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");add(e.dataTransfer.files);};
 file.onchange=e=>add(e.target.files);
 function add(fl){for(const f of fl){if(f.type==="application/pdf")files.push(f);}render();}
+function escHtml(s){return String(s).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));}
 function render(){
   list.innerHTML="";
   files.forEach((f,i)=>{
     const li=document.createElement("li");li.className="card";li.style.cssText="display:flex;align-items:center;gap:12px;padding:12px 14px";
-    li.innerHTML=`<span style="font-size:1.3rem">📄</span><span style="flex:1;font-size:.9rem">${f.name}</span>
+    li.innerHTML=`<span style="font-size:1.3rem">📄</span><span style="flex:1;font-size:.9rem">${escHtml(f.name)}</span>
       <button data-up="${i}" class="btn btn-ghost" style="padding:6px 10px">↑</button>
       <button data-dn="${i}" class="btn btn-ghost" style="padding:6px 10px">↓</button>
       <button data-rm="${i}" class="btn btn-ghost" style="padding:6px 10px">✕</button>`;

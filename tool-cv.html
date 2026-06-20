@@ -179,7 +179,7 @@ function render(){
   const projHTML=d.proj.filter(p=>p.ad).map(p=>`<div class="item"><div class="top"><span>${esc(p.ad)}</span></div>${p.aciklama?`<div class="desc">${esc(p.aciklama)}</div>`:""}</div>`).join("");
   const refHTML=d.ref.filter(r=>r.ad).map(r=>`<div class="item"><div class="top"><span>${esc(r.ad)}</span></div><div class="sub">${esc(r.firma)}${r.iletisim?" • "+esc(r.iletisim):""}</div></div>`).join("");
   const hobiHTML=d.hobi.filter(h=>h.ad).map(h=>`<span class="tag" style="background:${renk}22;color:${renk}">${esc(h.ad)}</span>`).join("");
-  const photo=d.foto?`<img class="photo" src="${d.foto}">`:"";
+  const photo=d.foto?`<img class="photo" src="${d.foto}" alt="CV profil fotoğrafı">`:"";
   const st=(c)=>`color:${c}`;
   let html="";
 
@@ -246,7 +246,7 @@ function render(){
   } else { // renkli
     html=`<div style="height:100%;box-sizing:border-box;background:#fff">
       <div style="background:linear-gradient(135deg,${renk},${renk}cc);color:#fff;padding:22px 24px;display:flex;align-items:center;gap:16px">
-        ${photo?`<img class="photo" style="border:3px solid #fff" src="${d.foto}">`:""}
+        ${photo?`<img class="photo" style="border:3px solid #fff" src="${d.foto}" alt="CV profil fotoğrafı">`:""}
         <div><h1>${esc(d.ad)||"Ad Soyad"}</h1><div class="role">${esc(d.unvan)}</div>
         <div class="contact" style="margin-top:6px;opacity:.95">${contactBits.join(" • ")}</div></div></div>
       <div style="padding:18px 24px">

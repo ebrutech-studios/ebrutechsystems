@@ -54,22 +54,25 @@ document.addEventListener("ets-auth",(e)=>applyGate(e.detail.user,e.detail.isPro
 
 const lines=document.getElementById("lines");
 function addLine(n="",p=""){const div=document.createElement("div");div.className="ln";
-  div.innerHTML=`<input placeholder="Ürün adı" value="${n}"><input type="number" placeholder="0" value="${p}"><button class="btn btn-ghost" style="padding:8px">✕</button>`;
-  div.querySelector("button").onclick=()=>div.remove();lines.appendChild(div);}
+  const name=document.createElement("input");name.placeholder="Ürün adı";name.value=n;
+  const price=document.createElement("input");price.type="number";price.placeholder="0";price.min="0";price.value=p;
+  const remove=document.createElement("button");remove.type="button";remove.className="btn btn-ghost";remove.style.padding="8px";remove.textContent="✕";remove.setAttribute("aria-label","Ürünü kaldır");
+  remove.onclick=()=>div.remove();div.append(name,price,remove);lines.appendChild(div);}
 document.getElementById("addLine").onclick=()=>addLine();
 addLine("Türk Kahvesi","45");addLine("Latte","60");
 function items(){return [...lines.querySelectorAll(".ln")].map(l=>{const i=l.querySelectorAll("input");return{n:i[0].value,p:i[1].value};}).filter(x=>x.n);}
 function buildHTML(){
+  const esc=s=>String(s).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
   const firma=document.getElementById("firma").value||"Menü";
-  const rows=items().map(x=>`<div class="item"><span>${x.n}</span><span>${x.p} ₺</span></div>`).join("");
+  const rows=items().map(x=>`<div class="item"><span>${esc(x.n)}</span><span>${esc(x.p)} ₺</span></div>`).join("");
   return `<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <style>body{margin:0;font-family:system-ui,sans-serif;background:#0a0a0b;color:#f4f4f2;padding:30px 20px}
 h1{text-align:center;font-size:2rem;margin-bottom:6px}.sub{text-align:center;color:#888;margin-bottom:30px;font-size:.9rem}
 .item{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #222;max-width:480px;margin:0 auto;font-size:1.05rem}
 .item span:last-child{color:#c8ff2e;font-weight:700}.foot{text-align:center;color:#555;font-size:.78rem;margin-top:40px}</style></head>
-<body><h1>${firma}</h1><div class="sub">Dijital Menü</div>${rows}<div class="foot">EbruTech Studios ile hazırlandı</div></body></html>`;
+<body><h1>${esc(firma)}</h1><div class="sub">Dijital Menü</div>${rows}<div class="foot">EbruTech Studios ile hazırlandı</div></body></html>`;
 }
-document.getElementById("preview").onclick=()=>{const w=window.open();w.document.write(buildHTML());w.document.close();};
+document.getElementById("preview").onclick=()=>{const url=URL.createObjectURL(new Blob([buildHTML()],{type:"text/html"}));const w=window.open(url,"_blank","noopener,noreferrer");setTimeout(()=>URL.revokeObjectURL(url),60000);if(!w)ETSlib.toast("Önizleme penceresi engellendi.");};
 document.getElementById("dlHtml").onclick=()=>{const blob=new Blob([buildHTML()],{type:"text/html"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="menu.html";a.click();ETSlib.toast("menu.html indiriliyor ✓");};
 document.getElementById("dlQr").onclick=()=>{const url=document.getElementById("url").value.trim();if(!url){ETSlib.toast("Önce menü adresini gir");return;}

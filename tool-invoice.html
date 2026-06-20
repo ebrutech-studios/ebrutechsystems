@@ -96,14 +96,17 @@ let logoData="";
 
 function addLine(desc="",qty="1",price="",kdv="20"){
   const div=document.createElement("div");div.className="ln";
-  div.innerHTML=`<input placeholder="Ürün/hizmet" value="${desc}">
-    <input type="number" value="${qty}" min="0">
-    <input type="number" placeholder="0" value="${price}" min="0">
-    <input type="number" value="${kdv}" min="0">
-    <span class="tut">0</span>
-    <button class="btn btn-ghost" style="padding:6px 8px">✕</button>`;
-  div.querySelector("button").onclick=()=>{div.remove();calc();save();};
-  div.querySelectorAll("input").forEach(i=>i.oninput=()=>{calc();save();});
+  const fields=[
+    {placeholder:"Ürün/hizmet",value:desc},
+    {type:"number",value:qty,min:"0",step:"any"},
+    {type:"number",placeholder:"0",value:price,min:"0",step:"any"},
+    {type:"number",value:kdv,min:"0",step:"any"}
+  ].map(cfg=>{const input=document.createElement("input");Object.entries(cfg).forEach(([k,v])=>input[k]=v);return input;});
+  const total=document.createElement("span");total.className="tut";total.textContent="0";
+  const remove=document.createElement("button");remove.type="button";remove.className="btn btn-ghost";remove.style.padding="6px 8px";remove.textContent="✕";remove.setAttribute("aria-label","Satırı kaldır");
+  remove.onclick=()=>{div.remove();calc();save();};
+  fields.forEach(i=>i.oninput=()=>{calc();save();});
+  div.append(...fields,total,remove);
   lines.appendChild(div);calc();
 }
 function rows(){return [...lines.querySelectorAll(".ln")].map(l=>{const i=l.querySelectorAll("input");

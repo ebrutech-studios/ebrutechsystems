@@ -80,7 +80,7 @@ async function run(f){
     await ensureLib();
     // orijinal önizleme
     const origURL=URL.createObjectURL(f);
-    results.innerHTML=`<div class="preview"><p style="font-size:.8rem;color:var(--txt-faint);margin-bottom:8px">Orijinal</p><img src="${origURL}"></div>
+    results.innerHTML=`<div class="preview"><p style="font-size:.8rem;color:var(--txt-faint);margin-bottom:8px">Orijinal</p><img src="${origURL}" alt="Orijinal görsel"></div>
       <div class="preview bg-checker" id="outBox"><p style="font-size:.8rem;color:var(--txt-faint);margin-bottom:8px">Sonuç</p><div id="outImg" style="min-height:120px;display:grid;place-items:center;color:var(--txt-faint)">İşleniyor...</div></div>`;
     const config={progress:(key,cur,tot)=>{
       const pct=Math.round(cur/tot*100);
@@ -90,7 +90,7 @@ async function run(f){
     const blob=await removeFn(f,config);
     resultBlob=blob;
     const outURL=URL.createObjectURL(blob);
-    document.getElementById("outImg").outerHTML=`<img src="${outURL}">`;
+    document.getElementById("outImg").outerHTML=`<img src="${outURL}" alt="Arka planı kaldırılmış görsel">`;
     bar.style.width="100%";statusTxt.textContent="Tamamlandı ✓";
     dl.classList.remove("hidden");
     setTimeout(()=>status.classList.add("hidden"),1200);

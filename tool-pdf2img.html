@@ -67,7 +67,7 @@ async function render(f){
       await page.render({canvasContext:c.getContext("2d"),viewport:vp}).promise;
       const url=c.toDataURL("image/png");
       const card=document.createElement("div");card.className="card";card.style.cssText="text-align:center;padding:12px";
-      card.innerHTML=`<img src="${url}" style="border-radius:8px;margin-bottom:10px"><br><button class="btn btn-ghost" style="width:100%;justify-content:center">Sayfa ${i} İndir</button>`;
+      card.innerHTML=`<img src="${url}" alt="PDF sayfa ${i} önizlemesi" style="border-radius:8px;margin-bottom:10px"><br><button class="btn btn-ghost" style="width:100%;justify-content:center">Sayfa ${i} İndir</button>`;
       card.querySelector("button").onclick=()=>{const a=document.createElement("a");a.href=url;a.download="ebrutech-sayfa-"+i+".png";a.click();ETSlib.toast("Sayfa "+i+" indiriliyor ✓");};
       pages.appendChild(card);
     }
