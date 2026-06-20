@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const b=document.getElementById("butce").value;
     const m=document.getElementById("mesaj").value||"–";
     const msg=`Merhaba EbruTech Studios!%0A%0AAd Soyad: ${encodeURIComponent(ad)}%0AE-posta: ${encodeURIComponent(ep)}%0AHizmet: ${encodeURIComponent(h)}%0ABütçe: ${encodeURIComponent(b)}%0AMesaj: ${encodeURIComponent(m)}`;
-    window.open("https://wa.me/"+ETS.whatsapp+"?text="+msg,"_blank");
+    window.open("https://wa.me/"+ETS.whatsapp+"?text="+msg,"_blank","noopener,noreferrer");
     ETSlib.toast("WhatsApp açılıyor ✓");
   };
 });

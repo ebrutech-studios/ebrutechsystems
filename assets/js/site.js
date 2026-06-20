@@ -6,6 +6,8 @@ const ETS = {
   email: "info@ebrutechsystems.com"
 };
 
+const MAX_REVIEW_LENGTH = 500;
+
 const NAV = [
   ["index.html","Ana Sayfa"],
   ["tools.html","Araçlar"],
@@ -262,11 +264,39 @@ async function loadReviews(key){
     list.innerHTML='';
     snap.forEach(d=>{
       const r=d.data();
-      const stars='★'.repeat(r.stars||5)+'☆'.repeat(5-(r.stars||5));
+      const rating=Math.min(5,Math.max(1,Number.parseInt(r.stars,10)||5));
+      const stars='★'.repeat(rating)+'☆'.repeat(5-rating);
       const dt=r.createdAt&&r.createdAt.toDate?r.createdAt.toDate().toLocaleDateString('tr-TR'):'';
       const div=document.createElement('div');
       div.className='review-card reveal';
-      div.innerHTML=`<div class="rc-head"><span class="rc-name">${r.userName||'Anonim'}</span><span class="rc-stars">${stars}</span>${dt?`<span class="rc-date">${dt}</span>`:''}</div>${r.text?`<p class="rc-text">${r.text}</p>`:''}`;
+      const head=document.createElement('div');
+      head.className='rc-head';
+
+      const name=document.createElement('span');
+      name.className='rc-name';
+      name.textContent=String(r.userName||'Anonim').slice(0,80);
+      head.appendChild(name);
+
+      const starsEl=document.createElement('span');
+      starsEl.className='rc-stars';
+      starsEl.textContent=stars;
+      starsEl.setAttribute('aria-label',`${rating} / 5 yıldız`);
+      head.appendChild(starsEl);
+
+      if(dt){
+        const date=document.createElement('span');
+        date.className='rc-date';
+        date.textContent=dt;
+        head.appendChild(date);
+      }
+      div.appendChild(head);
+
+      if(r.text){
+        const text=document.createElement('p');
+        text.className='rc-text';
+        text.textContent=String(r.text).slice(0,MAX_REVIEW_LENGTH);
+        div.appendChild(text);
+      }
       list.appendChild(div);
     });
     if(typeof initReveal==='function') initReveal();
@@ -287,7 +317,7 @@ function renderReviewForm(key,user){
 <div class="review-write">
   <p style="font-size:.92rem;color:var(--txt-dim);margin-bottom:14px">Değerlendirme yap</p>
   <div class="stars-input" id="etsStars">${[1,2,3,4,5].map(i=>`<span data-star="${i}" class="on">★</span>`).join('')}</div>
-  <textarea id="etsReviewText" rows="3" placeholder="Bu araç hakkında düşüncelerinizi paylaşın…"></textarea>
+  <textarea id="etsReviewText" rows="3" maxlength="${MAX_REVIEW_LENGTH}" aria-label="Araç yorumunuz" placeholder="Bu araç hakkında düşüncelerinizi paylaşın…"></textarea>
   <button class="btn btn-primary" id="etsSubmitReview">Yorum Gönder</button>
   <p id="etsReviewMsg" style="display:none;color:var(--accent);font-size:.88rem;margin-top:8px"></p>
 </div>`;
@@ -302,6 +332,7 @@ function renderReviewForm(key,user){
   document.getElementById('etsSubmitReview').addEventListener('click',async()=>{
     const text=document.getElementById('etsReviewText').value.trim();
     if(!text){ ETSlib.toast('Lütfen bir yorum yazın.'); return; }
+    if(text.length>MAX_REVIEW_LENGTH){ ETSlib.toast(`Yorum en fazla ${MAX_REVIEW_LENGTH} karakter olabilir.`); return; }
     const btn=document.getElementById('etsSubmitReview');
     btn.disabled=true; btn.textContent='Gönderiliyor…';
     try{
@@ -367,8 +398,20 @@ function initRecentTools(){
 
   const div=document.createElement('div');
   div.className='recent-tools reveal';
-  div.innerHTML=`<span class="recent-label">Son kullandıklarınız:</span>`+
-    recent.slice(0,5).map(r=>`<a href="${r.page}" class="recent-chip">${r.title||r.key}</a>`).join('');
+  const label=document.createElement('span');
+  label.className='recent-label';
+  label.textContent='Son kullandıklarınız:';
+  div.appendChild(label);
+  recent.slice(0,5).forEach(r=>{
+    const meta=TOOL_META[r&&r.key];
+    if(!meta) return;
+    const link=document.createElement('a');
+    link.href=meta.href;
+    link.className='recent-chip';
+    link.textContent=String(r.title||meta.name).slice(0,40);
+    div.appendChild(link);
+  });
+  if(div.children.length===1) return;
   wrap.before(div);
 }
 
@@ -420,7 +463,7 @@ function buildShell(){
       <div class="col"><h5>Stüdyo</h5>
         <a href="hizmetler.html">Hizmetler</a><a href="fiyatlandirma.html">Paketler</a><a href="iletisim.html">İletişim</a></div>
       <div class="col"><h5>İletişim</h5>
-        <a href="${ETSlib.wa('Merhaba EbruTech Studios')}" target="_blank">WhatsApp</a>
+        <a href="${ETSlib.wa('Merhaba EbruTech Studios')}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         <a href="mailto:${ETS.email}">${ETS.email}</a>
         <div class="social-links">
           <a href="https://instagram.com/ebrutechstudios" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
@@ -465,6 +508,15 @@ function injectFavicon(){
   link.rel='icon'; link.type='image/svg+xml';
   link.href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23c8ff2e'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='18' font-weight='900' fill='%2310140a'%3EE%3C/text%3E%3C/svg%3E";
   document.head.appendChild(link);
+}
+
+function hardenNewTabLinks(){
+  document.querySelectorAll('a[target="_blank"]').forEach(link=>{
+    const rel=new Set((link.getAttribute('rel')||'').split(/\s+/).filter(Boolean));
+    rel.add('noopener');
+    rel.add('noreferrer');
+    link.setAttribute('rel',[...rel].join(' '));
+  });
 }
 
 function initWaFloat(){
@@ -615,7 +667,7 @@ function initPromoBar(){
   if(localStorage.getItem('ets-promo-v3')) return;
   const bar=document.createElement('div');
   bar.className='promo-bar';
-  bar.innerHTML=`<span>🆕 38 ücretsiz araç — BMI, Hash, Gradient, Lorem Ipsum ve daha fazlası!</span><a href="tools.html">Tüm Araçlar →</a><button class="promo-close" aria-label="Kapat">×</button>`;
+  bar.innerHTML=`<span>🆕 ${Object.keys(TOOL_META).length} online araç — görsel, PDF, geliştirici ve hesaplama araçları!</span><a href="tools.html">Tüm Araçlar →</a><button class="promo-close" aria-label="Duyuruyu kapat">×</button>`;
   document.body.prepend(bar);
   bar.querySelector('.promo-close').addEventListener('click',()=>{
     localStorage.setItem('ets-promo-v3','1');
@@ -687,6 +739,7 @@ function initToolPage(){
 
 document.addEventListener("DOMContentLoaded",()=>{
   buildShell();
+  hardenNewTabLinks();
   initReveal();
   injectFavicon();
   initWaFloat();
