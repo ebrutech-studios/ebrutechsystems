@@ -50,6 +50,9 @@ const TOOL_META = {
   timer:       {name:'Kronometre & Sayaç',   ico:'⏱️', href:'tool-timer.html',        free:true},
   percentage:  {name:'Yüzde Hesaplama',      ico:'%',  href:'tool-percentage.html',   free:true},
   slug:        {name:'URL Slug Oluşturucu',  ico:'🔗', href:'tool-slug.html',         free:true},
+  lorem:       {name:'Lorem Ipsum Üretici',  ico:'📝', href:'tool-lorem.html',        free:true},
+  diff:        {name:'Metin Karşılaştırma',  ico:'⚖️', href:'tool-diff.html',         free:true},
+  number:      {name:'Sayı → Türkçe Yazıyla',ico:'🔡', href:'tool-number.html',       free:true},
 };
 
 const TOOL_RELATED = {
@@ -85,6 +88,9 @@ const TOOL_RELATED = {
   timer:       ['age','loan','vat','wordcount','percentage'],
   percentage:  ['vat','loan','age','unit','timer'],
   slug:        ['textcase','wordcount','base64','json','cv'],
+  lorem:       ['wordcount','textcase','cv','diff','slug'],
+  diff:        ['wordcount','textcase','json','lorem','base64'],
+  number:      ['vat','loan','invoice','wordcount','percentage'],
 };
 
 const TOOL_PAGE_DATA = {
@@ -112,7 +118,10 @@ const TOOL_PAGE_DATA = {
   unit:{steps:[{ico:'📐',t:'Kategoriyi seç',d:'Uzunluk, ağırlık, alan veya sıcaklık'},{ico:'🔢',t:'Değeri gir',d:'Sayıyı gir ve kaynak birimi seç'},{ico:'✓',t:'Sonucu gör',d:'Tüm hedef birimler aynı anda görünür'}],faq:[['Hangi birimler var?','Uzunluk (mm→km), ağırlık (g→ton), alan (m²→dönüm), sıcaklık (°C, °F, K).'],['Hassasiyet nedir?','6 ondalık basamağa kadar hassas sonuç.']]},
   timer:{steps:[{ico:'⏱️',t:'Modu seç',d:'Kronometre veya Geri Sayım modunu seç'},{ico:'▶️',t:'Başlat',d:'Başlat butonuna bas; süreyi takip et'},{ico:'⏹️',t:'Durdur veya Sıfırla',d:'İstediğin zaman durdur ya da sıfırla'}],faq:[['Sayfa kapatılırsa sayaç sıfırlanır mı?','Evet; sayfa yenilenirse veya kapatılırsa sayaç sıfırlanır.'],['Geri sayım bitince ne olur?','Sesli uyarı ve görsel bildirim çıkar.']]},
   percentage:{steps:[{ico:'🔢',t:'Hesaplama modunu seç',d:'3 farklı yüzde hesaplama türünden birini seç'},{ico:'✏️',t:'Sayıları gir',d:'İlgili alanları doldur'},{ico:'✓',t:'Sonucu gör',d:'Sonuç ve açıklama anında görünür'}],faq:[['Hangi hesaplamalar var?','X\'in Y%\'i, X\'in Y\'nin yüzdesi, X\'ten Y\'ye değişim oranı.'],['İndirim hesabı yapabilir miyim?','Evet; orijinal fiyat ve indirim oranını girerek indirimli fiyatı bulabilirsiniz.']]},
-  slug:{steps:[{ico:'✏️',t:'Metin gir',d:'Başlık veya metni kutuya yaz'},{ico:'🔄',t:'Dönüştür',d:'Türkçe karakter, boşluk ve özel karakterler otomatik temizlenir'},{ico:'📋',t:'Kopyala',d:'SEO uyumlu URL slug\'ını panoya kopyala'}],faq:[['Türkçe karakterler dönüştürülüyor mu?','Evet; ş→s, ç→c, ğ→g, ı→i, ö→o, ü→u dönüşümü uygulanır.'],['Slug nedir?','URL\'de kullanılan küçük harfli, tireli kısa metin. Örn: blog-yazisi-basligi.'],['SEO için neden önemli?','Arama motorları anlamlı URL\'leri tercih eder; slug URL\'yi okunur ve anlamlı yapar.']]}
+  slug:{steps:[{ico:'✏️',t:'Metin gir',d:'Başlık veya metni kutuya yaz'},{ico:'🔄',t:'Dönüştür',d:'Türkçe karakter, boşluk ve özel karakterler otomatik temizlenir'},{ico:'📋',t:'Kopyala',d:'SEO uyumlu URL slug\'ını panoya kopyala'}],faq:[['Türkçe karakterler dönüştürülüyor mu?','Evet; ş→s, ç→c, ğ→g, ı→i, ö→o, ü→u dönüşümü uygulanır.'],['Slug nedir?','URL\'de kullanılan küçük harfli, tireli kısa metin. Örn: blog-yazisi-basligi.'],['SEO için neden önemli?','Arama motorları anlamlı URL\'leri tercih eder; slug URL\'yi okunur ve anlamlı yapar.']]},
+  lorem:{steps:[{ico:'🎨',t:'Format seç',d:'Latin Lorem Ipsum veya Türkçe dolgu metin formatını seç'},{ico:'🔢',t:'Paragraf sayısı gir',d:'1 ile 20 arasında istediğin kadar paragraf üret'},{ico:'📋',t:'Kopyala',d:'Tümünü veya HTML etiketleriyle birlikte panoya kopyala'}],faq:[['Lorem ipsum ne işe yarar?','Tasarım ve prototip çalışmalarında içerik henüz hazır olmadığında yer tutucu olarak kullanılır.'],['Türkçe versiyonu neden kullanılır?','Müşteriye sunum yaparken Türkçe metinle daha gerçekçi görünür.'],['HTML olarak kopyalama ne sağlar?','<p> etiketleriyle kopyalanan metin doğrudan HTML dosyasına yapıştırılabilir.']]},
+  diff:{steps:[{ico:'📋',t:'Orijinal metni yapıştır',d:'Sol kutuya eski veya orijinal metni gir'},{ico:'📋',t:'Yeni metni yapıştır',d:'Sağ kutuya değiştirilmiş veya güncellenmiş metni gir'},{ico:'✓',t:'Karşılaştır',d:'Eklenen satırlar yeşil, silinen satırlar kırmızı ile işaretlenir'}],faq:[['Kaç satır karşılaştırılabilir?','Her metin için en fazla 300 satır desteklenir.'],['Diff nasıl çalışır?','LCS (En Uzun Ortak Dizi) algoritması ile satır bazlı karşılaştırma yapılır.'],['Değişen kelimeler ayrı gösterilir mi?','Şu an satır bazlı karşılaştırma yapılmaktadır; kelime bazlı diff yakında geliyor.']]},
+  number:{steps:[{ico:'🔢',t:'Sayıyı gir',d:'Sayıyı gir — tam sayı veya ondalıklı desteklenir'},{ico:'✓',t:'Yazıyı gör',d:'Türkçe kelimeye çevrilen sayı anında görünür'},{ico:'📋',t:'Kopyala',d:'Normal veya tamamen büyük harfle panoya kopyala'}],faq:[['Hangi sayılar destekleniyor?','0\'dan 999 milyara kadar tam ve ondalıklı sayılar desteklenir.'],['Fatura için nasıl kullanılır?','Tutarı gir, büyük harfle kopyala ve fatura belgesine yapıştır.'],['Negatif sayılar yazılıyor mu?','Evet; negatif sayılar "eksi" önekiyle yazılır.']]}
 };
 
 const ETSlib = {
