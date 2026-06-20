@@ -53,6 +53,9 @@ const TOOL_META = {
   lorem:       {name:'Lorem Ipsum Üretici',  ico:'📝', href:'tool-lorem.html',        free:true},
   diff:        {name:'Metin Karşılaştırma',  ico:'⚖️', href:'tool-diff.html',         free:true},
   number:      {name:'Sayı → Türkçe Yazıyla',ico:'🔡', href:'tool-number.html',       free:true},
+  bmi:         {name:'VKİ / BMI Hesaplama', ico:'⚖️', href:'tool-bmi.html',          free:true},
+  hash:        {name:'Hash Üretici',         ico:'🔒', href:'tool-hash.html',         free:true},
+  gradient:    {name:'CSS Gradient Üretici', ico:'🌈', href:'tool-gradient.html',     free:true},
 };
 
 const TOOL_RELATED = {
@@ -91,6 +94,9 @@ const TOOL_RELATED = {
   lorem:       ['wordcount','textcase','cv','diff','slug'],
   diff:        ['wordcount','textcase','json','lorem','base64'],
   number:      ['vat','loan','invoice','wordcount','percentage'],
+  bmi:         ['age','loan','percentage','vat','unit'],
+  hash:        ['password','base64','json','slug','textcase'],
+  gradient:    ['color','palette','converter','social','watermark'],
 };
 
 const TOOL_PAGE_DATA = {
@@ -121,7 +127,10 @@ const TOOL_PAGE_DATA = {
   slug:{steps:[{ico:'✏️',t:'Metin gir',d:'Başlık veya metni kutuya yaz'},{ico:'🔄',t:'Dönüştür',d:'Türkçe karakter, boşluk ve özel karakterler otomatik temizlenir'},{ico:'📋',t:'Kopyala',d:'SEO uyumlu URL slug\'ını panoya kopyala'}],faq:[['Türkçe karakterler dönüştürülüyor mu?','Evet; ş→s, ç→c, ğ→g, ı→i, ö→o, ü→u dönüşümü uygulanır.'],['Slug nedir?','URL\'de kullanılan küçük harfli, tireli kısa metin. Örn: blog-yazisi-basligi.'],['SEO için neden önemli?','Arama motorları anlamlı URL\'leri tercih eder; slug URL\'yi okunur ve anlamlı yapar.']]},
   lorem:{steps:[{ico:'🎨',t:'Format seç',d:'Latin Lorem Ipsum veya Türkçe dolgu metin formatını seç'},{ico:'🔢',t:'Paragraf sayısı gir',d:'1 ile 20 arasında istediğin kadar paragraf üret'},{ico:'📋',t:'Kopyala',d:'Tümünü veya HTML etiketleriyle birlikte panoya kopyala'}],faq:[['Lorem ipsum ne işe yarar?','Tasarım ve prototip çalışmalarında içerik henüz hazır olmadığında yer tutucu olarak kullanılır.'],['Türkçe versiyonu neden kullanılır?','Müşteriye sunum yaparken Türkçe metinle daha gerçekçi görünür.'],['HTML olarak kopyalama ne sağlar?','<p> etiketleriyle kopyalanan metin doğrudan HTML dosyasına yapıştırılabilir.']]},
   diff:{steps:[{ico:'📋',t:'Orijinal metni yapıştır',d:'Sol kutuya eski veya orijinal metni gir'},{ico:'📋',t:'Yeni metni yapıştır',d:'Sağ kutuya değiştirilmiş veya güncellenmiş metni gir'},{ico:'✓',t:'Karşılaştır',d:'Eklenen satırlar yeşil, silinen satırlar kırmızı ile işaretlenir'}],faq:[['Kaç satır karşılaştırılabilir?','Her metin için en fazla 300 satır desteklenir.'],['Diff nasıl çalışır?','LCS (En Uzun Ortak Dizi) algoritması ile satır bazlı karşılaştırma yapılır.'],['Değişen kelimeler ayrı gösterilir mi?','Şu an satır bazlı karşılaştırma yapılmaktadır; kelime bazlı diff yakında geliyor.']]},
-  number:{steps:[{ico:'🔢',t:'Sayıyı gir',d:'Sayıyı gir — tam sayı veya ondalıklı desteklenir'},{ico:'✓',t:'Yazıyı gör',d:'Türkçe kelimeye çevrilen sayı anında görünür'},{ico:'📋',t:'Kopyala',d:'Normal veya tamamen büyük harfle panoya kopyala'}],faq:[['Hangi sayılar destekleniyor?','0\'dan 999 milyara kadar tam ve ondalıklı sayılar desteklenir.'],['Fatura için nasıl kullanılır?','Tutarı gir, büyük harfle kopyala ve fatura belgesine yapıştır.'],['Negatif sayılar yazılıyor mu?','Evet; negatif sayılar "eksi" önekiyle yazılır.']]}
+  number:{steps:[{ico:'🔢',t:'Sayıyı gir',d:'Sayıyı gir — tam sayı veya ondalıklı desteklenir'},{ico:'✓',t:'Yazıyı gör',d:'Türkçe kelimeye çevrilen sayı anında görünür'},{ico:'📋',t:'Kopyala',d:'Normal veya tamamen büyük harfle panoya kopyala'}],faq:[['Hangi sayılar destekleniyor?','0\'dan 999 milyara kadar tam ve ondalıklı sayılar desteklenir.'],['Fatura için nasıl kullanılır?','Tutarı gir, büyük harfle kopyala ve fatura belgesine yapıştır.'],['Negatif sayılar yazılıyor mu?','Evet; negatif sayılar "eksi" önekiyle yazılır.']]},
+  bmi:{steps:[{ico:'📏',t:'Boy bilgisini gir',d:'Boyunuzu santimetre (cm) olarak girin'},{ico:'⚖️',t:'Kilo bilgisini gir',d:'Kilonuzu kilogram (kg) olarak girin'},{ico:'✓',t:'Sonucu gör',d:'VKİ değeriniz, kategoriniz ve ideal kilo aralığınız hesaplanır'}],faq:[['VKİ (BMI) nedir?','Vücut Kitle İndeksi; kilonuzun boyunuzun karesine oranıdır. Sağlık değerlendirmesinde kullanılır.'],['VKİ yeterli bir ölçüm müdür?','VKİ iyi bir başlangıç göstergesidir ancak kas kütlesi, yaş ve cinsiyet dikkate alınmaz.'],['İdeal VKİ değeri nedir?','18.5 – 24.9 aralığı normal kabul edilmektedir.']]},
+  hash:{steps:[{ico:'✏️',t:'Metni gir veya dosya seç',d:'Hash hesaplanacak metni yaz ya da dosyayı sürükle'},{ico:'🔄',t:'Algoritma seç',d:'SHA-1, SHA-256, SHA-384 veya SHA-512 seçeneklerinden birini seç'},{ico:'📋',t:'Hash değerini kopyala',d:'Hesaplanan hash değerini panoya tek tıkla kopyala'}],faq:[['Verilerim güvenli mi?','Evet; hiçbir veri sunucuya gönderilmez. Tüm işlem tarayıcınızda gerçekleşir.'],['Hash ne için kullanılır?','Dosya bütünlüğü doğrulama, şifre saklama ve dijital imza işlemleri için kullanılır.'],['SHA-256 ile SHA-512 farkı nedir?','SHA-512 daha uzun ve daha güvenli bir hash üretir; kritik güvenlik işlemleri için önerilir.']]},
+  gradient:{steps:[{ico:'🎨',t:'Renkleri seç',d:'Renk seçiciyle veya HEX kodu girerek iki rengi belirle'},{ico:'🔄',t:'Tipi ve açıyı ayarla',d:'Linear veya Radial tipi seç; linear için açıyı ayarla'},{ico:'📋',t:'CSS kodunu kopyala',d:'Gradient CSS kodunu kopyalayıp projeye yapıştır'}],faq:[['Hazır gradientleri kullanabilir miyim?','Evet; araçta 12 hazır gradient paleti bulunmaktadır; tıklayarak uygulayabilirsiniz.'],['Radial ve linear fark nedir?','Linear düz çizgi boyunca, radial merkez noktasından dışa doğru geçiş yapar.'],['CSS\'e nasıl eklenir?','background: linear-gradient(...) veya kısaca background olarak yapıştır.']]}
 };
 
 const ETSlib = {
@@ -597,13 +606,13 @@ function initRelatedTools(){
    10. PROMO BAR
    ═══════════════════════════════════════════════ */
 function initPromoBar(){
-  if(localStorage.getItem('ets-promo-v2')) return;
+  if(localStorage.getItem('ets-promo-v3')) return;
   const bar=document.createElement('div');
   bar.className='promo-bar';
-  bar.innerHTML=`<span>🎉 Yeni: CV Oluşturucu artık <b>6 şablon</b> ile geliyor!</span><a href="tool-cv.html">Hemen Dene →</a><button class="promo-close" aria-label="Kapat">×</button>`;
+  bar.innerHTML=`<span>🆕 38 ücretsiz araç — BMI, Hash, Gradient, Lorem Ipsum ve daha fazlası!</span><a href="tools.html">Tüm Araçlar →</a><button class="promo-close" aria-label="Kapat">×</button>`;
   document.body.prepend(bar);
   bar.querySelector('.promo-close').addEventListener('click',()=>{
-    localStorage.setItem('ets-promo-v2','1');
+    localStorage.setItem('ets-promo-v3','1');
     bar.remove();
   });
 }
