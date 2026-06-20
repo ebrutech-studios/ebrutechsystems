@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Giriş Yap — EbruTech Studios</title>
 <meta name="description" content="EbruTech Studios hesabınıza giriş yapın. Pro üyelikle gelişmiş araçlara erişin.">
 <link rel="canonical" href="https://ebrutechsystems.com/giris.html">
@@ -11,68 +15,140 @@
 <meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
 <meta property="og:locale" content="tr_TR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Giriş Yap — EbruTech Studios">
-<meta name="twitter:description" content="EbruTech Studios hesabınıza giriş yapın. Pro üyelikle gelişmiş araçlara erişin.">
-<meta name="twitter:image" content="https://ebrutechsystems.com/assets/og-image.png">
-
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css"></head><body>
-<section class="hero"><div class="wrap"><div class="tool-shell" style="max-width:440px">
-<span class="eyebrow">Hesap</span>
-<h1 id="title" style="font-size:2.2rem">Giriş Yap</h1>
-<p class="lead" style="margin:14px 0 26px" id="sub">Pro üyeliğini açmak ve gelişmiş araçlara erişmek için giriş yap.</p>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
 
-<div id="loggedIn" class="card hidden" style="text-align:center;padding:34px">
-  <div style="font-size:2.2rem;margin-bottom:8px">👋</div>
-  <h3 id="welcomeTxt" style="margin-bottom:6px">Hoş geldin</h3>
-  <p id="proStatus" style="color:var(--txt-dim);margin-bottom:20px"></p>
-  <div class="row"><a href="tools.html" class="btn btn-primary">Araçlara Git</a><button id="logoutBtn" class="btn btn-ghost">Çıkış Yap</button></div>
-</div>
+<section class="auth-section">
+  <div class="wrap">
+    <div class="auth-layout">
 
-<div id="authBox" class="card">
-  <button id="googleBtn" class="btn btn-ghost" style="width:100%;justify-content:center;margin-bottom:16px">
-    <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 10-2 13.6-5.2l-6.3-5.3C29.2 35.1 26.7 36 24 36c-5.3 0-9.7-3.1-11.3-7.6l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.5l6.3 5.3C41.4 36.1 44 30.6 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
-    Google ile devam et
-  </button>
-  <div style="text-align:center;color:var(--txt-faint);font-size:.82rem;margin:6px 0 16px">veya e-posta ile</div>
-  <div id="msg" style="display:none;padding:10px 12px;border-radius:10px;font-size:.86rem;margin-bottom:14px"></div>
-  <div class="field" style="margin-bottom:12px"><label>E-posta</label><input id="email" type="email" placeholder="ornek@mail.com"></div>
-  <div class="field" style="margin-bottom:18px"><label>Şifre</label><input id="pass" type="password" placeholder="••••••••"></div>
-  <button id="submitBtn" class="btn btn-primary" style="width:100%;justify-content:center">Giriş Yap</button>
-  <div style="text-align:center;margin-top:16px;font-size:.88rem;color:var(--txt-dim)">
-    <span id="switchTxt">Hesabın yok mu?</span>
-    <a id="switchLink" style="color:var(--accent);cursor:pointer;font-weight:600">Kayıt ol</a>
+      <!-- Sol: Pro avantajları -->
+      <div class="auth-left">
+        <a class="brand" href="index.html" style="margin-bottom:32px;display:inline-flex">
+          <span class="logo">E</span>
+          <span>EbruTech Studios<small>Tasarım + Yazılım</small></span>
+        </a>
+        <span class="eyebrow">Pro Üyelik</span>
+        <h2 style="font-size:1.9rem;margin:10px 0 20px;line-height:1.2">Gelişmiş araçlara <br>anında erişin</h2>
+        <ul class="auth-perks">
+          <li>Toplu görsel işleme (Batch)</li>
+          <li>Arka Plan Kaldırıcı (AI)</li>
+          <li>Watermark'sız indirme</li>
+          <li>Fatura ve Barkod araçları</li>
+          <li>PDF sayfa düzenleme</li>
+          <li>Öncelikli WhatsApp desteği</li>
+        </ul>
+        <div class="auth-price-block">
+          <div style="display:flex;align-items:baseline;gap:6px">
+            <span class="auth-price-num">149₺</span>
+            <span style="color:var(--txt-dim);font-size:.9rem">/ay</span>
+          </div>
+          <span style="color:var(--txt-faint);font-size:.82rem;display:block;margin-top:3px">İstediğin zaman iptal et · Anında aktivasyon</span>
+        </div>
+        <a href="fiyatlandirma.html" class="auth-plan-link">Tüm planları karşılaştır →</a>
+      </div>
+
+      <!-- Sağ: Form -->
+      <div class="auth-right">
+
+        <div id="loggedIn" class="card hidden" style="text-align:center;padding:40px 34px">
+          <div style="font-size:2.6rem;margin-bottom:10px">👋</div>
+          <h3 id="welcomeTxt" style="margin-bottom:8px;font-size:1.4rem">Hoş geldin</h3>
+          <p id="proStatus" style="color:var(--txt-dim);margin-bottom:24px"></p>
+          <div class="row" style="justify-content:center">
+            <a href="tools.html" class="btn btn-primary">Araçlara Git</a>
+            <button id="logoutBtn" class="btn btn-ghost">Çıkış Yap</button>
+          </div>
+        </div>
+
+        <div id="authBox" class="card" style="padding:34px">
+          <h2 id="title" style="font-size:1.55rem;margin-bottom:4px">Giriş Yap</h2>
+          <p id="sub" style="color:var(--txt-dim);font-size:.9rem;margin-bottom:24px">Pro üyeliğini açmak ve gelişmiş araçlara erişmek için giriş yap.</p>
+
+          <button id="googleBtn" class="btn btn-ghost" style="width:100%;justify-content:center;margin-bottom:18px">
+            <svg width="18" height="18" viewBox="0 0 48 48" style="flex:none"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.9 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 10-2 13.6-5.2l-6.3-5.3C29.2 35.1 26.7 36 24 36c-5.3 0-9.7-3.1-11.3-7.6l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.5l6.3 5.3C41.4 36.1 44 30.6 44 24c0-1.3-.1-2.3-.4-3.5z"/></svg>
+            Google ile devam et
+          </button>
+
+          <div class="auth-divider"><span>veya e-posta ile</span></div>
+
+          <div id="msg" style="display:none;padding:10px 14px;border-radius:8px;font-size:.86rem;margin-bottom:14px"></div>
+
+          <div class="field" style="margin-bottom:12px">
+            <label>E-posta</label>
+            <input id="email" type="email" placeholder="ornek@mail.com" autocomplete="email">
+          </div>
+
+          <div class="field" style="margin-bottom:20px">
+            <label>Şifre</label>
+            <div class="pass-wrap">
+              <input id="pass" type="password" placeholder="••••••••" autocomplete="current-password">
+              <button type="button" class="pass-eye" id="passToggle" aria-label="Şifreyi göster/gizle">
+                <svg id="eyeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <button id="submitBtn" class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem">Giriş Yap</button>
+
+          <div style="text-align:center;margin-top:16px;font-size:.88rem;color:var(--txt-dim)">
+            <span id="switchTxt">Hesabın yok mu? </span>
+            <a id="switchLink" style="color:var(--accent);cursor:pointer;font-weight:700">Kayıt ol</a>
+          </div>
+          <div style="text-align:center;margin-top:10px">
+            <a id="forgotLink" style="color:var(--txt-faint);cursor:pointer;font-size:.82rem">Şifremi unuttum</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
-  <div style="text-align:center;margin-top:10px">
-    <a id="forgotLink" style="color:var(--txt-faint);cursor:pointer;font-size:.82rem">Şifremi unuttum</a>
-  </div>
-</div>
-</div></div></section>
+</section>
+
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-let mode="login"; // login | register
-function show(el){el.style.display="block";}
-function msg(text,ok){const m=document.getElementById("msg");m.style.display="block";
-  m.style.background=ok?"rgba(200,255,46,.12)":"rgba(255,80,80,.12)";m.style.color=ok?"var(--accent)":"#ff8080";m.textContent=text;}
+let mode="login";
+
+function msg(text,ok){
+  const m=document.getElementById("msg");
+  m.style.display="block";
+  m.style.background=ok?"rgba(200,255,46,.12)":"rgba(255,80,80,.12)";
+  m.style.color=ok?"var(--accent)":"#ff8080";
+  m.textContent=text;
+}
 
 function renderMode(){
-  document.getElementById("title").textContent=mode==="login"?"Giriş Yap":"Kayıt Ol";
-  document.getElementById("submitBtn").textContent=mode==="login"?"Giriş Yap":"Hesap Oluştur";
-  document.getElementById("switchTxt").textContent=mode==="login"?"Hesabın yok mu?":"Zaten hesabın var mı?";
-  document.getElementById("switchLink").textContent=mode==="login"?"Kayıt ol":"Giriş yap";
+  const isReg=mode==="register";
+  document.getElementById("title").textContent=isReg?"Kayıt Ol":"Giriş Yap";
+  document.getElementById("submitBtn").textContent=isReg?"Hesap Oluştur":"Giriş Yap";
+  document.getElementById("switchTxt").textContent=isReg?"Zaten hesabın var mı? ":"Hesabın yok mu? ";
+  document.getElementById("switchLink").textContent=isReg?"Giriş yap":"Kayıt ol";
 }
 document.getElementById("switchLink").onclick=()=>{mode=mode==="login"?"register":"login";renderMode();};
 
+document.getElementById("passToggle").onclick=()=>{
+  const inp=document.getElementById("pass");
+  const icon=document.getElementById("eyeIcon");
+  const show=inp.type==="password";
+  inp.type=show?"text":"password";
+  icon.innerHTML=show
+    ?'<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>'
+    :'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+};
+
 function errText(e){
   const c=(e&&e.code)||"";
-  if(c.includes("invalid-credential")||c.includes("wrong-password")||c.includes("user-not-found"))return "E-posta veya şifre hatalı.";
-  if(c.includes("email-already-in-use"))return "Bu e-posta zaten kayıtlı. Giriş yapmayı dene.";
-  if(c.includes("weak-password"))return "Şifre en az 6 karakter olmalı.";
-  if(c.includes("invalid-email"))return "Geçersiz e-posta adresi.";
-  if(c.includes("popup-closed"))return "Google penceresi kapatıldı.";
-  if(c.includes("unauthorized-domain"))return "Bu domain Firebase'de yetkili değil (ayar gerekiyor).";
+  if(c.includes("invalid-credential")||c.includes("wrong-password")||c.includes("user-not-found")) return "E-posta veya şifre hatalı.";
+  if(c.includes("email-already-in-use")) return "Bu e-posta zaten kayıtlı. Giriş yapmayı dene.";
+  if(c.includes("weak-password")) return "Şifre en az 6 karakter olmalı.";
+  if(c.includes("invalid-email")) return "Geçersiz e-posta adresi.";
+  if(c.includes("popup-closed")) return "Google penceresi kapatıldı.";
+  if(c.includes("unauthorized-domain")) return "Bu domain Firebase'de yetkili değil.";
   return "Bir hata oluştu. Tekrar dene.";
 }
 
@@ -81,19 +157,24 @@ document.getElementById("submitBtn").onclick=async()=>{
   const pass=document.getElementById("pass").value;
   if(!email||!pass){msg("E-posta ve şifre gerekli.",false);return;}
   try{
-    if(mode==="login")await window.ETSAuth.loginEmail(email,pass);
-    else{await window.ETSAuth.registerEmail(email,pass);msg("Hesap oluşturuldu! Giriş yapılıyor...",true);}
+    if(mode==="login") await window.ETSAuth.loginEmail(email,pass);
+    else{await window.ETSAuth.registerEmail(email,pass);msg("Hesap oluşturuldu! Giriş yapılıyor…",true);}
   }catch(e){msg(errText(e),false);}
 };
+
 document.getElementById("googleBtn").onclick=async()=>{
   try{await window.ETSAuth.loginGoogle();}catch(e){msg(errText(e),false);}
 };
+
 document.getElementById("forgotLink").onclick=async()=>{
   const email=document.getElementById("email").value.trim();
   if(!email){msg("Önce e-posta adresini gir, sonra 'Şifremi unuttum'a bas.",false);return;}
-  try{await window.ETSAuth.resetPassword(email);msg("Şifre sıfırlama linki e-postana gönderildi.",true);}
-  catch(e){msg(errText(e),false);}
+  try{
+    await window.ETSAuth.resetPassword(email);
+    msg("Şifre sıfırlama linki e-postana gönderildi.",true);
+  }catch(e){msg(errText(e),false);}
 };
+
 document.getElementById("logoutBtn").onclick=()=>window.ETSAuth.logout();
 
 document.addEventListener("ets-auth",(e)=>{
@@ -108,12 +189,15 @@ document.addEventListener("ets-auth",(e)=>{
       if(pu){const g=Math.ceil((pu-Date.now())/86400000);txt+=' · '+pu.toLocaleDateString('tr-TR')+' tarihine kadar ('+g+' gün)';}
       document.getElementById("proStatus").innerHTML='<span style="color:var(--accent);font-weight:700">'+txt+'</span>';
     }else{
-      document.getElementById("proStatus").innerHTML='Üyelik: Ücretsiz · <a href="fiyatlandirma.html" style="color:var(--accent)">Pro\'ya geç</a>';
+      document.getElementById("proStatus").innerHTML='Üyelik: Ücretsiz · <a href="fiyatlandirma.html" style="color:var(--accent)">Pro\'ya geç →</a>';
     }
   }else{
     document.getElementById("authBox").classList.remove("hidden");
     document.getElementById("loggedIn").classList.add("hidden");
   }
 });
+
 renderMode();
-</script></body></html>
+</script>
+</body>
+</html>

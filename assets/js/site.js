@@ -16,6 +16,71 @@ const NAV = [
   ["iletisim.html","İletişim"]
 ];
 
+/* ── Araç metadata + ilişki haritası ── */
+const TOOL_META = {
+  converter:   {name:'Format Dönüştürücü',   ico:'🖼️', href:'tool-converter.html',   free:true},
+  compressor:  {name:'Resim Sıkıştırıcı',    ico:'⚡', href:'tool-compressor.html',  free:true},
+  resizer:     {name:'Boyutlandırıcı',        ico:'📏', href:'tool-resizer.html',      free:true},
+  crop:        {name:'Resim Kırpma',          ico:'✂️', href:'tool-crop.html',         free:true},
+  rotate:      {name:'Döndürme & Çevirme',   ico:'🔄', href:'tool-rotate.html',       free:true},
+  watermark:   {name:'Watermark Ekle',        ico:'💧', href:'tool-watermark.html',    free:true},
+  qr:          {name:'QR Kod Üretici',        ico:'🔳', href:'tool-qr.html',           free:true},
+  palette:     {name:'Renk Paleti Çıkarıcı', ico:'🎨', href:'tool-palette.html',      free:true},
+  social:      {name:'Sosyal Medya Boyut',    ico:'📱', href:'tool-social.html',       free:true},
+  json:        {name:'JSON Formatlayıcı',     ico:'{}', href:'tool-json.html',         free:true},
+  base64:      {name:'Base64 Encode/Decode',  ico:'🔐', href:'tool-base64.html',       free:true},
+  color:       {name:'Renk Kodu Dönüştür',   ico:'🌈', href:'tool-color.html',        free:true},
+  password:    {name:'Şifre Üreticisi',       ico:'🔑', href:'tool-password.html',     free:true},
+  pdf:         {name:'PDF Birleştirici',       ico:'📄', href:'tool-pdf.html',          free:true},
+  'img2pdf':   {name:'Resimden PDF',          ico:'🖼️', href:'tool-img2pdf.html',      free:true},
+  cv:          {name:'CV Oluşturucu',         ico:'📋', href:'tool-cv.html',           free:true},
+  wordcount:   {name:'Kelime Sayıcı',         ico:'🔢', href:'tool-wordcount.html',    free:true},
+  textcase:    {name:'Büyük/Küçük Harf',     ico:'Aa', href:'tool-textcase.html',     free:true},
+  age:         {name:'Yaş Hesaplama',         ico:'🎂', href:'tool-age.html',          free:true},
+  vat:         {name:'KDV Hesaplama',         ico:'💰', href:'tool-vat.html',          free:true},
+  loan:        {name:'Kredi Hesaplama',       ico:'🏦', href:'tool-loan.html',         free:true},
+  unit:        {name:'Birim Dönüştürücü',    ico:'📐', href:'tool-unit.html',         free:true},
+  batch:       {name:'Toplu İşlem',           ico:'🗂️', href:'tool-batch.html',        free:false},
+  bgremove:    {name:'Arka Plan Kaldırıcı',  ico:'✂️', href:'tool-bgremove.html',     free:false},
+  'pdf2img':   {name:"PDF'den Resme",         ico:'📄', href:'tool-pdf2img.html',      free:false},
+  pdforganize: {name:'PDF Sayfa Düzenle',    ico:'📑', href:'tool-pdforganize.html',  free:false},
+  invoice:     {name:'Fatura Oluşturucu',    ico:'🧾', href:'tool-invoice.html',      free:false},
+  qrmenu:      {name:'QR Menü Oluşturucu',  ico:'📱', href:'tool-qrmenu.html',       free:false},
+  barcode:     {name:'Barkod Üreticisi',     ico:'▥',  href:'tool-barcode.html',      free:false},
+};
+
+const TOOL_RELATED = {
+  converter:   ['compressor','resizer','crop','rotate'],
+  compressor:  ['converter','resizer','batch','watermark'],
+  resizer:     ['converter','compressor','crop','social'],
+  crop:        ['resizer','rotate','converter','social'],
+  rotate:      ['crop','resizer','converter','watermark'],
+  watermark:   ['converter','compressor','qr','batch'],
+  qr:          ['watermark','pdf','converter','qrmenu'],
+  palette:     ['color','converter','watermark','social'],
+  social:      ['resizer','crop','converter','compressor'],
+  batch:       ['converter','compressor','resizer','bgremove'],
+  bgremove:    ['converter','batch','watermark','crop'],
+  json:        ['base64','color','password','textcase'],
+  base64:      ['json','password','color','wordcount'],
+  color:       ['palette','converter','json','base64'],
+  password:    ['json','base64','wordcount','textcase'],
+  pdf:         ['img2pdf','pdf2img','pdforganize','invoice'],
+  'img2pdf':   ['pdf','pdf2img','converter','resizer'],
+  'pdf2img':   ['pdf','img2pdf','converter','compressor'],
+  pdforganize: ['pdf','img2pdf','pdf2img','invoice'],
+  cv:          ['wordcount','textcase','pdf','img2pdf'],
+  wordcount:   ['cv','textcase','base64','json'],
+  textcase:    ['wordcount','cv','base64','json'],
+  age:         ['vat','loan','wordcount','password'],
+  vat:         ['loan','age','invoice','barcode'],
+  loan:        ['vat','age','invoice','wordcount'],
+  unit:        ['vat','loan','age','converter'],
+  invoice:     ['barcode','qrmenu','vat','pdf'],
+  qrmenu:      ['qr','invoice','barcode','vat'],
+  barcode:     ['invoice','qrmenu','qr','vat'],
+};
+
 const ETSlib = {
   wa(msg){return `https://wa.me/${ETS.whatsapp}?text=${encodeURIComponent(msg)}`;},
   isPro(){ return !!(window.ETSAuth && window.ETSAuth.isPro); },
@@ -269,7 +334,8 @@ function injectToolBadge(){
 
 function buildShell(){
   const here=(location.pathname.split("/").pop()||"index.html");
-  const links=NAV.map(([h,l])=>`<a href="${h}" class="${h===here?'active':''}">${l}</a>`).join("");
+  const isToolP=here.startsWith('tool-');
+  const links=NAV.map(([h,l])=>`<a href="${h}" class="${(h===here||(isToolP&&h==='tools.html'))?'active':''}">${l}</a>`).join("");
 
   document.body.insertAdjacentHTML("afterbegin",`
   <header class="site-head"><div class="wrap"><nav class="nav">
@@ -448,7 +514,59 @@ function initFaq(){
 }
 
 /* ═══════════════════════════════════════════════
-   9. BACK TO TOP
+   9. BENZER ARAÇLAR
+   ═══════════════════════════════════════════════ */
+function initRelatedTools(){
+  if(!isToolPage()) return;
+  const key=getToolKey();
+  const related=(TOOL_RELATED[key]||[]).filter(k=>TOOL_META[k]&&k!==key).slice(0,4);
+  if(!related.length) return;
+
+  const sec=document.createElement('section');
+  sec.className='related-tools-section';
+  sec.innerHTML=`<div class="wrap">
+    <div class="section-head" style="margin-bottom:22px">
+      <span class="eyebrow">Benzer Araçlar</span>
+      <h2>Bunu da deneyebilirsiniz</h2>
+    </div>
+    <div class="grid g-4">
+      ${related.map(k=>{
+        const t=TOOL_META[k];
+        return `<a class="card tool-card reveal" href="${t.href}">
+          <span class="ico">${t.ico}</span>
+          <h3>${t.name}</h3>
+          <div class="tags"><span class="tag ${t.free?'tag-ok':'tag-pro'}">${t.free?'Ücretsiz':'Pro'}</span></div>
+        </a>`;
+      }).join('')}
+    </div>
+  </div>`;
+
+  const reviews=document.querySelector('.tool-reviews-section');
+  const foot=document.querySelector('.site-foot');
+  if(reviews) reviews.before(sec);
+  else if(foot) foot.before(sec);
+  else document.body.appendChild(sec);
+
+  initReveal();
+}
+
+/* ═══════════════════════════════════════════════
+   10. PROMO BAR
+   ═══════════════════════════════════════════════ */
+function initPromoBar(){
+  if(localStorage.getItem('ets-promo-v2')) return;
+  const bar=document.createElement('div');
+  bar.className='promo-bar';
+  bar.innerHTML=`<span>🎉 Yeni: CV Oluşturucu artık <b>6 şablon</b> ile geliyor!</span><a href="tool-cv.html">Hemen Dene →</a><button class="promo-close" aria-label="Kapat">×</button>`;
+  document.body.prepend(bar);
+  bar.querySelector('.promo-close').addEventListener('click',()=>{
+    localStorage.setItem('ets-promo-v2','1');
+    bar.remove();
+  });
+}
+
+/* ═══════════════════════════════════════════════
+   11. BACK TO TOP
    ═══════════════════════════════════════════════ */
 function initBackToTop(){
   const btn=document.createElement('button');
@@ -479,4 +597,6 @@ document.addEventListener("DOMContentLoaded",()=>{
   initBreadcrumb();
   initFaq();
   initBackToTop();
+  initRelatedTools();
+  initPromoBar();
 });
