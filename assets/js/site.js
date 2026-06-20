@@ -365,6 +365,76 @@ function initReveal(){
   els.forEach(e=>io.observe(e));
 }
 
+/* ═══════════════════════════════════════════════
+   5. SCROLL PROGRESS BAR
+   ═══════════════════════════════════════════════ */
+function initScrollProgress(){
+  const bar=document.createElement('div');
+  bar.id='ets-progress';
+  document.body.prepend(bar);
+  window.addEventListener('scroll',()=>{
+    const total=document.body.scrollHeight-innerHeight;
+    if(total<=0) return;
+    bar.style.width=(scrollY/total*100)+'%';
+  },{passive:true});
+}
+
+/* ═══════════════════════════════════════════════
+   6. ANIMATED COUNTERS
+   ═══════════════════════════════════════════════ */
+function initCounters(){
+  const els=document.querySelectorAll('[data-count]');
+  if(!els.length) return;
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el=e.target;
+      const target=+el.dataset.count;
+      const suffix=el.dataset.suffix||'';
+      if(target===0){el.textContent='0'+suffix; io.unobserve(el); return;}
+      const steps=50; let i=0;
+      const timer=setInterval(()=>{
+        i++;
+        const p=1-Math.pow(1-i/steps,3);
+        el.textContent=Math.round(target*p)+suffix;
+        if(i>=steps){el.textContent=target+suffix;clearInterval(timer);}
+      },20);
+      io.unobserve(el);
+    });
+  },{threshold:.6});
+  els.forEach(el=>io.observe(el));
+}
+
+/* ═══════════════════════════════════════════════
+   7. BREADCRUMB (araç sayfaları)
+   ═══════════════════════════════════════════════ */
+function initBreadcrumb(){
+  if(!isToolPage()) return;
+  const h1=document.querySelector('h1');
+  const title=h1?h1.textContent.trim().replace(/\s+/g,' ').slice(0,44):'Araç';
+  const nav=document.createElement('nav');
+  nav.className='breadcrumb';
+  nav.setAttribute('aria-label','Gezinti yolu');
+  nav.innerHTML=`<div class="wrap"><a href="index.html">Ana Sayfa</a><span aria-hidden="true"> / </span><a href="tools.html">Araçlar</a><span aria-hidden="true"> / </span><span aria-current="page">${title}</span></div>`;
+  const head=document.querySelector('.site-head');
+  if(head) head.after(nav);
+}
+
+/* ═══════════════════════════════════════════════
+   8. FAQ ACCORDION
+   ═══════════════════════════════════════════════ */
+function initFaq(){
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const q=item.querySelector('.faq-q');
+    if(!q) return;
+    q.addEventListener('click',()=>{
+      const wasOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded",()=>{
   buildShell();
   initReveal();
@@ -377,4 +447,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   initToolReviews();
   initRecentTools();
   loadToolsPageCounts();
+  initScrollProgress();
+  initCounters();
+  initBreadcrumb();
+  initFaq();
 });
