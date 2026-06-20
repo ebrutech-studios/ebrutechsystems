@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>404 — Sayfa Bulunamadı | EbruTech Studios</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+.page-404{
+  min-height:80vh;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:60px 24px;
+}
+.err-code{
+  font-family:var(--font-display);
+  font-size:clamp(6rem,20vw,11rem);
+  font-weight:800;
+  line-height:1;
+  letter-spacing:-.04em;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2),var(--accent));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  user-select:none;
+  animation:floatNum 4s ease-in-out infinite;
+}
+@keyframes floatNum{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-14px)}
+}
+.err-icon{font-size:2.6rem;margin-bottom:8px;animation:floatNum 4s ease-in-out infinite .5s}
+.err-msg{margin:20px 0 8px}
+.err-desc{color:var(--txt-dim);font-size:1rem;max-width:400px;margin:0 auto 32px}
+.err-nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.err-divider{
+  width:64px;height:3px;border-radius:999px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  margin:22px auto;
+}
+.err-suggest{
+  margin-top:48px;border-top:1px solid var(--border);padding-top:32px;
+}
+.err-suggest-label{
+  font-size:.78rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--txt-faint);margin-bottom:16px;
+}
+.err-links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.err-link{
+  padding:8px 16px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--txt-dim);font-size:.88rem;font-weight:600;
+  transition:.18s;
+}
+.err-link:hover{color:var(--accent);border-color:rgba(200,255,46,.3)}
+</style>
+</head>
+<body>
+
+<div class="page-404">
+  <div>
+    <div class="err-icon">🔍</div>
+    <div class="err-code">404</div>
+    <div class="err-divider"></div>
+    <h1 class="err-msg" style="font-size:clamp(1.4rem,4vw,2rem)">Bu sayfa kayboldu</h1>
+    <p class="err-desc">Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış olabilir. Ama merak etmeyin — araçlarımız hâlâ burada.</p>
+    <div class="err-nav">
+      <a href="index.html" class="btn btn-primary btn-lg">Ana Sayfaya Dön</a>
+      <a href="tools.html" class="btn btn-ghost btn-lg">Araçlara Git</a>
+    </div>
+
+    <div class="err-suggest">
+      <div class="err-suggest-label">Bunlara bakmak ister misiniz?</div>
+      <div class="err-links">
+        <a href="tool-converter.html" class="err-link">🖼️ Format Dönüştürücü</a>
+        <a href="tool-qr.html" class="err-link">🔳 QR Kod Üretici</a>
+        <a href="tool-compressor.html" class="err-link">⚡ Resim Sıkıştırıcı</a>
+        <a href="tool-cv.html" class="err-link">📄 CV Oluşturucu</a>
+        <a href="iletisim.html" class="err-link">💬 İletişim</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

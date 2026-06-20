@@ -12,6 +12,7 @@ window.BLOG_POSTS = [
     ozet: "Fotoğrafların arka planını uygulama indirmeden, tarayıcıda, ücretsiz nasıl silersiniz? Adım adım anlatıyoruz.",
     tarih: "2026-05-28",
     okuma: 4,
+    kat: "Rehber",
     tool: "tool-bgremove.html",
     icerik: `
 <p>Bir ürün fotoğrafının arka planını silmek, profilini temizlemek veya tasarım yapmak için artık pahalı programlara ya da şüpheli uygulamalara ihtiyacınız yok. Modern tarayıcılar, yapay zeka modellerini doğrudan cihazınızda çalıştırabiliyor.</p>
@@ -34,6 +35,7 @@ window.BLOG_POSTS = [
     ozet: "Web sitesi, e-posta veya WhatsApp için fotoğraf boyutunu küçültmenin en kolay yolu. Kalite korunarak nasıl yapılır?",
     tarih: "2026-05-26",
     okuma: 3,
+    kat: "Rehber",
     tool: "tool-compressor.html",
     icerik: `
 <p>Yüksek çözünürlüklü fotoğraflar güzel görünür ama dosya boyutları büyük olur. Bu da e-posta eklerinde, web sitelerinde ve mesajlaşmada sorun yaratır. İyi haber: kaliteyi gözle görülür şekilde bozmadan boyutu ciddi oranda küçültmek mümkün.</p>
@@ -54,6 +56,7 @@ window.BLOG_POSTS = [
     ozet: "Kafenize veya restoranınıza dijital QR menü hazırlamanın en kolay yolu. Maliyetsiz, hızlı ve profesyonel.",
     tarih: "2026-05-22",
     okuma: 5,
+    kat: "İşletme",
     tool: "tool-qrmenu.html",
     icerik: `
 <p>Pandemiden sonra QR menüler standart hale geldi. Müşteriler telefonlarıyla bir kodu okutup menüyü görüyor — temiz, güncel ve baskı maliyeti olmayan bir çözüm. Peki kendi QR menünüzü nasıl hazırlarsınız?</p>
@@ -76,6 +79,7 @@ window.BLOG_POSTS = [
     ozet: "Birden çok PDF belgesini tek bir dosyada birleştirmenin en hızlı ve güvenli yolu. Program kurmadan, tarayıcıda.",
     tarih: "2026-05-18",
     okuma: 3,
+    kat: "Rehber",
     tool: "tool-pdf.html",
     icerik: `
 <p>Fatura, sözleşme, rapor ya da tarama... Birden fazla PDF'i tek dosyada toplamak günlük bir ihtiyaç. Çoğu kişi bunun için program indirir veya dosyalarını bilinmeyen sitelere yükler. Oysa daha basit ve güvenli bir yol var.</p>
@@ -95,6 +99,7 @@ window.BLOG_POSTS = [
     ozet: "Web sitesi, menü, WhatsApp veya kartvizit için saniyeler içinde QR kod oluşturun. Ücretsiz, kayıtsız, tarayıcıda.",
     tarih: "2026-05-15",
     okuma: 3,
+    kat: "Rehber",
     tool: "tool-qr.html",
     icerik: `
 <p>QR kodlar artık her yerde: kafe menülerinde, kartvizitlerde, afişlerde, ürün etiketlerinde. Bir bağlantıyı, metni ya da iletişim bilgisini telefon kamerasıyla anında açılabilir hale getiriyorlar. Kendi QR kodunuzu oluşturmak ise hiç olmadığı kadar kolay.</p>
@@ -114,6 +119,7 @@ window.BLOG_POSTS = [
     ozet: "Hangi resim formatı ne zaman kullanılır? WebP neden önemli? Formatlar arası ücretsiz dönüştürme nasıl yapılır?",
     tarih: "2026-05-12",
     okuma: 4,
+    kat: "İpucu",
     tool: "tool-converter.html",
     icerik: `
 <p>Resim formatları arasındaki farkı bilmek, hem web sitenizin hızı hem de görsel kaliteniz için önemli. En çok kullanılan üç format olan JPG, PNG ve WebP'nin her birinin güçlü olduğu yerler var.</p>
@@ -134,6 +140,7 @@ window.BLOG_POSTS = [
     ozet: "Hesaplarınızı korumak için güçlü, kırılması zor şifreler nasıl oluşturulur? Güvenli şifre üretmenin püf noktaları.",
     tarih: "2026-05-08",
     okuma: 4,
+    kat: "İpucu",
     tool: "tool-password.html",
     icerik: `
 <p>Zayıf şifreler, hesap ele geçirmelerinin en büyük sebebi. "123456" veya doğum tarihiniz gibi şifreler saniyeler içinde kırılır. Güçlü bir şifre ise sizi siber saldırılara karşı korur.</p>
@@ -156,6 +163,7 @@ window.BLOG_POSTS = [
     ozet: "Küçük işletmeler ve esnaf için hızlı, profesyonel fatura/fiş hazırlama. KDV otomatik hesaplı, PDF çıktılı.",
     tarih: "2026-05-04",
     okuma: 4,
+    kat: "İşletme",
     tool: "tool-invoice.html",
     icerik: `
 <p>Müşterinize profesyonel bir fatura veya fiş vermek, işletmenizin güvenilirliğini artırır. Pahalı muhasebe programlarına gerek kalmadan, hızlıca düzenli bir belge oluşturabilirsiniz.</p>
@@ -175,6 +183,7 @@ window.BLOG_POSTS = [
     ozet: "KDV dahil fiyattan KDV nasıl ayrılır, fiyata KDV nasıl eklenir? Tüm KDV oranlarıyla pratik hesaplama rehberi.",
     tarih: "2026-05-30",
     okuma: 4,
+    kat: "İşletme",
     tool: "tool-vat.html",
     icerik: `
 <p>KDV (Katma Değer Vergisi), neredeyse her alışverişte karşımıza çıkar. Esnaf, serbest çalışan ya da alışveriş yapan herkes zaman zaman "bu fiyata KDV dahil mi?" veya "KDV'yi nasıl ayırırım?" sorusuyla karşılaşır. İşte basit açıklaması.</p>
@@ -194,6 +203,7 @@ window.BLOG_POSTS = [
     ozet: "Kredi tutarı, faiz oranı ve vadeye göre aylık taksitinizi ve toplam ödemeyi nasıl hesaplarsınız? Anlaşılır rehber.",
     tarih: "2026-05-27",
     okuma: 5,
+    kat: "İşletme",
     tool: "tool-loan.html",
     icerik: `
 <p>Kredi çekmeden önce aylık taksitin ne kadar olacağını bilmek, bütçenizi planlamanın en önemli adımıdır. Bankaların kullandığı hesaplama mantığını anlamak, sizi sürprizlerden korur.</p>
@@ -218,6 +228,7 @@ window.BLOG_POSTS = [
     ozet: "Doğum tarihinizden tam yaşınızı yıl, ay, gün olarak hesaplayın. Kaç gün, hafta ve saat yaşadığınızı keşfedin.",
     tarih: "2026-05-24",
     okuma: 3,
+    kat: "İpucu",
     tool: "tool-age.html",
     icerik: `
 <p>Yaşınızı yıl olarak biliyorsunuz ama tam olarak kaç yıl, kaç ay ve kaç gündür yaşadığınızı hiç merak ettiniz mi? Ya da bir bebeğin kaç günlük olduğunu, iki tarih arasında tam olarak ne kadar zaman geçtiğini?</p>
@@ -238,6 +249,7 @@ window.BLOG_POSTS = [
     ozet: "Fotoğraflarınızı tek bir PDF dosyasında birleştirin. Belge tarama, ödev, başvuru için pratik resim-PDF çözümü.",
     tarih: "2026-05-20",
     okuma: 3,
+    kat: "Rehber",
     tool: "tool-img2pdf.html",
     icerik: `
 <p>Bir belgeyi telefonla fotoğrafladınız ve PDF olarak göndermeniz gerekiyor. Ya da birkaç fotoğrafı tek bir düzenli dosyada birleştirmek istiyorsunuz. Resimden PDF oluşturmak, bunun en temiz yoludur.</p>
