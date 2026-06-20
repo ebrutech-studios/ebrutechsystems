@@ -434,3 +434,84 @@ h3{font-size:1.18rem}
   .wa-float svg{width:24px;height:24px}
   .kvkk-banner{padding:14px 18px;gap:12px}
 }
+
+/* ===== Kullanım sayaçları ===== */
+.use-count{
+  font-size:.75rem;font-weight:600;
+  color:var(--txt-faint);
+  margin-left:auto;
+  white-space:nowrap;
+}
+.use-count:empty{display:none}
+
+.tool-use-badge-wrap{margin:12px 0 0}
+.tool-use-badge{
+  display:inline-block;
+  background:rgba(200,255,46,.08);
+  border:1px solid rgba(200,255,46,.18);
+  color:var(--txt-faint);
+  font-size:.8rem;font-weight:700;
+  padding:4px 12px;border-radius:100px;
+  letter-spacing:.04em;
+}
+
+/* ===== Son kullanılan araçlar ===== */
+.recent-tools{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  margin-bottom:16px;
+}
+.recent-label{
+  font-size:.8rem;font-weight:700;
+  color:var(--txt-faint);text-transform:uppercase;letter-spacing:.06em;
+  white-space:nowrap;
+}
+.recent-chip{
+  display:inline-block;padding:5px 13px;border-radius:100px;
+  background:var(--surface);border:1px solid var(--border-strong);
+  color:var(--txt-dim);font-size:.82rem;font-weight:600;
+  text-decoration:none;transition:.18s;white-space:nowrap;
+}
+.recent-chip:hover{background:var(--surface-2);color:var(--txt);border-color:rgba(200,255,46,.3)}
+
+/* ===== Kullanıcı yorumları bölümü ===== */
+.tool-reviews-section{
+  padding:72px 0;
+  border-top:1px solid var(--border);
+}
+.review-form{margin-bottom:36px}
+.review-write textarea{
+  width:100%;min-height:90px;resize:vertical;
+  padding:12px 14px;border-radius:10px;
+  border:1px solid var(--border-strong);
+  background:var(--bg-2);color:var(--txt);
+  font-family:var(--font-body);font-size:.95rem;
+  outline:none;transition:.18s;
+  margin:12px 0;
+}
+.review-write textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,255,46,.1)}
+
+.stars-input{display:flex;gap:4px;font-size:1.7rem;margin-bottom:4px;cursor:pointer;user-select:none}
+.stars-input span{color:var(--border-strong);transition:.1s}
+.stars-input span.on{color:#f5c518}
+
+.review-login-prompt{color:var(--txt-dim);font-size:.95rem}
+.review-login-prompt a{color:var(--accent);font-weight:700}
+
+.reviews-list{display:flex;flex-direction:column;gap:16px}
+.reviews-empty{color:var(--txt-faint);font-size:.9rem}
+
+.review-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:20px 22px;
+}
+.rc-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.rc-name{font-weight:700;font-size:.95rem;color:var(--txt)}
+.rc-stars{color:#f5c518;letter-spacing:-1px;font-size:1rem}
+.rc-date{font-size:.8rem;color:var(--txt-faint);margin-left:auto}
+.rc-text{color:var(--txt-dim);font-size:.92rem;line-height:1.6;margin:0}
+
+@media(max-width:620px){
+  .recent-tools{gap:6px}
+  .stars-input{font-size:1.4rem}
+  .review-card{padding:16px}
+}
