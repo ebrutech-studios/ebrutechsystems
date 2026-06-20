@@ -1,22 +1,25 @@
 /* ===== EbruTech Studios — Core Theme ===== */
 :root{
-  --bg:#0a0a0b;
-  --bg-2:#101012;
-  --surface:rgba(255,255,255,.04);
-  --surface-2:rgba(255,255,255,.06);
-  --border:rgba(255,255,255,.09);
-  --border-strong:rgba(255,255,255,.16);
-  --txt:#f4f4f2;
-  --txt-dim:#a1a1a6;
-  --txt-faint:#6e6e76;
+  --bg:#090b10;
+  --bg-2:#10141b;
+  --surface:rgba(255,255,255,.055);
+  --surface-2:rgba(255,255,255,.085);
+  --surface-solid:#141922;
+  --border:rgba(255,255,255,.10);
+  --border-strong:rgba(255,255,255,.18);
+  --txt:#f7f8f5;
+  --txt-dim:#b5bac5;
+  --txt-faint:#7c8493;
   --accent:#c8ff2e;
-  --accent-2:#9bdb00;
-  --accent-ink:#11160a;
+  --accent-2:#29d3ff;
+  --accent-3:#ffb020;
+  --accent-ink:#10140a;
   --warn:#ffb020;
-  --radius:18px;
-  --radius-sm:12px;
+  --radius:8px;
+  --radius-sm:6px;
   --maxw:1160px;
-  --shadow:0 24px 60px -20px rgba(0,0,0,.7);
+  --shadow:0 28px 70px -32px rgba(0,0,0,.82);
+  --shadow-soft:0 16px 42px -28px rgba(0,0,0,.75);
   --font-display:'Bricolage Grotesque',serif;
   --font-body:'Manrope',sans-serif;
 }
@@ -176,27 +179,7 @@ h2{font-size:clamp(1.8rem,4vw,2.7rem)}
 .reveal{opacity:0;transform:translateY(18px);transition:.6s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
 
-/* ===== Professional polish layer ===== */
-:root{
-  --bg:#090b10;
-  --bg-2:#10141b;
-  --surface:rgba(255,255,255,.055);
-  --surface-2:rgba(255,255,255,.085);
-  --surface-solid:#141922;
-  --border:rgba(255,255,255,.10);
-  --border-strong:rgba(255,255,255,.18);
-  --txt:#f7f8f5;
-  --txt-dim:#b5bac5;
-  --txt-faint:#7c8493;
-  --accent:#c8ff2e;
-  --accent-2:#29d3ff;
-  --accent-3:#ffb020;
-  --accent-ink:#10140a;
-  --radius:8px;
-  --radius-sm:6px;
-  --shadow:0 28px 70px -32px rgba(0,0,0,.82);
-  --shadow-soft:0 16px 42px -28px rgba(0,0,0,.75);
-}
+/* ===== Polish overrides ===== */
 html{font-size:16px}
 body{
   background:
@@ -394,4 +377,60 @@ h3{font-size:1.18rem}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
   .reveal{opacity:1;transform:none}
+}
+
+/* ===== WhatsApp sabit butonu ===== */
+.wa-float{
+  position:fixed;bottom:28px;right:24px;z-index:90;
+  width:56px;height:56px;border-radius:50%;
+  background:#25d366;display:grid;place-items:center;
+  box-shadow:0 8px 28px rgba(37,211,102,.4);
+  transition:.2s;
+}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 12px 36px rgba(37,211,102,.55)}
+.wa-float svg{width:28px;height:28px}
+
+/* ===== KVKK Banner ===== */
+.kvkk-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:80;
+  background:rgba(9,11,16,.97);backdrop-filter:blur(14px);
+  border-top:1px solid var(--border);
+  padding:16px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  box-shadow:0 -8px 32px rgba(0,0,0,.3);
+}
+.kvkk-banner p{color:var(--txt-dim);font-size:.9rem;margin:0}
+.kvkk-banner a{color:var(--accent)}
+
+/* ===== Araç arama & filtre ===== */
+.tool-search-wrap{margin-bottom:32px}
+.tool-search-box{position:relative;margin-bottom:14px}
+.tool-search-box svg{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  width:18px;height:18px;stroke:var(--txt-faint);fill:none;
+  stroke-width:2;stroke-linecap:round;
+}
+#toolSearch{
+  width:100%;padding:13px 14px 13px 44px;
+  border-radius:10px;border:1px solid var(--border-strong);
+  background:var(--bg-2);color:var(--txt);
+  font-family:var(--font-body);font-size:1rem;
+  outline:none;transition:.18s;
+}
+#toolSearch:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,255,46,.1)}
+.tool-cats{display:flex;gap:8px;flex-wrap:wrap}
+.cat-btn{
+  padding:8px 16px;border-radius:8px;
+  border:1px solid var(--border-strong);
+  background:var(--surface);color:var(--txt-dim);
+  font-family:var(--font-body);font-size:.88rem;font-weight:600;
+  cursor:pointer;transition:.18s;
+}
+.cat-btn:hover{background:var(--surface-2);color:var(--txt)}
+.cat-btn.active{background:rgba(200,255,46,.14);border-color:rgba(200,255,46,.38);color:var(--accent)}
+
+@media(max-width:620px){
+  .wa-float{bottom:22px;right:16px;width:50px;height:50px}
+  .wa-float svg{width:24px;height:24px}
+  .kvkk-banner{padding:14px 18px;gap:12px}
 }
