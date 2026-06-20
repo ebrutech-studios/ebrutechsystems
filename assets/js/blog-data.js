@@ -264,5 +264,91 @@ window.BLOG_POSTS = [
 <h2>Nasıl yapılır?</h2>
 <p>EbruTech Resimden PDF aracını açın, fotoğraflarınızı seçin veya sürükleyin, sıralamayı ayarlayın ve "PDF oluştur" deyin. Tüm resimleriniz tek bir PDF dosyasında iner. İşlem tarayıcıda olur, fotoğraflarınız hiçbir sunucuya yüklenmez — gizliliğiniz korunur.</p>
 <p>Çok sayfalı belgeler için ideal; tarayıcıya ihtiyaç duymadan telefonunuzla profesyonel PDF'ler hazırlayabilirsiniz.</p>`
+  },
+  {
+    id: "vki-bmi-nasil-hesaplanir",
+    baslik: "VKİ (BMI) Nedir ve Nasıl Hesaplanır?",
+    ozet: "Vücut Kitle İndeksi nasıl hesaplanır, normal değer nedir? Sağlıklı kilo aralığınızı öğrenin. Ücretsiz online VKİ hesaplama.",
+    tarih: "2026-06-20",
+    okuma: 4,
+    kat: "Rehber",
+    tool: "tool-bmi.html",
+    icerik: `
+<p>VKİ (Vücut Kitle İndeksi), kilonuzun boyunuzun karesine oranıdır. İngilizce adıyla BMI (Body Mass Index), dünya genelinde sağlık değerlendirmelerinde en yaygın kullanılan ölçüttür.</p>
+<h2>VKİ Formülü</h2>
+<p>Hesaplama son derece basittir: kilonuzu (kg cinsinden), boyunuzun metreye çevrili karesine bölün.</p>
+<p><b>Örnek:</b> 70 kg, 175 cm → 70 ÷ (1,75 × 1,75) = 70 ÷ 3,06 = <b>22,9 VKİ</b></p>
+<h2>VKİ Kategorileri</h2>
+<ul>
+<li><b>18,5'in altı:</b> Zayıf — kilo almak faydalı olabilir.</li>
+<li><b>18,5 – 24,9:</b> Normal — sağlıklı kilo aralığı.</li>
+<li><b>25,0 – 29,9:</b> Fazla Kilolu — yaşam tarzı değişikliği önerilir.</li>
+<li><b>30 ve üzeri:</b> Obez — doktor danışmanlığı önerilir.</li>
+</ul>
+<h2>VKİ'nin Sınırlılıkları</h2>
+<p>VKİ iyi bir başlangıç göstergesidir ancak mükemmel değildir. Kas kütlesi yüksek sporcular, yaşlılar veya vücut yapısı farklı kişilerde yanıltıcı çıkabilir. Kesin sağlık değerlendirmesi için doktorunuza başvurun.</p>
+<h2>İdeal Kilo Aralığı</h2>
+<p>İdeal kilo için 18,5 ile 24,9 VKİ aralığına karşılık gelen kilo şöyle hesaplanır: <b>18,5 × boy(m)²</b> ile <b>24,9 × boy(m)²</b> arasındaki değer.</p>
+<p>175 cm için: 56,6 kg ile 76,2 kg arası sağlıklı kabul edilir.</p>`
+  },
+  {
+    id: "url-slug-nedir-seo",
+    baslik: "URL Slug Nedir? SEO İçin Neden Bu Kadar Önemli?",
+    ozet: "Slug, URL'nin anlamlı ve okunabilir kısmıdır. Doğru slug, Google sıralamanızı doğrudan etkiler. Türkçe karakter rehberi.",
+    tarih: "2026-06-20",
+    okuma: 3,
+    kat: "İpucu",
+    tool: "tool-slug.html",
+    icerik: `
+<p>Bir blog yazısı veya ürün sayfası yayınladığınızda, URL'nizin son kısmı olan <b>slug</b> arama motorlarına içeriğiniz hakkında güçlü bir sinyal gönderir.</p>
+<h2>Slug Nedir?</h2>
+<p>Slug, URL'nin anlamlı kısmıdır. Örneğin <code>ebrutechsystems.com/blog/<b>url-slug-nedir-seo</b></code> adresinde slug, kalın yazılan bölümdür. Küçük harflerden, rakamlardan ve tire işaretlerinden oluşur.</p>
+<h2>Neden Önemli?</h2>
+<ul>
+<li><b>Google okur:</b> Arama motorları URL'yi analiz eder. İçeriğinizdeki anahtar kelimelerin slug'da da geçmesi sıralamayı olumlu etkiler.</li>
+<li><b>Kullanıcı güveni:</b> Anlamlı URL'ler daha güvenilir görünür ve tıklanma oranını artırır.</li>
+<li><b>Paylaşım kolaylığı:</b> Anlamlı URL'ler sosyal medyada daha fazla tıklanır.</li>
+</ul>
+<h2>Türkçe Karakter Sorunu</h2>
+<p>Türkçe karakterler (ş, ç, ğ, ı, ö, ü) URL'lerde sorun yaratır; tarayıcılar bunları şifreli kodlara dönüştürür. Doğru yaklaşım, bu karakterleri Latin karşılıklarıyla değiştirmektir: ş→s, ç→c, ğ→g, ı→i, ö→o, ü→u.</p>
+<h2>İyi Slug Örnekleri</h2>
+<ul>
+<li>✓ <code>kdv-hesaplama-nasil-yapilir</code></li>
+<li>✓ <code>ucretsiz-qr-kod-olusturma</code></li>
+<li>✗ <code>KDV Hesaplama Nasıl Yapılır??</code></li>
+<li>✗ <code>sayfa1</code> veya <code>untitled-post</code></li>
+</ul>`
+  },
+  {
+    id: "css-gradient-tasarim-ipuclari",
+    baslik: "CSS Gradient ile Profesyonel Tasarım: Renk Geçişi İpuçları",
+    ozet: "CSS gradient ile web sitenize profesyonel dokunuş katın. Linear ve radial farkı, en iyi renk kombinasyonları ve hazır kod örnekleri.",
+    tarih: "2026-06-20",
+    okuma: 4,
+    kat: "İpucu",
+    tool: "tool-gradient.html",
+    icerik: `
+<p>CSS gradient, iki veya daha fazla renk arasında yumuşak geçiş sağlar. Ek resim dosyası gerekmez, tamamen kod ile oluşturulur — bu yüzden hem hafif hem de esnek bir tasarım aracıdır.</p>
+<h2>Linear vs Radial Gradient</h2>
+<p><b>Linear gradient</b> düz bir çizgi boyunca renk geçişi yapar. Açı belirleyerek yönünü kontrol edebilirsiniz:</p>
+<ul>
+<li><code>0deg</code> — aşağıdan yukarıya</li>
+<li><code>90deg</code> — soldan sağa</li>
+<li><code>135deg</code> — sol alt'tan sağ üste (popüler köşegen)</li>
+</ul>
+<p><b>Radial gradient</b> ise merkez noktasından dışa doğru dairesel geçiş yapar. Parlama efektleri için idealdir.</p>
+<h2>Güzel Görünen Kombinasyonlar</h2>
+<ul>
+<li><b>Neon yeşil + Mavi:</b> <code>#c8ff2e → #29d3ff</code> — modern, teknoloji hissi</li>
+<li><b>Turuncu + Sarı:</b> <code>#f97316 → #eab308</code> — sıcak, enerjik</li>
+<li><b>Mor + Pembe:</b> <code>#a855f7 → #ec4899</code> — yaratıcı, eğlenceli</li>
+<li><b>Koyu tonlar:</b> <code>#0f2027 → #203a43</code> — ciddi, kurumsal</li>
+</ul>
+<h2>CSS'e Ekleme</h2>
+<p>Gradient'i bir elemana arka plan olarak şöyle ekleyebilirsiniz:</p>
+<ul>
+<li><code>background: linear-gradient(135deg, #c8ff2e, #29d3ff);</code></li>
+</ul>
+<p>Button, hero section, kart arka planı veya tam sayfa arka planı için mükemmel çalışır. EbruTech Gradient üreticisi ile kombinasyonları önizleyip CSS kodunu tek tıkla kopyalayabilirsiniz.</p>`
   }
 ];

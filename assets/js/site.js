@@ -56,6 +56,8 @@ const TOOL_META = {
   bmi:         {name:'VKİ / BMI Hesaplama', ico:'⚖️', href:'tool-bmi.html',          free:true},
   hash:        {name:'Hash Üretici',         ico:'🔒', href:'tool-hash.html',         free:true},
   gradient:    {name:'CSS Gradient Üretici', ico:'🌈', href:'tool-gradient.html',     free:true},
+  regex:       {name:'Regex Test Aracı',     ico:'.*',  href:'tool-regex.html',        free:true},
+  timestamp:   {name:'Timestamp Dönüştürücü',ico:'⏰', href:'tool-timestamp.html',    free:true},
 };
 
 const TOOL_RELATED = {
@@ -97,6 +99,8 @@ const TOOL_RELATED = {
   bmi:         ['age','loan','percentage','vat','unit'],
   hash:        ['password','base64','json','slug','textcase'],
   gradient:    ['color','palette','converter','social','watermark'],
+  regex:       ['json','base64','textcase','wordcount','slug'],
+  timestamp:   ['age','unit','vat','loan','number'],
 };
 
 const TOOL_PAGE_DATA = {
@@ -130,7 +134,9 @@ const TOOL_PAGE_DATA = {
   number:{steps:[{ico:'🔢',t:'Sayıyı gir',d:'Sayıyı gir — tam sayı veya ondalıklı desteklenir'},{ico:'✓',t:'Yazıyı gör',d:'Türkçe kelimeye çevrilen sayı anında görünür'},{ico:'📋',t:'Kopyala',d:'Normal veya tamamen büyük harfle panoya kopyala'}],faq:[['Hangi sayılar destekleniyor?','0\'dan 999 milyara kadar tam ve ondalıklı sayılar desteklenir.'],['Fatura için nasıl kullanılır?','Tutarı gir, büyük harfle kopyala ve fatura belgesine yapıştır.'],['Negatif sayılar yazılıyor mu?','Evet; negatif sayılar "eksi" önekiyle yazılır.']]},
   bmi:{steps:[{ico:'📏',t:'Boy bilgisini gir',d:'Boyunuzu santimetre (cm) olarak girin'},{ico:'⚖️',t:'Kilo bilgisini gir',d:'Kilonuzu kilogram (kg) olarak girin'},{ico:'✓',t:'Sonucu gör',d:'VKİ değeriniz, kategoriniz ve ideal kilo aralığınız hesaplanır'}],faq:[['VKİ (BMI) nedir?','Vücut Kitle İndeksi; kilonuzun boyunuzun karesine oranıdır. Sağlık değerlendirmesinde kullanılır.'],['VKİ yeterli bir ölçüm müdür?','VKİ iyi bir başlangıç göstergesidir ancak kas kütlesi, yaş ve cinsiyet dikkate alınmaz.'],['İdeal VKİ değeri nedir?','18.5 – 24.9 aralığı normal kabul edilmektedir.']]},
   hash:{steps:[{ico:'✏️',t:'Metni gir veya dosya seç',d:'Hash hesaplanacak metni yaz ya da dosyayı sürükle'},{ico:'🔄',t:'Algoritma seç',d:'SHA-1, SHA-256, SHA-384 veya SHA-512 seçeneklerinden birini seç'},{ico:'📋',t:'Hash değerini kopyala',d:'Hesaplanan hash değerini panoya tek tıkla kopyala'}],faq:[['Verilerim güvenli mi?','Evet; hiçbir veri sunucuya gönderilmez. Tüm işlem tarayıcınızda gerçekleşir.'],['Hash ne için kullanılır?','Dosya bütünlüğü doğrulama, şifre saklama ve dijital imza işlemleri için kullanılır.'],['SHA-256 ile SHA-512 farkı nedir?','SHA-512 daha uzun ve daha güvenli bir hash üretir; kritik güvenlik işlemleri için önerilir.']]},
-  gradient:{steps:[{ico:'🎨',t:'Renkleri seç',d:'Renk seçiciyle veya HEX kodu girerek iki rengi belirle'},{ico:'🔄',t:'Tipi ve açıyı ayarla',d:'Linear veya Radial tipi seç; linear için açıyı ayarla'},{ico:'📋',t:'CSS kodunu kopyala',d:'Gradient CSS kodunu kopyalayıp projeye yapıştır'}],faq:[['Hazır gradientleri kullanabilir miyim?','Evet; araçta 12 hazır gradient paleti bulunmaktadır; tıklayarak uygulayabilirsiniz.'],['Radial ve linear fark nedir?','Linear düz çizgi boyunca, radial merkez noktasından dışa doğru geçiş yapar.'],['CSS\'e nasıl eklenir?','background: linear-gradient(...) veya kısaca background olarak yapıştır.']]}
+  gradient:{steps:[{ico:'🎨',t:'Renkleri seç',d:'Renk seçiciyle veya HEX kodu girerek iki rengi belirle'},{ico:'🔄',t:'Tipi ve açıyı ayarla',d:'Linear veya Radial tipi seç; linear için açıyı ayarla'},{ico:'📋',t:'CSS kodunu kopyala',d:'Gradient CSS kodunu kopyalayıp projeye yapıştır'}],faq:[['Hazır gradientleri kullanabilir miyim?','Evet; araçta 12 hazır gradient paleti bulunmaktadır; tıklayarak uygulayabilirsiniz.'],['Radial ve linear fark nedir?','Linear düz çizgi boyunca, radial merkez noktasından dışa doğru geçiş yapar.'],['CSS\'e nasıl eklenir?','background: linear-gradient(...) veya kısaca background olarak yapıştır.']]},
+  regex:{steps:[{ico:'✏️',t:'Pattern gir',d:'Regex ifadesini pattern kutusuna yaz; flag\'leri belirt (g, i, m)'},{ico:'📋',t:'Test metni yaz',d:'Eşleşme aranacak metni alt kutuya gir veya yapıştır'},{ico:'🔍',t:'Eşleşmeleri gör',d:'Bulunan eşleşmeler sarıyla vurgulanır, liste olarak listelenir'}],faq:[['Hangi flags destekleniyor?','g (global), i (büyük/küçük harf duyarsız), m (çok satır), s (nokta her şeyle eşleşir).'],['JavaScript regex mi?','Evet; JavaScript\'in RegExp motoru kullanılır.'],['Cheatsheet ne işe yarar?','Yaygın pattern\'lere tıklayarak hemen test edebilirsiniz.']]},
+  timestamp:{steps:[{ico:'🕐',t:'Şu anki timestamp',d:'Sayfada anlık güncellenen Unix timestamp\'i gör ve kopyala'},{ico:'🔄',t:'Timestamp → Tarih',d:'Unix timestamp\'i girerek yerel saat, UTC ve ISO formatına çevir'},{ico:'📅',t:'Tarih → Timestamp',d:'Tarih ve saat seçerek Unix timestamp ve ISO değerini hesapla'}],faq:[['Unix timestamp nedir?','1 Ocak 1970 UTC\'den bu yana geçen saniye sayısıdır. Programlamada zaman tutmak için kullanılır.'],['Milisaniye mi saniye mi?','JavaScript Date.now() milisaniye döner; sunucu taraflı çoğu dil saniye kullanır.'],['Negatif timestamp olabilir mi?','Evet; 1970 öncesi tarihler negatif timestamp ile ifade edilir.']]}
 };
 
 const ETSlib = {
