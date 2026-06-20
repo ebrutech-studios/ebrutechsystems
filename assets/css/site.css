@@ -271,7 +271,13 @@ h3{font-size:1.18rem}
 .panel-file strong{display:block;font-size:1.03rem}
 .panel-file span{display:block;margin-top:6px;color:var(--accent);font-size:.9rem;font-weight:700}
 .panel-bars{display:flex;flex-direction:column;gap:10px}
-.panel-bars i{display:block;height:10px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+@keyframes barGrow{from{width:0;opacity:.3}to{opacity:1}}
+.panel-bars i{display:block;height:10px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent-2));animation:barGrow .9s ease-out both}
+.panel-bars i:nth-child(1){width:92%;animation-delay:.3s}
+.panel-bars i:nth-child(2){width:68%;animation-delay:.5s}
+.panel-bars i:nth-child(3){width:81%;animation-delay:.7s}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 0 4px rgba(200,255,46,.12)}50%{box-shadow:0 0 0 8px rgba(200,255,46,.22)}}
+.pulse{animation:pulseGlow 2s ease-in-out infinite}
 .panel-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .panel-actions span{padding:10px 0;text-align:center;border:1px solid var(--border);border-radius:8px;color:var(--txt-dim);background:rgba(255,255,255,.04);font-weight:800;font-size:.82rem}
 
@@ -640,4 +646,75 @@ h3{font-size:1.18rem}
 @media(max-width:620px){
   .faq-q{padding:15px 16px;font-size:.93rem}
   .faq-item.open .faq-a{padding:0 16px 16px}
+}
+
+/* ===== Back to Top ===== */
+#backToTop{
+  position:fixed;bottom:98px;right:24px;z-index:80;
+  width:42px;height:42px;border-radius:50%;
+  background:var(--surface-solid);
+  border:1px solid var(--border-strong);
+  color:var(--txt-dim);font-size:1.05rem;
+  cursor:pointer;display:grid;place-items:center;
+  opacity:0;pointer-events:none;
+  transform:translateY(10px);
+  transition:.24s;
+}
+#backToTop.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+#backToTop:hover{background:var(--surface-2);color:var(--accent);border-color:rgba(200,255,46,.35)}
+
+/* ===== Hizmetler servis kartları ===== */
+.service-card{display:flex;flex-direction:column;gap:14px}
+.sc-head{display:flex;align-items:flex-start;gap:14px}
+.sc-head>div{flex:1}
+.sc-price{display:block;font-size:.82rem;color:var(--accent);font-weight:700;margin-top:5px}
+.sc-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.sc-list li{font-size:.9rem;color:var(--txt-dim);display:flex;gap:9px;align-items:flex-start;line-height:1.5}
+.sc-list li::before{content:"✓";color:var(--accent);font-weight:800;flex:none;margin-top:1px}
+
+/* ===== Teknoloji şeridi ===== */
+.tech-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.tech-item{
+  padding:9px 17px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--txt-dim);font-size:.86rem;font-weight:700;
+  transition:.18s;
+}
+.tech-item:hover{border-color:rgba(200,255,46,.3);color:var(--accent)}
+
+/* ===== Karşılaştırma tablosu ===== */
+.compare-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--border)}
+.compare-table{width:100%;border-collapse:collapse;font-size:.92rem}
+.compare-table th,.compare-table td{padding:13px 18px;text-align:center;border-bottom:1px solid var(--border)}
+.compare-table th:first-child,.compare-table td:first-child{text-align:left;padding-left:22px}
+.compare-table th{
+  background:var(--surface);color:var(--txt-faint);
+  font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;white-space:nowrap;
+}
+.compare-table .col-pro{color:var(--accent);background:rgba(200,255,46,.05)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table tbody tr:hover td{background:rgba(255,255,255,.025)}
+.compare-table td{color:var(--txt-faint);font-weight:600}
+.compare-table td:first-child{color:var(--txt-dim);font-weight:500}
+.compare-table td.yes{color:var(--accent)}
+.compare-table td.no{color:var(--border-strong)}
+.compare-table td:nth-child(3){background:rgba(200,255,46,.025)}
+
+/* ===== Sosyal medya footer ikonları ===== */
+.social-links{display:flex;gap:10px;margin-top:14px}
+.social-link{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--surface);border:1px solid var(--border);
+  display:grid;place-items:center;
+  color:var(--txt-faint);transition:.18s;
+}
+.social-link:hover{background:var(--surface-2);color:var(--accent);border-color:rgba(200,255,46,.28)}
+.social-link svg{width:16px;height:16px;fill:currentColor}
+
+@media(max-width:880px){
+  .compare-table th,.compare-table td{padding:11px 12px;font-size:.85rem}
+}
+@media(max-width:620px){
+  #backToTop{bottom:88px;right:16px;width:38px;height:38px}
 }
