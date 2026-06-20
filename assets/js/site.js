@@ -599,4 +599,37 @@ document.addEventListener("DOMContentLoaded",()=>{
   initBackToTop();
   initRelatedTools();
   initPromoBar();
+  initPopularTools();
 });
+
+/* ═══════════════════════════════════════════════
+   12. POPÜLER ARAÇLAR (tools.html)
+   ═══════════════════════════════════════════════ */
+function initPopularTools(){
+  if(!isToolsIndex()) return;
+  whenFirestoreReady(async()=>{
+    const F=window.ETSFirestore;
+    const db=window.ETSAuth.db;
+    try{
+      const snap=await F.getDoc(F.doc(db,'toolStats','all'));
+      if(!snap.exists()) return;
+      const data=snap.data();
+      const sorted=Object.entries(data)
+        .filter(([k])=>TOOL_META[k])
+        .sort((a,b)=>b[1]-a[1])
+        .slice(0,6);
+      if(sorted.length<3) return;
+
+      const sec=document.createElement('div');
+      sec.className='popular-tools-wrap reveal';
+      sec.innerHTML=`<div class="popular-tools-header"><span class="eyebrow">Bu ay</span><h3>En çok kullanılan araçlar</h3></div><div class="popular-tools-list">${
+        sorted.map(([k,count],i)=>{
+          const t=TOOL_META[k];
+          return `<a href="${t.href}" class="popular-tool-item"><span class="pop-rank">${i+1}</span><span class="pop-ico">${t.ico}</span><span class="pop-name">${t.name}</span><span class="pop-count">${fmtCount(count)} kullanım</span></a>`;
+        }).join('')
+      }</div>`;
+      const search=document.querySelector('.tool-search-wrap');
+      if(search) search.before(sec);
+    }catch(e){}
+  });
+}
