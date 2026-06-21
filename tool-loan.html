@@ -1,39 +1,139 @@
-﻿<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kredi Hesaplama — Aylık Taksit ve Faiz | EbruTech Studios</title>
 <meta name="description" content="Kredi tutarı, faiz oranı ve vadeye göre aylık taksit, toplam ödeme ve toplam faizi hesaplayın. Ücretsiz kredi hesaplama aracı.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-loan.html">
 <meta property="og:title" content="Kredi Hesaplama — EbruTech Studios"><meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png"><meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<style>
+.loan-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 18px;text-align:center}
+.loan-card.accent{border-color:var(--accent);background:rgba(200,255,46,.06)}
+.loan-card .val{font-family:var(--font-display);font-size:1.75rem;font-weight:700;color:var(--txt);margin-bottom:4px}
+.loan-card.accent .val{color:var(--accent)}
+.loan-card .lbl{font-size:.8rem;color:var(--txt-faint)}
+.progress-bar{height:12px;border-radius:8px;background:rgba(255,255,255,.08);overflow:hidden;margin:6px 0 3px}
+.progress-bar>div{height:100%;border-radius:8px;transition:.5s}
+.amort-table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:12px}
+.amort-table th{color:var(--txt-faint);font-weight:600;padding:7px 8px;text-align:right;border-bottom:1px solid var(--border)}
+.amort-table th:first-child{text-align:center}
+.amort-table td{padding:7px 8px;text-align:right;border-bottom:1px solid rgba(255,255,255,.03);color:var(--txt)}
+.amort-table td:first-child{text-align:center;color:var(--txt-faint)}
+.amort-table .interest-cell{color:#ff9f43}
+.preset-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.chip{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.8rem;cursor:pointer;transition:.15s;white-space:nowrap}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+</style>
+</head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
 <span class="eyebrow">Araç · Finans</span><h1 style="font-size:2.2rem">🏦 Kredi Hesaplama</h1>
-<p class="lead" style="margin:14px 0 26px">Kredi tutarı, aylık faiz ve vadeyi girin; aylık taksit ve toplam ödemeyi görün.</p>
+<p class="lead" style="margin:14px 0 26px">Kredi tutarı, aylık faiz ve vadeyi girin; taksit, toplam ödeme ve ödeme planını görün.</p>
+
 <div class="controls">
-<div class="field"><label>Kredi Tutarı (₺)</label><input id="principal" type="number" value="100000"></div>
-<div class="field"><label>Aylık Faiz Oranı (%)</label><input id="rate" type="number" step="0.01" value="3.5"></div>
-<div class="field"><label>Vade (ay)</label><input id="months" type="number" value="36"></div>
-<button id="go" class="btn btn-primary">Hesapla</button></div>
-<div id="result" class="grid g-2" style="margin-top:20px"></div>
-<p style="color:var(--txt-faint);font-size:.82rem;margin-top:14px">Bu hesaplama bilgilendirme amaçlıdır; banka masrafları ve vergiler dahil değildir. Kesin değerler için bankanıza danışın.</p>
+<div class="field"><label>Hızlı Seçenekler</label>
+<div class="preset-chips">
+<button class="chip" data-p="50000" data-r="3.50" data-m="12">50K · 12ay</button>
+<button class="chip" data-p="100000" data-r="3.50" data-m="24">100K · 24ay</button>
+<button class="chip" data-p="250000" data-r="2.89" data-m="36">250K · 36ay</button>
+<button class="chip" data-p="500000" data-r="2.89" data-m="60">500K · 60ay</button>
+</div>
+</div>
+<div class="field"><label>Kredi Tutarı (₺)</label><input id="principal" type="number" value="100000" min="0"></div>
+<div class="row">
+<div class="field"><label>Aylık Faiz Oranı (%)</label><input id="rate" type="number" step="0.01" value="3.5" min="0"></div>
+<div class="field"><label>Vade (ay)</label><input id="months" type="number" value="36" min="1" max="360"></div>
+</div>
+<button id="go" class="btn btn-primary btn-lg" style="width:100%">Hesapla</button>
+</div>
+
+<div id="resultArea" style="display:none">
+<div class="grid g-2" id="result" style="margin-top:24px"></div>
+
+<div style="margin-top:28px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px">
+  <div style="font-size:.85rem;font-weight:600;color:var(--txt-dim);margin-bottom:12px">Anapara / Faiz Dağılımı</div>
+  <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px">
+    <span style="color:var(--accent)">Anapara</span><span id="pPct" style="color:var(--accent)"></span>
+  </div>
+  <div class="progress-bar"><div id="pBar" style="background:var(--accent)"></div></div>
+  <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-top:8px;margin-bottom:6px">
+    <span style="color:#ff9f43">Toplam Faiz</span><span id="iPct" style="color:#ff9f43"></span>
+  </div>
+  <div class="progress-bar"><div id="iBar" style="background:#ff9f43"></div></div>
+</div>
+
+<div style="margin-top:28px">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+    <div style="font-size:.88rem;font-weight:600;color:var(--txt-dim)">Ödeme Planı</div>
+    <div style="display:flex;gap:8px">
+      <button id="showFirst" class="chip" style="border-color:var(--accent);color:var(--accent)">İlk 12 Ay</button>
+      <button id="showAll" class="chip">Tümü</button>
+    </div>
+  </div>
+  <div style="overflow-x:auto"><table class="amort-table">
+    <thead><tr><th>Ay</th><th>Taksit</th><th>Anapara</th><th>Faiz</th><th>Kalan</th></tr></thead>
+    <tbody id="amortBody"></tbody>
+  </table></div>
+</div>
+</div>
+
+<p style="color:var(--txt-faint);font-size:.8rem;margin-top:16px">Bilgilendirme amaçlıdır; banka masrafları ve vergiler dahil değildir. Kesin değerler için bankanıza danışın.</p>
 </div></div></section>
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-function fmt(n){return n.toLocaleString("tr-TR",{minimumFractionDigits:2,maximumFractionDigits:2})+" ₺";}
-function card(n,l,hl){return `<div class="card" style="text-align:center;padding:18px"><div style="font-family:var(--font-display);font-size:1.5rem;color:${hl?'var(--accent)':'var(--txt)'}">${n}</div><div style="font-size:.82rem;color:var(--txt-faint)">${l}</div></div>`;}
+const fmt=n=>n.toLocaleString("tr-TR",{minimumFractionDigits:2,maximumFractionDigits:2})+" ₺";
+function card(v,l,isAccent){return `<div class="loan-card${isAccent?" accent":""}"><div class="val">${v}</div><div class="lbl">${l}</div></div>`;}
+
+let schedule=[];
+
+document.querySelectorAll(".chip[data-p]").forEach(b=>b.onclick=()=>{
+  document.getElementById("principal").value=b.dataset.p;
+  document.getElementById("rate").value=b.dataset.r;
+  document.getElementById("months").value=b.dataset.m;
+});
+
+function calcAmort(P,r,n){
+  const sch=[];let balance=P;
+  const taksit=r===0?P/n:P*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  for(let i=1;i<=n;i++){
+    const interest=balance*r;
+    const principal=taksit-interest;
+    balance-=principal;
+    sch.push({ay:i,taksit,anapara:principal,faiz:interest,kalan:Math.max(0,balance)});
+  }
+  return sch;
+}
+
+function renderTable(rows){
+  document.getElementById("amortBody").innerHTML=rows.map(r=>
+    `<tr><td>${r.ay}</td><td>${fmt(r.taksit)}</td><td>${fmt(r.anapara)}</td><td class="interest-cell">${fmt(r.faiz)}</td><td>${fmt(r.kalan)}</td></tr>`
+  ).join("");
+}
+
+document.getElementById("showFirst").onclick=()=>renderTable(schedule.slice(0,12));
+document.getElementById("showAll").onclick=()=>renderTable(schedule);
+
 document.getElementById("go").onclick=()=>{
   const P=parseFloat(document.getElementById("principal").value)||0;
   const r=(parseFloat(document.getElementById("rate").value)||0)/100;
   const n=parseInt(document.getElementById("months").value)||0;
   if(P<=0||n<=0){ETSlib.toast("Geçerli değerler gir");return;}
-  let taksit;
-  if(r===0)taksit=P/n;
-  else taksit=P*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  const taksit=r===0?P/n:P*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
   const toplam=taksit*n;const faiz=toplam-P;
+  const pPct=Math.round((P/toplam)*100);const iPct=100-pPct;
   document.getElementById("result").innerHTML=
-    card(fmt(taksit),"Aylık Taksit",1)+card(fmt(toplam),"Toplam Ödeme")+
+    card(fmt(taksit),"Aylık Taksit",true)+card(fmt(toplam),"Toplam Ödeme")+
     card(fmt(faiz),"Toplam Faiz")+card(fmt(P),"Anapara");
+  document.getElementById("pBar").style.width=pPct+"%";
+  document.getElementById("iBar").style.width=iPct+"%";
+  document.getElementById("pPct").textContent=pPct+"%";
+  document.getElementById("iPct").textContent=iPct+"%";
+  schedule=calcAmort(P,r,n);
+  renderTable(schedule.slice(0,12));
+  document.getElementById("resultArea").style.display="block";
   ETSlib.toast("Hesaplandı ✓");
 };
 </script></body></html>

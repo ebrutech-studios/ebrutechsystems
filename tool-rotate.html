@@ -1,38 +1,86 @@
-﻿<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Resim Döndürme ve Çevirme — EbruTech Studios</title>
-<meta name="description" content="Resim Döndürme ve Çevirme. Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
+<meta name="description" content="Resim döndür, aynala ve eğ. 90°/180° hızlı döndürme, serbest açı ayarı, yatay/dikey çevirme. Ücretsiz online resim döndürücü.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-rotate.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
 <meta property="og:title" content="Resim Döndürme ve Çevirme — EbruTech Studios">
-<meta property="og:description" content="Resim Döndürme ve Çevirme. Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
-<meta property="og:url" content="https://ebrutechsystems.com/tool-rotate.html">
 <meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
-<meta property="og:locale" content="tr_TR">
-<meta name="twitter:card" content="summary_large_image">
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css"><script type="application/ld+json">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<style>
+.action-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px}
+@media(min-width:480px){.action-grid{grid-template-columns:repeat(4,1fr)}}
+.action-btn{padding:12px 8px;border-radius:12px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.85rem;cursor:pointer;transition:.15s;text-align:center;line-height:1.3}
+.action-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(200,255,46,.05)}
+.flip-row{display:flex;gap:8px;margin-bottom:14px}
+.flip-btn{flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.85rem;cursor:pointer;transition:.15s;text-align:center}
+.flip-btn:hover{border-color:var(--accent-2);color:var(--accent-2)}
+.dim-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.dim-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+.dim-card .lbl{font-size:.72rem;color:var(--txt-faint);text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
+.dim-card .val{font-size:1rem;font-weight:700;color:var(--txt)}
+.dim-card.accent .val{color:var(--accent)}
+.angle-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(200,255,46,.1);border:1px solid rgba(200,255,46,.25);border-radius:20px;padding:4px 12px;font-size:.8rem;color:var(--accent);margin-bottom:8px}
+.cv-wrap{background:repeating-conic-gradient(#1a1a1a 0% 25%,#111 25% 50%) 0 0/20px 20px;border-radius:12px;overflow:hidden;margin-top:14px;display:flex;align-items:center;justify-content:center;padding:16px}
+.cv-wrap canvas{display:block;max-width:100%;max-height:340px;height:auto;border-radius:6px}
+</style>
+<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Resim Döndürme ve Çevirme","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-rotate.html"}
 </script>
-</head>
-<body>
+</head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
 <span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">🔄 Resim Döndür & Çevir</h1>
-<p class="lead" style="margin:14px 0 26px">Görselini döndür, aynala veya serbest açıyla eğ. Hızlı ve kayıpsız.</p>
-<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli buraya sürükle</b> veya tıkla</p><input id="file" type="file" accept="image/*" class="hidden"></div>
+<p class="lead" style="margin:14px 0 26px">Görselini hızla döndür, aynala veya serbest açıyla eğ. Anlık önizleme ile tam kontrol.</p>
+
+<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli buraya sürükle</b> veya tıkla<br><span style="color:var(--txt-faint);font-size:.85rem">PNG · JPG · WebP</span></p><input id="file" type="file" accept="image/*" class="hidden"></div>
+
 <div id="panel" class="controls hidden">
+
+<div style="font-size:.82rem;font-weight:600;color:var(--txt-dim);margin-bottom:8px">Hızlı Döndürme</div>
+<div class="action-grid">
+  <button class="action-btn" id="rl90">↺ Sola 90°</button>
+  <button class="action-btn" id="rr90">↻ Sağa 90°</button>
+  <button class="action-btn" id="r180">⟳ 180°</button>
+  <button class="action-btn" id="reset">✕ Sıfırla</button>
+</div>
+
+<div style="font-size:.82rem;font-weight:600;color:var(--txt-dim);margin-bottom:8px">Yansıtma</div>
+<div class="flip-row">
+  <button class="flip-btn" id="fh">↔ Yatay Çevir</button>
+  <button class="flip-btn" id="fv">↕ Dikey Çevir</button>
+</div>
+
+<div class="field">
+  <label>İnce Ayar Açısı: <strong id="aVal">0</strong>°</label>
+  <input id="angle" type="range" min="-45" max="45" value="0">
+</div>
+
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+  <div class="angle-badge" id="angleBadge">⟳ Toplam: 0°</div>
+  <div style="font-size:.8rem;color:var(--txt-faint)">Çeviri: <span id="flipStatus">Yok</span></div>
+</div>
+
 <div class="row">
-<button class="btn btn-ghost" id="rl">↺ Sola 90°</button>
-<button class="btn btn-ghost" id="rr">↻ Sağa 90°</button>
-<button class="btn btn-ghost" id="fh">↔ Yatay Çevir</button>
-<button class="btn btn-ghost" id="fv">↕ Dikey Çevir</button></div>
-<div class="field"><label>İnce ayar açısı: <span id="aVal">0</span>°</label><input id="angle" type="range" min="-45" max="45" value="0"></div>
-<div class="field"><label>Çıktı Formatı</label><select id="fmt"><option value="image/png">PNG (önerilen)</option><option value="image/jpeg">JPG</option><option value="image/webp">WebP</option></select></div>
-<button id="go" class="btn btn-primary">İndir</button>
-<button id="reset" class="btn btn-ghost">Sıfırla</button></div>
-<div id="preview" class="preview hidden"><canvas id="cv"></canvas></div>
+  <div class="field"><label>Çıktı Formatı</label><select id="fmt"><option value="image/png">PNG (önerilen)</option><option value="image/jpeg">JPG</option><option value="image/webp">WebP</option></select></div>
+  <div class="field" id="bgWrap"><label>Arka Plan</label><input id="bg" type="color" value="#ffffff" style="height:42px;padding:4px"></div>
+</div>
+
+<div class="dim-cards" id="dimCards" style="display:none">
+  <div class="dim-card"><div class="lbl">Orijinal</div><div class="val" id="origDim"></div></div>
+  <div class="dim-card accent"><div class="lbl">Çıktı Boyutu</div><div class="val" id="outDim"></div></div>
+</div>
+
+<button id="go" class="btn btn-primary btn-lg" style="width:100%;margin-top:14px">İndir</button>
+</div>
+
+<div id="preview" class="hidden">
+  <div class="cv-wrap"><canvas id="cv"></canvas></div>
+</div>
+
 </div></div></section>
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
@@ -40,31 +88,82 @@
 let imgEl=null,rot=0,flipH=1,flipV=1,fine=0,origName="resim";
 const $=id=>document.getElementById(id);
 const dz=$("dz"),file=$("file"),cv=$("cv");
+
 dz.onclick=()=>file.click();
-dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};
+dz.ondragleave=()=>dz.classList.remove("drag");
 dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);};
 file.onchange=e=>{if(e.target.files[0])load(e.target.files[0]);};
-function load(f){origName=(f.name||"resim").replace(/\.[^.]+$/,"");const r=new FileReader();r.onload=ev=>{imgEl=new Image();imgEl.onload=()=>{
-$("preview").classList.remove("hidden");$("panel").classList.remove("hidden");rot=0;flipH=1;flipV=1;fine=0;$("angle").value=0;$("aVal").textContent="0";draw();
-};imgEl.src=ev.target.result;};r.readAsDataURL(f);}
-function draw(){if(!imgEl)return;const rad=(rot+fine)*Math.PI/180;
-const w=imgEl.naturalWidth,h=imgEl.naturalHeight;
-const sin=Math.abs(Math.sin(rad)),cos=Math.abs(Math.cos(rad));
-cv.width=w*cos+h*sin;cv.height=w*sin+h*cos;
-const ctx=cv.getContext("2d");ctx.clearRect(0,0,cv.width,cv.height);
-ctx.save();ctx.translate(cv.width/2,cv.height/2);ctx.rotate(rad);ctx.scale(flipH,flipV);
-ctx.drawImage(imgEl,-w/2,-h/2);ctx.restore();
-cv.style.maxWidth="100%";cv.style.height="auto";}
-$("rl").onclick=()=>{rot=(rot-90)%360;draw();};
-$("rr").onclick=()=>{rot=(rot+90)%360;draw();};
+
+function load(f){
+  origName=(f.name||"resim").replace(/\.[^.]+$/,"");
+  const r=new FileReader();
+  r.onload=ev=>{
+    imgEl=new Image();
+    imgEl.onload=()=>{
+      $("preview").classList.remove("hidden");
+      $("panel").classList.remove("hidden");
+      rot=0;flipH=1;flipV=1;fine=0;
+      $("angle").value=0;$("aVal").textContent="0";
+      $("origDim").textContent=imgEl.naturalWidth+" × "+imgEl.naturalHeight+" px";
+      $("dimCards").style.display="grid";
+      draw();
+    };
+    imgEl.src=ev.target.result;
+  };
+  r.readAsDataURL(f);
+}
+
+function draw(){
+  if(!imgEl)return;
+  const totalDeg=(rot+fine);
+  const rad=totalDeg*Math.PI/180;
+  const w=imgEl.naturalWidth,h=imgEl.naturalHeight;
+  const sin=Math.abs(Math.sin(rad)),cos=Math.abs(Math.cos(rad));
+  const ow=Math.round(w*cos+h*sin),oh=Math.round(w*sin+h*cos);
+  cv.width=ow;cv.height=oh;
+  const ctx=cv.getContext("2d");
+
+  const fmt=$("fmt").value;
+  if(fmt==="image/jpeg"||fine!==0){ctx.fillStyle=$("bg").value;ctx.fillRect(0,0,ow,oh);}
+
+  ctx.save();
+  ctx.translate(ow/2,oh/2);
+  ctx.rotate(rad);
+  ctx.scale(flipH,flipV);
+  ctx.drawImage(imgEl,-w/2,-h/2);
+  ctx.restore();
+  cv.style.maxWidth="100%";cv.style.height="auto";
+
+  $("outDim").textContent=ow+" × "+oh+" px";
+  $("angleBadge").textContent="⟳ Toplam: "+totalDeg+"°";
+  const flips=[];if(flipH===-1)flips.push("Yatay");if(flipV===-1)flips.push("Dikey");
+  $("flipStatus").textContent=flips.length?flips.join(" + "):"Yok";
+}
+
+$("rl90").onclick=()=>{rot=(rot-90+360)%360;draw();};
+$("rr90").onclick=()=>{rot=(rot+90)%360;draw();};
+$("r180").onclick=()=>{rot=(rot+180)%360;draw();};
 $("fh").onclick=()=>{flipH*=-1;draw();};
 $("fv").onclick=()=>{flipV*=-1;draw();};
-$("angle").oninput=()=>{fine=parseInt($("angle").value);$("aVal").textContent=fine;draw();};
 $("reset").onclick=()=>{rot=0;flipH=1;flipV=1;fine=0;$("angle").value=0;$("aVal").textContent="0";draw();};
-$("go").onclick=()=>{if(!imgEl)return;const fmt=$("fmt").value;
-if(fmt==="image/jpeg"){const t=document.createElement("canvas");t.width=cv.width;t.height=cv.height;
-const tx=t.getContext("2d");tx.fillStyle="#fff";tx.fillRect(0,0,t.width,t.height);tx.drawImage(cv,0,0);
-t.toBlob(dl,fmt,0.92);}else cv.toBlob(dl,fmt);
-function dl(b){const ext=fmt.split("/")[1].replace("jpeg","jpg");
-const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=origName+"-dondurulmus."+ext;a.click();ETSlib.toast("İndirildi ✓");}};
+$("angle").oninput=()=>{fine=parseInt($("angle").value);$("aVal").textContent=fine;draw();};
+$("fmt").onchange=()=>{$("bgWrap").style.display=$("fmt").value==="image/png"?"none":"block";draw();};
+$("bg").onchange=draw;
+
+$("go").onclick=()=>{
+  if(!imgEl)return;
+  const fmt=$("fmt").value;
+  const doDownload=b=>{
+    const ext=fmt.split("/")[1].replace("jpeg","jpg");
+    const a=document.createElement("a");a.href=URL.createObjectURL(b);
+    a.download=origName+"-dondurulmus."+ext;a.click();
+    ETSlib.toast("İndirildi ✓ "+cv.width+"×"+cv.height+" px");
+  };
+  if(fmt==="image/jpeg"){
+    const t=document.createElement("canvas");t.width=cv.width;t.height=cv.height;
+    const tx=t.getContext("2d");tx.fillStyle=$("bg").value;tx.fillRect(0,0,t.width,t.height);tx.drawImage(cv,0,0);
+    t.toBlob(doDownload,fmt,0.92);
+  } else cv.toBlob(doDownload,fmt);
+};
 </script></body></html>

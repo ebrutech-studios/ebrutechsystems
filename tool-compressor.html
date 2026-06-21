@@ -1,67 +1,161 @@
-﻿<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Online Resim Sıkıştırma — Boyut Küçültme — EbruTech Studios</title>
-<meta name="description" content="Online Resim Sıkıştırma — Boyut Küçültme. Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
+<meta name="description" content="Kaliteyi koruyarak resim dosya boyutunu küçült. WebP, JPG veya PNG çıktısı. Önce/sonra karşılaştırma. Ücretsiz online resim sıkıştırıcı.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-compressor.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="EbruTech Studios">
-<meta property="og:title" content="Online Resim Sıkıştırma — Boyut Küçültme — EbruTech Studios">
-<meta property="og:description" content="Online Resim Sıkıştırma — Boyut Küçültme. Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
-<meta property="og:url" content="https://ebrutechsystems.com/tool-compressor.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="Online Resim Sıkıştırıcı — EbruTech Studios">
 <meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
-<meta property="og:locale" content="tr_TR">
-<meta name="twitter:card" content="summary_large_image">
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css"><script type="application/ld+json">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<style>
+.compare-bar-wrap{margin:16px 0;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px}
+.compare-labels{display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:8px}
+.size-bar{height:14px;border-radius:8px;background:rgba(255,255,255,.06);overflow:visible;position:relative}
+.size-bar-fill{height:100%;border-radius:8px;transition:.5s;position:relative}
+.size-bar-fill::after{content:attr(data-label);position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:.7rem;font-weight:700;white-space:nowrap}
+.save-pct{font-family:var(--font-display);font-size:2.4rem;font-weight:800;margin:8px 0 4px;text-align:center}
+.preset-btns{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.preset-btn{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.78rem;cursor:pointer;transition:.15s}
+.preset-btn:hover,.preset-btn.active{border-color:var(--accent);color:var(--accent)}
+</style>
+<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Online Resim Sıkıştırma","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-compressor.html"}
 </script>
-</head>
-<body>
+</head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
 <span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">⚡ Resim Sıkıştırıcı</h1>
-<p class="lead" style="margin:14px 0 26px">Kaliteyi koruyarak dosya boyutunu küçült. WebP, JPG veya PNG çıktısı al. Web ve e-posta için ideal.</p>
-<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli buraya sürükle</b> veya tıkla</p><input id="file" type="file" accept="image/*" class="hidden"></div>
+<p class="lead" style="margin:14px 0 26px">Kaliteyi koruyarak dosya boyutunu küçült. Gerçek zamanlı önce/sonra karşılaştırması.</p>
+
+<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli buraya sürükle</b> veya tıkla<br><span style="color:var(--txt-faint);font-size:.85rem">PNG · JPG · WebP — Tüm görseller</span></p><input id="file" type="file" accept="image/*" class="hidden"></div>
+
 <div id="panel" class="controls hidden">
 <div class="field"><label>Çıktı Formatı</label>
-<select id="fmt"><option value="image/webp">WebP (en küçük, önerilen)</option><option value="image/jpeg">JPG (uyumlu)</option><option value="image/png">PNG (kayıpsız)</option></select></div>
-<div class="field" id="qWrap"><label>Sıkıştırma kalitesi: <span id="qVal">70</span>%</label><input id="q" type="range" min="10" max="95" value="70"></div>
-<button id="go" class="btn btn-primary">Sıkıştır & İndir</button>
-<div id="info" class="sum hidden" style="background:var(--bg-2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-top:4px"></div></div>
-<div id="preview" class="preview hidden"><img id="img" alt="Sıkıştırılacak görsel önizlemesi"></div>
+<select id="fmt">
+<option value="image/webp">WebP (en küçük, önerilen)</option>
+<option value="image/jpeg">JPG (geniş uyumluluk)</option>
+<option value="image/png">PNG (kayıpsız)</option>
+</select></div>
+
+<div class="field" id="qWrap">
+<label>Kalite: <strong id="qVal" style="color:var(--accent)">70</strong>%</label>
+<div class="preset-btns">
+<button class="preset-btn" data-q="30">30% — Küçük</button>
+<button class="preset-btn active" data-q="70">70% — Dengeli</button>
+<button class="preset-btn" data-q="85">85% — Kaliteli</button>
+<button class="preset-btn" data-q="95">95% — Yüksek</button>
+</div>
+<input id="q" type="range" min="10" max="95" value="70">
+</div>
+
+<div id="compareArea" class="compare-bar-wrap" style="display:none">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div style="font-size:.85rem;font-weight:600;color:var(--txt-dim)">Boyut Karşılaştırması</div>
+<div class="save-pct" style="color:var(--accent);font-size:1.4rem;margin:0" id="savePct"></div>
+</div>
+<div class="compare-labels">
+<span id="origLabel" style="color:var(--txt-dim)">Orijinal</span>
+<span id="newLabel" style="color:var(--accent)">Sıkıştırılmış</span>
+</div>
+<div class="size-bar" style="margin-bottom:8px"><div class="size-bar-fill" id="origBar" style="background:rgba(255,255,255,.2)"></div></div>
+<div class="size-bar"><div class="size-bar-fill" id="newBar" style="background:var(--accent)"></div></div>
+<div id="dimInfo" style="font-size:.8rem;color:var(--txt-faint);margin-top:10px;text-align:center"></div>
+</div>
+
+<button id="go" class="btn btn-primary btn-lg" style="width:100%">Sıkıştır & İndir</button>
+</div>
+
+<div id="preview" class="preview hidden" style="margin-top:16px"><img id="img" alt="Sıkıştırılacak görsel" style="border-radius:12px;max-height:280px;object-fit:contain"></div>
 </div></div></section>
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
 let imgEl=null,origSize=0,origName="resim";
 const $=id=>document.getElementById(id);
-const dz=$("dz"),file=$("file");
+const dz=$("dz"),file=$("file"),fmt=$("fmt"),q=$("q");
+const fmtSize=n=>n<1024?n+" B":n<1048576?(n/1024).toFixed(0)+" KB":(n/1048576).toFixed(2)+" MB";
+
 dz.onclick=()=>file.click();
-dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};
+dz.ondragleave=()=>dz.classList.remove("drag");
 dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);};
 file.onchange=e=>{if(e.target.files[0])load(e.target.files[0]);};
-function load(f){origSize=f.size;origName=(f.name||"resim").replace(/\.[^.]+$/,"");
-const r=new FileReader();r.onload=ev=>{imgEl=new Image();imgEl.onload=()=>{
-$("img").src=imgEl.src;$("preview").classList.remove("hidden");$("panel").classList.remove("hidden");
-estimate();
-};imgEl.src=ev.target.result;};r.readAsDataURL(f);}
-const q=$("q"),fmt=$("fmt");
+
+document.querySelectorAll(".preset-btn").forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll(".preset-btn").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    q.value=b.dataset.q;
+    $("qVal").textContent=b.dataset.q;
+    estimate();
+  };
+});
+
+function load(f){
+  origSize=f.size;
+  origName=(f.name||"resim").replace(/\.[^.]+$/,"");
+  const r=new FileReader();
+  r.onload=ev=>{
+    imgEl=new Image();
+    imgEl.onload=()=>{
+      $("img").src=imgEl.src;
+      $("preview").classList.remove("hidden");
+      $("panel").classList.remove("hidden");
+      estimate();
+    };
+    imgEl.src=ev.target.result;
+  };
+  r.readAsDataURL(f);
+}
+
 q.oninput=()=>{$("qVal").textContent=q.value;estimate();};
 fmt.onchange=()=>{$("qWrap").style.display=fmt.value==="image/png"?"none":"block";estimate();};
-function render(cb){const c=document.createElement("canvas");c.width=imgEl.naturalWidth;c.height=imgEl.naturalHeight;
-const ctx=c.getContext("2d");
-if(fmt.value==="image/jpeg"){ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);}
-ctx.drawImage(imgEl,0,0);c.toBlob(cb,fmt.value,q.value/100);}
+
+function render(cb){
+  const c=document.createElement("canvas");
+  c.width=imgEl.naturalWidth;c.height=imgEl.naturalHeight;
+  const ctx=c.getContext("2d");
+  if(fmt.value==="image/jpeg"){ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);}
+  ctx.drawImage(imgEl,0,0);
+  c.toBlob(cb,fmt.value,q.value/100);
+}
+
 let estTimer;
-function estimate(){if(!imgEl)return;clearTimeout(estTimer);estTimer=setTimeout(()=>{
-render(b=>{const pct=100-Math.round(b.size/origSize*100);
-$("info").classList.remove("hidden");
-$("info").innerHTML="<div style='display:flex;justify-content:space-between;color:var(--txt-dim);font-size:.9rem'><span>Orijinal</span><span>"+(origSize/1024).toFixed(0)+" KB</span></div>"+
-"<div style='display:flex;justify-content:space-between;color:var(--accent);font-weight:700;margin-top:4px'><span>Tahmini yeni boyut</span><span>"+(b.size/1024).toFixed(0)+" KB"+(pct>0?" (%"+pct+" ↓)":"")+"</span></div>";
-});},200);}
-$("go").onclick=()=>{if(!imgEl)return;render(b=>{
-const ext=fmt.value.split("/")[1].replace("jpeg","jpg");
-const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=origName+"-sikistirilmis."+ext;a.click();
-const pct=100-Math.round(b.size/origSize*100);
-ETSlib.toast("İndirildi ✓ %"+pct+" küçüldü");});};
+function estimate(){
+  if(!imgEl)return;
+  clearTimeout(estTimer);
+  estTimer=setTimeout(()=>{
+    render(b=>{
+      const pct=100-Math.round(b.size/origSize*100);
+      const maxSz=Math.max(origSize,b.size);
+      $("origBar").style.width=(origSize/maxSz*100)+"%";
+      $("origBar").dataset.label=fmtSize(origSize);
+      $("origBar").style.color=origSize>b.size?"rgba(255,255,255,.5)":"var(--txt)";
+      $("newBar").style.width=(b.size/maxSz*100)+"%";
+      $("newBar").dataset.label=fmtSize(b.size);
+      $("origLabel").textContent="Orijinal — "+fmtSize(origSize);
+      $("newLabel").textContent="Sıkıştırılmış — "+fmtSize(b.size);
+      $("savePct").textContent=pct>0?`%${pct} küçüldü`:"%"+(Math.abs(pct))+" büyüdü";
+      $("savePct").style.color=pct>0?"var(--accent)":"#ff8080";
+      $("dimInfo").textContent=imgEl.naturalWidth+"×"+imgEl.naturalHeight+" px";
+      $("compareArea").style.display="block";
+    });
+  },250);
+}
+
+$("go").onclick=()=>{
+  if(!imgEl)return;
+  $("go").textContent="Sıkıştırılıyor...";$("go").disabled=true;
+  render(b=>{
+    const ext=fmt.value.split("/")[1].replace("jpeg","jpg");
+    const a=document.createElement("a");a.href=URL.createObjectURL(b);
+    a.download=origName+"-sikistirilmis."+ext;a.click();
+    const pct=100-Math.round(b.size/origSize*100);
+    ETSlib.toast("İndirildi ✓ %"+Math.abs(pct)+(pct>0?" küçüldü":" büyüdü"));
+    $("go").textContent="Sıkıştır & İndir";$("go").disabled=false;
+  });
+};
 </script></body></html>
