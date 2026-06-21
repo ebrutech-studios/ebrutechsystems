@@ -7,7 +7,7 @@
 <style>
 :root{
   --bg:#0f1620;--bg2:#15202e;--surface:#1a2736;--text:#f0f4f8;--dim:#9bacc0;--faint:#647890;
-  --accent:#c9a24b;--accent2:#b08d3a;--border:rgba(201,162,75,.2);
+  --accent:#b5263e;--accent2:#8e1c30;--border:rgba(181,38,62,.2);
   --hero-img:url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80');
   --fd:'Playfair Display',serif;--fb:'Source Sans 3',sans-serif;
 }
@@ -69,17 +69,23 @@ section{padding:88px 0}
 .hours .row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--border);color:var(--dim)}
 .hours .row b{color:var(--text)}.hours .row:last-child{border:none}
 .contact-box{background:var(--accent);border-radius:6px;padding:36px;display:flex;flex-direction:column;justify-content:center}
-.contact-box h3{font-size:1.5rem;margin-bottom:10px;color:var(--bg)}
-.contact-box p{color:rgba(15,22,32,.8);margin-bottom:8px;font-weight:500}
+.contact-box h3{font-size:1.5rem;margin-bottom:10px;color:#fff}
+.contact-box p{color:rgba(255,255,255,.88);margin-bottom:8px;font-weight:500}
 .contact-box .btn{background:var(--bg);color:var(--accent);margin-top:14px;align-self:flex-start}
 footer{padding:40px 0;text-align:center;color:var(--faint);font-size:.85rem;border-top:1px solid var(--border)}
 footer a{color:var(--accent)}
 .reveal{opacity:0;transform:translateY(20px);transition:.7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
+@media(max-width:760px){.hamburger{display:flex}.nav-links{display:none;position:fixed;inset:78px 0 0 0;background:var(--bg);flex-direction:column;align-items:flex-start;padding:24px;gap:24px;z-index:49}.nav-links.open{display:flex}}
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;background:#25d366;color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;box-shadow:0 6px 24px rgba(37,211,102,.45);transition:.2s;text-decoration:none}
+.wa-float:hover{transform:scale(1.1)}
 </style></head><body>
 <header><div class="wrap"><nav>
 <a href="#" class="logo">Adalet <span>Hukuk</span></a>
 <div class="nav-links"><a href="#alanlar">Çalışma Alanları</a><a href="#neden">Neden Biz</a><a href="#yorumlar">Yorumlar</a><a href="#sss">SSS</a><a href="#iletisim">İletişim</a></div>
 <a href="#iletisim" class="nav-cta">Randevu Al</a>
+<button class="hamburger" id="ham" aria-label="Menü"><span></span><span></span><span></span></button>
 </nav></div></header>
 <section class="hero"><div class="wrap"><div class="hero-content">
 <span class="eyebrow">Güvenilir Hukuki Danışmanlık</span>
@@ -136,4 +142,9 @@ footer a{color:var(--accent)}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.1});
 document.querySelectorAll(".reveal").forEach((e,i)=>{e.style.transitionDelay=(i%3*0.07)+"s";io.observe(e)});
 document.querySelectorAll(".faq-q").forEach(q=>q.onclick=()=>q.parentElement.classList.toggle("open"));
-</script></body></html>
+const ham=document.getElementById("ham"),navL=document.querySelector(".nav-links");
+ham.onclick=()=>navL.classList.toggle("open");
+navL.querySelectorAll("a").forEach(a=>a.onclick=()=>navL.classList.remove("open"));
+</script>
+<a href="https://wa.me/905313814971?text=Merhaba" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">💬</a>
+</body></html>

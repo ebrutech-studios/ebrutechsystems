@@ -107,6 +107,11 @@ footer a{color:var(--accent)}
 .hours-box .row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);color:var(--dim)}
 .hours-box .row b{color:var(--text)}
 .hours-box .row:last-child{border:none}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
+@media(max-width:720px){.hamburger{display:flex}.nav-links{display:none;position:fixed;inset:72px 0 0 0;background:var(--bg);flex-direction:column;align-items:flex-start;padding:24px;gap:24px;z-index:49}.nav-links.open{display:flex}}
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;background:#25d366;color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;box-shadow:0 6px 24px rgba(37,211,102,.45);transition:.2s;text-decoration:none}
+.wa-float:hover{transform:scale(1.1)}
 </style>
 </head>
 <body>
@@ -122,6 +127,7 @@ footer a{color:var(--accent)}
     <a href="#iletisim">İletişim</a>
   </div>
   <a href="#iletisim" class="nav-cta">Rezervasyon</a>
+  <button class="hamburger" id="ham" aria-label="Menü"><span></span><span></span><span></span></button>
 </nav></div></header>
 
 <section class="hero"><div class="wrap"><div class="hero-content">
@@ -209,6 +215,10 @@ footer a{color:var(--accent)}
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.12});
 document.querySelectorAll(".reveal").forEach((e,i)=>{e.style.transitionDelay=(i%3*0.08)+"s";io.observe(e)});
 document.querySelectorAll(".faq-q").forEach(q=>q.onclick=()=>q.parentElement.classList.toggle("open"));
+const ham=document.getElementById("ham"),navL=document.querySelector(".nav-links");
+ham.onclick=()=>navL.classList.toggle("open");
+navL.querySelectorAll("a").forEach(a=>a.onclick=()=>navL.classList.remove("open"));
 </script>
+<a href="https://wa.me/905313814971?text=Merhaba" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">💬</a>
 </body>
 </html>
