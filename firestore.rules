@@ -1,0 +1,63 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && request.auth.token.email == 'ebrutechstudios@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+
+    function owns(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function validProfileCreate(userId) {
+      return owns(userId)
+        && request.resource.data.keys().hasOnly([
+          'email', 'displayName', 'photoURL', 'authCreatedAt',
+          'lastSignInAt', 'lastSeenAt'
+        ]);
+    }
+
+    function validProfileUpdate(userId) {
+      return owns(userId)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'email', 'displayName', 'photoURL', 'authCreatedAt',
+          'lastSignInAt', 'lastSeenAt'
+        ]);
+    }
+
+    match /users/{userId} {
+      allow read: if owns(userId) || isAdmin();
+      allow create: if validProfileCreate(userId) || isAdmin();
+      allow update: if validProfileUpdate(userId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /adminAudit/{entryId} {
+      allow read, create: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    match /toolReviews/{toolId}/reviews/{reviewId} {
+      allow read: if true;
+      allow create: if signedIn()
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 500
+        && request.resource.data.stars is int
+        && request.resource.data.stars >= 1
+        && request.resource.data.stars <= 5;
+      allow update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

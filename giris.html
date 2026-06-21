@@ -61,6 +61,7 @@
           <p id="proStatus" style="color:var(--txt-dim);margin-bottom:24px"></p>
           <div class="row" style="justify-content:center">
             <a href="tools.html" class="btn btn-primary">Araçlara Git</a>
+            <a id="adminPanelLink" href="admin.html" class="btn btn-ghost hidden">Yönetim Paneli</a>
             <button id="logoutBtn" class="btn btn-ghost">Çıkış Yap</button>
           </div>
         </div>
@@ -194,10 +195,12 @@ document.addEventListener("ets-auth",(e)=>{
   }else{
     document.getElementById("authBox").classList.remove("hidden");
     document.getElementById("loggedIn").classList.add("hidden");
+    document.getElementById('adminPanelLink').classList.add('hidden');
   }
 });
 
 renderMode();
 </script>
+<script type="module" src="assets/js/admin-link.js"></script>
 </body>
 </html>

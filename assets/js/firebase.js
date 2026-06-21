@@ -29,7 +29,7 @@ const db = getFirestore(app);
 
 // Global erişim için window'a bağla (site.js ve sayfalar kullanır)
 window.ETSAuth = {
-  auth, db,
+  app, auth, db,
   user: null,
   isPro: false,
   proUntil: null,
@@ -68,6 +68,18 @@ window.ETSFirestore = { doc, getDoc, updateDoc, setDoc, increment, serverTimesta
 
 onAuthStateChanged(auth, async (user)=>{
   window.ETSAuth.user = user;
+  if(user){
+    try{
+      await setDoc(doc(db,"users",user.uid),{
+        email:(user.email||"").toLowerCase(),
+        displayName:user.displayName||"",
+        photoURL:user.photoURL||"",
+        authCreatedAt:user.metadata.creationTime||null,
+        lastSignInAt:user.metadata.lastSignInTime||null,
+        lastSeenAt:serverTimestamp()
+      },{merge:true});
+    }catch(e){ console.warn("Kullanıcı profili güncellenemedi",e&&e.code); }
+  }
   window.ETSAuth.isPro = user ? await window.ETSAuth._checkPro(user.uid) : false;
   window.ETSAuth.ready = true;
   window.ETSAuth._cbs.forEach(cb=>cb(user, window.ETSAuth.isPro));
