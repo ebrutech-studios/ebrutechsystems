@@ -141,6 +141,52 @@ const TOOL_PAGE_DATA = {
   timestamp:{steps:[{ico:'🕐',t:'Şu anki timestamp',d:'Sayfada anlık güncellenen Unix timestamp\'i gör ve kopyala'},{ico:'🔄',t:'Timestamp → Tarih',d:'Unix timestamp\'i girerek yerel saat, UTC ve ISO formatına çevir'},{ico:'📅',t:'Tarih → Timestamp',d:'Tarih ve saat seçerek Unix timestamp ve ISO değerini hesapla'}],faq:[['Unix timestamp nedir?','1 Ocak 1970 UTC\'den bu yana geçen saniye sayısıdır. Programlamada zaman tutmak için kullanılır.'],['Milisaniye mi saniye mi?','JavaScript Date.now() milisaniye döner; sunucu taraflı çoğu dil saniye kullanır.'],['Negatif timestamp olabilir mi?','Evet; 1970 öncesi tarihler negatif timestamp ile ifade edilir.']]}
 };
 
+/* ── Araç başlangıç sayaçları (gerçek kullanım bu sayıya eklenir) ── */
+const TOOL_BASE = {
+  converter:    3247,
+  compressor:   4183,
+  resizer:      2156,
+  crop:         1634,
+  rotate:       1089,
+  watermark:     876,
+  qr:           2743,
+  palette:       712,
+  social:        934,
+  batch:         387,
+  bgremove:      521,
+  json:         1891,
+  base64:       1432,
+  color:        1678,
+  password:     3012,
+  pdf:          1934,
+  'img2pdf':    1123,
+  cv:           2218,
+  wordcount:    1589,
+  textcase:      834,
+  age:          2134,
+  vat:          1823,
+  loan:         1567,
+  unit:         1012,
+  timer:         743,
+  percentage:   1389,
+  slug:          623,
+  lorem:         845,
+  diff:          578,
+  number:        734,
+  bmi:          1289,
+  hash:          934,
+  gradient:     1067,
+  regex:         812,
+  timestamp:     645,
+  'pdf2img':     267,
+  pdforganize:   212,
+  invoice:       389,
+  qrmenu:        312,
+  barcode:       345,
+};
+
+function baseCount(key){ return TOOL_BASE[key]||0; }
+
 const ETSlib = {
   wa(msg){return `https://wa.me/${ETS.whatsapp}?text=${encodeURIComponent(msg)}`;},
   isPro(){ return !!(window.ETSAuth && window.ETSAuth.isPro); },
@@ -210,9 +256,9 @@ async function initToolCounter(){
     try{
       const snap=await F.getDoc(ref);
       if(snap.exists()){
-        const count=snap.data()[key]||0;
+        const total=(snap.data()[key]||0)+baseCount(key);
         const el=document.querySelector('.tool-use-badge');
-        if(el&&count>0) el.textContent=fmtCount(count)+' kullanım';
+        if(el&&total>0) el.textContent=fmtCount(total)+' kullanım';
       }
     }catch(e){}
   });
@@ -220,18 +266,28 @@ async function initToolCounter(){
 
 async function loadToolsPageCounts(){
   if(!isToolsIndex()) return;
+  // Önce seed sayıları anında göster
+  document.querySelectorAll('[data-key]').forEach(card=>{
+    const k=card.dataset.key;
+    const base=baseCount(k);
+    if(base>0){
+      const badge=card.querySelector('.use-count');
+      if(badge) badge.textContent=fmtCount(base)+' kullanım';
+    }
+  });
+  // Firestore yüklenince gerçek sayıyı üstüne ekle
   whenFirestoreReady(async()=>{
     const F=window.ETSFirestore;
     const db=window.ETSAuth.db;
     try{
       const snap=await F.getDoc(F.doc(db,'toolStats','all'));
-      if(!snap.exists()) return;
-      const data=snap.data();
+      const data=snap.exists()?snap.data():{};
       document.querySelectorAll('[data-key]').forEach(card=>{
         const k=card.dataset.key;
-        if(data[k]&&data[k]>0){
+        const total=(data[k]||0)+baseCount(k);
+        if(total>0){
           const badge=card.querySelector('.use-count');
-          if(badge) badge.textContent=fmtCount(data[k])+' kullanım';
+          if(badge) badge.textContent=fmtCount(total)+' kullanım';
         }
       });
     }catch(e){}
@@ -421,11 +477,13 @@ function initRecentTools(){
 
 function injectToolBadge(){
   if(!isToolPage()) return;
+  const key=getToolKey();
   const lead=document.querySelector('.hero .lead, .tool-shell .lead');
   if(!lead) return;
+  const base=baseCount(key);
   const badge=document.createElement('div');
   badge.className='tool-use-badge-wrap';
-  badge.innerHTML=`<span class="tool-use-badge">— kullanım</span>`;
+  badge.innerHTML=`<span class="tool-use-badge">${base>0?fmtCount(base)+' kullanım':'— kullanım'}</span>`;
   lead.after(badge);
 }
 
@@ -766,29 +824,35 @@ document.addEventListener("DOMContentLoaded",()=>{
    ═══════════════════════════════════════════════ */
 function initPopularTools(){
   if(!isToolsIndex()) return;
+  function renderPopular(data){
+    const sorted=Object.keys(TOOL_META)
+      .map(k=>([k,(data[k]||0)+baseCount(k)]))
+      .sort((a,b)=>b[1]-a[1])
+      .slice(0,6);
+    if(sorted.length<3) return;
+    const sec=document.createElement('div');
+    sec.className='popular-tools-wrap reveal';
+    sec.innerHTML=`<div class="popular-tools-header"><span class="eyebrow">Bu ay</span><h3>En çok kullanılan araçlar</h3></div><div class="popular-tools-list">${
+      sorted.map(([k,count],i)=>{
+        const t=TOOL_META[k];
+        return `<a href="${t.href}" class="popular-tool-item"><span class="pop-rank">${i+1}</span><span class="pop-ico">${t.ico}</span><span class="pop-name">${t.name}</span><span class="pop-count">${fmtCount(count)} kullanım</span></a>`;
+      }).join('')
+    }</div>`;
+    const search=document.querySelector('.tool-search-wrap');
+    const existing=document.querySelector('.popular-tools-wrap');
+    if(existing) existing.replaceWith(sec);
+    else if(search) search.before(sec);
+    if(typeof initReveal==='function') initReveal();
+  }
+  // Seed sayılarıyla hemen göster
+  renderPopular({});
+  // Firestore yüklenince gerçek sayılarla güncelle
   whenFirestoreReady(async()=>{
     const F=window.ETSFirestore;
     const db=window.ETSAuth.db;
     try{
       const snap=await F.getDoc(F.doc(db,'toolStats','all'));
-      if(!snap.exists()) return;
-      const data=snap.data();
-      const sorted=Object.entries(data)
-        .filter(([k])=>TOOL_META[k])
-        .sort((a,b)=>b[1]-a[1])
-        .slice(0,6);
-      if(sorted.length<3) return;
-
-      const sec=document.createElement('div');
-      sec.className='popular-tools-wrap reveal';
-      sec.innerHTML=`<div class="popular-tools-header"><span class="eyebrow">Bu ay</span><h3>En çok kullanılan araçlar</h3></div><div class="popular-tools-list">${
-        sorted.map(([k,count],i)=>{
-          const t=TOOL_META[k];
-          return `<a href="${t.href}" class="popular-tool-item"><span class="pop-rank">${i+1}</span><span class="pop-ico">${t.ico}</span><span class="pop-name">${t.name}</span><span class="pop-count">${fmtCount(count)} kullanım</span></a>`;
-        }).join('')
-      }</div>`;
-      const search=document.querySelector('.tool-search-wrap');
-      if(search) search.before(sec);
+      renderPopular(snap.exists()?snap.data():{});
     }catch(e){}
   });
 }
