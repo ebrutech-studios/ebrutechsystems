@@ -621,6 +621,11 @@ h3{font-size:1.18rem}
 }
 .faq-item:last-child{border-bottom:none}
 .faq-item.open{background:rgba(200,255,46,.04)}
+button.faq-q{
+  width:100%;text-align:left;
+  background:none;border:none;
+  color:inherit;font-family:inherit;
+}
 .faq-q{
   padding:18px 22px;cursor:pointer;
   display:flex;justify-content:space-between;align-items:center;
