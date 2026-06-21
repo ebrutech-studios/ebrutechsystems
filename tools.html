@@ -15,7 +15,9 @@
 <meta name="twitter:image" content="https://ebrutechsystems.com/assets/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css"></head><body>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a"></head><body>
 
 <section class="hero" style="padding-bottom:24px"><div class="wrap">
 <span class="eyebrow">Araç Merkezi</span><h1>Tüm araçlar tek yerde</h1>
@@ -146,6 +148,13 @@
       filter();
     });
   });
+
+  var urlQ=new URLSearchParams(window.location.search).get('q');
+  if(urlQ){
+    search.value=urlQ;
+    search.scrollIntoView({behavior:'smooth',block:'center'});
+    filter();
+  }
 })();
 </script>
 </body></html>

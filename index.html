@@ -24,6 +24,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -51,6 +53,10 @@
     <div class="badge"><span class="dot"></span> 40 araç · Tarayıcıda çalışır · Kayıt gerekmez</div>
     <h1>Görsel, PDF ve işletme araçları için profesyonel dijital merkez.</h1>
     <p class="lead">Format dönüştürün, dosya sıkıştırın, QR üretin ve işletmeniz için hazır web çözümlerine ulaşın. Hızlı, gizli ve mobil uyumlu.</p>
+    <form class="hero-search" id="heroSearchForm" action="tools.html" method="get" role="search" autocomplete="off">
+      <input type="search" name="q" id="heroSearchInput" placeholder="Araç ara… ör: PDF, QR, şifre, BMI" aria-label="Araç ara">
+      <button type="submit" aria-label="Ara">→</button>
+    </form>
     <div class="hero-cta">
       <a href="tools.html" class="btn btn-primary btn-lg">Araçları Aç →</a>
       <a href="hazir-siteler.html" class="btn btn-ghost btn-lg">Hazır Siteleri Gör</a>
@@ -291,6 +297,18 @@
   </div>
 </div></section>
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "name":"EbruTech Studios Kullanıcı Yorumları",
+  "itemListElement":[
+    {"@type":"Review","position":1,"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Emre Şahin"},"reviewBody":"Grafik ajansımda günlük onlarca görseli işliyorum. EbruTech araçları sayesinde iş sürem yarıya indi ve hiç sorun yaşamadım.","itemReviewed":{"@type":"WebSite","name":"EbruTech Studios","url":"https://ebrutechsystems.com"}},
+    {"@type":"Review","position":2,"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Ayşe Kılıç"},"reviewBody":"Kafemin sitesini 1 günde hazırladılar. Hem şık hem de pratik, müşterilerimden çok olumlu geri dönüşler alıyorum.","itemReviewed":{"@type":"WebSite","name":"EbruTech Studios","url":"https://ebrutechsystems.com"}},
+    {"@type":"Review","position":3,"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"Murat Yıldız"},"reviewBody":"Pro üyelik aldım, toplu görsel işleme özelliği inanılmaz zaman kazandırıyor. Fatura aracı da çok pratik. Kesinlikle tavsiye.","itemReviewed":{"@type":"WebSite","name":"EbruTech Studios","url":"https://ebrutechsystems.com"}}
+  ]
+}
+</script>
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 </body>
