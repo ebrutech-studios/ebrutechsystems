@@ -351,4 +351,156 @@ window.BLOG_POSTS = [
 </ul>
 <p>Button, hero section, kart arka planı veya tam sayfa arka planı için mükemmel çalışır. EbruTech Gradient üreticisi ile kombinasyonları önizleyip CSS kodunu tek tıkla kopyalayabilirsiniz.</p>`
   }
+,
+  {
+    id: "kdv-hesaplama-rehberi",
+    baslik: "KDV Hesaplama: İşletmeler İçin Eksiksiz Rehber (2026)",
+    ozet: "Türkiye'deki KDV oranları, KDV dahil/hariç fiyat hesabı ve fatura düzenlerken dikkat edilmesi gerekenler.",
+    tarih: "2026-06-10",
+    okuma: 5,
+    kat: "İşletme",
+    tool: "tool-vat.html",
+    icerik: `
+<p>Katma Değer Vergisi (KDV), Türkiye'de mal ve hizmet satışlarında uygulanan temel vergi türlerinden biridir. İster serbest çalışan olun, ister esnaf, KDV hesaplamasını doğru yapmak hem yasal zorunluluk hem de müşteriye güven verir.</p>
+<h2>Türkiye'deki KDV oranları (2026)</h2>
+<p>Türkiye'de üç temel KDV oranı uygulanmaktadır:</p>
+<ul>
+<li><b>%1:</b> Temel gıda maddeleri, tarım ürünleri, konut (150 m² altı)</li>
+<li><b>%10:</b> İşlenmiş gıda, tekstil, bazı hizmetler, ilaçlar</li>
+<li><b>%20:</b> Standart oran — elektronik, mobilya, inşaat malzemesi, profesyonel hizmetler</li>
+</ul>
+<h2>KDV dahil fiyattan KDV'yi ayırmak</h2>
+<p>Müşteriye KDV dahil fiyat söylediniz ve KDV tutarını ayrı hesaplamak istiyorsunuz? Formül şu:</p>
+<ul>
+<li><b>Net tutar:</b> KDV dahil fiyat ÷ (1 + oran)</li>
+<li><b>KDV tutarı:</b> KDV dahil fiyat − Net tutar</li>
+</ul>
+<p>Örnek: 1.200₺ KDV dahil fiyat, %20 KDV için → Net: 1.200 ÷ 1,20 = <b>1.000₺</b>, KDV: <b>200₺</b></p>
+<h2>KDV hariç fiyata KDV eklemek</h2>
+<p>Net fiyat üzerine KDV ekleyecekseniz:</p>
+<ul>
+<li><b>KDV tutarı:</b> Net fiyat × oran</li>
+<li><b>Brüt (KDV dahil):</b> Net fiyat + KDV tutarı</li>
+</ul>
+<p>Örnek: 800₺ net, %20 KDV → KDV: 160₺, Toplam: <b>960₺</b></p>
+<h2>Fatura düzenlerken dikkat edilecekler</h2>
+<ul>
+<li>Faturada KDV oranını ve tutarını ayrı satırda gösterin</li>
+<li>KDV mükellefi değilseniz fatura yerine makbuz (gider pusulası) düzenleyin</li>
+<li>Yıllık cironuz KDV mükellefiyeti eşiğini aşıyorsa mutlaka vergi dairesine kayıt yaptırın</li>
+</ul>
+<p>Tüm bu hesaplamaları saniyeler içinde yapmak için aşağıdaki KDV hesaplama aracını kullanabilirsiniz.</p>`
+  },
+  {
+    id: "ucretsiz-cv-nasil-yapilir",
+    baslik: "Ücretsiz CV Nasıl Yapılır? Online CV Oluşturucu ile 3 Adımda",
+    ozet: "Program kurmadan, kayıt olmadan, tarayıcıda profesyonel CV hazırlama rehberi. PDF indirmeye hazır.",
+    tarih: "2026-06-14",
+    okuma: 4,
+    kat: "Rehber",
+    tool: "tool-cv.html",
+    icerik: `
+<p>İş başvurusu, freelance proje teklifi veya LinkedIn profilinizi güncellemek için profesyonel bir CV'ye ihtiyacınız var. Ama Word şablonlarıyla uğraşmak, tasarımcıya para ödemek veya üyelik gerektiren sitelere kayıt olmak istemiyorsunuz. İşte tam çözüm burada.</p>
+<h2>Neden online CV oluşturucu?</h2>
+<ul>
+<li><b>Hız:</b> Bilgilerinizi girin, 5 dakikada PDF hazır</li>
+<li><b>Şablonlar:</b> Profesyonel tasarımlar — kendiniz yapmak zorunda değilsiniz</li>
+<li><b>Gizlilik:</b> Verileriniz yalnızca tarayıcınızda kalır, sunucuya gönderilmez</li>
+<li><b>Ücretsiz:</b> Kayıt, kredi kartı, sınır yok</li>
+</ul>
+<h2>3 adımda CV oluşturma</h2>
+<p><b>1. Bilgilerinizi girin:</b> Ad, iletişim, iş deneyimi, eğitim, yetenek ve referanslar. Kısa ve öz tutun — işverenler CV'yi ortalama 7 saniye inceliyor.</p>
+<p><b>2. Şablon seçin:</b> Kurumsal, modern veya minimal — hangi sektöre başvurduğunuza göre seçin. Finans ve hukuk için klasik, teknoloji ve tasarım için modern tercih edin.</p>
+<p><b>3. PDF indirin:</b> Tek tıkla hazır. Farklı şablonları denemek isterseniz bilgilerinizi yeniden girmeniz gerekmez.</p>
+<h2>Etkili bir CV için ipuçları</h2>
+<ul>
+<li>Türkiye'deki iş başvurularında fotoğraf genellikle beklenir — profesyonel bir fotoğraf ekleyin</li>
+<li>İş deneyimini en yeniden en eskiye doğru sıralayın (ters kronolojik)</li>
+<li>Başvurduğunuz pozisyona göre "Özet" bölümünü kişiselleştirin</li>
+<li>Yabancı dil bilginizi A1–C2 ölçeğinde belirtin</li>
+<li>1 sayfayı aşmamaya çalışın; 10+ yıl deneyiminiz yoksa 2 sayfa gerek yok</li>
+</ul>
+<p>Aşağıdaki aracı açın, bilgilerinizi doldurun ve PDF'i indirin. Tamamen ücretsiz, kayıt gerektirmez.</p>`
+  },
+  {
+    id: "kredi-taksit-hesaplama",
+    baslik: "Kredi Taksit Hesaplama: Aylık Ödeme ve Toplam Faiz Nasıl Bulunur?",
+    ozet: "Banka kredisi almadan önce taksit tutarını, toplam geri ödemeyi ve gerçek faiz yükünü kendiniz hesaplayın.",
+    tarih: "2026-06-17",
+    okuma: 5,
+    kat: "İşletme",
+    tool: "tool-loan.html",
+    icerik: `
+<p>Banka kredinizi onaylamadan önce aylık taksitinizin ne olacağını, toplam ne kadar geri ödeyeceğinizi ve gerçek faiz yükünü bilmeniz kritik önem taşır. Bu bilgileri kendiniz hesaplamak hem sürprizleri engeller hem de bankaları karşılaştırmanızı sağlar.</p>
+<h2>Kredi hesaplamada temel kavramlar</h2>
+<ul>
+<li><b>Anapara:</b> Bankadan aldığınız gerçek tutar</li>
+<li><b>Aylık faiz oranı:</b> Bankanın uyguladığı aylık yüzde (yıllık ÷ 12)</li>
+<li><b>Vade:</b> Kaç ayda ödeyeceğiniz</li>
+<li><b>Taksit:</b> Her ay ödediğiniz sabit tutar</li>
+<li><b>Toplam geri ödeme:</b> Taksit × Vade = Ödediğiniz toplam para</li>
+<li><b>Toplam faiz:</b> Toplam geri ödeme − Anapara</li>
+</ul>
+<h2>Taksit formülü</h2>
+<p>Eşit taksitli kredilerde (annüite) aylık taksit şu formülle hesaplanır:</p>
+<p style="background:var(--surface-2);padding:12px 16px;border-radius:8px;font-family:monospace;font-size:.92rem">Taksit = Anapara × [r × (1+r)^n] ÷ [(1+r)^n − 1]</p>
+<p>Burada <b>r</b> = aylık faiz oranı, <b>n</b> = vade (ay sayısı).</p>
+<h2>Örnek hesaplama</h2>
+<p>50.000₺ kredi, %3 aylık faiz, 24 ay vade:</p>
+<ul>
+<li>Aylık taksit ≈ <b>2.954₺</b></li>
+<li>Toplam geri ödeme ≈ <b>70.896₺</b></li>
+<li>Toplam faiz ≈ <b>20.896₺</b> (anaparanın %42'si)</li>
+</ul>
+<h2>Dikkat edilecekler</h2>
+<ul>
+<li>Bankalar dosya masrafı, hayat sigortası ve BSMV ekleyebilir — bu araç yalnızca anapara + faiz hesaplar</li>
+<li>Değişken faizli kredilerde taksit tutarı ilerleyen dönemlerde değişebilir</li>
+<li>Erken kapatmada bazı bankalar ceza uygular — sözleşmeyi okuyun</li>
+<li>Farklı vadeler deneyin: vade uzadıkça taksit düşer ama toplam faiz artar</li>
+</ul>
+<p>Aşağıdaki araçla farklı vade ve faiz oranlarını hızlıca karşılaştırın.</p>`
+  },
+  {
+    id: "png-jpg-webp-fark",
+    baslik: "PNG mı, JPG mı, WebP mi? Doğru Resim Formatını Seçme Rehberi",
+    ozet: "Her resim formatının ne işe yaradığını, ne zaman hangisini kullanmanız gerektiğini ve web için en iyi seçimi öğrenin.",
+    tarih: "2026-06-20",
+    okuma: 4,
+    kat: "Rehber",
+    tool: "tool-converter.html",
+    icerik: `
+<p>Bir resim kaydederken veya web sitenize yüklerken karşınıza çıkan format seçimi önemlidir. Yanlış format hem dosya boyutunu şişirir hem de görsel kaliteyi düşürebilir. PNG, JPG ve WebP arasındaki farkı bir kez öğrenin, doğru seçimi her zaman yapın.</p>
+<h2>JPG (JPEG) — Fotoğraflar için</h2>
+<p>JPG, kayıplı sıkıştırma kullanır: renk bilgisinin bir kısmını siler ama boyutu dramatik şekilde küçültür.</p>
+<ul>
+<li><b>Ne zaman kullanın:</b> Fotoğraflar, ürün görselleri, manzaralar</li>
+<li><b>Avantaj:</b> Küçük dosya boyutu, geniş destek</li>
+<li><b>Dezavantaj:</b> Her kaydedişte kalite düşer, şeffaflık yok</li>
+<li><b>Tipik boyut:</b> 5 MB fotoğraf → 200–500 KB JPG</li>
+</ul>
+<h2>PNG — Logo ve grafikler için</h2>
+<p>PNG, kayıpsız sıkıştırma kullanır: piksel bilgisi eksiksiz korunur. Şeffaflığı (alfa kanalı) destekler.</p>
+<ul>
+<li><b>Ne zaman kullanın:</b> Logo, ikon, ekran görüntüsü, şeffaf arka plan gerektiren görseller</li>
+<li><b>Avantaj:</b> Kalite kaybı yok, şeffaflık desteklenir, metin keskin çıkar</li>
+<li><b>Dezavantaj:</b> Fotoğraflar için boyut çok büyük olur</li>
+<li><b>Tipik boyut:</b> Aynı fotoğraf JPG'nin 3–5 katı büyüklükte olabilir</li>
+</ul>
+<h2>WebP — Web için en iyi seçim</h2>
+<p>Google tarafından geliştirilen WebP, JPG ve PNG'nin avantajlarını birleştirir.</p>
+<ul>
+<li><b>Ne zaman kullanın:</b> Web sitesi görselleri, e-ticaret ürün fotoğrafları</li>
+<li><b>Avantaj:</b> JPG'ye göre %25–35 daha küçük, şeffaflık destekler, kalite üstün</li>
+<li><b>Dezavantaj:</b> Eski tarayıcılarda (IE) desteklenmez — modern tarayıcılar sorunsuz açar</li>
+</ul>
+<h2>Özet: Hangisini ne zaman?</h2>
+<ul>
+<li>📷 Fotoğraf → <b>WebP</b> (yoksa JPG)</li>
+<li>🎨 Logo / İkon / Şeffaf zemin → <b>PNG</b></li>
+<li>🌐 Web sitesi görseli → <b>WebP</b></li>
+<li>🖨️ Baskı → <b>PNG</b> veya orijinal RAW</li>
+</ul>
+<p>Formatlar arasında geçiş yapmak için aşağıdaki ücretsiz dönüştürücüyü kullanın — yükleme gerekmez, tarayıcıda çalışır.</p>`
+  }
 ];

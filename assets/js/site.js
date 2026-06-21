@@ -444,7 +444,7 @@ function buildShell(){
       <div class="col"><h5>Ürün</h5>
         <a href="tools.html">Tüm Araçlar</a><a href="fiyatlandirma.html">Pro Üyelik</a><a href="giris.html">Giriş / Hesap</a></div>
       <div class="col"><h5>Stüdyo</h5>
-        <a href="hizmetler.html">Hizmetler</a><a href="fiyatlandirma.html">Paketler</a><a href="iletisim.html">İletişim</a></div>
+        <a href="hizmetler.html">Hizmetler</a><a href="fiyatlandirma.html">Paketler</a><a href="hakkimizda.html">Hakkımızda</a><a href="iletisim.html">İletişim</a></div>
       <div class="col"><h5>Yasal</h5>
         <a href="gizlilik.html">Gizlilik & KVKK</a><a href="kosullar.html">Kullanım Koşulları</a></div>
       <div class="col"><h5>İletişim</h5>
@@ -722,6 +722,74 @@ function initToolPage(){
   initReveal();
 }
 
+/* ═══════════════════════════════════════════════
+   FAVORİLER
+   ═══════════════════════════════════════════════ */
+function initFavorites(){
+  const onIndex=isToolsIndex();
+  const onTool=isToolPage();
+  if(!onIndex&&!onTool) return;
+
+  let favs=[];
+  try{ favs=JSON.parse(localStorage.getItem('ets-favs')||'[]'); }catch(e){}
+
+  function isFav(k){ return favs.includes(k); }
+  function toggleFav(k){
+    const i=favs.indexOf(k);
+    if(i>=0) favs.splice(i,1); else favs.push(k);
+    localStorage.setItem('ets-favs',JSON.stringify(favs));
+    return favs.includes(k);
+  }
+
+  if(onIndex){
+    document.querySelectorAll('[data-key]').forEach(card=>{
+      const k=card.dataset.key;
+      const btn=document.createElement('button');
+      btn.className='fav-btn'+(isFav(k)?' active':'');
+      btn.setAttribute('aria-label','Favorilere ekle/çıkar');
+      btn.innerHTML='♥';
+      btn.addEventListener('click',(e)=>{
+        e.preventDefault(); e.stopPropagation();
+        btn.classList.toggle('active',toggleFav(k));
+        renderFavSection();
+      });
+      card.appendChild(btn);
+    });
+    renderFavSection();
+  }
+
+  if(onTool){
+    const k=getToolKey();
+    const anchor=document.querySelector('.tool-use-badge-wrap')||document.querySelector('.hero .lead');
+    if(anchor){
+      const btn=document.createElement('button');
+      btn.className='fav-btn-hero'+(isFav(k)?' active':'');
+      btn.innerHTML=(isFav(k)?'♥ Favorilerde':'♡ Favorilere ekle');
+      btn.addEventListener('click',()=>{
+        const a=toggleFav(k);
+        btn.classList.toggle('active',a);
+        btn.innerHTML=a?'♥ Favorilerde':'♡ Favorilere ekle';
+      });
+      anchor.after(btn);
+    }
+  }
+
+  function renderFavSection(){
+    const existing=document.querySelector('.fav-tools-wrap');
+    if(!favs.length){ if(existing) existing.remove(); return; }
+    const sec=document.createElement('div');
+    sec.className='fav-tools-wrap';
+    sec.innerHTML=`<span class="eyebrow" style="display:block;margin-bottom:10px">Favorilerim</span><div class="fav-list">${
+      favs.map(k=>{const t=TOOL_META[k];return t?`<a href="${t.href}" class="fav-chip">${t.ico} ${t.name}</a>`:''}).filter(Boolean).join('')
+    }</div>`;
+    const recent=document.querySelector('.recent-tools');
+    const search=document.querySelector('.tool-search-wrap');
+    if(existing) existing.replaceWith(sec);
+    else if(recent) recent.before(sec);
+    else if(search) search.before(sec);
+  }
+}
+
 document.addEventListener("DOMContentLoaded",()=>{
   buildShell();
   hardenNewTabLinks();
@@ -741,6 +809,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   initFaq();
   initBackToTop();
   initPromoBar();
+  initFavorites();
   initPopularTools();
   if(isToolPage()){
     const s=document.createElement('script');
