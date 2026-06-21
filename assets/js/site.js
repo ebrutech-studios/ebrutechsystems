@@ -2,7 +2,7 @@
 
 const ETS = {
   brand: "EbruTech Studios",
-  whatsapp: "905414792972",
+  whatsapp: "905313814971",
   email: "info@ebrutechsystems.com"
 };
 
