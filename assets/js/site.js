@@ -445,6 +445,8 @@ function buildShell(){
         <a href="tools.html">Tüm Araçlar</a><a href="fiyatlandirma.html">Pro Üyelik</a><a href="giris.html">Giriş / Hesap</a></div>
       <div class="col"><h5>Stüdyo</h5>
         <a href="hizmetler.html">Hizmetler</a><a href="fiyatlandirma.html">Paketler</a><a href="iletisim.html">İletişim</a></div>
+      <div class="col"><h5>Yasal</h5>
+        <a href="gizlilik.html">Gizlilik & KVKK</a><a href="kosullar.html">Kullanım Koşulları</a></div>
       <div class="col"><h5>İletişim</h5>
         <a href="${ETSlib.wa('Merhaba EbruTech Studios')}" target="_blank" rel="noopener noreferrer">WhatsApp</a>
         <a href="mailto:${ETS.email}">${ETS.email}</a>
@@ -463,7 +465,7 @@ function buildShell(){
     </div>
     <div class="foot-bottom">
       <span>© 2026 EbruTech Studios — Tüm hakları saklıdır.</span>
-      <span>Akın Bolcan · Ebru Bolcan</span>
+      <span><a href="gizlilik.html" style="color:var(--txt-faint)">Gizlilik</a> · <a href="kosullar.html" style="color:var(--txt-faint)">Koşullar</a> · Akın Bolcan · Ebru Bolcan</span>
     </div>
   </div></footer>`);
 
@@ -517,7 +519,7 @@ function initKvkk(){
   const banner=document.createElement('div');
   banner.className='kvkk-banner';
   banner.innerHTML=`
-    <p>Bu site hizmet kalitesini artırmak amacıyla çerezler kullanır. Devam ederek kabul etmiş sayılırsınız.</p>
+    <p>Bu site hizmet kalitesini artırmak amacıyla çerezler kullanır. Devam ederek kabul etmiş sayılırsınız. <a href="gizlilik.html" style="color:var(--accent)">Gizlilik Politikası</a></p>
     <div style="display:flex;gap:10px;flex:none">
       <button class="btn btn-ghost" id="kvkkDeny" style="min-height:38px;padding:8px 16px;font-size:.88rem">Reddet</button>
       <button class="btn btn-primary" id="kvkkAccept" style="min-height:38px;padding:8px 16px;font-size:.88rem">Kabul Et</button>
