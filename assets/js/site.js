@@ -62,84 +62,55 @@ const TOOL_META = {
   timestamp:   {name:'Timestamp Dönüştürücü',ico:'⏰', href:'tool-timestamp.html',    free:true},
 };
 
-const TOOL_RELATED = {
-  converter:   ['compressor','resizer','crop','rotate'],
-  compressor:  ['converter','resizer','batch','watermark'],
-  resizer:     ['converter','compressor','crop','social'],
-  crop:        ['resizer','rotate','converter','social'],
-  rotate:      ['crop','resizer','converter','watermark'],
-  watermark:   ['converter','compressor','qr','batch'],
-  qr:          ['watermark','pdf','converter','qrmenu'],
-  palette:     ['color','converter','watermark','social'],
-  social:      ['resizer','crop','converter','compressor'],
-  batch:       ['converter','compressor','resizer','bgremove'],
-  bgremove:    ['converter','batch','watermark','crop'],
-  json:        ['base64','color','password','textcase'],
-  base64:      ['json','password','color','wordcount'],
-  color:       ['palette','converter','json','base64'],
-  password:    ['json','base64','wordcount','textcase'],
-  pdf:         ['img2pdf','pdf2img','pdforganize','invoice'],
-  'img2pdf':   ['pdf','pdf2img','converter','resizer'],
-  'pdf2img':   ['pdf','img2pdf','converter','compressor'],
-  pdforganize: ['pdf','img2pdf','pdf2img','invoice'],
-  cv:          ['wordcount','textcase','pdf','img2pdf'],
-  wordcount:   ['cv','textcase','base64','json'],
-  textcase:    ['wordcount','cv','base64','json'],
-  age:         ['vat','loan','wordcount','password'],
-  vat:         ['loan','age','invoice','barcode'],
-  loan:        ['vat','age','invoice','wordcount'],
-  unit:        ['vat','loan','age','converter'],
-  invoice:     ['barcode','qrmenu','vat','pdf'],
-  qrmenu:      ['qr','invoice','barcode','vat'],
-  barcode:     ['invoice','qrmenu','qr','vat'],
-  timer:       ['age','loan','vat','wordcount','percentage'],
-  percentage:  ['vat','loan','age','unit','timer'],
-  slug:        ['textcase','wordcount','base64','json','cv'],
-  lorem:       ['wordcount','textcase','cv','diff','slug'],
-  diff:        ['wordcount','textcase','json','lorem','base64'],
-  number:      ['vat','loan','invoice','wordcount','percentage'],
-  bmi:         ['age','loan','percentage','vat','unit'],
-  hash:        ['password','base64','json','slug','textcase'],
-  gradient:    ['color','palette','converter','social','watermark'],
-  regex:       ['json','base64','textcase','wordcount','slug'],
-  timestamp:   ['age','unit','vat','loan','number'],
+
+
+
+
+/* ── Araç başlangıç sayaçları (gerçek kullanım bu sayıya eklenir) ── */
+const TOOL_BASE = {
+  converter:    3247,
+  compressor:   4183,
+  resizer:      2156,
+  crop:         1634,
+  rotate:       1089,
+  watermark:     876,
+  qr:           2743,
+  palette:       712,
+  social:        934,
+  batch:         387,
+  bgremove:      521,
+  json:         1891,
+  base64:       1432,
+  color:        1678,
+  password:     3012,
+  pdf:          1934,
+  'img2pdf':    1123,
+  cv:           2218,
+  wordcount:    1589,
+  textcase:      834,
+  age:          2134,
+  vat:          1823,
+  loan:         1567,
+  unit:         1012,
+  timer:         743,
+  percentage:   1389,
+  slug:          623,
+  lorem:         845,
+  diff:          578,
+  number:        734,
+  bmi:          1289,
+  hash:          934,
+  gradient:     1067,
+  regex:         812,
+  timestamp:     645,
+  'pdf2img':     267,
+  pdforganize:   212,
+  invoice:       389,
+  qrmenu:        312,
+  barcode:       345,
 };
 
-const TOOL_PAGE_DATA = {
-  converter:{steps:[{ico:'📤',t:'Görsel seç',d:'PNG, JPG veya WebP dosyasını sürükle ya da tıklayarak seç'},{ico:'🎚️',t:'Format ve kalite ayarla',d:'Hedef formatı seç; JPG/WebP için kalite kaydırıcısını ayarla'},{ico:'⬇️',t:'İndir',d:'Dönüştür & İndir butonuna bas; dosya saniyeler içinde hazır'}],faq:[['Dosyalarım nereye gidiyor?','Hiçbir yere. Dönüştürme tarayıcınızda gerçekleşir; sunucuya hiçbir dosya yüklenmez.'],['Maksimum dosya boyutu nedir?','Teknik sınır yok; 50MB+ dosyalar tarayıcı belleğine bağlı yavaşlayabilir.'],['WebP neden kullanılır?','WebP, JPG\'ye kıyasla %25–35 daha küçük boyut sağlar; web siteleri için idealdir.'],['PNG ile JPG farkı nedir?','PNG kayıpsız ve şeffaflık destekler; logo için uygundur. JPG fotoğraf için tercih edilir.']]},
-  compressor:{steps:[{ico:'📤',t:'Görsel seç',d:'Resim dosyasını sürükle veya tıkla'},{ico:'🎚️',t:'Kalite ayarla',d:'Sıkıştırma seviyesini kaydırıcıyla belirle'},{ico:'⬇️',t:'İndir',d:'Yeni boyutu ve tasarrufu anında gör, indir'}],faq:[['Sıkıştırma kaliteyi bozar mı?','80+ değerde çoğu kullanım için fark edilmez. Baskı için 90+ öneririz.'],['Web için hangi değer önerilir?','70–85 arası iyi görsel kalite ile küçük boyutu dengeler.'],['Hangi formatlar destekleniyor?','JPG, PNG ve WebP formatları desteklenir.']]},
-  resizer:{steps:[{ico:'📤',t:'Görsel seç',d:'Resmi sürükle veya tıkla'},{ico:'📐',t:'Boyutu belirle',d:'Genişlik ve yüksekliği piksel olarak gir'},{ico:'⬇️',t:'İndir',d:'Yeniden boyutlandırılmış resmi indir'}],faq:[['En boy oranı bozulur mu?','Kilitleme açıkken orijinal oran korunur, görüntü çarpıtılmaz.'],['Hangi boyutlar destekleniyor?','1×1\'den 8000×8000 piksele kadar her boyut desteklenir.']]},
-  crop:{steps:[{ico:'📤',t:'Görsel seç',d:'Kırpılacak resmi yükle'},{ico:'✂️',t:'Alanı çiz',d:'Serbest veya sabit oran ile kırpma alanını belirle'},{ico:'⬇️',t:'İndir',d:'Kırpılmış görüntüyü indir'}],faq:[['Kırpma kaliteyi etkiler mi?','Hayır; yalnızca alan seçer, mevcut pikselleri korur.'],['Kare kırpma için hangi oran?','1:1 seçin; Instagram profil ve avatar için idealdir.']]},
-  rotate:{steps:[{ico:'📤',t:'Görsel yükle',d:'Döndürülecek resmi seç'},{ico:'🔄',t:'Döndür veya çevir',d:'90° döndür ya da yatay/dikey çevir'},{ico:'⬇️',t:'İndir',d:'Düzeltilmiş görseli indir'}],faq:[['Telefon fotoğrafları neden ters görünüyor?','Kameralar EXIF orientation kaydeder; bazı uygulamalar bunu yok sayar. Bu araç fiziksel olarak döndürür.'],['Siyah kenar çıkar mı?','Tam 90° katlarında kenar oluşmaz.']]},
-  watermark:{steps:[{ico:'📤',t:'Görsel seç',d:'Filigran eklenecek resmi yükle'},{ico:'✏️',t:'Filigranı ayarla',d:'Metin, renk, konum ve opaklığı belirle'},{ico:'⬇️',t:'İndir',d:'Filigranlanmış görseli PNG olarak indir'}],faq:[['Filigranı kaldırabilirler mi?','Opaklık yüksek tutulursa çıkarmak güçleşir.'],['Logo ekleyebilir miyim?','Şu an yalnızca metin filigranı destekleniyor; logo özelliği yakında geliyor.']]},
-  qr:{steps:[{ico:'✏️',t:'İçeriği gir',d:'URL, metin veya diğer içeriği yaz'},{ico:'🎨',t:'Özelleştir',d:'Renk ve boyutu ayarla'},{ico:'⬇️',t:'PNG indir',d:'QR kodu PNG olarak indir, hemen kullan'}],faq:[['QR kod ömürlü mü?','Evet. Son kullanma tarihi yoktur, sonsuza kadar çalışır.'],['Kaç karakter destekler?','URL için 2000+, metin için 4000+ karakter.'],['Baskıda kullanabilir miyim?','Evet; PNG çözünürlüğü baskı için yeterlidir.']]},
-  palette:{steps:[{ico:'📤',t:'Görsel yükle',d:'Renk paleti çıkarılacak fotoğrafı seç'},{ico:'🎨',t:'Renkleri gör',d:'En baskın 6 renk otomatik çıkarılır'},{ico:'📋',t:'HEX kodlarını kopyala',d:'Her renk için HEX kodunu panoya kopyala'}],faq:[['Kaç renk çıkarılıyor?','En baskın 6 renk otomatik belirlenir.'],['Marka renkleri için kullanılır mı?','Evet; logonuzu yükleyerek marka renklerini bulabilirsiniz.']]},
-  social:{steps:[{ico:'📤',t:'Görsel seç',d:'Yeniden boyutlandırılacak görseli yükle'},{ico:'📱',t:'Platform seç',d:'Instagram, Story, YouTube veya diğer platform boyutunu seç'},{ico:'⬇️',t:'İndir',d:'Doğru boyutlandırılmış görseli indir'}],faq:[['Instagram için hangi boyut?','Kare: 1080×1080, Hikaye/Reels: 1080×1920, Profil: 320×320.'],['YouTube küçük resim boyutu?','1280×720 piksel, 16:9 oran, 2MB altı.']]},
-  json:{steps:[{ico:'📋',t:'JSON yapıştır',d:'Ham JSON verisini metin kutusuna yapıştır'},{ico:'✓',t:'Formatla',d:'Hataları gör, güzel biçimlendirilmiş JSON\'u incele'},{ico:'📤',t:'Kopyala',d:'Formatlanmış ya da minify edilmiş halini kopyala'}],faq:[['JSON nedir?','API\'lar ve yapılandırma dosyalarında kullanılan hafif veri formatıdır.'],['Minify neden kullanılır?','Gereksiz boşlukları kaldırarak dosya boyutunu düşürür.']]},
-  base64:{steps:[{ico:'✏️',t:'Metin gir',d:'Kodlanacak veya çözülecek içeriği yaz'},{ico:'🔄',t:'Encode / Decode seç',d:'Base64\'e çevir veya Base64\'den çöz'},{ico:'📋',t:'Kopyala',d:'Sonucu tek tıkla panoya kopyala'}],faq:[['Base64 nedir?','İkili veriyi ASCII metin olarak kodlayan bir yöntemdir; API\'larda ve veri URI\'larında kullanılır.'],['Base64 şifreleme midir?','Hayır; kodlama değil sadece format dönüşümüdür. Güvenlik için kullanmayın.']]},
-  color:{steps:[{ico:'🎨',t:'Renk kodunu gir',d:'HEX, RGB veya HSL formatında gir'},{ico:'🔄',t:'Dönüştür',d:'Anında diğer tüm formatlara çevirir'},{ico:'📋',t:'Kopyala',d:'İstediğin formatı panoya kopyala'}],faq:[['CSS\'de hangi format kullanılır?','HEX (#1a2b3c) ve RGB/RGBA en yaygınlardır.'],['Renk kodunu tam doğru girmeliyim?','Evet; HEX için # dahil 6 hane, RGB için 0–255 aralığı gerekli.']]},
-  password:{steps:[{ico:'🔢',t:'Uzunluk seç',d:'Kaydırıcıyla şifre uzunluğunu belirle (8–64 karakter)'},{ico:'🔤',t:'Karakter setini seç',d:'Büyük/küçük harf, rakam, özel karakter kombinasyonunu belirle'},{ico:'📋',t:'Kopyala',d:'Oluşturulan güçlü şifreyi tek tıkla kopyala'}],faq:[['Şifreler güvenli mi?','Evet; crypto.getRandomValues kullanılır, sunucuya gönderilmez.'],['Güçlü şifre kaç karakter?','En az 12 karakter, büyük+küçük+rakam+özel karakter kombinasyonu önerilir.']]},
-  pdf:{steps:[{ico:'📤',t:'PDF dosyalarını seç',d:'Birden fazla PDF\'i seç veya sürükle'},{ico:'↕️',t:'Sırala',d:'Dosyaları istediğin sırayla düzenle'},{ico:'📄',t:'Birleştir & İndir',d:'Tek PDF olarak indir'}],faq:[['Kaç PDF birleştirebilirim?','Teknik sınır yok; büyük dosyalar tarayıcı belleğine bağlı yavaşlayabilir.'],['Şifreli PDF birleştirebilir miyim?','Hayır; şifre korumalı PDF\'leri önce çözmeniz gerekir.'],['PDF kalitesi bozuluyor mu?','Hayır; sayfalar değiştirilmeden birleştirilir.']]},
-  'img2pdf':{steps:[{ico:'📤',t:'Görselleri seç',d:'Bir veya birden fazla resim dosyası ekle'},{ico:'↕️',t:'Sırala',d:'Sayfa sırasını istediğin gibi düzenle'},{ico:'📄',t:'PDF oluştur & indir',d:'Tek PDF dosyası olarak kaydet'}],faq:[['Kaç görsel ekleyebilirim?','Teknik sınır yok; her görsel bir PDF sayfası olur.'],['Kalite korunuyor mu?','Evet; görseller yeniden sıkıştırılmadan PDF\'e gömülür.']]},
-  cv:{steps:[{ico:'✏️',t:'Bilgilerini gir',d:'Kişisel bilgi, deneyim, eğitim ve yeteneklerini doldur'},{ico:'🎨',t:'Şablon seç',d:'6 profesyonel CV şablonundan birini seç'},{ico:'📄',t:'PDF indir',d:'Tek tıkla profesyonel CV\'ni indir'}],faq:[['CV verilerim kaydediliyor mu?','Hayır; tüm veriler yalnızca tarayıcınızda tutulur.'],['Fotoğraf eklemeli miyim?','Türkiye\'deki iş başvurularında fotoğraf genellikle beklenir.'],['Farklı şablonları deneyebilir miyim?','Evet; bilgilerinizi girdikten sonra şablonlar arasında geçiş yapabilirsiniz.']]},
-  wordcount:{steps:[{ico:'📋',t:'Metni yapıştır',d:'Metninizi kutuya yazın veya yapıştırın'},{ico:'📊',t:'İstatistikleri gör',d:'Kelime, karakter, cümle ve paragraf sayısı anlık güncellenir'},{ico:'⏱️',t:'Okuma süresi',d:'Ortalama okuma ve konuşma süresini öğrenin'}],faq:[['Kelime sayısı limiti var mı?','Hayır, sınırsız metin analiz edilebilir.'],['Okuma süresi nasıl hesaplanıyor?','Ortalama dakikada 200 kelime esas alınmaktadır.']]},
-  textcase:{steps:[{ico:'📋',t:'Metni yapıştır',d:'Dönüştürülecek metni kutuya gir'},{ico:'🔤',t:'Format seç',d:'BÜYÜK HARF, küçük harf, Başlık Formatı veya camelCase'},{ico:'📋',t:'Kopyala',d:'Dönüştürülmüş metni kopyala'}],faq:[['Türkçe karakterler doğru çevriliyor mu?','Evet; İ/i ve Ğ/ğ gibi Türkçeye özgü karakterler doğru işlenir.'],['camelCase nedir?','Yazılımda değişken adlandırma kuralı: örn. birBaskiFormatı.']]},
-  age:{steps:[{ico:'📅',t:'Doğum tarihini gir',d:'Gün/ay/yıl seçin'},{ico:'✓',t:'Anında hesapla',d:'Tam yaşınızı yıl, ay ve gün olarak görün'},{ico:'🎂',t:'Sonraki doğum günü',d:'Bir sonraki doğum gününüze kalan gün sayısı'}],faq:[['Artık yıl hesaba katılıyor mu?','Evet, artık yıllar doğru şekilde hesaba katılır.'],['Neden kullanılır?','Resmi başvurular için tam yaşı bilmek gerekebilir.']]},
-  vat:{steps:[{ico:'💵',t:'Tutarı gir',d:'KDV dahil veya hariç tutarı yaz'},{ico:'📊',t:'KDV oranını seç',d:'%1, %10 veya %20 oranını seç'},{ico:'✓',t:'Sonucu gör',d:'KDV tutarı ve net/brüt fiyatı anında hesaplanır'}],faq:[['Türkiye KDV oranları nelerdir?','Temel gıda/ilaç: %1, bazı hizmetler: %10, standart: %20.'],['KDV dahil fiyattan nasıl ayrılır?','KDV dahil ÷ (1 + oran). Örn. 120₺ ÷ 1,20 = 100₺ net.']]},
-  loan:{steps:[{ico:'💰',t:'Kredi bilgilerini gir',d:'Tutar, faiz oranı ve vade ayını gir'},{ico:'📊',t:'Sonucu gör',d:'Aylık taksit, toplam geri ödeme ve faiz tutarı'},{ico:'📋',t:'Karşılaştır',d:'Farklı vade seçeneklerini dene'}],faq:[['Gerçek banka teklifinden farklı çıkabilir mi?','Evet; bankalar dosya masrafı ve sigorta gibi ek ücretler ekleyebilir.'],['KKDF ve BSMV dahil mi?','Hayır; yalnızca anapara + faiz hesaplanır.']]},
-  unit:{steps:[{ico:'📐',t:'Kategoriyi seç',d:'Uzunluk, ağırlık, alan veya sıcaklık'},{ico:'🔢',t:'Değeri gir',d:'Sayıyı gir ve kaynak birimi seç'},{ico:'✓',t:'Sonucu gör',d:'Tüm hedef birimler aynı anda görünür'}],faq:[['Hangi birimler var?','Uzunluk (mm→km), ağırlık (g→ton), alan (m²→dönüm), sıcaklık (°C, °F, K).'],['Hassasiyet nedir?','6 ondalık basamağa kadar hassas sonuç.']]},
-  timer:{steps:[{ico:'⏱️',t:'Modu seç',d:'Kronometre veya Geri Sayım modunu seç'},{ico:'▶️',t:'Başlat',d:'Başlat butonuna bas; süreyi takip et'},{ico:'⏹️',t:'Durdur veya Sıfırla',d:'İstediğin zaman durdur ya da sıfırla'}],faq:[['Sayfa kapatılırsa sayaç sıfırlanır mı?','Evet; sayfa yenilenirse veya kapatılırsa sayaç sıfırlanır.'],['Geri sayım bitince ne olur?','Sesli uyarı ve görsel bildirim çıkar.']]},
-  percentage:{steps:[{ico:'🔢',t:'Hesaplama modunu seç',d:'3 farklı yüzde hesaplama türünden birini seç'},{ico:'✏️',t:'Sayıları gir',d:'İlgili alanları doldur'},{ico:'✓',t:'Sonucu gör',d:'Sonuç ve açıklama anında görünür'}],faq:[['Hangi hesaplamalar var?','X\'in Y%\'i, X\'in Y\'nin yüzdesi, X\'ten Y\'ye değişim oranı.'],['İndirim hesabı yapabilir miyim?','Evet; orijinal fiyat ve indirim oranını girerek indirimli fiyatı bulabilirsiniz.']]},
-  slug:{steps:[{ico:'✏️',t:'Metin gir',d:'Başlık veya metni kutuya yaz'},{ico:'🔄',t:'Dönüştür',d:'Türkçe karakter, boşluk ve özel karakterler otomatik temizlenir'},{ico:'📋',t:'Kopyala',d:'SEO uyumlu URL slug\'ını panoya kopyala'}],faq:[['Türkçe karakterler dönüştürülüyor mu?','Evet; ş→s, ç→c, ğ→g, ı→i, ö→o, ü→u dönüşümü uygulanır.'],['Slug nedir?','URL\'de kullanılan küçük harfli, tireli kısa metin. Örn: blog-yazisi-basligi.'],['SEO için neden önemli?','Arama motorları anlamlı URL\'leri tercih eder; slug URL\'yi okunur ve anlamlı yapar.']]},
-  lorem:{steps:[{ico:'🎨',t:'Format seç',d:'Latin Lorem Ipsum veya Türkçe dolgu metin formatını seç'},{ico:'🔢',t:'Paragraf sayısı gir',d:'1 ile 20 arasında istediğin kadar paragraf üret'},{ico:'📋',t:'Kopyala',d:'Tümünü veya HTML etiketleriyle birlikte panoya kopyala'}],faq:[['Lorem ipsum ne işe yarar?','Tasarım ve prototip çalışmalarında içerik henüz hazır olmadığında yer tutucu olarak kullanılır.'],['Türkçe versiyonu neden kullanılır?','Müşteriye sunum yaparken Türkçe metinle daha gerçekçi görünür.'],['HTML olarak kopyalama ne sağlar?','<p> etiketleriyle kopyalanan metin doğrudan HTML dosyasına yapıştırılabilir.']]},
-  diff:{steps:[{ico:'📋',t:'Orijinal metni yapıştır',d:'Sol kutuya eski veya orijinal metni gir'},{ico:'📋',t:'Yeni metni yapıştır',d:'Sağ kutuya değiştirilmiş veya güncellenmiş metni gir'},{ico:'✓',t:'Karşılaştır',d:'Eklenen satırlar yeşil, silinen satırlar kırmızı ile işaretlenir'}],faq:[['Kaç satır karşılaştırılabilir?','Her metin için en fazla 300 satır desteklenir.'],['Diff nasıl çalışır?','LCS (En Uzun Ortak Dizi) algoritması ile satır bazlı karşılaştırma yapılır.'],['Değişen kelimeler ayrı gösterilir mi?','Şu an satır bazlı karşılaştırma yapılmaktadır; kelime bazlı diff yakında geliyor.']]},
-  number:{steps:[{ico:'🔢',t:'Sayıyı gir',d:'Sayıyı gir — tam sayı veya ondalıklı desteklenir'},{ico:'✓',t:'Yazıyı gör',d:'Türkçe kelimeye çevrilen sayı anında görünür'},{ico:'📋',t:'Kopyala',d:'Normal veya tamamen büyük harfle panoya kopyala'}],faq:[['Hangi sayılar destekleniyor?','0\'dan 999 milyara kadar tam ve ondalıklı sayılar desteklenir.'],['Fatura için nasıl kullanılır?','Tutarı gir, büyük harfle kopyala ve fatura belgesine yapıştır.'],['Negatif sayılar yazılıyor mu?','Evet; negatif sayılar "eksi" önekiyle yazılır.']]},
-  bmi:{steps:[{ico:'📏',t:'Boy bilgisini gir',d:'Boyunuzu santimetre (cm) olarak girin'},{ico:'⚖️',t:'Kilo bilgisini gir',d:'Kilonuzu kilogram (kg) olarak girin'},{ico:'✓',t:'Sonucu gör',d:'VKİ değeriniz, kategoriniz ve ideal kilo aralığınız hesaplanır'}],faq:[['VKİ (BMI) nedir?','Vücut Kitle İndeksi; kilonuzun boyunuzun karesine oranıdır. Sağlık değerlendirmesinde kullanılır.'],['VKİ yeterli bir ölçüm müdür?','VKİ iyi bir başlangıç göstergesidir ancak kas kütlesi, yaş ve cinsiyet dikkate alınmaz.'],['İdeal VKİ değeri nedir?','18.5 – 24.9 aralığı normal kabul edilmektedir.']]},
-  hash:{steps:[{ico:'✏️',t:'Metni gir veya dosya seç',d:'Hash hesaplanacak metni yaz ya da dosyayı sürükle'},{ico:'🔄',t:'Algoritma seç',d:'SHA-1, SHA-256, SHA-384 veya SHA-512 seçeneklerinden birini seç'},{ico:'📋',t:'Hash değerini kopyala',d:'Hesaplanan hash değerini panoya tek tıkla kopyala'}],faq:[['Verilerim güvenli mi?','Evet; hiçbir veri sunucuya gönderilmez. Tüm işlem tarayıcınızda gerçekleşir.'],['Hash ne için kullanılır?','Dosya bütünlüğü doğrulama, şifre saklama ve dijital imza işlemleri için kullanılır.'],['SHA-256 ile SHA-512 farkı nedir?','SHA-512 daha uzun ve daha güvenli bir hash üretir; kritik güvenlik işlemleri için önerilir.']]},
-  gradient:{steps:[{ico:'🎨',t:'Renkleri seç',d:'Renk seçiciyle veya HEX kodu girerek iki rengi belirle'},{ico:'🔄',t:'Tipi ve açıyı ayarla',d:'Linear veya Radial tipi seç; linear için açıyı ayarla'},{ico:'📋',t:'CSS kodunu kopyala',d:'Gradient CSS kodunu kopyalayıp projeye yapıştır'}],faq:[['Hazır gradientleri kullanabilir miyim?','Evet; araçta 12 hazır gradient paleti bulunmaktadır; tıklayarak uygulayabilirsiniz.'],['Radial ve linear fark nedir?','Linear düz çizgi boyunca, radial merkez noktasından dışa doğru geçiş yapar.'],['CSS\'e nasıl eklenir?','background: linear-gradient(...) veya kısaca background olarak yapıştır.']]},
-  regex:{steps:[{ico:'✏️',t:'Pattern gir',d:'Regex ifadesini pattern kutusuna yaz; flag\'leri belirt (g, i, m)'},{ico:'📋',t:'Test metni yaz',d:'Eşleşme aranacak metni alt kutuya gir veya yapıştır'},{ico:'🔍',t:'Eşleşmeleri gör',d:'Bulunan eşleşmeler sarıyla vurgulanır, liste olarak listelenir'}],faq:[['Hangi flags destekleniyor?','g (global), i (büyük/küçük harf duyarsız), m (çok satır), s (nokta her şeyle eşleşir).'],['JavaScript regex mi?','Evet; JavaScript\'in RegExp motoru kullanılır.'],['Cheatsheet ne işe yarar?','Yaygın pattern\'lere tıklayarak hemen test edebilirsiniz.']]},
-  timestamp:{steps:[{ico:'🕐',t:'Şu anki timestamp',d:'Sayfada anlık güncellenen Unix timestamp\'i gör ve kopyala'},{ico:'🔄',t:'Timestamp → Tarih',d:'Unix timestamp\'i girerek yerel saat, UTC ve ISO formatına çevir'},{ico:'📅',t:'Tarih → Timestamp',d:'Tarih ve saat seçerek Unix timestamp ve ISO değerini hesapla'}],faq:[['Unix timestamp nedir?','1 Ocak 1970 UTC\'den bu yana geçen saniye sayısıdır. Programlamada zaman tutmak için kullanılır.'],['Milisaniye mi saniye mi?','JavaScript Date.now() milisaniye döner; sunucu taraflı çoğu dil saniye kullanır.'],['Negatif timestamp olabilir mi?','Evet; 1970 öncesi tarihler negatif timestamp ile ifade edilir.']]}
-};
+function baseCount(key){ return TOOL_BASE[key]||0; }
 
 const ETSlib = {
   wa(msg){return `https://wa.me/${ETS.whatsapp}?text=${encodeURIComponent(msg)}`;},
@@ -210,9 +181,9 @@ async function initToolCounter(){
     try{
       const snap=await F.getDoc(ref);
       if(snap.exists()){
-        const count=snap.data()[key]||0;
+        const total=(snap.data()[key]||0)+baseCount(key);
         const el=document.querySelector('.tool-use-badge');
-        if(el&&count>0) el.textContent=fmtCount(count)+' kullanım';
+        if(el&&total>0) el.textContent=fmtCount(total)+' kullanım';
       }
     }catch(e){}
   });
@@ -220,18 +191,28 @@ async function initToolCounter(){
 
 async function loadToolsPageCounts(){
   if(!isToolsIndex()) return;
+  // Önce seed sayıları anında göster
+  document.querySelectorAll('[data-key]').forEach(card=>{
+    const k=card.dataset.key;
+    const base=baseCount(k);
+    if(base>0){
+      const badge=card.querySelector('.use-count');
+      if(badge) badge.textContent=fmtCount(base)+' kullanım';
+    }
+  });
+  // Firestore yüklenince gerçek sayıyı üstüne ekle
   whenFirestoreReady(async()=>{
     const F=window.ETSFirestore;
     const db=window.ETSAuth.db;
     try{
       const snap=await F.getDoc(F.doc(db,'toolStats','all'));
-      if(!snap.exists()) return;
-      const data=snap.data();
+      const data=snap.exists()?snap.data():{};
       document.querySelectorAll('[data-key]').forEach(card=>{
         const k=card.dataset.key;
-        if(data[k]&&data[k]>0){
+        const total=(data[k]||0)+baseCount(k);
+        if(total>0){
           const badge=card.querySelector('.use-count');
-          if(badge) badge.textContent=fmtCount(data[k])+' kullanım';
+          if(badge) badge.textContent=fmtCount(total)+' kullanım';
         }
       });
     }catch(e){}
@@ -421,11 +402,13 @@ function initRecentTools(){
 
 function injectToolBadge(){
   if(!isToolPage()) return;
+  const key=getToolKey();
   const lead=document.querySelector('.hero .lead, .tool-shell .lead');
   if(!lead) return;
+  const base=baseCount(key);
   const badge=document.createElement('div');
   badge.className='tool-use-badge-wrap';
-  badge.innerHTML=`<span class="tool-use-badge">— kullanım</span>`;
+  badge.innerHTML=`<span class="tool-use-badge">${base>0?fmtCount(base)+' kullanım':'— kullanım'}</span>`;
   lead.after(badge);
 }
 
@@ -629,7 +612,7 @@ function initFaq(){
 function initRelatedTools(){
   if(!isToolPage()) return;
   const key=getToolKey();
-  const related=(TOOL_RELATED[key]||[]).filter(k=>TOOL_META[k]&&k!==key).slice(0,4);
+  const related=((window.TOOL_RELATED||{})[key]||[]).filter(k=>TOOL_META[k]&&k!==key).slice(0,4);
   if(!related.length) return;
 
   const sec=document.createElement('section');
@@ -696,7 +679,7 @@ function initBackToTop(){
 function initToolPage(){
   if(!isToolPage()) return;
   const key=getToolKey();
-  const d=TOOL_PAGE_DATA[key];
+  const d=(window.TOOL_PAGE_DATA||{})[key];
   if(!d) return;
 
   const howSec=document.createElement('section');
@@ -755,10 +738,14 @@ document.addEventListener("DOMContentLoaded",()=>{
   initBreadcrumb();
   initFaq();
   initBackToTop();
-  initRelatedTools();
   initPromoBar();
   initPopularTools();
-  initToolPage();
+  if(isToolPage()){
+    const s=document.createElement('script');
+    s.src='assets/js/tool-data.js';
+    s.onload=()=>{ initRelatedTools(); initToolPage(); };
+    document.head.appendChild(s);
+  }
 });
 
 /* ═══════════════════════════════════════════════
@@ -766,29 +753,35 @@ document.addEventListener("DOMContentLoaded",()=>{
    ═══════════════════════════════════════════════ */
 function initPopularTools(){
   if(!isToolsIndex()) return;
+  function renderPopular(data){
+    const sorted=Object.keys(TOOL_META)
+      .map(k=>([k,(data[k]||0)+baseCount(k)]))
+      .sort((a,b)=>b[1]-a[1])
+      .slice(0,6);
+    if(sorted.length<3) return;
+    const sec=document.createElement('div');
+    sec.className='popular-tools-wrap reveal';
+    sec.innerHTML=`<div class="popular-tools-header"><span class="eyebrow">Bu ay</span><h3>En çok kullanılan araçlar</h3></div><div class="popular-tools-list">${
+      sorted.map(([k,count],i)=>{
+        const t=TOOL_META[k];
+        return `<a href="${t.href}" class="popular-tool-item"><span class="pop-rank">${i+1}</span><span class="pop-ico">${t.ico}</span><span class="pop-name">${t.name}</span><span class="pop-count">${fmtCount(count)} kullanım</span></a>`;
+      }).join('')
+    }</div>`;
+    const search=document.querySelector('.tool-search-wrap');
+    const existing=document.querySelector('.popular-tools-wrap');
+    if(existing) existing.replaceWith(sec);
+    else if(search) search.before(sec);
+    if(typeof initReveal==='function') initReveal();
+  }
+  // Seed sayılarıyla hemen göster
+  renderPopular({});
+  // Firestore yüklenince gerçek sayılarla güncelle
   whenFirestoreReady(async()=>{
     const F=window.ETSFirestore;
     const db=window.ETSAuth.db;
     try{
       const snap=await F.getDoc(F.doc(db,'toolStats','all'));
-      if(!snap.exists()) return;
-      const data=snap.data();
-      const sorted=Object.entries(data)
-        .filter(([k])=>TOOL_META[k])
-        .sort((a,b)=>b[1]-a[1])
-        .slice(0,6);
-      if(sorted.length<3) return;
-
-      const sec=document.createElement('div');
-      sec.className='popular-tools-wrap reveal';
-      sec.innerHTML=`<div class="popular-tools-header"><span class="eyebrow">Bu ay</span><h3>En çok kullanılan araçlar</h3></div><div class="popular-tools-list">${
-        sorted.map(([k,count],i)=>{
-          const t=TOOL_META[k];
-          return `<a href="${t.href}" class="popular-tool-item"><span class="pop-rank">${i+1}</span><span class="pop-ico">${t.ico}</span><span class="pop-name">${t.name}</span><span class="pop-count">${fmtCount(count)} kullanım</span></a>`;
-        }).join('')
-      }</div>`;
-      const search=document.querySelector('.tool-search-wrap');
-      if(search) search.before(sec);
+      renderPopular(snap.exists()?snap.data():{});
     }catch(e){}
   });
 }
