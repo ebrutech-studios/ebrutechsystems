@@ -16,6 +16,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Sayı Türkçe Yazıyla","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-number.html"}
 </script>
@@ -141,7 +144,7 @@ function update(){
   const intPart=Math.floor(Math.abs(n));
   const dec=Math.round((Math.abs(n)-intPart)*100);
   let result=toTR(n<0?-intPart:intPart);
-  if(dec>0) result+=" virgil "+toTR(dec);
+  if(dec>0) result+=" virgül "+toTR(dec);
   txt.textContent=result;
   res.style.display="block";
   fmt.textContent=fmtNum(raw);

@@ -14,6 +14,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script><script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Barkod Üretici","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-barcode.html"}
 </script>
@@ -26,11 +29,19 @@
 <p id="gateDesc" style="color:var(--txt-dim);margin:8px 0 20px"></p><div id="gateBtns" class="row" style="max-width:380px;margin:0 auto"></div></div>
 <div id="tool" class="hidden"><div class="controls">
 <div class="field"><label>Barkod İçeriği</label><input id="val" value="1234567890" placeholder="Ürün kodu / numara"></div>
-<div class="field"><label>Barkod Tipi</label><select id="type">
-<option value="CODE128">CODE128 (genel)</option><option value="EAN13">EAN-13 (13 hane)</option>
-<option value="EAN8">EAN-8 (8 hane)</option><option value="UPC">UPC (12 hane)</option><option value="CODE39">CODE39</option></select></div>
+<div class="row">
+  <div class="field"><label>Barkod Tipi</label><select id="type">
+    <option value="CODE128">CODE128 (genel)</option><option value="EAN13">EAN-13 (13 hane)</option>
+    <option value="EAN8">EAN-8 (8 hane)</option><option value="UPC">UPC (12 hane)</option><option value="CODE39">CODE39</option></select></div>
+  <div class="field"><label>Çizgi Rengi</label><input id="lineColor" type="color" value="#000000" style="height:42px;padding:4px"></div>
+  <div class="field"><label>Arka Plan</label><input id="bgColor" type="color" value="#ffffff" style="height:42px;padding:4px"></div>
+</div>
+<div class="row">
+  <div class="field"><label>Çizgi Kalınlığı: <strong id="widthVal">2</strong></label><input id="barWidth" type="range" min="1" max="4" value="2" step="1"></div>
+  <div class="field"><label>Yükseklik: <strong id="heightVal">90</strong>px</label><input id="barHeight" type="range" min="40" max="200" value="90" step="5"></div>
+</div>
 <div id="err" style="display:none;padding:10px 12px;border-radius:10px;background:rgba(255,80,80,.12);color:#ff8080;font-size:.86rem"></div>
-<div class="preview" style="background:#fff;text-align:center"><svg id="bc"></svg></div>
+<div class="preview" id="bcPreview" style="text-align:center;padding:16px;border-radius:12px"><svg id="bc"></svg></div>
 <button id="dl" class="btn btn-primary">PNG İndir</button>
 </div></div></div></div></section>
 <script type="module" src="assets/js/firebase.js"></script>
@@ -46,17 +57,30 @@ else{t.textContent="Bu araç Pro üyelere özel";d.textContent="Hesabın var ama
 b.innerHTML='<a href="fiyatlandirma.html" class="btn btn-primary">Pro\u0027ya Geç</a>';}}
 document.addEventListener("ets-auth",(e)=>applyGate(e.detail.user,e.detail.isPro));
 const err=document.getElementById("err");
+const bcPreview=document.getElementById("bcPreview");
 function gen(){
-  const val=document.getElementById("val").value,type=document.getElementById("type").value;
-  try{JsBarcode("#bc",val,{format:type,width:2,height:90,fontSize:16,margin:12});err.style.display="none";}
-  catch(e){err.style.display="block";err.textContent="Bu içerik "+type+" formatına uygun değil. Hane sayısını kontrol et.";}
+  const val=document.getElementById("val").value;
+  const type=document.getElementById("type").value;
+  const lineColor=document.getElementById("lineColor").value;
+  const bgColor=document.getElementById("bgColor").value;
+  const barWidth=parseInt(document.getElementById("barWidth").value);
+  const barHeight=parseInt(document.getElementById("barHeight").value);
+  bcPreview.style.background=bgColor;
+  try{
+    JsBarcode("#bc",val,{format:type,width:barWidth,height:barHeight,fontSize:14,margin:10,lineColor,background:bgColor});
+    err.style.display="none";
+  }catch(e){err.style.display="block";err.textContent="Bu içerik "+type+" formatına uygun değil. Hane sayısını kontrol et.";}
 }
 document.getElementById("val").oninput=gen;
 document.getElementById("type").onchange=gen;
+document.getElementById("lineColor").oninput=gen;
+document.getElementById("bgColor").oninput=gen;
+document.getElementById("barWidth").oninput=()=>{document.getElementById("widthVal").textContent=document.getElementById("barWidth").value;gen();};
+document.getElementById("barHeight").oninput=()=>{document.getElementById("heightVal").textContent=document.getElementById("barHeight").value;gen();};
 document.getElementById("dl").onclick=()=>{
   const svg=document.getElementById("bc");const xml=new XMLSerializer().serializeToString(svg);
   const img=new Image();img.onload=()=>{const c=document.createElement("canvas");c.width=img.width;c.height=img.height;
-    const ctx=c.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0);
+    const ctx=c.getContext("2d");ctx.fillStyle=document.getElementById("bgColor").value;ctx.fillRect(0,0,c.width,c.height);ctx.drawImage(img,0,0);
     const a=document.createElement("a");a.href=c.toDataURL("image/png");a.download="ebrutech-barkod.png";a.click();ETSlib.toast("İndiriliyor ✓");};
   img.src="data:image/svg+xml;base64,"+btoa(unescape(encodeURIComponent(xml)));
 };
