@@ -35,7 +35,8 @@
 /* ── Grid ── */
 .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media(max-width:900px){.prod-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:540px){.prod-grid{grid-template-columns:1fr}}
+@media(max-width:540px){.prod-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+@media(max-width:360px){.prod-grid{grid-template-columns:1fr}}
 
 /* ── Card ── */
 .prod-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.22s;position:relative;cursor:pointer}
@@ -44,7 +45,7 @@
 .prod-card.hidden{display:none!important}
 
 /* ── Thumbnail (SVG art) ── */
-.prod-thumb{height:196px;overflow:hidden;position:relative;display:block}
+.prod-thumb{aspect-ratio:5/3;overflow:hidden;position:relative;display:block}
 .prod-thumb svg{width:100%;height:100%;display:block}
 .prod-badge{position:absolute;top:12px;right:12px;font-size:.66rem;font-weight:800;padding:4px 9px;border-radius:7px;letter-spacing:.06em;text-transform:uppercase;z-index:1}
 .badge-feat{background:var(--accent);color:var(--accent-ink)}
@@ -103,7 +104,8 @@
 
 /* gallery pane */
 .pm-left{display:flex;flex-direction:column;background:#080b12;min-height:360px}
-.pm-gallery{flex:1;position:relative;overflow:hidden}
+.pm-gallery{flex:1;position:relative;overflow:hidden;min-height:0}
+@media(max-width:700px){.pm-left{min-height:0}.pm-gallery{aspect-ratio:4/3;flex:none}}
 .pm-slides{display:flex;height:100%;transition:transform .35s cubic-bezier(.4,0,.2,1)}
 .pm-slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .pm-slide svg{width:100%;height:100%;display:block}
@@ -285,91 +287,418 @@
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-/* ══ SVG THUMB BUILDERS ══ */
+/* ══ SVG THUMB BUILDERS — realistic product previews ══ */
 function svgLogo(v){
-  var bg=['#16102a','#1a0f2e','#130e24','#1e1240'][v%4];
-  var variants=[
-    /* 0 coffee */
-    '<circle cx="130" cy="74" r="36" fill="none" stroke="#7c3aed" stroke-width="3" opacity=".9"/><circle cx="130" cy="74" r="22" fill="rgba(124,58,237,.28)"/><rect x="118" y="62" width="24" height="24" rx="3" fill="rgba(124,58,237,.18)" stroke="#a78bfa" stroke-width="1.5"/><path d="M130 55 Q148 62 148 74 Q148 86 130 93" fill="none" stroke="#c4b5fd" stroke-width="1.5" opacity=".5"/><path d="M110 108 Q115 98 130 95 Q145 92 150 108" fill="rgba(124,58,237,.15)" stroke="#7c3aed" stroke-width="1.5"/>',
-    /* 1 scissors beauty */
-    '<line x1="105" y1="48" x2="155" y2="108" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round"/><line x1="155" y1="48" x2="105" y2="108" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round"/><circle cx="102" cy="46" r="14" fill="none" stroke="#a78bfa" stroke-width="2.5"/><circle cx="158" cy="46" r="14" fill="none" stroke="#a78bfa" stroke-width="2.5"/><circle cx="102" cy="46" r="6" fill="rgba(124,58,237,.5)"/><circle cx="158" cy="46" r="6" fill="rgba(124,58,237,.5)"/>',
-    /* 2 gear */
-    '<circle cx="130" cy="78" r="32" fill="none" stroke="#7c3aed" stroke-width="2.5"/><circle cx="130" cy="78" r="14" fill="rgba(124,58,237,.3)" stroke="#a78bfa" stroke-width="2"/><rect x="124" y="42" width="12" height="14" rx="3" fill="#7c3aed" opacity=".85"/><rect x="124" y="100" width="12" height="14" rx="3" fill="#7c3aed" opacity=".85"/><rect x="87" y="72" width="14" height="12" rx="3" fill="#7c3aed" opacity=".85"/><rect x="159" y="72" width="14" height="12" rx="3" fill="#7c3aed" opacity=".85"/><rect x="96" y="51" width="12" height="14" rx="3" fill="#a78bfa" opacity=".7" transform="rotate(45 102 58)"/><rect x="155" y="51" width="12" height="14" rx="3" fill="#a78bfa" opacity=".7" transform="rotate(-45 161 58)"/>',
-    /* 3 general multi-mark */
-    '<rect x="60" y="38" width="56" height="56" rx="8" fill="none" stroke="#7c3aed" stroke-width="2.5"/><circle cx="88" cy="66" r="16" fill="rgba(124,58,237,.3)"/><rect x="144" y="38" width="56" height="56" rx="28" fill="none" stroke="#a78bfa" stroke-width="2.5"/><polygon points="172,48 190,76 154,76" fill="none" stroke="#a78bfa" stroke-width="2.5"/><polygon points="88,104 74,128 102,128" fill="none" stroke="#7c3aed" stroke-width="2.5"/><rect x="144" y="100" width="56" height="36" rx="6" fill="rgba(124,58,237,.15)" stroke="#a78bfa" stroke-width="2"/>'
-  ];
-  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="'+bg+'"/><line x1="0" y1="39" x2="260" y2="39" stroke="rgba(124,58,237,.07)"/><line x1="0" y1="78" x2="260" y2="78" stroke="rgba(124,58,237,.07)"/><line x1="0" y1="117" x2="260" y2="117" stroke="rgba(124,58,237,.07)"/><line x1="65" y1="0" x2="65" y2="156" stroke="rgba(124,58,237,.07)"/><line x1="130" y1="0" x2="130" y2="156" stroke="rgba(124,58,237,.07)"/><line x1="195" y1="0" x2="195" y2="156" stroke="rgba(124,58,237,.07)"/>'+variants[v%4]+'<text x="130" y="148" text-anchor="middle" font-size="8" fill="rgba(167,139,250,.55)" font-family="sans-serif" letter-spacing="2.5" font-weight="700">LOGO PAKETİ</text></svg>';
+  var T=[
+    {bg:'#1c1133',a:'#a78bfa',d:'rgba(167,139,250,.55)'},
+    {bg:'#200d28',a:'#f472b6',d:'rgba(244,114,182,.55)'},
+    {bg:'#0c1a2a',a:'#38bdf8',d:'rgba(56,189,248,.55)'},
+    {bg:'#1e1240',a:'#818cf8',d:'rgba(129,140,248,.55)'}
+  ][v%4];
+  var rows=[['KAFE','BISTRO','EATERY','RESTO'],['SALON','SPA','KUAFÖR','GÜZEL'],['OTO','GARAJ','SERVİS','PARÇA'],['GRUP','AJANS','STÜDİO','MARKA']][v%4];
+  // Grid dividers
+  var G='<line x1="130" y1="0" x2="130" y2="148" stroke="'+T.a+'" stroke-width=".6" opacity=".18"/><line x1="0" y1="74" x2="260" y2="74" stroke="'+T.a+'" stroke-width=".6" opacity=".18"/>';
+  // 4 marks at quadrant centers: (65,31), (195,31), (65,109), (195,109)
+  // Mark 1: circle badge
+  var m1='<circle cx="65" cy="28" r="13" fill="none" stroke="'+T.a+'" stroke-width="2.5"/>'
+    +'<line x1="52" y1="35" x2="78" y2="35" stroke="'+T.a+'" stroke-width="1" opacity=".5"/>'
+    +'<text x="65" y="33" text-anchor="middle" font-size="12" fill="'+T.a+'" font-family="Georgia,serif" font-weight="bold">'+rows[0][0]+'</text>'
+    +'<text x="65" y="51" text-anchor="middle" font-size="6.5" fill="'+T.d+'" font-family="sans-serif" letter-spacing="1.8" font-weight="700">'+rows[0]+'</text>'
+    +'<text x="65" y="60" text-anchor="middle" font-size="5" fill="'+T.d+'" font-family="sans-serif" letter-spacing=".5" opacity=".6">— LOGO TASARIM —</text>';
+  // Mark 2: rotated square
+  var m2='<rect x="185" y="17" width="20" height="20" rx="1.5" fill="rgba(255,255,255,.04)" stroke="'+T.a+'" stroke-width="2" transform="rotate(45 195 27)"/>'
+    +'<text x="195" y="31" text-anchor="middle" font-size="11" fill="'+T.a+'" font-family="Georgia,serif" font-weight="bold">'+rows[1][0]+'</text>'
+    +'<text x="195" y="51" text-anchor="middle" font-size="6.5" fill="'+T.d+'" font-family="sans-serif" letter-spacing="1.8" font-weight="700">'+rows[1]+'</text>'
+    +'<text x="195" y="60" text-anchor="middle" font-size="5" fill="'+T.d+'" font-family="sans-serif" letter-spacing=".5" opacity=".6">— LOGO TASARIM —</text>';
+  // Mark 3: hexagon
+  var m3='<polygon points="65,97 76,103 76,117 65,123 54,117 54,103" fill="none" stroke="'+T.a+'" stroke-width="2.5"/>'
+    +'<text x="65" y="114" text-anchor="middle" font-size="11" fill="'+T.a+'" font-family="Georgia,serif" font-weight="bold">'+rows[2][0]+'</text>'
+    +'<text x="65" y="133" text-anchor="middle" font-size="6.5" fill="'+T.d+'" font-family="sans-serif" letter-spacing="1.8" font-weight="700">'+rows[2]+'</text>'
+    +'<text x="65" y="141" text-anchor="middle" font-size="5" fill="'+T.d+'" font-family="sans-serif" letter-spacing=".5" opacity=".6">— LOGO TASARIM —</text>';
+  // Mark 4: shield
+  var m4='<path d="M195,97 L207,103 L207,115 Q207,124 195,128 Q183,124 183,115 L183,103 Z" fill="none" stroke="'+T.a+'" stroke-width="2.5"/>'
+    +'<text x="195" y="116" text-anchor="middle" font-size="11" fill="'+T.a+'" font-family="Georgia,serif" font-weight="bold">'+rows[3][0]+'</text>'
+    +'<text x="195" y="133" text-anchor="middle" font-size="6.5" fill="'+T.d+'" font-family="sans-serif" letter-spacing="1.8" font-weight="700">'+rows[3]+'</text>'
+    +'<text x="195" y="141" text-anchor="middle" font-size="5" fill="'+T.d+'" font-family="sans-serif" letter-spacing=".5" opacity=".6">— LOGO TASARIM —</text>';
+  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="'+T.bg+'"/>'+G+m1+m2+m3+m4+'<text x="130" y="152" text-anchor="middle" font-size="7.5" fill="'+T.d+'" font-family="sans-serif" letter-spacing="2.5" font-weight="700">5 LOGO PAKETİ</text></svg>';
 }
 
 function svgKart(v){
-  var styles=[
-    /* 0 minimal */
-    '<rect x="40" y="32" width="180" height="105" rx="8" fill="rgba(255,255,255,.06)" stroke="rgba(41,211,255,.4)" stroke-width="1.5"/><rect x="40" y="32" width="180" height="7" rx="4" fill="rgba(41,211,255,.5)"/><rect x="56" y="56" width="80" height="6" rx="3" fill="rgba(255,255,255,.5)"/><rect x="56" y="70" width="52" height="4" rx="2" fill="rgba(255,255,255,.2)"/><rect x="56" y="82" width="64" height="4" rx="2" fill="rgba(255,255,255,.18)"/><rect x="56" y="94" width="44" height="4" rx="2" fill="rgba(255,255,255,.15)"/><rect x="160" y="54" width="44" height="44" rx="6" fill="rgba(41,211,255,.12)" stroke="rgba(41,211,255,.25)" stroke-width="1"/><circle cx="182" cy="76" r="12" fill="rgba(41,211,255,.3)"/>',
-    /* 1 kurumsal */
-    '<rect x="30" y="28" width="200" height="112" rx="6" fill="rgba(8,18,32,.9)" stroke="rgba(41,211,255,.5)" stroke-width="2"/><rect x="30" y="28" width="16" height="112" rx="3" fill="rgba(41,211,255,.45)"/><rect x="62" y="50" width="100" height="8" rx="4" fill="rgba(255,255,255,.6)"/><rect x="62" y="67" width="68" height="5" rx="2.5" fill="rgba(255,255,255,.25)"/><rect x="62" y="80" width="80" height="4" rx="2" fill="rgba(255,255,255,.2)"/><rect x="62" y="92" width="56" height="4" rx="2" fill="rgba(255,255,255,.18)"/><rect x="62" y="104" width="44" height="4" rx="2" fill="rgba(255,255,255,.15)"/>',
-    /* 2 creative organic */
-    '<rect x="35" y="30" width="190" height="108" rx="10" fill="rgba(255,255,255,.05)" stroke="rgba(41,211,255,.35)" stroke-width="1.5"/><path d="M35 100 Q80 80 130 95 Q180 110 225 90 L225 138 Q180 138 130 138 Q80 138 35 138 Z" fill="rgba(41,211,255,.12)"/><circle cx="72" cy="65" r="22" fill="none" stroke="rgba(41,211,255,.4)" stroke-width="2"/><circle cx="72" cy="65" r="10" fill="rgba(41,211,255,.25)"/><rect x="108" y="55" width="72" height="7" rx="3.5" fill="rgba(255,255,255,.5)"/><rect x="108" y="70" width="48" height="4" rx="2" fill="rgba(255,255,255,.25)"/><rect x="108" y="82" width="60" height="4" rx="2" fill="rgba(255,255,255,.2)"/>'
-  ];
-  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="#0e1c2e"/>'+styles[v%3]+'<text x="130" y="148" text-anchor="middle" font-size="8" fill="rgba(41,211,255,.5)" font-family="sans-serif" letter-spacing="2" font-weight="700">KARTVİZİT</text></svg>';
+  // Show a realistic business card layout — card shape, logo, name, title, contacts
+  var P=[
+    {bg:'#0c1820',cb:'#29d3ff',cd:'rgba(41,211,255,.8)',cf:'rgba(41,211,255,.15)',cs:'rgba(41,211,255,.35)',lc:'rgba(41,211,255,.45)'},
+    {bg:'#080e18',cb:'#29d3ff',cd:'rgba(41,211,255,.8)',cf:'rgba(6,26,40,.9)',cs:'rgba(41,211,255,.45)',lc:'rgba(41,211,255,.4)'},
+    {bg:'#0a1510',cb:'#86efac',cd:'rgba(134,239,172,.8)',cf:'rgba(134,239,172,.1)',cs:'rgba(134,239,172,.35)',lc:'rgba(134,239,172,.45)'}
+  ][v%3];
+  // Card: 186×108 centered → x=37,y=24
+  var cx=37,cy=24,cw=186,ch=108;
+  var card='<rect x="'+cx+'" y="'+cy+'" width="'+cw+'" height="'+ch+'" rx="8" fill="'+P.cf+'" stroke="'+P.cs+'" stroke-width="1.5"/>';
+  var inner='';
+  if(v===0){
+    // Minimal: thin top bar, circle logo left, text right
+    inner='<rect x="'+cx+'" y="'+cy+'" width="'+cw+'" height="6" rx="4" fill="'+P.cb+'" opacity=".65"/>'
+      +'<circle cx="'+(cx+28)+'" cy="'+(cy+55)+'" r="18" fill="rgba(255,255,255,.05)" stroke="'+P.cd+'" stroke-width="1.5"/>'
+      +'<text x="'+(cx+28)+'" y="'+(cy+60)+'" text-anchor="middle" font-size="13" fill="'+P.cd+'" font-family="Georgia,serif" font-weight="bold">ET</text>'
+      +'<text x="'+(cx+60)+'" y="'+(cy+40)+'" font-size="9.5" fill="rgba(255,255,255,.88)" font-family="sans-serif" font-weight="700">Ahmet Yılmaz</text>'
+      +'<text x="'+(cx+60)+'" y="'+(cy+52)+'" font-size="7" fill="'+P.cd+'" font-family="sans-serif" letter-spacing=".5">Genel Müdür</text>'
+      +'<line x1="'+(cx+60)+'" y1="'+(cy+57)+'" x2="'+(cx+cw-12)+'" y2="'+(cy+57)+'" stroke="rgba(255,255,255,.1)" stroke-width=".8"/>'
+      +'<text x="'+(cx+60)+'" y="'+(cy+67)+'" font-size="6.5" fill="rgba(255,255,255,.48)" font-family="sans-serif">+90 555 123 45 67</text>'
+      +'<text x="'+(cx+60)+'" y="'+(cy+77)+'" font-size="6.5" fill="rgba(255,255,255,.48)" font-family="sans-serif">info@sirket.com</text>'
+      +'<text x="'+(cx+60)+'" y="'+(cy+87)+'" font-size="6.5" fill="rgba(255,255,255,.48)" font-family="sans-serif">www.sirket.com</text>'
+      +'<text x="'+(cx+60)+'" y="'+(cy+99)+'" font-size="5.5" fill="'+P.cd+'" font-family="sans-serif" letter-spacing="1.2" opacity=".6">EbruTech Studios</text>';
+  } else if(v===1){
+    // Kurumsal: left accent strip, QR placeholder corner
+    inner='<rect x="'+cx+'" y="'+cy+'" width="12" height="'+ch+'" rx="4" fill="'+P.cb+'" opacity=".65"/>'
+      +'<rect x="'+(cx+cw-46)+'" y="'+(cy+ch-46)+'" width="34" height="34" rx="5" fill="rgba(255,255,255,.05)" stroke="'+P.cs+'" stroke-width="1"/>'
+      +'<line x1="'+(cx+cw-46)+'" y1="'+(cy+ch-38)+'" x2="'+(cx+cw-30)+'" y2="'+(cy+ch-38)+'" stroke="'+P.cd+'" stroke-width="1" opacity=".4"/>'
+      +'<line x1="'+(cx+cw-46)+'" y1="'+(cy+ch-32)+'" x2="'+(cx+cw-36)+'" y2="'+(cy+ch-32)+'" stroke="'+P.cd+'" stroke-width="1" opacity=".4"/>'
+      +'<line x1="'+(cx+cw-46)+'" y1="'+(cy+ch-26)+'" x2="'+(cx+cw-38)+'" y2="'+(cy+ch-26)+'" stroke="'+P.cd+'" stroke-width="1" opacity=".4"/>'
+      +'<text x="'+(cx+22)+'" y="'+(cy+38)+'" font-size="9.5" fill="rgba(255,255,255,.88)" font-family="sans-serif" font-weight="700">Fatma Demir</text>'
+      +'<text x="'+(cx+22)+'" y="'+(cy+50)+'" font-size="7" fill="'+P.cd+'" font-family="sans-serif">Proje Koordinatörü</text>'
+      +'<line x1="'+(cx+22)+'" y1="'+(cy+57)+'" x2="'+(cx+130)+'" y2="'+(cy+57)+'" stroke="rgba(255,255,255,.1)" stroke-width=".8"/>'
+      +'<text x="'+(cx+22)+'" y="'+(cy+68)+'" font-size="6.5" fill="rgba(255,255,255,.48)" font-family="sans-serif">+90 532 456 78 90</text>'
+      +'<text x="'+(cx+22)+'" y="'+(cy+78)+'" font-size="6.5" fill="rgba(255,255,255,.48)" font-family="sans-serif">fatma@kurumsal.com</text>'
+      +'<text x="'+(cx+22)+'" y="'+(cy+88)+'" font-size="6.5" fill="rgba(255,255,255,.48)" font-family="sans-serif">www.kurumsal.com.tr</text>'
+      +'<text x="'+(cx+22)+'" y="'+(cy+99)+'" font-size="5.5" fill="'+P.cd+'" font-family="sans-serif" letter-spacing="1.2" opacity=".6">KURUMSAL ŞİRKET A.Ş.</text>';
+  } else {
+    // Creative: logo top-center, organic wave bottom
+    inner='<path d="M'+(cx)+' '+(cy+ch-22)+' Q'+(cx+cw/2)+' '+(cy+ch-6)+' '+(cx+cw)+' '+(cy+ch-22)+' L'+(cx+cw)+' '+(cy+ch)+' L'+cx+' '+(cy+ch)+' Z" fill="'+P.cb+'" opacity=".18"/>'
+      +'<circle cx="'+(cx+cw/2)+'" cy="'+(cy+36)+'" r="18" fill="rgba(255,255,255,.05)" stroke="'+P.cd+'" stroke-width="1.5"/>'
+      +'<text x="'+(cx+cw/2)+'" y="'+(cy+41)+'" text-anchor="middle" font-size="14" fill="'+P.cd+'" font-family="Georgia,serif" font-weight="bold">B</text>'
+      +'<text x="'+(cx+cw/2)+'" y="'+(cy+65)+'" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.85)" font-family="sans-serif" font-weight="700">Butik Studio</text>'
+      +'<text x="'+(cx+cw/2)+'" y="'+(cy+76)+'" text-anchor="middle" font-size="6.5" fill="'+P.cd+'" font-family="sans-serif" letter-spacing=".5">Yaratıcı Tasarım</text>'
+      +'<line x1="'+(cx+30)+'" y1="'+(cy+82)+'" x2="'+(cx+cw-30)+'" y2="'+(cy+82)+'" stroke="rgba(255,255,255,.1)" stroke-width=".8"/>'
+      +'<text x="'+(cx+cw/2)+'" y="'+(cy+92)+'" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,.45)" font-family="sans-serif">+90 530 789 01 23  ·  hello@butik.com</text>'
+      +'<text x="'+(cx+cw/2)+'" y="'+(cy+102)+'" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,.45)" font-family="sans-serif">www.butikstudio.com</text>';
+  }
+  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="'+P.bg+'"/>'+card+inner+'<text x="130" y="152" text-anchor="middle" font-size="7.5" fill="'+P.lc+'" font-family="sans-serif" letter-spacing="2" font-weight="700">KARTVİZİT ŞABLonu</text></svg>';
 }
 
 function svgExcel(v){
-  var variants=[
-    /* 0 budget donut */
-    '<g><rect x="28" y="28" width="100" height="90" rx="4" fill="rgba(251,191,36,.06)" stroke="rgba(251,191,36,.2)" stroke-width="1"/><line x1="28" y1="56" x2="128" y2="56" stroke="rgba(251,191,36,.12)"/><line x1="28" y1="84" x2="128" y2="84" stroke="rgba(251,191,36,.12)"/><line x1="78" y1="28" x2="78" y2="118" stroke="rgba(251,191,36,.12)"/><rect x="34" y="34" width="38" height="16" rx="2" fill="rgba(251,191,36,.2)"/><rect x="82" y="34" width="38" height="16" rx="2" fill="rgba(251,191,36,.12)"/><rect x="34" y="62" width="38" height="16" rx="2" fill="rgba(34,197,94,.2)"/><rect x="82" y="62" width="38" height="16" rx="2" fill="rgba(34,197,94,.12)"/><rect x="34" y="90" width="38" height="16" rx="2" fill="rgba(251,191,36,.15)"/><rect x="82" y="90" width="38" height="16" rx="2" fill="rgba(251,191,36,.1)"/></g><g><circle cx="190" cy="72" r="40" fill="none" stroke="rgba(251,191,36,.25)" stroke-width="3"/><path d="M190 32 A40 40 0 0 1 230 72" fill="none" stroke="#fbbf24" stroke-width="8" stroke-linecap="round"/><path d="M230 72 A40 40 0 0 1 190 112" fill="none" stroke="#34d399" stroke-width="8" stroke-linecap="round"/><path d="M190 112 A40 40 0 0 1 150 72" fill="none" stroke="#f87171" stroke-width="8" stroke-linecap="round"/><path d="M150 72 A40 40 0 0 1 190 32" fill="none" stroke="#60a5fa" stroke-width="8" stroke-linecap="round"/><circle cx="190" cy="72" r="20" fill="#0e1018"/></g>',
-    /* 1 gelir-gider bar */
-    '<line x1="40" y1="120" x2="220" y2="120" stroke="rgba(251,191,36,.3)" stroke-width="1.5"/><line x1="40" y1="68" x2="220" y2="68" stroke="rgba(251,191,36,.1)" stroke-width="1" stroke-dasharray="4 3"/><rect x="50" y="80" width="22" height="40" rx="3" fill="rgba(52,211,153,.7)"/><rect x="82" y="72" width="22" height="48" rx="3" fill="rgba(52,211,153,.7)"/><rect x="114" y="86" width="22" height="34" rx="3" fill="rgba(52,211,153,.7)"/><rect x="146" y="76" width="22" height="44" rx="3" fill="rgba(52,211,153,.7)"/><rect x="178" y="84" width="22" height="36" rx="3" fill="rgba(52,211,153,.7)"/><rect x="50" y="120" width="22" height="18" rx="3" fill="rgba(248,113,113,.65)"/><rect x="82" y="120" width="22" height="26" rx="3" fill="rgba(248,113,113,.65)"/><rect x="114" y="120" width="22" height="14" rx="3" fill="rgba(248,113,113,.65)"/><rect x="146" y="120" width="22" height="22" rx="3" fill="rgba(248,113,113,.65)"/><rect x="178" y="120" width="22" height="16" rx="3" fill="rgba(248,113,113,.65)"/><text x="61" y="138" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif" text-anchor="middle">O</text><text x="93" y="138" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif" text-anchor="middle">Ş</text><text x="125" y="138" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif" text-anchor="middle">M</text><text x="157" y="138" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif" text-anchor="middle">N</text><text x="189" y="138" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif" text-anchor="middle">M</text>',
-    /* 2 hedef target */
-    '<circle cx="130" cy="72" r="52" fill="none" stroke="rgba(251,191,36,.18)" stroke-width="2"/><circle cx="130" cy="72" r="38" fill="none" stroke="rgba(251,191,36,.22)" stroke-width="2"/><circle cx="130" cy="72" r="24" fill="none" stroke="rgba(251,191,36,.3)" stroke-width="2"/><circle cx="130" cy="72" r="10" fill="#fbbf24" opacity=".7"/><line x1="130" y1="10" x2="130" y2="62" stroke="rgba(251,191,36,.5)" stroke-width="1.5"/><line x1="168" y1="72" x2="140" y2="72" stroke="rgba(251,191,36,.5)" stroke-width="1.5"/>',
-    /* 3 calendar */
-    '<rect x="44" y="28" width="172" height="110" rx="6" fill="rgba(251,191,36,.05)" stroke="rgba(251,191,36,.25)" stroke-width="1.5"/><rect x="44" y="28" width="172" height="22" rx="6" fill="rgba(251,191,36,.2)"/><line x1="44" y1="50" x2="216" y2="50" stroke="rgba(251,191,36,.2)"/><g fill="rgba(255,255,255,.35)" font-size="8" font-family="sans-serif" text-anchor="middle"><text x="68" y="64">Pzt</text><text x="93" y="64">Sal</text><text x="118" y="64">Çar</text><text x="143" y="64">Per</text><text x="168" y="64">Cum</text><text x="193" y="64">Cmt</text></g><g fill="rgba(255,255,255,.7)" font-size="9" font-family="sans-serif" text-anchor="middle"><text x="68" y="80">1</text><text x="93" y="80">2</text><text x="118" y="80">3</text><text x="143" y="80">4</text><text x="168" y="80">5</text><text x="193" y="80">6</text><text x="68" y="96">8</text><text x="93" y="96">9</text><text x="118" y="96">10</text><text x="143" y="96">11</text><text x="168" y="96">12</text><text x="193" y="96">13</text><text x="68" y="112">15</text><text x="93" y="112">16</text><text x="118" y="112">17</text><text x="143" y="112">18</text><text x="168" y="112">19</text><text x="193" y="112">20</text></g><rect x="104" y="70" width="28" height="16" rx="3" fill="rgba(251,191,36,.35)"/><rect x="56" y="87" width="28" height="16" rx="3" fill="rgba(52,211,153,.35)"/><rect x="160" y="87" width="28" height="16" rx="3" fill="rgba(251,191,36,.35)"/>',
-    /* 4 project gantt */
-    '<rect x="36" y="30" width="188" height="100" rx="4" fill="rgba(251,191,36,.04)" stroke="rgba(251,191,36,.15)" stroke-width="1"/><rect x="36" y="30" width="58" height="100" fill="rgba(251,191,36,.05)"/><text x="52" y="50" font-size="7.5" fill="rgba(255,255,255,.4)" font-family="sans-serif">Görev</text><text x="52" y="67" font-size="7.5" fill="rgba(255,255,255,.4)" font-family="sans-serif">Tasarım</text><text x="52" y="84" font-size="7.5" fill="rgba(255,255,255,.4)" font-family="sans-serif">Revizyon</text><text x="52" y="101" font-size="7.5" fill="rgba(255,255,255,.4)" font-family="sans-serif">Teslim</text><text x="52" y="118" font-size="7.5" fill="rgba(255,255,255,.4)" font-family="sans-serif">Fatura</text><rect x="100" y="40" width="90" height="12" rx="3" fill="rgba(52,211,153,.6)"/><rect x="100" y="57" width="58" height="12" rx="3" fill="rgba(251,191,36,.7)"/><rect x="130" y="74" width="74" height="12" rx="3" fill="rgba(96,165,250,.7)"/><rect x="148" y="91" width="40" height="12" rx="3" fill="rgba(251,191,36,.6)"/><rect x="172" y="108" width="28" height="12" rx="3" fill="rgba(52,211,153,.5)"/>'
+  // Show a realistic spreadsheet with header row, data, and a mini chart
+  var bg='#131000';
+  // Spreadsheet table left side: x=14,y=12,w=150,h=130
+  var tx=14,ty=12,tw=150,rh=16;
+  // Header row
+  var hdr='<rect x="'+tx+'" y="'+ty+'" width="'+tw+'" height="'+rh+'" rx="3" fill="rgba(34,197,94,.45)"/>'
+    +'<text x="'+(tx+6)+'" y="'+(ty+11)+'" font-size="6.5" fill="rgba(255,255,255,.9)" font-family="sans-serif" font-weight="700">Tarih</text>'
+    +'<text x="'+(tx+44)+'" y="'+(ty+11)+'" font-size="6.5" fill="rgba(255,255,255,.9)" font-family="sans-serif" font-weight="700">Gelir</text>'
+    +'<text x="'+(tx+82)+'" y="'+(ty+11)+'" font-size="6.5" fill="rgba(255,255,255,.9)" font-family="sans-serif" font-weight="700">Gider</text>'
+    +'<text x="'+(tx+118)+'" y="'+(ty+11)+'" font-size="6.5" fill="rgba(255,255,255,.9)" font-family="sans-serif" font-weight="700">Net</text>';
+  // Column separators
+  var cols='<line x1="'+(tx+38)+'" y1="'+ty+'" x2="'+(tx+38)+'" y2="'+(ty+rh*7)+'" stroke="rgba(255,255,255,.08)" stroke-width=".8"/>'
+    +'<line x1="'+(tx+76)+'" y1="'+ty+'" x2="'+(tx+76)+'" y2="'+(ty+rh*7)+'" stroke="rgba(255,255,255,.08)" stroke-width=".8"/>'
+    +'<line x1="'+(tx+112)+'" y1="'+ty+'" x2="'+(tx+112)+'" y2="'+(ty+rh*7)+'" stroke="rgba(255,255,255,.08)" stroke-width=".8"/>'
+    +'<rect x="'+tx+'" y="'+ty+'" width="'+tw+'" height="'+(rh*7)+'" fill="none" stroke="rgba(255,255,255,.1)" stroke-width=".8"/>';
+  // Data rows
+  var data=[
+    ['Ocak','4.200','2.100','2.100'],['Şubat','5.800','2.450','3.350'],
+    ['Mart','3.900','1.800','2.100'],['Nisan','6.200','2.700','3.500'],
+    ['Mayıs','7.100','3.200','3.900'],['Haziran','5.500','2.600','2.900']
   ];
-  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="#1a1200"/>'+variants[v%5]+'<text x="130" y="150" text-anchor="middle" font-size="8" fill="rgba(251,191,36,.5)" font-family="sans-serif" letter-spacing="2" font-weight="700">EXCEL PLANLAYICI</text></svg>';
+  var netColors=['#34d399','#34d399','#34d399','#34d399','#34d399','#34d399'];
+  var rows='';
+  for(var i=0;i<data.length;i++){
+    var ry=ty+rh*(i+1);
+    var rowBg=i%2===0?'rgba(255,255,255,.03)':'rgba(0,0,0,.0)';
+    rows+='<rect x="'+tx+'" y="'+ry+'" width="'+tw+'" height="'+rh+'" fill="'+rowBg+'"/>'
+      +'<text x="'+(tx+6)+'" y="'+(ry+11)+'" font-size="6.5" fill="rgba(255,255,255,.55)" font-family="sans-serif">'+data[i][0]+'</text>'
+      +'<text x="'+(tx+44)+'" y="'+(ry+11)+'" font-size="6.5" fill="rgba(255,255,255,.7)" font-family="sans-serif">'+data[i][1]+'</text>'
+      +'<text x="'+(tx+82)+'" y="'+(ry+11)+'" font-size="6.5" fill="rgba(248,113,113,.8)" font-family="sans-serif">'+data[i][2]+'</text>'
+      +'<text x="'+(tx+118)+'" y="'+(ry+11)+'" font-size="6.5" fill="'+netColors[i]+'" font-family="sans-serif">'+data[i][3]+'</text>';
+  }
+  // Mini bar chart right side (x=174–246)
+  var cx2=174, cy2=12, cw2=72, ch2=90;
+  var chartBg='<rect x="'+cx2+'" y="'+cy2+'" width="'+cw2+'" height="'+ch2+'" rx="4" fill="rgba(251,191,36,.05)" stroke="rgba(251,191,36,.2)" stroke-width=".8"/>';
+  var chartLabel='<text x="'+(cx2+cw2/2)+'" y="'+(cy2+10)+'" text-anchor="middle" font-size="6" fill="rgba(251,191,36,.6)" font-family="sans-serif" font-weight="700">GELİR KARŞILAŞTIRMA</text>';
+  var baseline=cy2+ch2-8;
+  var barW=8, barGap=4;
+  var barH=[42,58,39,62,71,55];
+  var barX=cx2+6;
+  var bars='<line x1="'+cx2+'" y1="'+baseline+'" x2="'+(cx2+cw2)+'" y2="'+baseline+'" stroke="rgba(251,191,36,.25)" stroke-width=".8"/>';
+  for(var j=0;j<6;j++){
+    bars+='<rect x="'+(barX+j*(barW+barGap))+'" y="'+(baseline-barH[j]/1.8|0)+'" width="'+barW+'" height="'+(barH[j]/1.8|0)+'" rx="2" fill="rgba(52,211,153,.65)"/>';
+  }
+  var totalLabel='<text x="'+(cx2+cw2/2)+'" y="'+(cy2+ch2+10)+'" text-anchor="middle" font-size="6" fill="rgba(251,191,36,.45)" font-family="sans-serif">AYLIK ÖZET</text>';
+  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="'+bg+'"/>'+cols+hdr+rows+chartBg+chartLabel+bars+totalLabel+'<text x="130" y="152" text-anchor="middle" font-size="7.5" fill="rgba(251,191,36,.5)" font-family="sans-serif" letter-spacing="2" font-weight="700">EXCEL ŞABLONU</text></svg>';
 }
 
 function svgSosyal(v){
-  var content=[
-    /* 0 post square */
-    '<rect x="95" y="36" width="70" height="70" rx="6" fill="rgba(255,255,255,.05)" stroke="rgba(240,171,252,.4)" stroke-width="1.5"/><rect x="95" y="36" width="70" height="42" rx="6" fill="rgba(167,139,250,.25)"/><rect x="95" y="36" width="70" height="6" rx="3" fill="rgba(167,139,250,.5)"/><circle cx="107" cy="96" r="5" fill="rgba(240,171,252,.6)"/><rect x="115" y="93" width="36" height="4" rx="2" fill="rgba(255,255,255,.3)"/><rect x="115" y="100" width="24" height="3" rx="1.5" fill="rgba(255,255,255,.2)"/><rect x="95" y="110" width="70" height="4" rx="2" fill="rgba(255,255,255,.15)"/><rect x="95" y="118" width="50" height="4" rx="2" fill="rgba(255,255,255,.1)"/>',
-    /* 1 story vertical */
-    '<rect x="108" y="20" width="44" height="82" rx="6" fill="rgba(255,255,255,.05)" stroke="rgba(240,171,252,.4)" stroke-width="1.5"/><rect x="108" y="20" width="44" height="56" rx="6" fill="linear-gradient(180deg,rgba(167,139,250,.4),rgba(240,171,252,.2))"/><defs><linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(167,139,250,.5)"/><stop offset="100%" stop-color="rgba(240,171,252,.2)"/></linearGradient></defs><rect x="108" y="20" width="44" height="56" rx="6" fill="url(#sg1)"/><rect x="113" y="24" width="34" height="24" rx="3" fill="rgba(255,255,255,.08)"/><rect x="113" y="52" width="34" height="4" rx="2" fill="rgba(255,255,255,.4)"/><rect x="118" y="59" width="24" height="3" rx="1.5" fill="rgba(255,255,255,.25)"/><rect x="113" y="78" width="34" height="14" rx="4" fill="rgba(240,171,252,.5)"/><text x="130" y="89" font-size="7" fill="#2d0a3e" font-family="sans-serif" text-anchor="middle" font-weight="700">SWIPE</text>',
-    /* 2 mega platforms */
-    '<rect x="46" y="30" width="74" height="74" rx="10" fill="rgba(167,139,250,.12)" stroke="rgba(167,139,250,.3)" stroke-width="1.5"/><text x="83" y="78" font-size="28" text-anchor="middle" font-family="sans-serif">📷</text><rect x="140" y="30" width="74" height="74" rx="10" fill="rgba(240,171,252,.12)" stroke="rgba(240,171,252,.3)" stroke-width="1.5"/><text x="177" y="78" font-size="28" text-anchor="middle" font-family="sans-serif">in</text><rect x="46" y="112" width="74" height="30" rx="8" fill="rgba(96,165,250,.12)" stroke="rgba(96,165,250,.3)" stroke-width="1.5"/><rect x="140" y="112" width="74" height="30" rx="8" fill="rgba(251,191,36,.1)" stroke="rgba(251,191,36,.3)" stroke-width="1.5"/><text x="83" y="132" font-size="10" fill="rgba(96,165,250,.7)" font-family="sans-serif" text-anchor="middle" font-weight="700">LinkedIn</text><text x="177" y="132" font-size="10" fill="rgba(251,191,36,.7)" font-family="sans-serif" text-anchor="middle" font-weight="700">Facebook</text>'
-  ];
-  /* phone frame wrapper */
-  var phone='<rect x="68" y="10" width="124" height="136" rx="14" fill="rgba(255,255,255,.04)" stroke="rgba(240,171,252,.3)" stroke-width="2"/><rect x="75" y="20" width="110" height="116" rx="8" fill="rgba(0,0,0,.3)"/><rect x="110" y="13" width="40" height="6" rx="3" fill="rgba(255,255,255,.2)"/>';
-  if(v===2) phone='';
-  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="#200e2e"/>'+phone+content[v%3]+'<text x="130" y="152" text-anchor="middle" font-size="8" fill="rgba(240,171,252,.5)" font-family="sans-serif" letter-spacing="2" font-weight="700">SOSYAL MEDYA</text></svg>';
+  var bg='#1a0e2a';
+  var ac='#f0abfc', ac2='rgba(240,171,252,.55)', hi='#a78bfa';
+  if(v===0){
+    // Instagram post template: 1:1 square with gradient + text layout
+    var sq='<rect x="80" y="8" width="100" height="100" rx="8" fill="none"/>'
+      +'<defs><linearGradient id="sg0" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4c1d95"/><stop offset="100%" stop-color="#831843"/></linearGradient></defs>'
+      +'<rect x="80" y="8" width="100" height="100" rx="8" fill="url(#sg0)"/>'
+      // decorative circles
+      +'<circle cx="80" cy="8" r="30" fill="rgba(167,139,250,.15)"/>'
+      +'<circle cx="180" cy="108" r="40" fill="rgba(240,171,252,.1)"/>'
+      // profile bar top
+      +'<circle cx="91" cy="21" r="7" fill="rgba(255,255,255,.25)"/>'
+      +'<rect x="102" y="17" width="38" height="4" rx="2" fill="rgba(255,255,255,.4)"/>'
+      +'<rect x="102" y="24" width="24" height="3" rx="1.5" fill="rgba(255,255,255,.25)"/>'
+      // main headline area
+      +'<rect x="88" y="40" width="84" height="10" rx="3" fill="rgba(255,255,255,.6)"/>'
+      +'<rect x="92" y="54" width="76" height="7" rx="3" fill="rgba(255,255,255,.3)"/>'
+      +'<rect x="96" y="64" width="60" height="6" rx="3" fill="rgba(255,255,255,.2)"/>'
+      // CTA button
+      +'<rect x="100" y="78" width="60" height="16" rx="8" fill="rgba(240,171,252,.7)"/>'
+      +'<text x="130" y="90" text-anchor="middle" font-size="6.5" fill="#2d0a3e" font-family="sans-serif" font-weight="700">HEMEN AL →</text>'
+      // like/comment bar bottom
+      +'<text x="87" y="118" font-size="9" fill="rgba(255,255,255,.4)" font-family="sans-serif">♥</text>'
+      +'<text x="100" y="118" font-size="6.5" fill="rgba(255,255,255,.3)" font-family="sans-serif">1.248</text>'
+      +'<text x="120" y="118" font-size="9" fill="rgba(255,255,255,.3)" font-family="sans-serif">💬</text>'
+      +'<text x="133" y="118" font-size="6.5" fill="rgba(255,255,255,.3)" font-family="sans-serif">84</text>';
+    return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="'+bg+'"/>'+sq+'<text x="130" y="152" text-anchor="middle" font-size="7.5" fill="'+ac2+'" font-family="sans-serif" letter-spacing="2" font-weight="700">INSTAGRAM POST ŞABLonu</text></svg>';
+  } else if(v===1){
+    // 3 story previews side by side
+    var stories='';
+    var sx=[20,96,172], sw=64, sh=112, sy=14;
+    var grads=['<defs><linearGradient id="sg1a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6d28d9"/><stop offset="100%" stop-color="#c026d3"/></linearGradient></defs>',
+               '<defs><linearGradient id="sg1b" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0369a1"/><stop offset="100%" stop-color="#7e22ce"/></linearGradient></defs>',
+               '<defs><linearGradient id="sg1c" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#be123c"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs>'];
+    var fills=['url(#sg1a)','url(#sg1b)','url(#sg1c)'];
+    var opacity=[1,.85,.7];
+    for(var i=0;i<3;i++){
+      stories+=grads[i]
+        +'<rect x="'+sx[i]+'" y="'+sy+'" width="'+sw+'" height="'+sh+'" rx="8" fill="'+fills[i]+'" opacity="'+opacity[i]+'"/>'
+        // profile
+        +'<circle cx="'+(sx[i]+12)+'" cy="'+(sy+14)+'" r="8" fill="rgba(255,255,255,.3)"/>'
+        +'<rect x="'+(sx[i]+24)+'" y="'+(sy+11)+'" width="28" height="4" rx="2" fill="rgba(255,255,255,.4)"/>'
+        // image placeholder
+        +'<rect x="'+(sx[i]+6)+'" y="'+(sy+28)+'" width="'+( sw-12)+'" height="46" rx="5" fill="rgba(255,255,255,.12)"/>'
+        // text lines
+        +'<rect x="'+(sx[i]+6)+'" y="'+(sy+80)+'" width="'+(sw-12)+'" height="6" rx="3" fill="rgba(255,255,255,.4)"/>'
+        +'<rect x="'+(sx[i]+10)+'" y="'+(sy+90)+'" width="'+(sw-22)+'" height="4" rx="2" fill="rgba(255,255,255,.25)"/>'
+        // swipe button
+        +'<rect x="'+(sx[i]+8)+'" y="'+(sy+sh-18)+'" width="'+(sw-16)+'" height="12" rx="6" fill="rgba(240,171,252,.65)"/>'
+        +'<text x="'+(sx[i]+sw/2)+'" y="'+(sy+sh-9)+'" text-anchor="middle" font-size="6" fill="#2d0a3e" font-family="sans-serif" font-weight="700">↑ SWIPE</text>';
+    }
+    return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="'+bg+'"/>'+stories+'<text x="130" y="152" text-anchor="middle" font-size="7.5" fill="'+ac2+'" font-family="sans-serif" letter-spacing="2" font-weight="700">STORY ŞABLonu  ×15</text></svg>';
+  } else {
+    // Mega: 4 platform grid
+    var plats=[
+      {x:14,y:12,w:112,h:64,label:'INSTAGRAM',sub:'20 post + 15 story',c:'rgba(167,139,250,.7)'},
+      {x:134,y:12,w:112,h:64,label:'LINKEDIN',sub:'10 banner şablonu',c:'rgba(96,165,250,.7)'},
+      {x:14,y:84,w:112,h:60,label:'FACEBOOK',sub:'8 kapak fotoğrafı',c:'rgba(251,191,36,.7)'},
+      {x:134,y:84,w:112,h:60,label:'TİKTOK',sub:'10 video banner',c:'rgba(248,113,113,.7)'}
+    ];
+    var platSvg=plats.map(function(p){
+      return '<rect x="'+p.x+'" y="'+p.y+'" width="'+p.w+'" height="'+p.h+'" rx="8" fill="rgba(255,255,255,.04)" stroke="'+p.c+'" stroke-width="1.5"/>'
+        +'<text x="'+(p.x+p.w/2)+'" y="'+(p.y+p.h/2-4)+'" text-anchor="middle" font-size="9" fill="'+p.c+'" font-family="sans-serif" font-weight="700">'+p.label+'</text>'
+        +'<text x="'+(p.x+p.w/2)+'" y="'+(p.y+p.h/2+10)+'" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,.4)" font-family="sans-serif">'+p.sub+'</text>';
+    }).join('');
+    return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="'+bg+'"/>'+platSvg+'<text x="130" y="152" text-anchor="middle" font-size="7.5" fill="'+ac2+'" font-family="sans-serif" letter-spacing="2" font-weight="700">SOSYAL MEDYA MEGA PAKETİ</text></svg>';
+  }
 }
 
 function svgSunum(v){
-  var inner=[
-    /* 0 kurumsal dark slide */
-    '<rect x="38" y="34" width="184" height="104" rx="5" fill="rgba(8,18,32,.8)" stroke="rgba(110,231,183,.4)" stroke-width="1.5"/><rect x="38" y="34" width="184" height="28" rx="5" fill="rgba(110,231,183,.15)"/><rect x="48" y="41" width="64" height="8" rx="4" fill="rgba(255,255,255,.5)"/><rect x="48" y="52" width="42" height="4" rx="2" fill="rgba(110,231,183,.5)"/><rect x="48" y="74" width="18" height="52" rx="3" fill="rgba(110,231,183,.6)"/><rect x="74" y="84" width="18" height="42" rx="3" fill="rgba(96,165,250,.6)"/><rect x="100" y="78" width="18" height="48" rx="3" fill="rgba(251,191,36,.6)"/><rect x="126" y="90" width="18" height="36" rx="3" fill="rgba(110,231,183,.5)"/><rect x="152" y="80" width="18" height="46" rx="3" fill="rgba(96,165,250,.5)"/><line x1="48" y1="126" x2="196" y2="126" stroke="rgba(255,255,255,.2)" stroke-width="1"/>',
-    /* 1 pitch funnel */
-    '<rect x="38" y="30" width="184" height="108" rx="5" fill="rgba(8,18,32,.8)" stroke="rgba(110,231,183,.35)" stroke-width="1.5"/><rect x="38" y="30" width="184" height="22" rx="5" fill="rgba(110,231,183,.12)"/><rect x="48" y="36" width="76" height="8" rx="4" fill="rgba(255,255,255,.45)"/><polygon points="130,58 175,58 165,80 140,80" fill="rgba(110,231,183,.4)"/><polygon points="140,82 165,82 158,100 147,100" fill="rgba(96,165,250,.4)"/><polygon points="147,102 158,102 152.5,118" fill="rgba(251,191,36,.5)"/><rect x="60" y="58" width="58" height="8" rx="4" fill="rgba(255,255,255,.2)"/><rect x="60" y="72" width="48" height="6" rx="3" fill="rgba(255,255,255,.15)"/><rect x="60" y="84" width="40" height="5" rx="2.5" fill="rgba(255,255,255,.12)"/><rect x="60" y="96" width="32" height="5" rx="2.5" fill="rgba(255,255,255,.1)"/>',
-    /* 2 education colorful */
-    '<rect x="38" y="28" width="184" height="108" rx="5" fill="rgba(8,18,32,.8)" stroke="rgba(110,231,183,.35)" stroke-width="1.5"/><rect x="38" y="28" width="184" height="24" rx="5" fill="rgba(96,165,250,.25)"/><rect x="48" y="33" width="80" height="9" rx="4" fill="rgba(255,255,255,.5)"/><rect x="48" y="62" width="80" height="60" rx="4" fill="rgba(110,231,183,.08)" stroke="rgba(110,231,183,.25)" stroke-width="1"/><rect x="140" y="62" width="70" height="28" rx="4" fill="rgba(251,191,36,.08)" stroke="rgba(251,191,36,.25)" stroke-width="1"/><rect x="140" y="94" width="70" height="28" rx="4" fill="rgba(248,113,113,.08)" stroke="rgba(248,113,113,.25)" stroke-width="1"/><rect x="54" y="70" width="48" height="5" rx="2.5" fill="rgba(110,231,183,.5)"/><rect x="54" y="80" width="60" height="4" rx="2" fill="rgba(255,255,255,.2)"/><rect x="54" y="89" width="52" height="4" rx="2" fill="rgba(255,255,255,.18)"/><rect x="54" y="98" width="40" height="4" rx="2" fill="rgba(255,255,255,.15)"/><text x="175" y="82" font-size="10" fill="rgba(251,191,36,.6)" font-family="sans-serif" text-anchor="middle">Quiz?</text><text x="175" y="114" font-size="9" fill="rgba(248,113,113,.6)" font-family="sans-serif" text-anchor="middle">Özet</text>'
-  ];
-  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="#0d1f2e"/>'+inner[v%3]+'<text x="130" y="150" text-anchor="middle" font-size="8" fill="rgba(110,231,183,.5)" font-family="sans-serif" letter-spacing="2" font-weight="700">SUNUM ŞABLONU</text></svg>';
+  // Show a realistic presentation slide layout
+  var bg=['#0d1f2e','#080e18','#0a1410'][v%3];
+  var ac=['#6ee7b7','#a78bfa','#60a5fa'][v%3];
+  var ac2=['rgba(110,231,183,.55)','rgba(167,139,250,.55)','rgba(96,165,250,.55)'][v%3];
+  // Slide frame: 16:9 ~ 220×124, centered → x=20,y=12
+  var sx=20,sy=12,sw=220,sh=124;
+  var slide='<rect x="'+sx+'" y="'+sy+'" width="'+sw+'" height="'+sh+'" rx="6" fill="rgba(8,18,32,.95)" stroke="'+ac+'" stroke-width="1.5" opacity=".7"/>';
+  var inner='';
+  if(v===0){
+    // Kurumsal: title bar top + chart + text bullets
+    inner='<rect x="'+sx+'" y="'+sy+'" width="'+sw+'" height="26" rx="6" fill="'+ac+'" opacity=".2"/>'
+      +'<rect x="'+sx+'" y="'+sy+'" width="6" height="'+sh+'" rx="3" fill="'+ac+'" opacity=".5"/>'
+      +'<text x="'+(sx+16)+'" y="'+(sy+17)+'" font-size="9" fill="rgba(255,255,255,.85)" font-family="sans-serif" font-weight="700">Şirket Sunumu 2024</text>'
+      +'<text x="'+(sx+16)+'" y="'+(sy+22)+'" font-size="6.5" fill="'+ac+'" font-family="sans-serif" opacity=".7">Yıllık Performans Raporu</text>'
+      // bullet points
+      +'<text x="'+(sx+16)+'" y="'+(sy+42)+'" font-size="6.5" fill="'+ac+'" font-family="sans-serif">▸</text>'
+      +'<rect x="'+(sx+26)+'" y="'+(sy+38)+'" width="60" height="5" rx="2" fill="rgba(255,255,255,.4)"/>'
+      +'<text x="'+(sx+16)+'" y="'+(sy+53)+'" font-size="6.5" fill="'+ac+'" font-family="sans-serif">▸</text>'
+      +'<rect x="'+(sx+26)+'" y="'+(sy+49)+'" width="44" height="5" rx="2" fill="rgba(255,255,255,.3)"/>'
+      +'<text x="'+(sx+16)+'" y="'+(sy+64)+'" font-size="6.5" fill="'+ac+'" font-family="sans-serif">▸</text>'
+      +'<rect x="'+(sx+26)+'" y="'+(sy+60)+'" width="52" height="5" rx="2" fill="rgba(255,255,255,.25)"/>'
+      +'<text x="'+(sx+16)+'" y="'+(sy+75)+'" font-size="6.5" fill="'+ac+'" font-family="sans-serif">▸</text>'
+      +'<rect x="'+(sx+26)+'" y="'+(sy+71)+'" width="36" height="5" rx="2" fill="rgba(255,255,255,.2)"/>'
+      // bar chart right
+      +'<line x1="'+(sx+138)+'" y1="'+(sy+100)+'" x2="'+(sx+sw-14)+'" y2="'+(sy+100)+'" stroke="rgba(255,255,255,.2)" stroke-width=".8"/>'
+      +'<rect x="'+(sx+142)+'" y="'+(sy+60)+'" width="14" height="40" rx="2" fill="'+ac+'" opacity=".65"/>'
+      +'<rect x="'+(sx+160)+'" y="'+(sy+72)+'" width="14" height="28" rx="2" fill="'+ac+'" opacity=".5"/>'
+      +'<rect x="'+(sx+178)+'" y="'+(sy+54)+'" width="14" height="46" rx="2" fill="'+ac+'" opacity=".7"/>'
+      +'<rect x="'+(sx+196)+'" y="'+(sy+66)+'" width="14" height="34" rx="2" fill="'+ac+'" opacity=".6"/>'
+      // slide number
+      +'<text x="'+(sx+sw-8)+'" y="'+(sy+sh-6)+'" text-anchor="end" font-size="6" fill="rgba(255,255,255,.25)" font-family="sans-serif">1 / 20</text>';
+  } else if(v===1){
+    // Pitch deck: title + metrics row + funnel
+    inner='<rect x="'+sx+'" y="'+sy+'" width="'+sw+'" height="24" rx="6" fill="'+ac+'" opacity=".18"/>'
+      +'<text x="'+(sx+sw/2)+'" y="'+(sy+15)+'" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.85)" font-family="sans-serif" font-weight="700">Startup Pitch Deck</text>'
+      // 3 metrics
+      +'<rect x="'+(sx+10)+'" y="'+(sy+34)+'" width="58" height="34" rx="4" fill="'+ac+'" opacity=".12" stroke="'+ac+'" stroke-width=".8" opacity2=".3"/>'
+      +'<text x="'+(sx+39)+'" y="'+(sy+47)+'" text-anchor="middle" font-size="11" fill="'+ac+'" font-family="sans-serif" font-weight="700">₺2M</text>'
+      +'<text x="'+(sx+39)+'" y="'+(sy+59)+'" text-anchor="middle" font-size="6" fill="rgba(255,255,255,.4)" font-family="sans-serif">Hedef Yatırım</text>'
+      +'<rect x="'+(sx+81)+'" y="'+(sy+34)+'" width="58" height="34" rx="4" fill="rgba(96,165,250,.12)" stroke="rgba(96,165,250,.3)" stroke-width=".8"/>'
+      +'<text x="'+(sx+110)+'" y="'+(sy+47)+'" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif" font-weight="700">5K</text>'
+      +'<text x="'+(sx+110)+'" y="'+(sy+59)+'" text-anchor="middle" font-size="6" fill="rgba(255,255,255,.4)" font-family="sans-serif">Hedef Müşteri</text>'
+      +'<rect x="'+(sx+152)+'" y="'+(sy+34)+'" width="58" height="34" rx="4" fill="rgba(251,191,36,.1)" stroke="rgba(251,191,36,.3)" stroke-width=".8"/>'
+      +'<text x="'+(sx+181)+'" y="'+(sy+47)+'" text-anchor="middle" font-size="11" fill="#fbbf24" font-family="sans-serif" font-weight="700">%40</text>'
+      +'<text x="'+(sx+181)+'" y="'+(sy+59)+'" text-anchor="middle" font-size="6" fill="rgba(255,255,255,.4)" font-family="sans-serif">Brüt Kâr Marjı</text>'
+      // roadmap dots
+      +'<line x1="'+(sx+10)+'" y1="'+(sy+86)+'" x2="'+(sx+sw-10)+'" y2="'+(sy+86)+'" stroke="rgba(255,255,255,.15)" stroke-width="1"/>'
+      +'<circle cx="'+(sx+30)+'" cy="'+(sy+86)+'" r="5" fill="'+ac+'"/>'
+      +'<circle cx="'+(sx+80)+'" cy="'+(sy+86)+'" r="5" fill="'+ac+'" opacity=".7"/>'
+      +'<circle cx="'+(sx+130)+'" cy="'+(sy+86)+'" r="5" fill="rgba(255,255,255,.3)"/>'
+      +'<circle cx="'+(sx+180)+'" cy="'+(sy+86)+'" r="5" fill="rgba(255,255,255,.2)"/>'
+      +'<text x="'+(sx+30)+'" y="'+(sy+100)+'" text-anchor="middle" font-size="5.5" fill="'+ac+'" font-family="sans-serif">Q1</text>'
+      +'<text x="'+(sx+80)+'" y="'+(sy+100)+'" text-anchor="middle" font-size="5.5" fill="'+ac+'" font-family="sans-serif" opacity=".7">Q2</text>'
+      +'<text x="'+(sx+130)+'" y="'+(sy+100)+'" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,.35)" font-family="sans-serif">Q3</text>'
+      +'<text x="'+(sx+180)+'" y="'+(sy+100)+'" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,.25)" font-family="sans-serif">Q4</text>';
+  } else {
+    // Education: colorful title + 2-col content layout
+    inner='<rect x="'+sx+'" y="'+sy+'" width="'+sw+'" height="26" rx="6" fill="'+ac+'" opacity=".28"/>'
+      +'<text x="'+(sx+sw/2)+'" y="'+(sy+16)+'" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,.88)" font-family="sans-serif" font-weight="700">Eğitim Modülü 3</text>'
+      +'<text x="'+(sx+sw/2)+'" y="'+(sy+23)+'" text-anchor="middle" font-size="6" fill="'+ac+'" font-family="sans-serif">Konu: Dijital Pazarlama Temelleri</text>'
+      // left content box
+      +'<rect x="'+(sx+10)+'" y="'+(sy+34)+'" width="98" height="76" rx="5" fill="'+ac+'" opacity=".08" stroke="'+ac+'" stroke-width=".8" opacity2=".3"/>'
+      +'<text x="'+(sx+20)+'" y="'+(sy+47)+'" font-size="6.5" fill="'+ac+'" font-family="sans-serif" font-weight="700">Öğrenme Hedefleri</text>'
+      +'<text x="'+(sx+16)+'" y="'+(sy+59)+'" font-size="7" fill="'+ac+'" font-family="sans-serif">✓</text><rect x="'+(sx+26)+'" y="'+(sy+55)+'" width="72" height="4" rx="2" fill="rgba(255,255,255,.35)"/>'
+      +'<text x="'+(sx+16)+'" y="'+(sy+69)+'" font-size="7" fill="'+ac+'" font-family="sans-serif">✓</text><rect x="'+(sx+26)+'" y="'+(sy+65)+'" width="56" height="4" rx="2" fill="rgba(255,255,255,.25)"/>'
+      +'<text x="'+(sx+16)+'" y="'+(sy+79)+'" font-size="7" fill="'+ac+'" font-family="sans-serif">✓</text><rect x="'+(sx+26)+'" y="'+(sy+75)+'" width="64" height="4" rx="2" fill="rgba(255,255,255,.2)"/>'
+      +'<text x="'+(sx+16)+'" y="'+(sy+89)+'" font-size="7" fill="'+ac+'" font-family="sans-serif">✓</text><rect x="'+(sx+26)+'" y="'+(sy+85)+'" width="48" height="4" rx="2" fill="rgba(255,255,255,.18)"/>'
+      // right quiz box
+      +'<rect x="'+(sx+118)+'" y="'+(sy+34)+'" width="90" height="36" rx="5" fill="rgba(251,191,36,.12)" stroke="rgba(251,191,36,.3)" stroke-width=".8"/>'
+      +'<text x="'+(sx+163)+'" y="'+(sy+48)+'" text-anchor="middle" font-size="7" fill="#fbbf24" font-family="sans-serif" font-weight="700">QUIZ SORUSU</text>'
+      +'<rect x="'+(sx+124)+'" y="'+(sy+53)+'" width="78" height="11" rx="5" fill="rgba(251,191,36,.2)"/>'
+      +'<text x="'+(sx+163)+'" y="'+(sy+61)+'" text-anchor="middle" font-size="6" fill="rgba(255,255,255,.6)" font-family="sans-serif">Cevabını gir...</text>'
+      // right summary box
+      +'<rect x="'+(sx+118)+'" y="'+(sy+76)+'" width="90" height="34" rx="5" fill="rgba(248,113,113,.1)" stroke="rgba(248,113,113,.3)" stroke-width=".8"/>'
+      +'<text x="'+(sx+163)+'" y="'+(sy+88)+'" text-anchor="middle" font-size="7" fill="#f87171" font-family="sans-serif" font-weight="700">DERS ÖZETİ</text>'
+      +'<rect x="'+(sx+124)+'" y="'+(sy+92)+'" width="60" height="4" rx="2" fill="rgba(255,255,255,.2)"/>'
+      +'<rect x="'+(sx+124)+'" y="'+(sy+99)+'" width="44" height="4" rx="2" fill="rgba(255,255,255,.15)"/>';
+  }
+  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="'+bg+'"/>'+slide+inner+'<text x="130" y="152" text-anchor="middle" font-size="7.5" fill="'+ac2+'" font-family="sans-serif" letter-spacing="2" font-weight="700">SUNUM ŞABLonu</text></svg>';
 }
 
 function svgMockup(v){
-  var art=[
-    /* 0 coffee cup */
-    '<ellipse cx="130" cy="54" rx="38" ry="10" fill="rgba(253,186,116,.2)" stroke="rgba(253,186,116,.4)" stroke-width="1.5"/><rect x="92" y="54" width="76" height="62" rx="0" fill="rgba(253,186,116,.1)" stroke="rgba(253,186,116,.3)" stroke-width="1.5"/><rect x="88" y="112" width="84" height="8" rx="4" fill="rgba(253,186,116,.3)"/><path d="M168 68 Q186 72 186 84 Q186 96 168 100" fill="none" stroke="rgba(253,186,116,.5)" stroke-width="4" stroke-linecap="round"/><rect x="105" y="72" width="50" height="36" rx="5" fill="rgba(253,186,116,.08)" stroke="rgba(253,186,116,.2)" stroke-width="1"/><text x="130" y="96" font-size="11" fill="rgba(253,186,116,.5)" font-family="sans-serif" text-anchor="middle" font-weight="700">LOGO</text><path d="M115 70 Q130 58 145 70" fill="none" stroke="rgba(253,186,116,.35)" stroke-width="1.5"/><path d="M118 66 Q130 55 142 66" fill="none" stroke="rgba(253,186,116,.25)" stroke-width="1.5"/>',
-    /* 1 phone screen */
-    '<rect x="96" y="16" width="68" height="124" rx="12" fill="rgba(253,186,116,.06)" stroke="rgba(253,186,116,.4)" stroke-width="2"/><rect x="103" y="28" width="54" height="96" rx="6" fill="rgba(0,0,0,.4)"/><rect x="113" y="20" width="34" height="5" rx="2.5" fill="rgba(255,255,255,.2)"/><circle cx="130" cy="134" r="5" fill="rgba(253,186,116,.3)"/><rect x="108" y="34" width="44" height="32" rx="4" fill="rgba(253,186,116,.2)"/><rect x="108" y="70" width="44" height="6" rx="3" fill="rgba(255,255,255,.3)"/><rect x="108" y="80" width="32" height="4" rx="2" fill="rgba(255,255,255,.2)"/><rect x="108" y="88" width="38" height="4" rx="2" fill="rgba(255,255,255,.18)"/><rect x="108" y="100" width="44" height="14" rx="4" fill="rgba(253,186,116,.4)"/>',
-    /* 2 brand items flat lay */
-    '<rect x="30" y="30" width="82" height="52" rx="5" fill="rgba(253,186,116,.08)" stroke="rgba(253,186,116,.35)" stroke-width="1.5"/><rect x="36" y="34" width="36" height="26" rx="3" fill="rgba(253,186,116,.2)"/><rect x="78" y="36" width="28" height="4" rx="2" fill="rgba(255,255,255,.3)"/><rect x="78" y="44" width="20" height="3" rx="1.5" fill="rgba(255,255,255,.2)"/><rect x="148" y="30" width="82" height="52" rx="5" fill="rgba(253,186,116,.08)" stroke="rgba(253,186,116,.35)" stroke-width="1.5"/><circle cx="178" cy="56" r="18" fill="none" stroke="rgba(253,186,116,.4)" stroke-width="2"/><text x="178" y="61" font-size="9" fill="rgba(253,186,116,.6)" font-family="sans-serif" text-anchor="middle" font-weight="700">LOGO</text><rect x="88" y="96" width="84" height="40" rx="5" fill="rgba(253,186,116,.08)" stroke="rgba(253,186,116,.35)" stroke-width="1.5"/><rect x="94" y="102" width="72" height="28" rx="4" fill="rgba(253,186,116,.12)"/><text x="130" y="121" font-size="10" fill="rgba(253,186,116,.5)" font-family="sans-serif" text-anchor="middle" font-weight="700">T-Shirt</text>'
-  ];
-  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="#1a0c00"/>'+art[v%3]+'<text x="130" y="150" text-anchor="middle" font-size="8" fill="rgba(253,186,116,.5)" font-family="sans-serif" letter-spacing="2" font-weight="700">MOCKUP PAKETİ</text></svg>';
+  var bg='#140a00';
+  var ac='rgba(253,186,116,.8)', ac2='rgba(253,186,116,.45)', stroke='rgba(253,186,116,.4)';
+  if(v===0){
+    // Coffee cup mockup with logo label area
+    var cup='<defs><linearGradient id="mg0" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="rgba(253,186,116,.25)"/><stop offset="100%" stop-color="rgba(253,186,116,.1)"/></linearGradient></defs>'
+      // cup body (trapezoid shape)
+      +'<path d="M92,48 L100,120 Q130,126 160,120 L168,48 Q130,40 92,48 Z" fill="url(#mg0)" stroke="'+stroke+'" stroke-width="1.5"/>'
+      // cup lid
+      +'<ellipse cx="130" cy="48" rx="38" ry="10" fill="rgba(253,186,116,.35)" stroke="'+stroke+'" stroke-width="1.5"/>'
+      +'<ellipse cx="130" cy="46" rx="32" ry="7" fill="rgba(253,186,116,.2)"/>'
+      // handle
+      +'<path d="M168 68 Q186 68 186 84 Q186 100 168 100" fill="none" stroke="'+stroke+'" stroke-width="3" stroke-linecap="round"/>'
+      // steam
+      +'<path d="M114 36 Q116 26 114 18" fill="none" stroke="rgba(253,186,116,.3)" stroke-width="1.5" stroke-linecap="round"/>'
+      +'<path d="M130 32 Q132 20 130 12" fill="none" stroke="rgba(253,186,116,.25)" stroke-width="1.5" stroke-linecap="round"/>'
+      +'<path d="M146 36 Q148 26 146 18" fill="none" stroke="rgba(253,186,116,.2)" stroke-width="1.5" stroke-linecap="round"/>'
+      // logo label on cup
+      +'<rect x="104" y="66" width="52" height="38" rx="4" fill="rgba(253,186,116,.12)" stroke="rgba(253,186,116,.3)" stroke-width="1"/>'
+      +'<circle cx="130" cy="78" r="10" fill="none" stroke="rgba(253,186,116,.5)" stroke-width="1.5"/>'
+      +'<text x="130" y="82" text-anchor="middle" font-size="10" fill="rgba(253,186,116,.7)" font-family="Georgia,serif" font-weight="bold">K</text>'
+      +'<text x="130" y="96" text-anchor="middle" font-size="5.5" fill="rgba(253,186,116,.5)" font-family="sans-serif" letter-spacing="1.5">KAFE CO.</text>'
+      // base
+      +'<ellipse cx="130" cy="120" rx="32" ry="6" fill="rgba(253,186,116,.2)" stroke="'+stroke+'" stroke-width="1"/>';
+    return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="'+bg+'"/>'+cup+'<text x="130" y="152" text-anchor="middle" font-size="7.5" fill="'+ac2+'" font-family="sans-serif" letter-spacing="2" font-weight="700">KAFE MOCKUP PAKETİ</text></svg>';
+  } else if(v===1){
+    // Phone screen mockup
+    var phone='<rect x="90" y="10" width="80" height="136" rx="14" fill="rgba(20,14,8,.9)" stroke="'+stroke+'" stroke-width="2"/>'
+      // screen
+      +'<rect x="97" y="24" width="66" height="106" rx="6" fill="rgba(0,0,0,.6)"/>'
+      // notch
+      +'<rect x="112" y="14" width="36" height="6" rx="3" fill="rgba(255,255,255,.15)"/>'
+      // home indicator
+      +'<rect x="112" y="138" width="36" height="4" rx="2" fill="rgba(255,255,255,.2)"/>'
+      // app interface on screen
+      // header bar
+      +'<rect x="97" y="24" width="66" height="16" rx="6" fill="rgba(253,186,116,.25)"/>'
+      +'<text x="130" y="35" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,.8)" font-family="sans-serif" font-weight="700">Uygulama Adı</text>'
+      // hero image area
+      +'<rect x="99" y="42" width="62" height="38" rx="3" fill="rgba(253,186,116,.15)"/>'
+      +'<circle cx="130" cy="61" r="12" fill="none" stroke="rgba(253,186,116,.5)" stroke-width="1.5"/>'
+      +'<text x="130" y="65" text-anchor="middle" font-size="10" fill="rgba(253,186,116,.6)" font-family="Georgia,serif">L</text>'
+      // content lines
+      +'<rect x="103" y="84" width="54" height="6" rx="3" fill="rgba(255,255,255,.3)"/>'
+      +'<rect x="107" y="93" width="46" height="4" rx="2" fill="rgba(255,255,255,.18)"/>'
+      +'<rect x="107" y="100" width="38" height="4" rx="2" fill="rgba(255,255,255,.14)"/>'
+      // CTA button
+      +'<rect x="104" y="110" width="52" height="14" rx="7" fill="rgba(253,186,116,.6)"/>'
+      +'<text x="130" y="120" text-anchor="middle" font-size="6.5" fill="#140a00" font-family="sans-serif" font-weight="700">İNCELE →</text>';
+    return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="'+bg+'"/>'+phone+'<text x="130" y="153" text-anchor="middle" font-size="7.5" fill="'+ac2+'" font-family="sans-serif" letter-spacing="2" font-weight="700">TELEFON MOCKUP PAKETİ</text></svg>';
+  } else {
+    // Brand flat lay: business card + t-shirt + mug items
+    var flatlay=''
+      // Business card
+      +'<rect x="12" y="14" width="100" height="60" rx="6" fill="rgba(253,186,116,.08)" stroke="'+stroke+'" stroke-width="1.5"/>'
+      +'<rect x="12" y="14" width="100" height="6" rx="4" fill="rgba(253,186,116,.4)"/>'
+      +'<circle cx="32" cy="44" r="10" fill="none" stroke="rgba(253,186,116,.5)" stroke-width="1.5"/>'
+      +'<text x="32" y="48" text-anchor="middle" font-size="9" fill="rgba(253,186,116,.6)" font-family="serif" font-weight="bold">E</text>'
+      +'<rect x="50" y="33" width="54" height="5" rx="2.5" fill="rgba(255,255,255,.4)"/>'
+      +'<rect x="50" y="42" width="38" height="4" rx="2" fill="rgba(255,255,255,.2)"/>'
+      +'<rect x="50" y="50" width="46" height="3" rx="1.5" fill="rgba(255,255,255,.15)"/>'
+      +'<rect x="50" y="57" width="30" height="3" rx="1.5" fill="rgba(255,255,255,.12)"/>'
+      // T-shirt outline
+      +'<path d="M148,14 L120,28 L128,38 L128,84 L196,84 L196,38 L204,28 L176,14 L168,22 L156,22 Z" fill="rgba(253,186,116,.08)" stroke="'+stroke+'" stroke-width="1.5"/>'
+      +'<circle cx="162" cy="52" r="10" fill="none" stroke="rgba(253,186,116,.45)" stroke-width="1.5"/>'
+      +'<text x="162" y="56" text-anchor="middle" font-size="9" fill="rgba(253,186,116,.55)" font-family="serif" font-weight="bold">E</text>'
+      // Label bottom
+      +'<text x="162" y="78" text-anchor="middle" font-size="5.5" fill="rgba(253,186,116,.4)" font-family="sans-serif" letter-spacing="1">TİŞÖRT</text>'
+      // Paper bag / packaging below
+      +'<rect x="12" y="84" width="80" height="58" rx="6" fill="rgba(253,186,116,.07)" stroke="'+stroke+'" stroke-width="1.5"/>'
+      +'<path d="M28 84 Q28 78 34 76 Q46 76 52 84" fill="none" stroke="'+stroke+'" stroke-width="1.5" stroke-linecap="round"/>'
+      +'<path d="M44 84 Q44 78 50 76 Q62 76 68 84" fill="none" stroke="'+stroke+'" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>'
+      +'<circle cx="52" cy="113" r="12" fill="none" stroke="rgba(253,186,116,.4)" stroke-width="1.5"/>'
+      +'<text x="52" y="117" text-anchor="middle" font-size="9" fill="rgba(253,186,116,.5)" font-family="serif" font-weight="bold">E</text>'
+      // Mug
+      +'<rect x="134" y="90" width="60" height="44" rx="5" fill="rgba(253,186,116,.08)" stroke="'+stroke+'" stroke-width="1.5"/>'
+      +'<path d="M194 102 Q206 102 206 112 Q206 122 194 122" fill="none" stroke="'+stroke+'" stroke-width="2" stroke-linecap="round"/>'
+      +'<ellipse cx="164" cy="90" rx="30" ry="6" fill="rgba(253,186,116,.15)" stroke="rgba(253,186,116,.3)" stroke-width="1"/>'
+      +'<rect x="144" y="100" width="40" height="22" rx="3" fill="rgba(253,186,116,.06)"/>'
+      +'<text x="164" y="115" text-anchor="middle" font-size="8" fill="rgba(253,186,116,.45)" font-family="serif" font-weight="bold">Logo</text>';
+    return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="'+bg+'"/>'+flatlay+'<text x="130" y="152" text-anchor="middle" font-size="7.5" fill="'+ac2+'" font-family="sans-serif" letter-spacing="2" font-weight="700">MARKA MOCKUP PAKETİ</text></svg>';
+  }
 }
 
 function svgMega(){
-  return '<svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a1040"/><stop offset="50%" stop-color="#0e2233"/><stop offset="100%" stop-color="#200e2e"/></linearGradient></defs><rect width="150" height="150" fill="url(#mg)"/><rect x="12" y="12" width="56" height="56" rx="8" fill="rgba(124,58,237,.2)" stroke="rgba(124,58,237,.4)" stroke-width="1.5"/><circle cx="40" cy="40" r="16" fill="none" stroke="#a78bfa" stroke-width="2"/><circle cx="40" cy="40" r="8" fill="rgba(124,58,237,.5)"/><rect x="82" y="12" width="56" height="56" rx="8" fill="rgba(41,211,255,.12)" stroke="rgba(41,211,255,.35)" stroke-width="1.5"/><rect x="90" y="20" width="40" height="28" rx="3" fill="rgba(41,211,255,.15)"/><rect x="90" y="52" width="40" height="4" rx="2" fill="rgba(255,255,255,.35)"/><rect x="90" y="59" width="28" height="3" rx="1.5" fill="rgba(255,255,255,.2)"/><rect x="12" y="82" width="56" height="56" rx="8" fill="rgba(251,191,36,.1)" stroke="rgba(251,191,36,.3)" stroke-width="1.5"/><rect x="20" y="92" width="14" height="38" rx="2" fill="rgba(52,211,153,.6)"/><rect x="38" y="100" width="14" height="30" rx="2" fill="rgba(251,191,36,.7)"/><rect x="56" y="96" width="6" height="34" rx="2" fill="rgba(96,165,250,.6)"/><rect x="82" y="82" width="56" height="56" rx="8" fill="rgba(240,171,252,.1)" stroke="rgba(240,171,252,.3)" stroke-width="1.5"/><rect x="92" y="90" width="36" height="26" rx="5" fill="rgba(167,139,250,.2)"/><rect x="97" y="95" width="26" height="16" rx="3" fill="rgba(167,139,250,.35)"/><rect x="92" y="120" width="36" height="4" rx="2" fill="rgba(255,255,255,.3)"/><rect x="92" y="127" width="24" height="3" rx="1.5" fill="rgba(255,255,255,.2)"/><text x="75" y="78" font-size="8" fill="rgba(200,255,46,.7)" font-family="sans-serif" text-anchor="middle" font-weight="800">MEGA</text></svg>';
+  // Featured banner: 4 product category icons in a 2x2 grid with accent highlights
+  return '<svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">'
+    +'<defs><linearGradient id="mgbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a1040"/><stop offset="50%" stop-color="#0e2233"/><stop offset="100%" stop-color="#200e2e"/></linearGradient></defs>'
+    +'<rect width="150" height="150" fill="url(#mgbg)"/>'
+    // Q1: Logo (purple)
+    +'<rect x="8" y="8" width="62" height="62" rx="8" fill="rgba(124,58,237,.15)" stroke="rgba(167,139,250,.4)" stroke-width="1.5"/>'
+    +'<circle cx="39" cy="30" r="12" fill="none" stroke="#a78bfa" stroke-width="2.5"/>'
+    +'<text x="39" y="35" text-anchor="middle" font-size="12" fill="#a78bfa" font-family="Georgia,serif" font-weight="bold">L</text>'
+    +'<text x="39" y="50" text-anchor="middle" font-size="6" fill="rgba(167,139,250,.6)" font-family="sans-serif" letter-spacing="1.5" font-weight="700">LOGO</text>'
+    +'<text x="39" y="62" text-anchor="middle" font-size="5.5" fill="rgba(167,139,250,.4)" font-family="sans-serif">5 tasarım · PNG+SVG</text>'
+    // Q2: Kartvizit (cyan)
+    +'<rect x="80" y="8" width="62" height="62" rx="8" fill="rgba(41,211,255,.1)" stroke="rgba(41,211,255,.35)" stroke-width="1.5"/>'
+    +'<rect x="90" y="22" width="42" height="26" rx="4" fill="rgba(41,211,255,.15)" stroke="rgba(41,211,255,.35)" stroke-width="1"/>'
+    +'<rect x="90" y="22" width="42" height="5" rx="2" fill="rgba(41,211,255,.4)"/>'
+    +'<rect x="95" y="32" width="26" height="4" rx="2" fill="rgba(255,255,255,.4)"/>'
+    +'<rect x="95" y="39" width="18" height="3" rx="1.5" fill="rgba(255,255,255,.2)"/>'
+    +'<text x="111" y="56" text-anchor="middle" font-size="6" fill="rgba(41,211,255,.6)" font-family="sans-serif" letter-spacing="1.5" font-weight="700">KARTVİZİT</text>'
+    +'<text x="111" y="64" text-anchor="middle" font-size="5.5" fill="rgba(41,211,255,.4)" font-family="sans-serif">3 şablon · Canva</text>'
+    // Q3: Sosyal Medya (pink)
+    +'<rect x="8" y="80" width="62" height="62" rx="8" fill="rgba(240,171,252,.1)" stroke="rgba(240,171,252,.35)" stroke-width="1.5"/>'
+    +'<rect x="17" y="90" width="42" height="42" rx="6" fill="rgba(167,139,250,.2)"/>'
+    +'<rect x="17" y="90" width="42" height="26" rx="6" fill="rgba(124,58,237,.3)"/>'
+    +'<rect x="21" y="94" width="34" height="4" rx="2" fill="rgba(255,255,255,.4)"/>'
+    +'<rect x="23" y="101" width="26" height="3" rx="1.5" fill="rgba(255,255,255,.25)"/>'
+    +'<rect x="17" y="120" width="42" height="10" rx="4" fill="rgba(240,171,252,.5)"/>'
+    +'<text x="38" y="128" text-anchor="middle" font-size="5.5" fill="#2d0a3e" font-family="sans-serif" font-weight="700">SWIPE ↑</text>'
+    +'<text x="39" y="138" text-anchor="middle" font-size="6" fill="rgba(240,171,252,.6)" font-family="sans-serif" letter-spacing="1" font-weight="700">SOSYAL MEDYA</text>'
+    // Q4: Mockup (orange)
+    +'<rect x="80" y="80" width="62" height="62" rx="8" fill="rgba(253,186,116,.1)" stroke="rgba(253,186,116,.35)" stroke-width="1.5"/>'
+    +'<path d="M100,88 L104,126 Q111,129 118,126 L122,88 Q111,85 100,88 Z" fill="rgba(253,186,116,.2)" stroke="rgba(253,186,116,.4)" stroke-width="1.5"/>'
+    +'<ellipse cx="111" cy="88" rx="11" ry="4" fill="rgba(253,186,116,.35)"/>'
+    +'<path d="M122 98 Q128 98 128 106 Q128 114 122 114" fill="none" stroke="rgba(253,186,116,.5)" stroke-width="2" stroke-linecap="round"/>'
+    +'<circle cx="111" cy="107" r="7" fill="none" stroke="rgba(253,186,116,.5)" stroke-width="1"/>'
+    +'<text x="111" y="110" text-anchor="middle" font-size="6" fill="rgba(253,186,116,.6)" font-family="serif" font-weight="bold">E</text>'
+    +'<text x="111" y="132" text-anchor="middle" font-size="6" fill="rgba(253,186,116,.6)" font-family="sans-serif" letter-spacing="1.2" font-weight="700">MOCKUP</text>'
+    // center badge
+    +'<circle cx="75" cy="75" r="14" fill="#c8ff2e" opacity=".9"/>'
+    +'<text x="75" y="79" text-anchor="middle" font-size="9" fill="#10140a" font-family="sans-serif" font-weight="800">MEGA</text>'
+    +'</svg>';
 }
 
 /* ══ PRODUCT DATA ══ */
