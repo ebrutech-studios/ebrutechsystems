@@ -115,7 +115,8 @@
   var cards=document.querySelectorAll('.tool-card');
   var heads=document.querySelectorAll('.cat-head');
   var noResult=document.getElementById('toolNoResult');
-  var activeCat='all';
+  var params=new URLSearchParams(location.search);
+  var activeCat=params.get('cat')||'all';
 
   function filter(){
     var q=search.value.toLowerCase().trim();
@@ -146,16 +147,18 @@
       catBtns.forEach(function(b){b.classList.remove('active');});
       btn.classList.add('active');
       activeCat=btn.dataset.cat;
+      history.replaceState(null,'',activeCat==='all'?location.pathname:location.pathname+'?cat='+activeCat);
       filter();
     });
   });
-
-  var urlQ=new URLSearchParams(window.location.search).get('q');
-  if(urlQ){
-    search.value=urlQ;
-    search.scrollIntoView({behavior:'smooth',block:'center'});
-    filter();
+  var qParam=params.get('q');
+  if(qParam){search.value=qParam;}
+  if(activeCat!=='all'){
+    catBtns.forEach(function(b){b.classList.remove('active');});
+    var ab=document.querySelector('.cat-btn[data-cat="'+activeCat+'"]');
+    if(ab)ab.classList.add('active');
   }
+  if(qParam||activeCat!=='all')filter();
 })();
 </script>
 </body></html>

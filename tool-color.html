@@ -1,56 +1,191 @@
-﻿<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Renk Kodu Dönüştürücü (HEX, RGB, HSL) — EbruTech Studios</title>
-<meta name="description" content="Renk Kodu Dönüştürücü (HEX, RGB, HSL). Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Renk Kodu Dönüştürücü (HEX, RGB, HSL, CMYK) — EbruTech Studios</title>
+<meta name="description" content="Renk kodu dönüştürücü: HEX, RGB, HSL ve CMYK arasında anında dönüştür. Kontrast oranı ve CSS değişkeni. Ücretsiz online renk araçları.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-color.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="EbruTech Studios">
-<meta property="og:title" content="Renk Kodu Dönüştürücü (HEX, RGB, HSL) — EbruTech Studios">
-<meta property="og:description" content="Renk Kodu Dönüştürücü (HEX, RGB, HSL). Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
-<meta property="og:url" content="https://ebrutechsystems.com/tool-color.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="Renk Kodu Dönüştürücü — EbruTech Studios">
 <meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
-<meta property="og:locale" content="tr_TR">
-<meta name="twitter:card" content="summary_large_image">
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#10140a">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script><script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Renk Kodu Dönüştürücü (HEX, RGB, HSL)","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-color.html"}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<style>
+.color-swatch{height:100px;border-radius:14px;border:1px solid var(--border);margin-bottom:16px;position:relative;overflow:hidden;transition:.3s}
+.swatch-text{position:absolute;bottom:10px;right:14px;font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:10px;backdrop-filter:blur(4px)}
+.color-inputs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.color-field{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;transition:.15s;position:relative}
+.color-field:hover{border-color:var(--accent)}
+.color-field label{font-size:.72rem;font-weight:600;color:var(--txt-faint);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px}
+.color-field input{background:none;border:none;color:var(--txt);font-family:monospace;font-size:.92rem;width:100%;outline:none;cursor:inherit;font-weight:600}
+.color-field .copy-hint{position:absolute;top:10px;right:10px;font-size:.65rem;color:var(--txt-faint);opacity:0;transition:.15s}
+.color-field:hover .copy-hint{opacity:1}
+.contrast-bar{height:6px;border-radius:4px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:6px}
+.contrast-bar>div{height:100%;border-radius:4px;transition:.3s}
+.palette-strip{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.palette-swatch{width:36px;height:36px;border-radius:8px;cursor:pointer;border:1px solid rgba(255,255,255,.1);transition:.15s;flex-shrink:0}
+.palette-swatch:hover{transform:scale(1.15)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Renk Kodu Dönüştürücü","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-color.html"}
 </script>
 </head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
-<span class="eyebrow">Araç · Geliştirici</span><h1 style="font-size:2.2rem">🌈 Renk Kodu Dönüştürücü</h1>
-<p class="lead" style="margin:14px 0 26px">HEX, RGB ve HSL arasında anında dönüştür. Renk seç veya kod gir.</p>
+<span class="eyebrow">Araç · Geliştirici</span><h1 style="font-size:2.2rem">🎨 Renk Kodu Dönüştürücü</h1>
+<p class="lead" style="margin:14px 0 26px">HEX, RGB, HSL ve CMYK arasında anında dönüştür. Kontrast oranı ve CSS şablonu dahil.</p>
+
 <div class="controls">
-<div class="field"><label>Renk Seç</label><input id="picker" type="color" value="#c8ff2e" style="height:60px;padding:4px;cursor:pointer"></div>
-<div id="swatch" style="height:80px;border-radius:12px;border:1px solid var(--border);background:#c8ff2e"></div>
-<div class="field"><label>HEX</label><input id="hex" value="#C8FF2E"></div>
-<div class="field"><label>RGB</label><input id="rgb" readonly></div>
-<div class="field"><label>HSL</label><input id="hsl" readonly></div>
-<p style="color:var(--txt-faint);font-size:.82rem">Değerlere tıklayınca kopyalanır.</p>
-</div></div></div></section>
+
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+<input id="picker" type="color" value="#c8ff2e" style="width:60px;height:60px;padding:4px;border-radius:12px;border:1px solid var(--border-strong);cursor:pointer;background:var(--bg-2)">
+<div style="flex:1">
+  <div style="font-size:.78rem;color:var(--txt-faint);margin-bottom:4px">Renk seçici — kalem ikonuna tıklayın veya aşağıdan HEX girin</div>
+  <div id="colorName" style="font-size:.9rem;font-weight:600;color:var(--txt)"></div>
+</div>
+</div>
+
+<div class="color-swatch" id="swatch">
+<div class="swatch-text" id="swatchText"></div>
+</div>
+
+<div class="color-inputs">
+<div class="color-field" onclick="copyField('hex')">
+  <label>HEX</label><input id="hex" value="#C8FF2E" maxlength="7"><div class="copy-hint">Kopyala</div>
+</div>
+<div class="color-field" onclick="copyField('rgb')">
+  <label>RGB</label><input id="rgb" readonly><div class="copy-hint">Kopyala</div>
+</div>
+<div class="color-field" onclick="copyField('hsl')">
+  <label>HSL</label><input id="hsl" readonly><div class="copy-hint">Kopyala</div>
+</div>
+<div class="color-field" onclick="copyField('cmyk')">
+  <label>CMYK</label><input id="cmyk" readonly><div class="copy-hint">Kopyala</div>
+</div>
+</div>
+
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin-top:12px">
+<div style="font-size:.78rem;color:var(--txt-faint);margin-bottom:10px">Kontrast Oranı (WCAG)</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div>
+  <div style="font-size:.78rem;margin-bottom:4px">Beyaz Arka Plan</div>
+  <div id="contrastW" style="font-weight:700;font-size:1.1rem"></div>
+  <div class="contrast-bar"><div id="contrastWBar"></div></div>
+  <div id="contrastWGrade" style="font-size:.72rem;margin-top:3px"></div>
+</div>
+<div>
+  <div style="font-size:.78rem;margin-bottom:4px">Siyah Arka Plan</div>
+  <div id="contrastB" style="font-weight:700;font-size:1.1rem"></div>
+  <div class="contrast-bar"><div id="contrastBBar"></div></div>
+  <div id="contrastBGrade" style="font-size:.72rem;margin-top:3px"></div>
+</div>
+</div>
+</div>
+
+<div class="color-field" onclick="copyField('cssvar')" style="margin-top:12px">
+<label>CSS Değişkeni</label><input id="cssvar" readonly><div class="copy-hint">Kopyala</div>
+</div>
+
+<div>
+<div style="font-size:.78rem;color:var(--txt-faint);margin-top:16px;margin-bottom:8px">Renk Paleti — Tıkla seç</div>
+<div class="palette-strip" id="palette"></div>
+</div>
+
+</div>
+</div></div></section>
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-const picker=document.getElementById("picker"),hex=document.getElementById("hex"),rgb=document.getElementById("rgb"),hsl=document.getElementById("hsl"),sw=document.getElementById("swatch");
-function hexToRgb(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");
-  const n=parseInt(h,16);return{r:(n>>16)&255,g:(n>>8)&255,b:n&255};}
-function rgbToHsl(r,g,b){r/=255;g/=255;b/=255;const mx=Math.max(r,g,b),mn=Math.min(r,g,b);let h,s,l=(mx+mn)/2;
+const picker=document.getElementById("picker"),hexInp=document.getElementById("hex");
+const ids=["hex","rgb","hsl","cmyk","cssvar"];
+
+function copyField(id){const el=document.getElementById(id);if(el&&el.value){navigator.clipboard.writeText(el.value);ETSlib.toast(el.value+" kopyalandı ✓");}}
+
+function hexToRgb(h){
+  h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");
+  const n=parseInt(h,16);return{r:(n>>16)&255,g:(n>>8)&255,b:n&255};
+}
+function rgbToHsl(r,g,b){
+  r/=255;g/=255;b/=255;const mx=Math.max(r,g,b),mn=Math.min(r,g,b);let h,s,l=(mx+mn)/2;
   if(mx===mn){h=s=0;}else{const d=mx-mn;s=l>.5?d/(2-mx-mn):d/(mx+mn);
   switch(mx){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;case b:h=(r-g)/d+4;break;}h/=6;}
-  return{h:Math.round(h*360),s:Math.round(s*100),l:Math.round(l*100)};}
+  return{h:Math.round(h*360),s:Math.round(s*100),l:Math.round(l*100)};
+}
+function rgbToCmyk(r,g,b){
+  r/=255;g/=255;b/=255;
+  const k=1-Math.max(r,g,b);if(k===1)return{c:0,m:0,y:0,k:100};
+  const c=Math.round((1-r-k)/(1-k)*100);const m=Math.round((1-g-k)/(1-k)*100);
+  const y=Math.round((1-b-k)/(1-k)*100);return{c,m,y,k:Math.round(k*100)};
+}
+function relativeLuminance(r,g,b){
+  const sRGB=[r,g,b].map(c=>{c/=255;return c<=0.03928?c/12.92:Math.pow((c+0.055)/1.055,2.4);});
+  return 0.2126*sRGB[0]+0.7152*sRGB[1]+0.0722*sRGB[2];
+}
+function contrastRatio(l1,l2){return(Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05);}
+function wcagGrade(ratio){if(ratio>=7)return{g:"AAA",c:"#3ee8b5"};if(ratio>=4.5)return{g:"AA",c:"var(--accent)"};if(ratio>=3)return{g:"AA Large",c:"#ffaa33"};return{g:"Yetersiz",c:"#ff8080"};}
+
+function hslToHex(h,s,l){
+  s/=100;l/=100;const a=s*Math.min(l,1-l);
+  const f=n=>{const k=(n+h/30)%12;const color=l-a*Math.max(Math.min(k-3,9-k,1),-1);
+  return Math.round(255*color).toString(16).padStart(2,"0");};
+  return `#${f(0)}${f(8)}${f(4)}`.toUpperCase();
+}
+
+const PALETTE_OFFSETS=[0,30,60,120,180,210,240,300];
+
 function update(h){
-  const valid=/^#?[0-9a-fA-F]{3}([0-9a-fA-F]{3})?$/.test(h.replace("#",""));
+  const valid=/^#?[0-9a-fA-F]{6}$/.test(h.replace("#",""));
   if(!valid)return;
   const hx="#"+h.replace("#","").toUpperCase();
-  const {r,g,b}=hexToRgb(hx);const {h:H,s:S,l:L}=rgbToHsl(r,g,b);
-  hex.value=hx;rgb.value=`rgb(${r}, ${g}, ${b})`;hsl.value=`hsl(${H}, ${S}%, ${L}%)`;
-  sw.style.background=hx;picker.value=hx.length===7?hx:picker.value;
+  const {r,g,b}=hexToRgb(hx);
+  const {h:H,s:S,l:L}=rgbToHsl(r,g,b);
+  const {c,m,y,k}=rgbToCmyk(r,g,b);
+  const lum=relativeLuminance(r,g,b);
+  const whiteContrast=contrastRatio(lum,1);
+  const blackContrast=contrastRatio(lum,0);
+  const wg=wcagGrade(whiteContrast);const bg=wcagGrade(blackContrast);
+
+  hexInp.value=hx;
+  document.getElementById("rgb").value=`rgb(${r}, ${g}, ${b})`;
+  document.getElementById("hsl").value=`hsl(${H}, ${S}%, ${L}%)`;
+  document.getElementById("cmyk").value=`cmyk(${c}%, ${m}%, ${y}%, ${k}%)`;
+  document.getElementById("cssvar").value=`--color: ${hx};  /* ${r}, ${g}, ${b} */`;
+
+  const swatch=document.getElementById("swatch");
+  swatch.style.background=hx;
+  const textOnColor=lum>0.179?"#111":"#fff";
+  document.getElementById("swatchText").style.background=lum>0.179?"rgba(0,0,0,.12)":"rgba(255,255,255,.12)";
+  document.getElementById("swatchText").style.color=textOnColor;
+  document.getElementById("swatchText").textContent=hx;
+
+  document.getElementById("contrastW").textContent=whiteContrast.toFixed(2)+":1";
+  document.getElementById("contrastW").style.color=wg.c;
+  document.getElementById("contrastWBar").style.width=Math.min(100,whiteContrast/21*100)+"%";
+  document.getElementById("contrastWBar").style.background=wg.c;
+  document.getElementById("contrastWGrade").textContent=wg.g;
+  document.getElementById("contrastWGrade").style.color=wg.c;
+
+  document.getElementById("contrastB").textContent=blackContrast.toFixed(2)+":1";
+  document.getElementById("contrastB").style.color=bg.c;
+  document.getElementById("contrastBBar").style.width=Math.min(100,blackContrast/21*100)+"%";
+  document.getElementById("contrastBBar").style.background=bg.c;
+  document.getElementById("contrastBGrade").textContent=bg.g;
+  document.getElementById("contrastBGrade").style.color=bg.c;
+
+  picker.value=hx;
+
+  // palette
+  document.getElementById("palette").innerHTML=PALETTE_OFFSETS.map(off=>{
+    const nh=(H+off)%360;const ph=hslToHex(nh,S,L);
+    return `<div class="palette-swatch" style="background:${ph}" title="${ph}" onclick="update('${ph}')"></div>`;
+  }).join("")+
+  [20,40,60,80].map(ll=>{const ph=hslToHex(H,S,ll);
+    return `<div class="palette-swatch" style="background:${ph}" title="${ph} (L:${ll}%)" onclick="update('${ph}')"></div>`;
+  }).join("");
 }
+
 picker.oninput=()=>update(picker.value);
-hex.oninput=()=>update(hex.value);
-[hex,rgb,hsl].forEach(el=>el.addEventListener("click",()=>{if(el.value){navigator.clipboard.writeText(el.value);ETSlib.toast(el.value+" kopyalandı ✓");}}));
+hexInp.oninput=()=>{if(hexInp.value.length===7)update(hexInp.value);};
+hexInp.addEventListener("keydown",e=>{if(e.key==="Enter")update(hexInp.value);});
 update("#C8FF2E");
 </script></body></html>

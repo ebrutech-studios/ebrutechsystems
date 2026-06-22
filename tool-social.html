@@ -1,70 +1,178 @@
-﻿<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sosyal Medya Resim Boyutlandırıcı — EbruTech Studios</title>
-<meta name="description" content="Sosyal Medya Resim Boyutlandırıcı. Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
+<meta name="description" content="Instagram, Story, YouTube, Facebook, Twitter ve LinkedIn için doğru ölçülerde görsel hazırla. Hazır platform presetleri. Ücretsiz.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-social.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
 <meta property="og:title" content="Sosyal Medya Resim Boyutlandırıcı — EbruTech Studios">
-<meta property="og:description" content="Sosyal Medya Resim Boyutlandırıcı. Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
-<meta property="og:url" content="https://ebrutechsystems.com/tool-social.html">
 <meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
-<meta property="og:locale" content="tr_TR">
-<meta name="twitter:card" content="summary_large_image">
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#10140a">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script><script type="application/ld+json">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<style>
+.platform-section{margin-bottom:18px}
+.platform-label{font-size:.78rem;font-weight:700;color:var(--txt-faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.preset-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:7px}
+.preset-card{padding:10px 10px 12px;border-radius:11px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.78rem;cursor:pointer;transition:.15s;text-align:left;line-height:1.3}
+.preset-card:hover{border-color:var(--accent);color:var(--txt)}
+.preset-card.active{border-color:var(--accent);background:rgba(200,255,46,.07);color:var(--txt)}
+.preset-card .ico{font-size:1.2rem;margin-bottom:4px}
+.preset-card .name{font-weight:600;font-size:.8rem;color:var(--txt)}
+.preset-card .dims{font-family:monospace;font-size:.7rem;color:var(--txt-faint);margin-top:2px}
+.mode-tabs{display:flex;gap:6px;margin-bottom:10px}
+.mode-tab{flex:1;padding:9px;border-radius:10px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.82rem;cursor:pointer;transition:.15s;text-align:center}
+.mode-tab.active{border-color:var(--accent);color:var(--accent);background:rgba(200,255,46,.07)}
+.out-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.out-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+.out-card .lbl{font-size:.72rem;color:var(--txt-faint);text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}
+.out-card .val{font-size:1rem;font-weight:700;color:var(--txt)}
+.out-card.accent .val{color:var(--accent)}
+.cv-wrap{background:repeating-conic-gradient(#1a1a1a 0% 25%,#111 25% 50%) 0 0/20px 20px;border-radius:12px;overflow:hidden;margin-top:14px;text-align:center;padding:16px}
+.cv-wrap canvas{max-width:100%;max-height:300px;border-radius:6px;display:inline-block}
+</style>
+<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Sosyal Medya Resim Boyutlandırıcı","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-social.html"}
 </script>
 </head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
 <span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">📱 Sosyal Medya Boyutlandırıcı</h1>
-<p class="lead" style="margin:14px 0 26px">Görselini Instagram, Story, YouTube ve daha fazlası için doğru ölçüye getir. Hazır şablonlar.</p>
-<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli seç</b> veya sürükle</p><input id="file" type="file" accept="image/*" class="hidden"></div>
+<p class="lead" style="margin:14px 0 26px">Görselini Instagram, YouTube, Facebook, Twitter ve LinkedIn için doğru ölçüye getir. Hazır platform presetleri ile bir tıkla.</p>
+
+<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli seç</b> veya sürükle<br><span style="color:var(--txt-faint);font-size:.85rem">PNG · JPG · WebP</span></p><input id="file" type="file" accept="image/*" class="hidden"></div>
+
 <div id="panel" class="controls hidden">
-<div class="field"><label>Platform / Format</label><select id="preset">
-<option value="1080x1080">Instagram Kare (1080×1080)</option>
-<option value="1080x1350">Instagram Dikey (1080×1350)</option>
-<option value="1080x1920">Story / Reels (1080×1920)</option>
-<option value="1200x630">Facebook / Link (1200×630)</option>
-<option value="1280x720">YouTube Küçük Resim (1280×720)</option>
-<option value="1500x500">Twitter/X Kapak (1500×500)</option>
-<option value="1584x396">LinkedIn Kapak (1584×396)</option>
-</select></div>
-<div class="field"><label>Sığdırma</label><select id="mode">
-<option value="cover">Doldur (kırpılabilir)</option>
-<option value="contain">Sığdır (boşluk kalabilir)</option>
-</select></div>
-<div class="field" id="bgWrap"><label>Arka plan rengi (boşluklar için)</label><input id="bg" type="color" value="#0a0a0b" style="height:46px;padding:4px"></div>
-<button id="go" class="btn btn-primary">Boyutlandır & İndir</button></div>
-<div id="preview" class="preview hidden"><canvas id="cv" style="max-width:100%;border-radius:10px"></canvas></div>
+
+<div class="platform-section">
+  <div class="platform-label">📸 Instagram</div>
+  <div class="preset-cards">
+    <button class="preset-card active" data-w="1080" data-h="1080" data-key="ig-kare"><div class="ico">⬛</div><div class="name">Kare</div><div class="dims">1080 × 1080</div></button>
+    <button class="preset-card" data-w="1080" data-h="1350" data-key="ig-dikey"><div class="ico">📱</div><div class="name">Dikey</div><div class="dims">1080 × 1350</div></button>
+    <button class="preset-card" data-w="1080" data-h="566" data-key="ig-yatay"><div class="ico">🖼️</div><div class="name">Yatay</div><div class="dims">1080 × 566</div></button>
+    <button class="preset-card" data-w="1080" data-h="1920" data-key="ig-story"><div class="ico">🎬</div><div class="name">Story/Reels</div><div class="dims">1080 × 1920</div></button>
+  </div>
+</div>
+
+<div class="platform-section">
+  <div class="platform-label">▶️ YouTube</div>
+  <div class="preset-cards">
+    <button class="preset-card" data-w="1280" data-h="720" data-key="yt-thumb"><div class="ico">🖼️</div><div class="name">Küçük Resim</div><div class="dims">1280 × 720</div></button>
+    <button class="preset-card" data-w="2560" data-h="1440" data-key="yt-banner"><div class="ico">🏳️</div><div class="name">Kanal Kapak</div><div class="dims">2560 × 1440</div></button>
+    <button class="preset-card" data-w="800" data-h="800" data-key="yt-profil"><div class="ico">👤</div><div class="name">Profil</div><div class="dims">800 × 800</div></button>
+  </div>
+</div>
+
+<div class="platform-section">
+  <div class="platform-label">📘 Facebook</div>
+  <div class="preset-cards">
+    <button class="preset-card" data-w="1200" data-h="630" data-key="fb-paylasim"><div class="ico">🔗</div><div class="name">Paylaşım</div><div class="dims">1200 × 630</div></button>
+    <button class="preset-card" data-w="820" data-h="312" data-key="fb-kapak"><div class="ico">🏳️</div><div class="name">Kapak</div><div class="dims">820 × 312</div></button>
+    <button class="preset-card" data-w="1080" data-h="1080" data-key="fb-kare"><div class="ico">⬛</div><div class="name">Kare</div><div class="dims">1080 × 1080</div></button>
+  </div>
+</div>
+
+<div class="platform-section">
+  <div class="platform-label">🐦 Twitter / X &amp; 💼 LinkedIn</div>
+  <div class="preset-cards">
+    <button class="preset-card" data-w="1600" data-h="900" data-key="tw-paylasim"><div class="ico">🐦</div><div class="name">Tweet Görseli</div><div class="dims">1600 × 900</div></button>
+    <button class="preset-card" data-w="1500" data-h="500" data-key="tw-kapak"><div class="ico">🏳️</div><div class="name">X Kapak</div><div class="dims">1500 × 500</div></button>
+    <button class="preset-card" data-w="1200" data-h="627" data-key="li-paylasim"><div class="ico">💼</div><div class="name">LinkedIn Post</div><div class="dims">1200 × 627</div></button>
+    <button class="preset-card" data-w="1584" data-h="396" data-key="li-kapak"><div class="ico">🏳️</div><div class="name">LinkedIn Kapak</div><div class="dims">1584 × 396</div></button>
+  </div>
+</div>
+
+<div style="font-size:.82rem;font-weight:600;color:var(--txt-dim);margin-bottom:8px">Sığdırma Modu</div>
+<div class="mode-tabs">
+  <button class="mode-tab active" id="modeCover">Doldur (kırpılabilir)</button>
+  <button class="mode-tab" id="modeContain">Sığdır (boşluk kalabilir)</button>
+</div>
+
+<div id="bgField" class="field" style="display:none"><label>Arka Plan Rengi</label><input id="bg" type="color" value="#0a0a0b" style="height:42px;padding:4px"></div>
+
+<div class="out-cards" id="outCards" style="display:none">
+  <div class="out-card"><div class="lbl">Hedef Boyut</div><div class="val" id="targetDim"></div></div>
+  <div class="out-card accent"><div class="lbl">Platform</div><div class="val" id="platformName"></div></div>
+</div>
+
+<button id="go" class="btn btn-primary btn-lg" style="width:100%;margin-top:14px">Boyutlandır & İndir</button>
+</div>
+
+<div id="preview" class="hidden">
+  <div class="cv-wrap"><canvas id="cv"></canvas></div>
+</div>
+
 </div></div></section>
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-let imgEl=null;const dz=document.getElementById("dz"),file=document.getElementById("file"),cv=document.getElementById("cv");
+let imgEl=null,selW=1080,selH=1080,selKey="ig-kare",fitMode="cover";
+const $=id=>document.getElementById(id);
+const dz=$("dz"),file=$("file"),cv=$("cv");
+
 dz.onclick=()=>file.click();
-dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};
+dz.ondragleave=()=>dz.classList.remove("drag");
 dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);};
 file.onchange=e=>{if(e.target.files[0])load(e.target.files[0]);};
-function load(f){const r=new FileReader();r.onload=ev=>{imgEl=new Image();imgEl.onload=()=>{
-document.getElementById("preview").classList.remove("hidden");document.getElementById("panel").classList.remove("hidden");draw();};imgEl.src=ev.target.result;};r.readAsDataURL(f);}
-["preset","mode","bg"].forEach(id=>document.getElementById(id).oninput=draw);
-document.getElementById("mode").addEventListener("change",()=>{document.getElementById("bgWrap").style.display=document.getElementById("mode").value==="contain"?"block":"none";});
+
+function load(f){
+  const r=new FileReader();
+  r.onload=ev=>{
+    imgEl=new Image();
+    imgEl.onload=()=>{
+      $("preview").classList.remove("hidden");
+      $("panel").classList.remove("hidden");
+      draw();
+    };
+    imgEl.src=ev.target.result;
+  };
+  r.readAsDataURL(f);
+}
+
+document.querySelectorAll(".preset-card").forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll(".preset-card").forEach(c=>c.classList.remove("active"));
+    btn.classList.add("active");
+    selW=parseInt(btn.dataset.w);selH=parseInt(btn.dataset.h);selKey=btn.dataset.key;
+    $("targetDim").textContent=selW+" × "+selH+" px";
+    $("platformName").textContent=btn.querySelector(".name").textContent;
+    $("outCards").style.display="grid";
+    draw();
+  };
+});
+
+$("modeCover").onclick=()=>{fitMode="cover";$("modeCover").classList.add("active");$("modeContain").classList.remove("active");$("bgField").style.display="none";draw();};
+$("modeContain").onclick=()=>{fitMode="contain";$("modeContain").classList.add("active");$("modeCover").classList.remove("active");$("bgField").style.display="block";draw();};
+$("bg").onchange=draw;
+
 function draw(){
   if(!imgEl)return;
-  const [w,h]=document.getElementById("preset").value.split("x").map(Number);
-  cv.width=w;cv.height=h;const ctx=cv.getContext("2d");
-  const mode=document.getElementById("mode").value;
-  ctx.fillStyle=document.getElementById("bg").value;ctx.fillRect(0,0,w,h);
-  const ir=imgEl.naturalWidth/imgEl.naturalHeight,cr=w/h;let dw,dh,dx,dy;
-  if(mode==="cover"?ir>cr:ir<cr){dh=h;dw=h*ir;}else{dw=w;dh=w/ir;}
-  if(mode==="contain"){if(ir>cr){dw=w;dh=w/ir;}else{dh=h;dw=h*ir;}}
-  dx=(w-dw)/2;dy=(h-dh)/2;ctx.drawImage(imgEl,dx,dy,dw,dh);
+  cv.width=selW;cv.height=selH;
+  const ctx=cv.getContext("2d");
+  ctx.fillStyle=fitMode==="contain"?$("bg").value:"#000";
+  ctx.fillRect(0,0,selW,selH);
+
+  const ir=imgEl.naturalWidth/imgEl.naturalHeight,cr=selW/selH;
+  let dw,dh;
+  if(fitMode==="cover"){
+    if(ir>cr){dh=selH;dw=selH*ir;}else{dw=selW;dh=selW/ir;}
+  } else {
+    if(ir>cr){dw=selW;dh=selW/ir;}else{dh=selH;dw=selH*ir;}
+  }
+  const dx=(selW-dw)/2,dy=(selH-dh)/2;
+  ctx.imageSmoothingQuality="high";
+  ctx.drawImage(imgEl,dx,dy,dw,dh);
 }
-document.getElementById("go").onclick=()=>{cv.toBlob(b=>{const a=document.createElement("a");a.href=URL.createObjectURL(b);
-a.download="ebrutech-"+document.getElementById("preset").value+".png";a.click();ETSlib.toast("İndiriliyor ✓");},"image/png");};
+
+$("go").onclick=()=>{
+  if(!imgEl){ETSlib.toast("Önce bir görsel seçin");return;}
+  draw();
+  cv.toBlob(b=>{
+    const a=document.createElement("a");
+    a.href=URL.createObjectURL(b);
+    a.download="ebrutech-"+selKey+"-"+selW+"x"+selH+".png";a.click();
+    ETSlib.toast("İndirildi ✓ "+selW+"×"+selH);
+  },"image/png");
+};
 </script></body></html>

@@ -1,70 +1,157 @@
-﻿<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Fotoğraftan Renk Paleti Çıkarma — EbruTech Studios</title>
-<meta name="description" content="Fotoğraftan Renk Paleti Çıkarma. Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
+<meta name="description" content="Fotoğraftan baskın renkleri çıkar, HEX ve RGB kodlarını kopyala. CSS gradient ve değişkenleri oluştur. Ücretsiz renk paleti çıkarıcı.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-palette.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
 <meta property="og:title" content="Fotoğraftan Renk Paleti Çıkarma — EbruTech Studios">
-<meta property="og:description" content="Fotoğraftan Renk Paleti Çıkarma. Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
-<meta property="og:url" content="https://ebrutechsystems.com/tool-palette.html">
 <meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
-<meta property="og:locale" content="tr_TR">
-<meta name="twitter:card" content="summary_large_image">
-
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#10140a">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script><script type="application/ld+json">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<style>
+.pal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:16px}
+.pal-card{border-radius:14px;overflow:hidden;border:1px solid var(--border);cursor:pointer;transition:.2s;background:var(--surface)}
+.pal-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px -6px rgba(0,0,0,.4)}
+.pal-swatch{height:80px;display:flex;align-items:flex-end;justify-content:flex-end;padding:6px}
+.pal-copy-icon{background:rgba(0,0,0,.3);border-radius:6px;padding:4px 6px;font-size:.65rem;opacity:0;transition:.2s;color:#fff}
+.pal-card:hover .pal-copy-icon{opacity:1}
+.pal-info{padding:10px 10px 12px;text-align:center}
+.pal-hex{font-family:monospace;font-size:.82rem;font-weight:700;color:var(--txt)}
+.pal-rgb{font-size:.68rem;color:var(--txt-faint);margin-top:2px}
+.gradient-strip{height:48px;border-radius:12px;border:1px solid var(--border);margin-top:14px;transition:.5s;cursor:pointer}
+.gradient-strip-label{font-size:.78rem;color:var(--txt-faint);margin-top:6px;text-align:center}
+.export-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+</style>
+<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Fotoğraftan Renk Paleti Çıkarma","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-palette.html"}
 </script>
 </head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
 <span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">🎨 Renk Paleti Çıkarıcı</h1>
-<p class="lead" style="margin:14px 0 26px">Fotoğraftan baskın renkleri çıkar, HEX kodlarını kopyala. Tasarım ve marka çalışmaları için.</p>
-<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli seç</b> veya sürükle</p><input id="file" type="file" accept="image/*" class="hidden"></div>
-<div id="cntWrap" class="field hidden" style="max-width:240px;margin:14px auto 0"><label>Renk sayısı: <span id="cntVal">8</span></label><input id="cnt" type="range" min="3" max="12" value="8"></div>
-<div id="preview" class="preview hidden"><img id="img" alt="Renk paleti çıkarılacak görsel" style="max-height:240px;margin:0 auto"></div>
-<div id="palette" class="grid g-3" style="margin-top:20px"></div>
+<p class="lead" style="margin:14px 0 26px">Fotoğraftan baskın renkleri çıkar, HEX kodlarını kopyala, CSS gradient ve değişkenleri oluştur.</p>
+
+<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli seç</b> veya sürükle<br><span style="color:var(--txt-faint);font-size:.85rem">PNG · JPG · WebP</span></p><input id="file" type="file" accept="image/*" class="hidden"></div>
+
+<div id="controls" class="controls hidden">
+<div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+<div class="field" style="flex:1;margin:0"><label>Renk Sayısı: <strong id="cntVal">8</strong></label><input id="cnt" type="range" min="3" max="16" value="8"></div>
+</div>
+</div>
+
+<div id="previewWrap" style="display:none;margin-top:16px;text-align:center">
+<img id="img" alt="Renk paleti çıkarılacak görsel" style="max-height:220px;border-radius:12px;object-fit:contain;max-width:100%">
+</div>
+
+<div id="gradientWrap" style="display:none">
+<div class="gradient-strip" id="gradientStrip" title="CSS kopyalamak için tıkla"></div>
+<div class="gradient-strip-label">Paletten oluşturulan gradient — kopyalamak için tıkla</div>
+</div>
+
+<div class="pal-grid" id="palette"></div>
+
+<div class="export-row" id="exportRow" style="display:none">
+<button class="btn btn-ghost" id="copyHex">HEX Listesi Kopyala</button>
+<button class="btn btn-ghost" id="copyVars">CSS Değişkenleri Kopyala</button>
+<button class="btn btn-ghost" id="copyGrad">CSS Gradient Kopyala</button>
+</div>
+
 </div></div></section>
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
+let lastImg=null,lastColors=[];
 const dz=document.getElementById("dz"),file=document.getElementById("file");
+
 dz.onclick=()=>file.click();
-dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};
+dz.ondragleave=()=>dz.classList.remove("drag");
 dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);};
 file.onchange=e=>{if(e.target.files[0])load(e.target.files[0]);};
-function load(f){const r=new FileReader();r.onload=ev=>{const im=new Image();im.onload=()=>{
-document.getElementById("img").src=im.src;window._lastImg=im;document.getElementById("preview").classList.remove("hidden");var cw=document.getElementById("cntWrap");if(cw)cw.classList.remove("hidden");extract(im);};im.src=ev.target.result;};r.readAsDataURL(f);}
-function extract(im){
-  const c=document.createElement("canvas");const W=120,H=Math.round(120*im.naturalHeight/im.naturalWidth);
-  c.width=W;c.height=H;const ctx=c.getContext("2d");ctx.drawImage(im,0,0,W,H);
-  const data=ctx.getImageData(0,0,W,H).data;
-  // basit kantizasyon: renkleri grupla, en sık 6 grup
-  const buckets={};
-  for(let i=0;i<data.length;i+=4){
-    const r=data[i]>>4<<4,g=data[i+1]>>4<<4,b=data[i+2]>>4<<4;
-    const key=r+","+g+","+b;buckets[key]=(buckets[key]||0)+1;
-  }
-  const top=Object.entries(buckets).sort((a,b)=>b[1]-a[1]).slice(0,parseInt((document.getElementById('cnt')||{value:8}).value)||8);
-  const pal=document.getElementById("palette");pal.innerHTML="";
-  top.forEach(([key])=>{
-    const [r,g,b]=key.split(",").map(Number);
-    const hex="#"+[r,g,b].map(x=>x.toString(16).padStart(2,"0")).join("").toUpperCase();
-    const card=document.createElement("div");card.dataset.hex=hex;card.style.cursor="pointer";card.title="Kopyalamak için tıkla";card.className="card";card.style.cssText="cursor:pointer;text-align:center;padding:0;overflow:hidden";
-    card.innerHTML=`<div style="height:90px;background:${hex}"></div><div style="padding:12px"><b style="font-family:monospace">${hex}</b><br><span style="font-size:.78rem;color:var(--txt-faint)">kopyalamak için tıkla</span></div>`;
-    card.onclick=()=>{navigator.clipboard.writeText(hex);ETSlib.toast(hex+" kopyalandı ✓");};
-    pal.appendChild(card);
-  });
+
+function load(f){
+  const r=new FileReader();
+  r.onload=ev=>{
+    const im=new Image();
+    im.onload=()=>{
+      document.getElementById("img").src=im.src;
+      document.getElementById("previewWrap").style.display="block";
+      document.getElementById("controls").classList.remove("hidden");
+      lastImg=im;extract(im);
+    };
+    im.src=ev.target.result;
+  };
+  r.readAsDataURL(f);
 }
 
-// renk sayısı slider
-(function(){const cnt=document.getElementById("cnt");if(cnt){cnt.oninput=()=>{document.getElementById("cntVal").textContent=cnt.value;if(window._lastImg)extract(window._lastImg);};}})();
-// kopyalama: palette'e tıkla
-document.getElementById("palette").addEventListener("click",e=>{
-  const card=e.target.closest("[data-hex]");if(!card)return;
-  navigator.clipboard.writeText(card.dataset.hex);ETSlib.toast(card.dataset.hex+" kopyalandı ✓");
-});
+function extract(im){
+  const cnt=parseInt(document.getElementById("cnt").value)||8;
+  const W=160,H=Math.round(160*im.naturalHeight/im.naturalWidth);
+  const c=document.createElement("canvas");c.width=W;c.height=H;
+  const ctx=c.getContext("2d");ctx.drawImage(im,0,0,W,H);
+  const data=ctx.getImageData(0,0,W,H).data;
+  const buckets={};
+  for(let i=0;i<data.length;i+=4){
+    if(data[i+3]<128)continue;
+    const r=data[i]>>3<<3,g=data[i+1]>>3<<3,b=data[i+2]>>3<<3;
+    const key=r+","+g+","+b;buckets[key]=(buckets[key]||0)+1;
+  }
+  const top=Object.entries(buckets).sort((a,b)=>b[1]-a[1]).slice(0,cnt);
+  lastColors=top.map(([k])=>{
+    const [r,g,b]=k.split(",").map(Number);
+    return{r,g,b,hex:"#"+[r,g,b].map(x=>x.toString(16).padStart(2,"0")).join("").toUpperCase()};
+  });
+  render();
+}
+
+function luminance(r,g,b){return 0.2126*r/255+0.7152*g/255+0.0722*b/255;}
+
+function render(){
+  const pal=document.getElementById("palette");
+  pal.innerHTML=lastColors.map((col,i)=>{
+    const lum=luminance(col.r,col.g,col.b);
+    const textColor=lum>0.4?"#111":"#fff";
+    return `<div class="pal-card" onclick="navigator.clipboard.writeText('${col.hex}');ETSlib.toast('${col.hex} kopyalandı ✓')">
+      <div class="pal-swatch" style="background:${col.hex}"><span class="pal-copy-icon" style="color:${textColor}">✓ kopyala</span></div>
+      <div class="pal-info">
+        <div class="pal-hex">${col.hex}</div>
+        <div class="pal-rgb">rgb(${col.r},${col.g},${col.b})</div>
+      </div>
+    </div>`;
+  }).join("");
+
+  // gradient strip
+  const hexes=lastColors.map(c=>c.hex);
+  const gradCss=`linear-gradient(90deg, ${hexes.join(", ")})`;
+  document.getElementById("gradientStrip").style.background=gradCss;
+  document.getElementById("gradientStrip").style.display="block";
+  document.getElementById("gradientWrap").style.display="block";
+  document.getElementById("exportRow").style.display="flex";
+}
+
+document.getElementById("cnt").oninput=()=>{
+  document.getElementById("cntVal").textContent=document.getElementById("cnt").value;
+  if(lastImg)extract(lastImg);
+};
+
+document.getElementById("gradientStrip").onclick=()=>{
+  const hexes=lastColors.map(c=>c.hex);
+  const css=`background: linear-gradient(90deg, ${hexes.join(", ")});`;
+  navigator.clipboard.writeText(css);ETSlib.toast("CSS gradient kopyalandı ✓");
+};
+
+document.getElementById("copyHex").onclick=()=>{
+  navigator.clipboard.writeText(lastColors.map(c=>c.hex).join("\n"));ETSlib.toast("HEX listesi kopyalandı ✓");
+};
+document.getElementById("copyVars").onclick=()=>{
+  const vars=lastColors.map((c,i)=>`--color-${i+1}: ${c.hex};`).join("\n");
+  navigator.clipboard.writeText(":root {\n"+vars+"\n}");ETSlib.toast("CSS değişkenleri kopyalandı ✓");
+};
+document.getElementById("copyGrad").onclick=()=>{
+  const hexes=lastColors.map(c=>c.hex);
+  navigator.clipboard.writeText(`background: linear-gradient(90deg, ${hexes.join(", ")});`);
+  ETSlib.toast("CSS gradient kopyalandı ✓");
+};
 </script></body></html>

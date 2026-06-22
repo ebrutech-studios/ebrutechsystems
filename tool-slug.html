@@ -18,6 +18,14 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#10140a">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<style>
+.sep-chips{display:flex;gap:8px;margin-bottom:16px}
+.sep-chip{padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.82rem;cursor:pointer;transition:.15s;font-family:monospace}
+.sep-chip.active{border-color:var(--accent);color:var(--accent);background:rgba(200,255,46,.07)}
+.slug-meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+.slug-meta span{font-size:.78rem;color:var(--txt-faint)}
+.slug-meta strong{color:var(--txt-dim)}
+</style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"URL Slug Oluşturucu","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-slug.html"}
 </script>
@@ -30,7 +38,14 @@
 
   <div class="field" style="margin-bottom:16px">
     <label>Başlık veya metin</label>
-    <input id="inputText" type="text" placeholder="Örn: Türkçe Karakter Destekli Blog Başlığı" autocomplete="off" style="font-size:1rem">
+    <input id="inputText" type="text" placeholder="Örn: Türkçe Karakter Destekli Blog Başlığı" autocomplete="off">
+  </div>
+
+  <div style="font-size:.82rem;font-weight:600;color:var(--txt-dim);margin-bottom:8px">Ayraç</div>
+  <div class="sep-chips">
+    <button class="sep-chip active" data-sep="-">- Tire (hyphen)</button>
+    <button class="sep-chip" data-sep="_">_ Alt çizgi (underscore)</button>
+    <button class="sep-chip" data-sep=".">. Nokta</button>
   </div>
 
   <div class="field" style="margin-bottom:20px">
@@ -38,49 +53,69 @@
       <span>URL Slug</span>
       <button id="copyBtn" class="btn btn-ghost" style="padding:5px 14px;font-size:.82rem;min-height:auto">Kopyala</button>
     </label>
-    <input id="outputSlug" type="text" readonly placeholder="slug-buraya-gelecek" style="font-size:1rem;font-family:var(--font-body);letter-spacing:.02em;background:rgba(200,255,46,.04);border-color:rgba(200,255,46,.2)">
+    <input id="outputSlug" type="text" readonly placeholder="slug-buraya-gelecek" style="letter-spacing:.02em;background:rgba(200,255,46,.04);border-color:rgba(200,255,46,.2)">
   </div>
 
   <div id="slugPreview" style="display:none;padding:14px 18px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:.85rem;color:var(--txt-dim);word-break:break-all">
     <span style="color:var(--txt-faint)">https://siteniz.com/</span><span id="slugPreviewText" style="color:var(--accent);font-weight:700"></span>
   </div>
 
-  <div style="margin-top:22px;display:flex;gap:16px;flex-wrap:wrap">
+  <div class="slug-meta" id="slugMeta" style="display:none">
+    <span>Karakter: <strong id="slugLen">0</strong></span>
+    <span>Kelime: <strong id="slugWords">0</strong></span>
+  </div>
+
+  <div style="margin-top:18px;display:flex;gap:16px;flex-wrap:wrap">
     <div style="font-size:.82rem;color:var(--txt-faint)">✓ ş→s, ç→c, ğ→g, ı→i, ö→o, ü→u</div>
-    <div style="font-size:.82rem;color:var(--txt-faint)">✓ Boşluklar tire olur</div>
+    <div style="font-size:.82rem;color:var(--txt-faint)">✓ Boşluklar ayraça dönüşür</div>
     <div style="font-size:.82rem;color:var(--txt-faint)">✓ Özel karakterler temizlenir</div>
   </div>
 </div></div></section>
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-function toSlug(str){
+let SEP='-';
+
+function toSlug(str,sep){
   return str
-    .replace(/[ŞŞ]/g,'s').replace(/[şş]/g,'s')
-    .replace(/[ÇÇ]/g,'c').replace(/[çç]/g,'c')
-    .replace(/[ĞĞ]/g,'g').replace(/[ğğ]/g,'g')
+    .replace(/[Şş]/g,'s').replace(/[Çç]/g,'c').replace(/[Ğğ]/g,'g')
     .replace(/İ/g,'i').replace(/ı/g,'i')
-    .replace(/[ÖÖ]/g,'o').replace(/[öö]/g,'o')
-    .replace(/[ÜÜ]/g,'u').replace(/[üü]/g,'u')
+    .replace(/[Öö]/g,'o').replace(/[Üü]/g,'u')
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g,'')
+    .replace(/[^a-z0-9\s]/g,'')
     .trim()
-    .replace(/[\s]+/g,'-')
-    .replace(/-+/g,'-')
-    .replace(/^-+|-+$/g,'');
+    .replace(/\s+/g,sep)
+    .replace(new RegExp('\\'+sep+'+','g'),sep)
+    .replace(new RegExp('^\\'+sep+'|\\'+sep+'$','g'),'');
 }
 
 const inp=document.getElementById('inputText');
 const out=document.getElementById('outputSlug');
 const preview=document.getElementById('slugPreview');
 const previewText=document.getElementById('slugPreviewText');
+const slugMeta=document.getElementById('slugMeta');
 
-inp.addEventListener('input',function(){
-  const slug=toSlug(this.value);
-  out.value=slug;
-  if(slug){preview.style.display='block';previewText.textContent=slug;}
-  else{preview.style.display='none';}
+document.querySelectorAll('.sep-chip').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.sep-chip').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');SEP=btn.dataset.sep;update();
+  });
 });
+
+function update(){
+  const slug=toSlug(inp.value,SEP);
+  out.value=slug;
+  if(slug){
+    preview.style.display='block';previewText.textContent=slug;
+    slugMeta.style.display='flex';
+    document.getElementById('slugLen').textContent=slug.length;
+    document.getElementById('slugWords').textContent=slug.split(SEP).filter(Boolean).length;
+  } else {
+    preview.style.display='none';slugMeta.style.display='none';
+  }
+}
+
+inp.addEventListener('input',update);
 
 document.getElementById('copyBtn').addEventListener('click',()=>{
   if(!out.value) return;

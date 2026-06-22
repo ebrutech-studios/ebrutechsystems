@@ -177,6 +177,19 @@
     <h2>Sık kullanılan işlemler, tek tıkla</h2>
     <p class="lead">Dosyalarınız cihazınızdan çıkmaz. Her şey tarayıcıda, gizli ve hızlı.</p>
   </div>
+  <div class="tool-search-wrap reveal" style="margin-bottom:28px">
+    <div class="tool-search-box">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke-linecap="round"/></svg>
+      <input type="search" id="homeSearch" placeholder="Araç ara… (ör: PDF, QR, şifre, fatura)" autocomplete="off" aria-label="Araç ara">
+    </div>
+    <div class="tool-cats">
+      <button class="cat-btn" data-cat="gorsel">Görsel</button>
+      <button class="cat-btn" data-cat="gelistirici">Geliştirici</button>
+      <button class="cat-btn" data-cat="belge">Belge & PDF</button>
+      <button class="cat-btn" data-cat="isletme">İşletme</button>
+      <button class="cat-btn" data-cat="hesaplama">Hesaplama</button>
+    </div>
+  </div>
   <div class="grid g-3">
     <a class="card tool-card reveal" href="tool-converter.html"><span class="ico">🖼️</span><h3>Format Dönüştürücü</h3><p>PNG, JPG, WebP arası anında dönüşüm.</p><div class="tags"><span class="tag tag-ok">Ücretsiz</span></div></a>
     <a class="card tool-card reveal" href="tool-compressor.html"><span class="ico">⚡</span><h3>Resim Sıkıştırıcı</h3><p>Kaliteyi koruyarak dosya boyutunu düşür.</p><div class="tags"><span class="tag tag-ok">Ücretsiz</span></div></a>
@@ -312,5 +325,23 @@
 </script>
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
+<script>
+(function(){
+  var inp=document.getElementById('homeSearch');if(!inp)return;
+  var timer;
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){var q=inp.value.trim();if(q)location.href='tools.html?q='+encodeURIComponent(q);}
+  });
+  inp.addEventListener('input',function(){
+    clearTimeout(timer);var q=inp.value.trim();
+    if(q.length>=2){timer=setTimeout(function(){location.href='tools.html?q='+encodeURIComponent(q);},650);}
+  });
+  document.querySelectorAll('.tool-cats .cat-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      location.href='tools.html?cat='+btn.dataset.cat;
+    });
+  });
+})();
+</script>
 </body>
 </html>

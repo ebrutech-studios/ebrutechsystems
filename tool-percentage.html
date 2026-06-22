@@ -30,7 +30,8 @@
 }
 .pct-card h3{font-size:1rem;margin-bottom:16px;color:var(--txt)}
 .pct-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-.pct-row input{flex:1;min-width:80px}
+.pct-row input{flex:1;min-width:80px;padding:10px 12px;border-radius:8px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-family:var(--font-body);font-size:.95rem;outline:none;transition:.18s}
+.pct-row input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,255,46,.1)}
 .pct-row span{color:var(--txt-dim);font-size:.9rem;white-space:nowrap}
 .pct-result{
   margin-top:16px;padding:14px;border-radius:8px;
@@ -47,7 +48,7 @@
 </style>
 </head>
 <body>
-<section class="hero" style="padding-bottom:30px"><div class="wrap">
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
   <span class="eyebrow">Araç</span>
   <h1 style="font-size:2.2rem">% Yüzde Hesaplama</h1>
   <p class="lead" style="margin:14px 0 32px">3 farklı yüzde hesaplama modu — artış, azalış, oran ve indirim.</p>
@@ -58,9 +59,9 @@
     <div class="pct-card">
       <h3>1. Sayının yüzdesini bul</h3>
       <div class="pct-row">
-        <input type="number" id="p1x" placeholder="Sayı" class="field-input" style="padding:10px 12px;border-radius:8px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-family:var(--font-body);font-size:.95rem;outline:none;width:100%;transition:.18s">
+        <input type="number" id="p1x" placeholder="Sayı">
         <span>sayısının</span>
-        <input type="number" id="p1y" placeholder="%" class="field-input" style="padding:10px 12px;border-radius:8px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-family:var(--font-body);font-size:.95rem;outline:none;width:100%;transition:.18s">
+        <input type="number" id="p1y" placeholder="%">
         <span>% 'i nedir?</span>
       </div>
       <div class="pct-result" id="r1">
@@ -73,9 +74,9 @@
     <div class="pct-card">
       <h3>2. Yüzde oran bul</h3>
       <div class="pct-row">
-        <input type="number" id="p2x" placeholder="Küçük sayı" class="field-input" style="padding:10px 12px;border-radius:8px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-family:var(--font-body);font-size:.95rem;outline:none;width:100%;transition:.18s">
+        <input type="number" id="p2x" placeholder="Küçük sayı">
         <span>,</span>
-        <input type="number" id="p2y" placeholder="Büyük sayı" class="field-input" style="padding:10px 12px;border-radius:8px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-family:var(--font-body);font-size:.95rem;outline:none;width:100%;transition:.18s">
+        <input type="number" id="p2y" placeholder="Büyük sayı">
         <span>sayısının yüzde kaçı?</span>
       </div>
       <div class="pct-result" id="r2">
@@ -88,9 +89,9 @@
     <div class="pct-card">
       <h3>3. Yüzde değişim</h3>
       <div class="pct-row">
-        <input type="number" id="p3x" placeholder="Eski değer" class="field-input" style="padding:10px 12px;border-radius:8px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-family:var(--font-body);font-size:.95rem;outline:none;width:100%;transition:.18s">
+        <input type="number" id="p3x" placeholder="Eski değer">
         <span>→</span>
-        <input type="number" id="p3y" placeholder="Yeni değer" class="field-input" style="padding:10px 12px;border-radius:8px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-family:var(--font-body);font-size:.95rem;outline:none;width:100%;transition:.18s">
+        <input type="number" id="p3y" placeholder="Yeni değer">
       </div>
       <div class="pct-result" id="r3">
         <span class="pct-result-num" id="r3v">—</span>
@@ -99,7 +100,7 @@
     </div>
 
   </div>
-</div></section>
+</div></div></section>
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>

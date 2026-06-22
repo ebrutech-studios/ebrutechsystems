@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>KDV Hesaplama — EbruTech Studios</title>
 <meta name="description" content="KDV dahil ve hariç tutar hesaplama. %1, %10, %20 KDV oranları. Fiyata KDV ekleme veya çıkarma. Ücretsiz KDV hesaplama.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-vat.html">
@@ -8,29 +8,117 @@
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#10140a">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script></head><body>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<style>
+.vat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 18px;text-align:center;transition:.2s}
+.vat-card.accent{border-color:var(--accent);background:rgba(200,255,46,.06)}
+.vat-card .val{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--txt);margin-bottom:4px}
+.vat-card.accent .val{color:var(--accent)}
+.vat-card .lbl{font-size:.8rem;color:var(--txt-faint);margin-bottom:10px}
+.vat-card .copy-btn{font-size:.75rem;padding:5px 12px;border-radius:20px;background:var(--bg-2);border:1px solid var(--border);color:var(--txt-dim);cursor:pointer;transition:.15s}
+.vat-card .copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+.quick-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.quick-btn{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.82rem;cursor:pointer;transition:.15s}
+.quick-btn:hover{border-color:var(--accent);color:var(--accent)}
+.compare-table{width:100%;border-collapse:collapse;margin-top:24px;font-size:.88rem}
+.compare-table th{color:var(--txt-faint);font-weight:600;padding:8px 10px;text-align:right;border-bottom:1px solid var(--border)}
+.compare-table th:first-child{text-align:left}
+.compare-table td{padding:9px 10px;text-align:right;border-bottom:1px solid rgba(255,255,255,.04);color:var(--txt)}
+.compare-table td:first-child{text-align:left;color:var(--txt-dim)}
+.compare-table tr.active-row td{color:var(--accent);font-weight:700}
+</style>
+</head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
 <span class="eyebrow">Araç · İşletme</span><h1 style="font-size:2.2rem">💰 KDV Hesaplama</h1>
 <p class="lead" style="margin:14px 0 26px">Fiyata KDV ekleyin veya KDV dahil fiyattan KDV'yi ayırın. Anında hesaplanır.</p>
+
 <div class="controls">
-<div class="field"><label>Tutar (₺)</label><input id="amount" type="number" placeholder="1000" value="1000"></div>
-<div class="field"><label>KDV Oranı</label><select id="rate"><option value="20">%20</option><option value="10">%10</option><option value="1">%1</option><option value="8">%8</option><option value="18">%18</option></select></div>
-<div class="field"><label>İşlem</label><select id="mode"><option value="add">KDV Ekle (tutar hariç)</option><option value="extract">KDV Ayır (tutar dahil)</option></select></div>
+<div class="field"><label>Hızlı Tutar</label>
+<div class="quick-btns">
+<button class="quick-btn" data-v="100">100 ₺</button>
+<button class="quick-btn" data-v="500">500 ₺</button>
+<button class="quick-btn" data-v="1000">1.000 ₺</button>
+<button class="quick-btn" data-v="5000">5.000 ₺</button>
+<button class="quick-btn" data-v="10000">10.000 ₺</button>
+</div></div>
+<div class="row">
+<div class="field"><label>Tutar (₺)</label><input id="amount" type="number" placeholder="1000" value="1000" min="0" step="0.01"></div>
+<div class="field"><label>KDV Oranı</label><select id="rate">
+<option value="20">%20 (Genel)</option>
+<option value="10">%10 (İndirimli)</option>
+<option value="1">%1 (Çok İndirimli)</option>
+<option value="8">%8</option>
+<option value="18">%18</option>
+</select></div>
 </div>
-<div id="result" class="grid g-3" style="margin-top:20px"></div>
+<div class="field"><label>İşlem</label>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+<label style="display:flex;align-items:center;gap:10px;padding:12px;border-radius:10px;border:1px solid var(--border);cursor:pointer;background:var(--bg-2)">
+<input type="radio" name="mode" value="add" checked style="width:auto"> <span style="font-size:.9rem">KDV Ekle <small style="color:var(--txt-faint);display:block">Tutar KDV hariç</small></span></label>
+<label style="display:flex;align-items:center;gap:10px;padding:12px;border-radius:10px;border:1px solid var(--border);cursor:pointer;background:var(--bg-2)">
+<input type="radio" name="mode" value="extract" style="width:auto"> <span style="font-size:.9rem">KDV Ayır <small style="color:var(--txt-faint);display:block">Tutar KDV dahil</small></span></label>
+</div>
+</div>
+</div>
+
+<div id="result" class="grid g-3" style="margin-top:24px"></div>
+
+<div id="compareWrap" style="display:none;margin-top:32px">
+<div style="font-size:.88rem;font-weight:600;color:var(--txt-dim);margin-bottom:10px">Tüm Oranlara Göre Karşılaştırma</div>
+<table class="compare-table">
+<thead><tr><th>Oran</th><th>KDV Hariç</th><th>KDV Tutarı</th><th>KDV Dahil</th></tr></thead>
+<tbody id="compareBody"></tbody>
+</table>
+</div>
+
 </div></div></section>
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-const amount=document.getElementById("amount"),rate=document.getElementById("rate"),mode=document.getElementById("mode");
-function fmt(n){return n.toLocaleString("tr-TR",{minimumFractionDigits:2,maximumFractionDigits:2})+" ₺";}
-function card(n,l,hl){return `<div class="card" style="text-align:center;padding:18px"><div style="font-family:var(--font-display);font-size:1.5rem;color:${hl?'var(--accent)':'var(--txt)'}">${n}</div><div style="font-size:.82rem;color:var(--txt-faint)">${l}</div></div>`;}
-function calc(){
-  const a=parseFloat(amount.value)||0;const r=parseFloat(rate.value)/100;
-  let net,kdv,brut;
-  if(mode.value==="add"){net=a;kdv=a*r;brut=a+kdv;}
-  else{brut=a;net=a/(1+r);kdv=brut-net;}
-  document.getElementById("result").innerHTML=card(fmt(net),"KDV Hariç (Net)")+card(fmt(kdv),"KDV Tutarı",1)+card(fmt(brut),"KDV Dahil (Brüt)");
+const amount=document.getElementById("amount"),rate=document.getElementById("rate");
+const fmt=(n)=>n.toLocaleString("tr-TR",{minimumFractionDigits:2,maximumFractionDigits:2})+" ₺";
+const fmtRaw=(n)=>n.toLocaleString("tr-TR",{minimumFractionDigits:2,maximumFractionDigits:2});
+
+function getMode(){return document.querySelector("input[name=mode]:checked").value;}
+
+function card(val,lbl,isAccent){
+  return `<div class="vat-card${isAccent?" accent":""}">
+    <div class="val">${val}</div>
+    <div class="lbl">${lbl}</div>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText('${val.replace("₺","").trim()}');ETSlib.toast('Kopyalandı ✓')">Kopyala</button>
+  </div>`;
 }
-[amount,rate,mode].forEach(e=>e.oninput=calc);[rate,mode].forEach(e=>e.onchange=calc);calc();
+
+function calc(){
+  const a=parseFloat(amount.value)||0;
+  const r=parseFloat(rate.value)/100;
+  const mode=getMode();
+  let net,kdv,brut;
+  if(mode==="add"){net=a;kdv=a*r;brut=a+kdv;}
+  else{brut=a;net=a/(1+r);kdv=brut-net;}
+  document.getElementById("result").innerHTML=
+    card(fmt(net),"KDV Hariç (Net)")+
+    card(fmt(kdv),"KDV Tutarı",true)+
+    card(fmt(brut),"KDV Dahil (Brüt)");
+
+  // compare table
+  const rates=[1,8,10,18,20];
+  const tbody=document.getElementById("compareBody");
+  tbody.innerHTML=rates.map(rv=>{
+    let rn,rk,rb;
+    if(mode==="add"){rn=a;rk=a*(rv/100);rb=a+rk;}
+    else{rb=a;rn=a/(1+rv/100);rk=rb-rn;}
+    const isActive=rv===parseFloat(rate.value);
+    return `<tr class="${isActive?"active-row":""}">
+      <td>%${rv}</td><td>${fmtRaw(rn)} ₺</td><td>${fmtRaw(rk)} ₺</td><td>${fmtRaw(rb)} ₺</td>
+    </tr>`;
+  }).join("");
+  document.getElementById("compareWrap").style.display="block";
+}
+
+document.querySelectorAll(".quick-btn").forEach(b=>b.onclick=()=>{amount.value=b.dataset.v;calc();});
+[amount,rate].forEach(e=>e.oninput=calc);
+[rate].forEach(e=>e.onchange=calc);
+document.querySelectorAll("input[name=mode]").forEach(e=>e.onchange=calc);
+calc();
 </script></body></html>
