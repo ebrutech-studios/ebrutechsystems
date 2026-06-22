@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dijital Ürünler Mağazası — Logo, Kartvizit, Planlayıcı | EbruTech Studios</title>
+<meta name="description" content="Hazır logo paketleri, kartvizit şablonları, Excel planlayıcılar ve sosyal medya şablonları. Türkçe, anında teslim, WhatsApp ile kolay satın alma.">
+<link rel="canonical" href="https://ebrutechsystems.com/magaza.html">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="Dijital Ürünler Mağazası — EbruTech Studios">
+<meta property="og:description" content="Hazır logo, kartvizit, Excel planlayıcı ve sosyal medya şablonları. Türkçe, anında teslim.">
+<meta property="og:url" content="https://ebrutechsystems.com/magaza.html">
+<meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Store","name":"EbruTech Studios Dijital Mağaza","url":"https://ebrutechsystems.com/magaza.html","description":"Hazır logo paketleri, kartvizit şablonları, Excel planlayıcılar ve sosyal medya şablonları.","currenciesAccepted":"TRY","paymentAccepted":"Bank Transfer, WhatsApp"}
+</script>
+<style>
+/* ── Kategori filtresi ── */
+.shop-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.shop-cat{padding:9px 18px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--txt-dim);font-size:.84rem;font-weight:600;cursor:pointer;transition:.15s}
+.shop-cat:hover{border-color:var(--accent);color:var(--txt)}
+.shop-cat.active{border-color:var(--accent);background:rgba(200,255,46,.10);color:var(--accent)}
+
+/* ── Ürün kartı ── */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:900px){.prod-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.prod-grid{grid-template-columns:1fr}}
+.prod-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.22s;position:relative}
+.prod-card:hover{border-color:var(--border-strong);transform:translateY(-4px);box-shadow:0 16px 44px rgba(0,0,0,.4)}
+.prod-card.featured{border-color:rgba(200,255,46,.35);background:linear-gradient(180deg,rgba(200,255,46,.04),var(--surface))}
+.prod-card.hidden{display:none!important}
+
+/* ── Ürün önizleme thumbnail ── */
+.prod-thumb{height:164px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative;overflow:hidden}
+.prod-thumb-ico{font-size:2.6rem;line-height:1}
+.prod-thumb-label{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.prod-thumb-grid{position:absolute;inset:0;opacity:.07;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:24px 24px}
+
+.thumb-logo   {background:linear-gradient(135deg,#1a1040,#2d1b6b)}
+.thumb-logo .prod-thumb-label{color:#b89dff}
+.thumb-kart   {background:linear-gradient(135deg,#0e2233,#0c3347)}
+.thumb-kart .prod-thumb-label{color:#7dd4fc}
+.thumb-excel  {background:linear-gradient(135deg,#1a1200,#2d2000)}
+.thumb-excel .prod-thumb-label{color:#fbbf24}
+.thumb-sosyal {background:linear-gradient(135deg,#200e2e,#3d0d2b)}
+.thumb-sosyal .prod-thumb-label{color:#f0abfc}
+
+/* ── Öne çıkan rozeti ── */
+.badge-feat-prod{position:absolute;top:12px;right:12px;background:var(--accent);color:var(--accent-ink);font-size:.66rem;font-weight:800;padding:4px 9px;border-radius:7px;letter-spacing:.06em;text-transform:uppercase}
+.badge-new-prod{position:absolute;top:12px;right:12px;background:var(--accent-3);color:#1a0d00;font-size:.66rem;font-weight:800;padding:4px 9px;border-radius:7px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ── Kart içeriği ── */
+.prod-body{padding:18px 20px;display:flex;flex-direction:column;flex:1;gap:0}
+.prod-cat-tag{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-faint);margin-bottom:7px}
+.prod-body h3{font-size:1.08rem;margin-bottom:6px;line-height:1.25}
+.prod-body p{color:var(--txt-dim);font-size:.86rem;line-height:1.68;flex:1;margin-bottom:12px}
+.prod-includes{list-style:none;padding:0;margin:0 0 14px;display:flex;flex-direction:column;gap:4px}
+.prod-includes li{font-size:.8rem;color:var(--txt-dim);padding-left:14px;position:relative}
+.prod-includes li::before{content:"✓";color:var(--accent);position:absolute;left:0;font-weight:800;font-size:.75rem}
+.prod-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:14px;border-top:1px solid var(--border);margin-top:auto}
+.prod-price{font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--accent)}
+.prod-price small{font-size:.8rem;color:var(--txt-faint);font-family:var(--font-body);font-weight:500;display:block;line-height:1.2}
+.btn-wa-prod{display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:11px;background:#25d366;color:#062b14;font-weight:700;font-size:.86rem;cursor:pointer;border:none;transition:.16s;white-space:nowrap}
+.btn-wa-prod:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-wa-prod svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+
+/* ── Öne çıkan büyük ürün ── */
+.featured-prod{background:linear-gradient(120deg,rgba(200,255,46,.06),rgba(41,211,255,.04));border:1px solid rgba(200,255,46,.25);border-radius:16px;padding:30px;display:flex;gap:28px;align-items:center;margin-bottom:42px}
+@media(max-width:680px){.featured-prod{flex-direction:column}}
+.featured-prod .fp-thumb{width:140px;height:140px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;flex-shrink:0;background:linear-gradient(135deg,#1a1040,#0e2233,#200e2e)}
+.featured-prod .fp-thumb span{font-size:3rem}
+.featured-prod .fp-body{flex:1}
+.featured-prod .fp-body .eyebrow{margin-bottom:8px}
+.featured-prod .fp-body h2{font-size:1.55rem;margin-bottom:8px}
+.featured-prod .fp-body p{color:var(--txt-dim);font-size:.92rem;line-height:1.72;margin-bottom:14px}
+.featured-prod .fp-includes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.featured-prod .fp-includes span{font-size:.78rem;padding:5px 11px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);color:var(--txt-dim)}
+.featured-prod .fp-bottom{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.featured-prod .fp-price{font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--accent)}
+.featured-prod .fp-price del{font-size:1rem;color:var(--txt-faint);font-weight:400;margin-right:6px}
+
+/* ── Nasıl satın alınır? ── */
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}
+@media(max-width:680px){.how-steps{grid-template-columns:1fr}}
+.how-step{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+.how-step .hs-num{width:36px;height:36px;border-radius:10px;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:1.1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-family:var(--font-display)}
+.how-step h4{font-size:.97rem;margin-bottom:5px}
+.how-step p{color:var(--txt-dim);font-size:.84rem;line-height:1.6;margin:0}
+
+/* ── Bölüm ayraçları ── */
+.cat-divider{display:flex;align-items:center;gap:14px;margin:48px 0 28px}
+.cat-divider h2{font-size:1.5rem;white-space:nowrap}
+.cat-divider::after{content:"";flex:1;height:1px;background:var(--border)}
+
+/* ── Boş durum ── */
+#shopNoResult{display:none;text-align:center;padding:64px 0;color:var(--txt-dim)}
+</style>
+</head>
+<body>
+
+<section class="hero" style="padding-bottom:20px"><div class="wrap">
+  <span class="eyebrow">Dijital Ürünler</span>
+  <h1>Hazır tasarımlar, <span style="color:var(--accent)">anında teslim</span></h1>
+  <p class="lead" style="margin:18px 0 10px">Logo paketi, kartvizit şablonu, Excel planlayıcı ve sosyal medya tasarımı. WhatsApp ile sipariş ver, dosyan dakikalar içinde gelsin.</p>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px">
+    <div style="display:flex;align-items:center;gap:7px;font-size:.84rem;color:var(--txt-dim)"><span style="color:var(--accent)">✓</span> Anında dijital teslimat</div>
+    <div style="display:flex;align-items:center;gap:7px;font-size:.84rem;color:var(--txt-dim)"><span style="color:var(--accent)">✓</span> Türkçe destek</div>
+    <div style="display:flex;align-items:center;gap:7px;font-size:.84rem;color:var(--txt-dim)"><span style="color:var(--accent)">✓</span> Düzenlenebilir dosyalar</div>
+    <div style="display:flex;align-items:center;gap:7px;font-size:.84rem;color:var(--txt-dim)"><span style="color:var(--accent)">✓</span> Sınırsız kullanım</div>
+  </div>
+</div></section>
+
+<section style="padding-top:10px;padding-bottom:80px"><div class="wrap">
+
+<!-- ── Öne Çıkan Ürün ── -->
+<div class="featured-prod reveal">
+  <div class="fp-thumb"><span>🎁</span></div>
+  <div class="fp-body">
+    <span class="eyebrow">En Çok Satan · Tam Paket</span>
+    <h2>Marka Kimliği Mega Paketi</h2>
+    <p>Logo, kartvizit ve sosyal medya şablonlarını tek seferde al. İşletmenizin tüm görsel kimliğini kapsayan eksiksiz set. Kafe, kuaför, oto servis ve genel işletmeler için uygundur.</p>
+    <div class="fp-includes">
+      <span>🎨 5 Logo Tasarımı (PNG + SVG)</span>
+      <span>💳 3 Kartvizit Şablonu</span>
+      <span>📱 15 Sosyal Medya Şablonu</span>
+      <span>📄 Kurulum Rehberi (Türkçe)</span>
+    </div>
+    <div class="fp-bottom">
+      <div class="fp-price"><del>999₺</del>649₺ <small style="font-size:.8rem;color:var(--txt-faint);display:inline">tek seferlik</small></div>
+      <button class="btn-wa-prod" onclick="buyProduct('Marka Kimliği Mega Paketi','649')">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp ile Al
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Filtre ── -->
+<div class="shop-filter reveal">
+  <button class="shop-cat active" data-cat="all">Tümü</button>
+  <button class="shop-cat" data-cat="logo">🎨 Logo & Marka</button>
+  <button class="shop-cat" data-cat="kart">💳 Kartvizit</button>
+  <button class="shop-cat" data-cat="excel">📊 Excel & Planlayıcı</button>
+  <button class="shop-cat" data-cat="sosyal">📱 Sosyal Medya</button>
+</div>
+
+<!-- ══ LOGO PAKETLERİ ══ -->
+<div class="cat-divider reveal" data-cat-head="logo">
+  <h2>🎨 Logo & Marka Kimliği</h2>
+</div>
+<div class="prod-grid" id="prodGrid">
+
+  <div class="prod-card reveal" data-cat="logo">
+    <div class="prod-thumb thumb-logo">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">☕</span>
+      <span class="prod-thumb-label">Logo Paketi</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Logo & Marka</div>
+      <h3>Kafe & Restoran Logo Paketi</h3>
+      <p>Kafe, bistro veya restoran işletmeniz için hazırlanmış 5 farklı modern logo. Her logo PNG ve vektörel SVG formatında.</p>
+      <ul class="prod-includes">
+        <li>5 farklı logo tasarımı</li>
+        <li>PNG (şeffaf arka plan) + SVG</li>
+        <li>3 renk varyasyonu her logo için</li>
+        <li>Baskı ve dijital kullanıma hazır</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">249₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Kafe & Restoran Logo Paketi','249')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="prod-card reveal" data-cat="logo">
+    <div class="prod-thumb thumb-logo">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">✂️</span>
+      <span class="prod-thumb-label">Logo Paketi</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Logo & Marka</div>
+      <h3>Kuaför & Güzellik Logo Paketi</h3>
+      <p>Kuaför, güzellik salonu ve spa işletmeleri için 5 hazır logo. Şık, modern ve minimal tasarımlar.</p>
+      <ul class="prod-includes">
+        <li>5 farklı logo tasarımı</li>
+        <li>PNG (şeffaf arka plan) + SVG</li>
+        <li>3 renk varyasyonu her logo için</li>
+        <li>Baskı ve dijital kullanıma hazır</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">249₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Kuaför & Güzellik Logo Paketi','249')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="prod-card reveal" data-cat="logo">
+    <div class="prod-thumb thumb-logo">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">🔧</span>
+      <span class="prod-thumb-label">Logo Paketi</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Logo & Marka</div>
+      <h3>Oto Servis & Garaj Logo Paketi</h3>
+      <p>Oto servis, kaporta, yıkama ve garaj işletmeleri için güçlü ve profesyonel 5 logo tasarımı.</p>
+      <ul class="prod-includes">
+        <li>5 farklı logo tasarımı</li>
+        <li>PNG (şeffaf arka plan) + SVG</li>
+        <li>3 renk varyasyonu her logo için</li>
+        <li>Baskı ve dijital kullanıma hazır</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">249₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Oto Servis & Garaj Logo Paketi','249')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="prod-card featured reveal" data-cat="logo">
+    <span class="badge-feat-prod">En Kapsamlı</span>
+    <div class="prod-thumb thumb-logo">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">🏆</span>
+      <span class="prod-thumb-label">Genel Logo Paketi</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Logo & Marka</div>
+      <h3>Genel İşletme Logo Paketi</h3>
+      <p>Sektörden bağımsız, her işletmeye uygun 10'dan fazla evrensel logo tasarımı. Geniş seçenek, uygun fiyat.</p>
+      <ul class="prod-includes">
+        <li>10+ farklı logo tasarımı</li>
+        <li>PNG (şeffaf arka plan) + SVG</li>
+        <li>Her logo için açık/koyu versiyon</li>
+        <li>Yatay ve dikey düzen varyantları</li>
+        <li>Sosyal medya profil versiyonları</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">399₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Genel İşletme Logo Paketi','399')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+<!-- ══ KARTVİZİT ══ -->
+</div><!-- /prodGrid logo -->
+
+<div class="cat-divider reveal" data-cat-head="kart">
+  <h2>💳 Kartvizit Şablonları</h2>
+</div>
+<div class="prod-grid" id="prodGridKart">
+
+  <div class="prod-card reveal" data-cat="kart">
+    <div class="prod-thumb thumb-kart">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">🃏</span>
+      <span class="prod-thumb-label">Kartvizit</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Kartvizit</div>
+      <h3>Minimal Kartvizit Paketi</h3>
+      <p>Temiz çizgiler ve sade tasarımla öne çıkan 6 şık kartvizit. Teknoloji, danışmanlık ve finans sektörlerine uygun.</p>
+      <ul class="prod-includes">
+        <li>6 farklı tasarım</li>
+        <li>Canva düzenlenebilir template</li>
+        <li>Baskı boyutunda (85×55 mm) PNG</li>
+        <li>Ön ve arka yüz tasarımı</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">149₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Minimal Kartvizit Paketi','149')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="prod-card reveal" data-cat="kart">
+    <div class="prod-thumb thumb-kart">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">🏢</span>
+      <span class="prod-thumb-label">Kartvizit</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Kartvizit</div>
+      <h3>Kurumsal Kartvizit Paketi</h3>
+      <p>Koyu zemin, güçlü tipografi. Kurumsal şirketler, hukuk büroları ve gayrimenkul sektörü için 6 profesyonel tasarım.</p>
+      <ul class="prod-includes">
+        <li>6 farklı tasarım</li>
+        <li>Canva düzenlenebilir template</li>
+        <li>Baskı boyutunda (85×55 mm) PNG</li>
+        <li>Ön ve arka yüz tasarımı</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">149₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Kurumsal Kartvizit Paketi','149')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="prod-card reveal" data-cat="kart">
+    <span class="badge-new-prod">Yeni</span>
+    <div class="prod-thumb thumb-kart">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">🌿</span>
+      <span class="prod-thumb-label">Kartvizit</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Kartvizit</div>
+      <h3>Yaratıcı & Doğal Kartvizit Paketi</h3>
+      <p>Organik formlar, yeşil tonlar ve elle çizilmiş dokunuşlar. Butik, organik mağaza ve yaratıcı sektörler için 6 tasarım.</p>
+      <ul class="prod-includes">
+        <li>6 farklı tasarım</li>
+        <li>Canva düzenlenebilir template</li>
+        <li>Baskı boyutunda (85×55 mm) PNG</li>
+        <li>Ön ve arka yüz tasarımı</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">149₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Yaratıcı & Doğal Kartvizit Paketi','149')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+<!-- ══ EXCEL PLANLAYICI ══ -->
+</div><!-- /prodGridKart -->
+
+<div class="cat-divider reveal" data-cat-head="excel">
+  <h2>📊 Excel Planlayıcılar</h2>
+</div>
+<div class="prod-grid" id="prodGridExcel">
+
+  <div class="prod-card reveal" data-cat="excel">
+    <div class="prod-thumb thumb-excel">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">💰</span>
+      <span class="prod-thumb-label">Excel Planlayıcı</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Excel & Planlayıcı</div>
+      <h3>Kişisel Bütçe Planlayıcı</h3>
+      <p>Gelir, gider ve tasarruf hedeflerini aylık olarak takip edin. Otomatik grafikler ve kategori bazlı analiz dahil.</p>
+      <ul class="prod-includes">
+        <li>12 aylık takip tablosu</li>
+        <li>Otomatik pasta ve çubuk grafikler</li>
+        <li>Kategori bazlı harcama analizi</li>
+        <li>Türkçe formüller ve açıklamalar</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">49₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Kişisel Bütçe Planlayıcı (Excel)','49')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="prod-card reveal" data-cat="excel">
+    <div class="prod-thumb thumb-excel">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">🏪</span>
+      <span class="prod-thumb-label">Excel Planlayıcı</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Excel & Planlayıcı</div>
+      <h3>İşletme Gelir-Gider Tablosu</h3>
+      <p>Küçük işletmeler için gelir, gider, KDV ve kâr takibi. Aylık ve yıllık özet, fatura no takibi dahil.</p>
+      <ul class="prod-includes">
+        <li>Aylık gelir-gider kaydı</li>
+        <li>KDV otomatik hesaplama (%8 / %18 / %20)</li>
+        <li>Yıllık kâr-zarar özeti</li>
+        <li>Türkçe formüller ve açıklamalar</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">89₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('İşletme Gelir-Gider Tablosu (Excel)','89')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="prod-card reveal" data-cat="excel">
+    <div class="prod-thumb thumb-excel">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">🎯</span>
+      <span class="prod-thumb-label">Excel Planlayıcı</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Excel & Planlayıcı</div>
+      <h3>Yıllık Hedef & Planlama Şablonu</h3>
+      <p>Yılın 12 ayını planlayın, hedefleri takip edin, ilerlemeyi görselleştirin. Kişisel veya iş hedefleri için.</p>
+      <ul class="prod-includes">
+        <li>12 aylık hedef takip tablosu</li>
+        <li>Haftalık öncelik listesi</li>
+        <li>İlerleme yüzdesi otomatik</li>
+        <li>Türkçe açıklamalar ve kullanım rehberi</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">69₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Yıllık Hedef & Planlama Şablonu (Excel)','69')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="prod-card reveal" data-cat="excel">
+    <div class="prod-thumb thumb-excel">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">📅</span>
+      <span class="prod-thumb-label">Excel Planlayıcı</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Excel & Planlayıcı</div>
+      <h3>Sosyal Medya İçerik Takvimi</h3>
+      <p>Instagram, Facebook, TikTok ve LinkedIn için içerik planlayın. Aylık yayın takvimi, içerik fikirleri ve görev atama.</p>
+      <ul class="prod-includes">
+        <li>4 platform için ayrı sekmeler</li>
+        <li>Aylık yayın takvimi görünümü</li>
+        <li>İçerik kategorisi ve hashtag bölümü</li>
+        <li>Onay ve yayın durumu takibi</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">69₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Sosyal Medya İçerik Takvimi (Excel)','69')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="prod-card reveal" data-cat="excel">
+    <div class="prod-thumb thumb-excel">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">📋</span>
+      <span class="prod-thumb-label">Excel Planlayıcı</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Excel & Planlayıcı</div>
+      <h3>Proje Yönetim Şablonu</h3>
+      <p>Görev listesi, sorumlu atama, başlangıç/bitiş tarihleri ve Gantt benzeri görünüm. Freelancer ve ajanslar için ideal.</p>
+      <ul class="prod-includes">
+        <li>Görev ve alt görev takibi</li>
+        <li>Durum renk kodlaması</li>
+        <li>Haftalık ilerleme özeti</li>
+        <li>Birden fazla proje sekmesi</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">79₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Proje Yönetim Şablonu (Excel)','79')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+<!-- ══ SOSYAL MEDYA ══ -->
+</div><!-- /prodGridExcel -->
+
+<div class="cat-divider reveal" data-cat-head="sosyal">
+  <h2>📱 Sosyal Medya Şablonları</h2>
+</div>
+<div class="prod-grid" id="prodGridSosyal">
+
+  <div class="prod-card reveal" data-cat="sosyal">
+    <div class="prod-thumb thumb-sosyal">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">📸</span>
+      <span class="prod-thumb-label">Instagram Post</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Sosyal Medya</div>
+      <h3>Instagram Post Paketi</h3>
+      <p>Kare ve dikey formatta 20 hazır şablon. Ürün tanıtımı, duyuru ve motivasyon içerikleri için Canva uyumlu.</p>
+      <ul class="prod-includes">
+        <li>20 şablon (1080×1080 + 1080×1350)</li>
+        <li>Canva düzenlenebilir format</li>
+        <li>PNG yüksek çözünürlük</li>
+        <li>Türkçe ve İngilizce metin versiyonları</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">199₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Instagram Post Paketi (20 Şablon)','199')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="prod-card reveal" data-cat="sosyal">
+    <div class="prod-thumb thumb-sosyal">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">📲</span>
+      <span class="prod-thumb-label">Instagram Story</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Sosyal Medya</div>
+      <h3>Instagram Story Paketi</h3>
+      <p>Kaydırılabilir story serileri ve tekil story şablonları. Kampanya, duyuru, anket ve ürün vitrin formatları.</p>
+      <ul class="prod-includes">
+        <li>15 şablon (1080×1920)</li>
+        <li>Canva düzenlenebilir format</li>
+        <li>Swipe-up ve bağlantı alanı dahil</li>
+        <li>Animasyonlu varyant önerileri</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">149₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Instagram Story Paketi (15 Şablon)','149')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="prod-card featured reveal" data-cat="sosyal">
+    <span class="badge-feat-prod">En İyi Değer</span>
+    <div class="prod-thumb thumb-sosyal">
+      <div class="prod-thumb-grid"></div>
+      <span class="prod-thumb-ico">🚀</span>
+      <span class="prod-thumb-label">Mega Paket</span>
+    </div>
+    <div class="prod-body">
+      <div class="prod-cat-tag">Sosyal Medya</div>
+      <h3>Sosyal Medya Mega Paketi</h3>
+      <p>Post, story, LinkedIn ve Facebook kapak fotoğrafı dahil 50'den fazla şablon. Tüm yıl boyunca kullanabilirsiniz.</p>
+      <ul class="prod-includes">
+        <li>20 Instagram post şablonu</li>
+        <li>15 Instagram story şablonu</li>
+        <li>10 LinkedIn banner şablonu</li>
+        <li>8 Facebook kapak fotoğrafı</li>
+        <li>Canva + PNG formatları</li>
+      </ul>
+      <div class="prod-footer">
+        <div class="prod-price">349₺ <small>tek seferlik</small></div>
+        <button class="btn-wa-prod" onclick="buyProduct('Sosyal Medya Mega Paketi (50+ Şablon)','349')">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Al
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /prodGridSosyal -->
+
+<div id="shopNoResult"><p style="font-size:1.05rem">Bu kategoride ürün bulunamadı.</p></div>
+
+<!-- ── Nasıl satın alınır? ── -->
+<div style="margin-top:72px">
+  <div class="section-head reveal"><span class="eyebrow">Satın Alma</span><h2>Nasıl çalışır?</h2><p class="lead">Üç adımda, dakikalar içinde dosyanız elinizde.</p></div>
+  <div class="how-steps">
+    <div class="how-step reveal">
+      <div class="hs-num">1</div>
+      <h4>Ürünü seç</h4>
+      <p>İstediğin ürünün "WhatsApp ile Al" butonuna tıkla. Ürün adı ve fiyatı ile hazır mesaj açılır.</p>
+    </div>
+    <div class="how-step reveal">
+      <div class="hs-num">2</div>
+      <h4>Ödemeyi yap</h4>
+      <p>WhatsApp üzerinden iletişime geç. IBAN veya EFT/havale ile ödeme yap, dekontu paylaş.</p>
+    </div>
+    <div class="how-step reveal">
+      <div class="hs-num">3</div>
+      <h4>Dosyaları al</h4>
+      <p>Ödeme onayının hemen ardından dosyaların WhatsApp veya e-posta üzerinden gönderilir.</p>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:28px">
+    <a href="https://wa.me/905414792972?text=Merhaba%2C%20dijital%20ürünler%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer" class="btn btn-wa">
+      <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Sorunuz mu var? WhatsApp'tan yazın
+    </a>
+  </div>
+</div>
+
+</div></section>
+
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const WA = "905414792972";
+function buyProduct(name, price) {
+  var msg = 'Merhaba, "' + name + '" ürününü satın almak istiyorum (' + price + '₺). Ödeme bilgilerini alabilir miyim?';
+  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
+}
+
+(function(){
+  var cats = document.querySelectorAll('.shop-cat');
+  var allCards = document.querySelectorAll('[data-cat]');
+  var allHeads = document.querySelectorAll('[data-cat-head]');
+  var noResult = document.getElementById('shopNoResult');
+  var activeCat = 'all';
+
+  function filter() {
+    var visible = 0;
+    allCards.forEach(function(card) {
+      var show = activeCat === 'all' || card.dataset.cat === activeCat;
+      card.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    allHeads.forEach(function(head) {
+      var show = activeCat === 'all' || head.dataset.catHead === activeCat;
+      head.parentElement.style.display = show ? '' : 'none';
+    });
+    // hide/show grid wrappers
+    ['prodGrid','prodGridKart','prodGridExcel','prodGridSosyal'].forEach(function(id){
+      var g = document.getElementById(id);
+      if(!g) return;
+      var hasVisible = Array.from(g.querySelectorAll('[data-cat]')).some(function(c){ return !c.classList.contains('hidden'); });
+      g.style.display = hasVisible ? '' : 'none';
+    });
+    noResult.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  cats.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      cats.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeCat = btn.dataset.cat;
+      filter();
+    });
+  });
+})();
+</script>
+</body>
+</html>
