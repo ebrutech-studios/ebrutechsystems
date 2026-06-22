@@ -320,6 +320,156 @@ window.BLOG_POSTS = [
 </ul>`
   },
   {
+    id: "logo-renk-psikolojisi",
+    baslik: "Logo Tasarımında Renk Psikolojisi: İşletmeniz İçin Doğru Rengi Seçin",
+    ozet: "Renk, markanızın ilk izleniminin %80'ini belirler. Kafe mi, hukuk bürosu mu, spor salonu mu? Her sektörün rengi farklıdır.",
+    tarih: "2026-06-22",
+    okuma: 5,
+    kat: "İşletme",
+    tool: "",
+    icerik: `
+<p>Bir logoyu ilk gördüğünüzde hissettiğiniz şey büyük ölçüde renkten gelir. Araştırmalar, tüketicilerin marka hakkında ilk kararını 90 saniye içinde verdiğini ve bu kararın %62-90'ının renge dayandığını gösteriyor.</p>
+<h2>Renkler ne anlatır?</h2>
+<ul>
+<li><b>Kırmızı:</b> Enerji, aciliyet, iştah. Restoran, perakende ve acil hizmetlerde güçlü.</li>
+<li><b>Mavi:</b> Güven, profesyonellik, sakinlik. Hukuk, finans, sağlık ve teknoloji sektörlerinin vazgeçilmezi.</li>
+<li><b>Yeşil:</b> Doğallık, sağlık, büyüme. Organik ürünler, çevre, tarım ve sağlık hizmetleri için ideal.</li>
+<li><b>Sarı/Turuncu:</b> Neşe, uygun fiyat, ulaşılabilirlik. Çocuk ürünleri, fast food, eğitim.</li>
+<li><b>Mor:</b> Lüks, yaratıcılık, gizemlilik. Güzellik, tasarım ve premium ürünler.</li>
+<li><b>Siyah/Gri:</b> Sofistike, minimalist, kaliteli. Moda, teknoloji ve lüks segmenti.</li>
+</ul>
+<h2>Sektöre göre renk tercihleri</h2>
+<p><b>Kafe & Restoran:</b> Sıcak tonlar iştah açar — kırmızı, turuncu, kahverengi. Kahve dükkanları için koyu kahve + krem kombinasyonu zamansızdır.</p>
+<p><b>Hukuk & Danışmanlık:</b> Koyu mavi veya lacivert güven verir. Altın veya gri ile kombinlendiğinde prestij hissi yaratır.</p>
+<p><b>Güzellik & Kuaför:</b> Pembe ve mor feminen bir his katarken, siyah ve altın lüksü çağrıştırır.</p>
+<p><b>Oto Servis & Teknik:</b> Turuncu + siyah güç ve güvenilirlik mesajı verir. Mavi ise teknik uzmanlığı simgeler.</p>
+<h2>Kaçınılması gereken hatalar</h2>
+<ul>
+<li>Sektörünüzle çelişen renk seçimi (sağlık firması için kırmızı uyarı hissi verir)</li>
+<li>Ekranda ve baskıda farklı görünen renk kombinasyonları</li>
+<li>Birbirine çok yakın değerde iki rengi birlikte kullanmak</li>
+</ul>
+<p><b>Pratik ipucu:</b> Ana renginizi seçin, ardından kontrast yaratacak bir tamamlayıcı renk ekleyin. Üçüncü renk nötr olsun — beyaz, siyah veya gri genellikle işe yarar.</p>`
+  },
+  {
+    id: "sosyal-medya-gorsel-boyutlari-2026",
+    baslik: "Sosyal Medya Görsel Boyutları 2026: Instagram, LinkedIn, Facebook Rehberi",
+    ozet: "Yanlış boyutta görsel paylaşınca kırpılır, pikselleşir. 2026 güncel boyut rehberi: post, story, kapak, profil fotoğrafı.",
+    tarih: "2026-06-21",
+    okuma: 4,
+    kat: "İpucu",
+    tool: "tool-resizer.html",
+    icerik: `
+<p>Her platform farklı görsel boyutu kullanır ve bu boyutlar yıldan yıla güncellenir. Yanlış boyutta yüklenen görseller otomatik kırpılır, pikselleşir veya kenarlar boş kalır — bu da profesyonel görünümünüzü zedeler.</p>
+<h2>Instagram Boyutları</h2>
+<ul>
+<li><b>Kare post:</b> 1080 × 1080 px (1:1)</li>
+<li><b>Dikey post:</b> 1080 × 1350 px (4:5) — en fazla ekran alanı kaplayan format</li>
+<li><b>Yatay post:</b> 1080 × 566 px (1,91:1)</li>
+<li><b>Story / Reels:</b> 1080 × 1920 px (9:16) — alttan ve üstten 250 px'i UI kapatır, önemli içeriği ortaya koyun</li>
+<li><b>Profil fotoğrafı:</b> 320 × 320 px (daire kırpılır)</li>
+</ul>
+<h2>LinkedIn Boyutları</h2>
+<ul>
+<li><b>Post görseli:</b> 1200 × 628 px — geniş paylaşımlar için standart</li>
+<li><b>Profil fotoğrafı:</b> 400 × 400 px</li>
+<li><b>Kapak fotoğrafı:</b> 1584 × 396 px</li>
+<li><b>Şirket logosu:</b> 300 × 300 px</li>
+</ul>
+<h2>Facebook Boyutları</h2>
+<ul>
+<li><b>Post görseli:</b> 1200 × 630 px</li>
+<li><b>Kapak fotoğrafı:</b> 820 × 312 px (masaüstü), 640 × 360 px (mobil)</li>
+<li><b>Story:</b> 1080 × 1920 px</li>
+<li><b>Etkinlik kapağı:</b> 1920 × 1005 px</li>
+</ul>
+<h2>Pratik ipuçları</h2>
+<p>Platformlar arası paylaşım yapıyorsanız, <b>1080 × 1080</b> kare format en güvenli seçimdir — her yerde makul görünür. Daha fazla erişim istiyorsanız dikey (4:5) formatı tercih edin; Instagram feed'inde daha fazla yer kaplar.</p>
+<p>Görselinizin boyutunu değiştirmek için EbruTech Boyutlandırıcı aracını kullanabilirsiniz — piksel veya yüzde olarak yeniden boyutlandırın, kalite korunsun.</p>`
+  },
+  {
+    id: "profesyonel-kartvizit-tasarim",
+    baslik: "Profesyonel Kartvizit Nasıl Tasarlanır? 7 Temel Kural",
+    ozet: "Kartvizit küçük ama etkisi büyük. İlk izlenimi doğru bırakmak için tasarım, yazı tipi ve içerik seçiminde dikkat edilmesi gerekenler.",
+    tarih: "2026-06-19",
+    okuma: 5,
+    kat: "İşletme",
+    tool: "",
+    icerik: `
+<p>Dijital çağda bile kartvizit, yüz yüze iş toplantılarında güçlü bir araç olmaya devam ediyor. İyi tasarlanmış bir kartvizit sizden daha uzun süre konuşulmanızı sağlar.</p>
+<h2>1. Boyut ve oran</h2>
+<p>Standart kartvizit boyutu <b>85 × 55 mm</b>'dir. Baskı payı için kenarlara 3 mm boşluk (bleed) bırakın. Kenar kesim payını hesaba katmadan tasarlanan kartlar kesimde önemli bilgileri kaybedebilir.</p>
+<h2>2. Sadelik altındır</h2>
+<p>Bir kartvizite sığdırabileceğiniz en fazla bilgi şunlardır: ad-soyad, unvan, telefon, e-posta ve web sitesi. Gerisi kalabalık yaratır. Sosyal medya ikonları yerine tek en önemli profili koyun.</p>
+<h2>3. Okunabilir yazı tipi</h2>
+<p>8 punto altına düşmeyin — özellikle telefonla okuyacak kişiler için. Dekoratif fontları yalnızca isim gibi kısa metinlerde kullanın, iletişim bilgileri için temiz ve sade bir font seçin.</p>
+<h2>4. Kontrast</h2>
+<p>Açık arka plan üzerine koyu metin veya koyu arka plan üzerine açık metin. Düşük kontrast, ışık altında okunmasını zorlaştırır. Renk seçiminde %4,5:1 kontrast oranını hedefleyin.</p>
+<h2>5. Logo doğru konumda mı?</h2>
+<p>Logo genellikle sol üst köşede veya arka yüzde tam ortada kullanılır. Dosya vektörel (SVG veya AI) olmalı; pikselleşmesin. Raster (JPG/PNG) logo kullanıyorsanız en az 300 DPI çözünürlükte olsun.</p>
+<h2>6. Arka yüzü boş bırakmayın</h2>
+<p>Kartvizit arka yüzü değerli bir alan. Hizmet listesi, QR kod, harita veya markanızın sloganı için kullanabilirsiniz. Tamamen sade bırakmak da estetik bir tercih olabilir — ama en azından birincil renginizle kaplı olsun.</p>
+<h2>7. Baskı kalitesi</h2>
+<p>Mat laminasyon şık ve parmak izi bırakmaz. Parlak laminasyon renkleri canlı gösterir. Spot selektif lak (önemli öğeleri parlatma) ise katma değer hissi yaratır. Ekonomik baskı için 350 gr kağıt minimum standart olmalı.</p>`
+  },
+  {
+    id: "excel-formulleri-isletme",
+    baslik: "İşletmenizde En Çok Kullanacağınız 10 Excel Formülü",
+    ozet: "Gelir-gider takibinden KDV hesabına, stok yönetiminden koşullu toplamaya kadar pratik Excel formülleri ve Türkçe örnekler.",
+    tarih: "2026-06-17",
+    okuma: 6,
+    kat: "İşletme",
+    tool: "",
+    icerik: `
+<p>Excel'i bilmek işletmenizin verimliliğini ciddi ölçüde artırır. Temel formülleri öğrendikten sonra saatler süren hesaplamalar dakikaya iner.</p>
+<h2>1. TOPLA (SUM)</h2>
+<p>En temel formül. Seçtiğiniz hücre aralığındaki tüm sayıları toplar. <code>=TOPLA(B2:B20)</code> — B2'den B20'ye kadar tüm satışları toplar.</p>
+<h2>2. EĞER (IF)</h2>
+<p>Koşula göre farklı sonuç döner. <code>=EĞER(D2>1000,"Büyük Sipariş","Normal")</code> — sipariş 1000₺'yi geçerse farklı işaretler.</p>
+<h2>3. ETOPLA (SUMIF)</h2>
+<p>Belirli bir koşulu sağlayan hücreleri toplar. <code>=ETOPLA(A:A,"Ocak",B:B)</code> — yalnızca Ocak ayına ait tutarları toplar.</p>
+<h2>4. DÜŞEYARA (VLOOKUP)</h2>
+<p>Bir listede değer arar ve yanındaki sütunu döner. Stok kodundan ürün adı veya fiyat çekmek için idealdir.</p>
+<h2>5. EĞERSAY (COUNTIF)</h2>
+<p>Koşullu sayım. <code>=EĞERSAY(C:C,"Ödendi")</code> — "Ödendi" yazan fatura sayısını verir.</p>
+<h2>6. YUVARLA (ROUND)</h2>
+<p>KDV hesaplamalarında kuruş farklarını önlemek için: <code>=YUVARLA(B2*1.2,2)</code> — %20 KDV eklenmiş tutarı 2 ondalıkla yuvarlar.</p>
+<h2>7. METNEÇEVİR (TEXT)</h2>
+<p>Tarihi istediğiniz formatta gösterir. <code>=METNEÇEVİR(A2,"DD.MM.YYYY")</code> — fatura tarihlerini standart formata çevirir.</p>
+<h2>8. MAK / MİN</h2>
+<p>En yüksek ve en düşük değeri bulur. Ay içindeki en büyük sipariş veya en düşük stok seviyesi için kullanışlı.</p>
+<h2>9. ORTALAMA (AVERAGE)</h2>
+<p>Aylık ortalama ciro, ortalama müşteri harcaması gibi KPI'lar için temel formül.</p>
+<h2>10. BIRLEŞTIR / METİNBİRLEŞTİR</h2>
+<p>Ad ve soyadı birleştirir, fatura numarası üretir, açıklama satırları oluşturur. <code>="FAT-"&METNEÇEVİR(A2,"000")</code> → FAT-001, FAT-002 gibi otomatik numara.</p>
+<p><b>İpucu:</b> Hazır Excel planlayıcılarımızda bu formüllerin büyük bölümü zaten kurulu. Dosyayı açıp yalnızca verilerinizi girin.</p>`
+  },
+  {
+    id: "watermark-fotograf-koruma",
+    baslik: "Watermark (Filigran) Nedir? Fotoğraflarınızı İzinsiz Kullanıma Karşı Nasıl Korursunuz?",
+    ozet: "Ürün fotoğrafı, tasarım veya çektiğiniz görsellere watermark eklemek neden önemli? En iyi yerleştirme ve opaklık ayarları.",
+    tarih: "2026-06-15",
+    okuma: 4,
+    kat: "Rehber",
+    tool: "tool-watermark.html",
+    icerik: `
+<p>Sosyal medyada paylaştığınız ürün görselleri veya çektiğiniz fotoğraflar, izniniz olmadan başkaları tarafından kullanılabilir. Watermark (filigran) eklemek, bu riski minimize etmenin en kolay yoludur.</p>
+<h2>Watermark nedir?</h2>
+<p>Watermark, bir görselin üzerine yarı saydam metin veya logo ekleme işlemidir. Telif hakkı sahibini belirtir ve izinsiz kullanımı zorlaştırır. Profesyonel fotoğrafçılar, ürün satan e-ticaret siteleri ve tasarımcılar yaygın olarak kullanır.</p>
+<h2>Neden kullanmalısınız?</h2>
+<ul>
+<li><b>Ürün görselleri:</b> Rakipler sitenizden görsel çalıp kendi ürünlerinde kullanamaz.</li>
+<li><b>Marka bilinirliği:</b> Görsel paylaşıldıkça markanız da yayılır.</li>
+<li><b>Hukuki dayanak:</b> Anlaşmazlıklarda sahipliği kanıtlar.</li>
+</ul>
+<h2>Etkili watermark için ipuçları</h2>
+<p><b>Konum:</b> Köşeye koymak yeterli değil — kırpılarak kaldırılabilir. Görselin ortasına veya konunun üzerine yerleştirin.</p>
+<p><b>Opaklık:</b> %20-40 opaklık görsel kalitesini çok bozmadan yeterli koruma sağlar. Çok koyu watermark görseli kullanılamaz hale getirir.</p>
+<p><b>İçerik:</b> Domain adınız veya @Instagram kullanıcı adınız watermark olarak idealdir — hem koruma hem tanıtım.</p>
+<h2>Toplu watermark</h2>
+<p>Yüzlerce ürün fotoğrafı varsa tek tek işlemek zaman alır. EbruTech Watermark aracıyla birden fazla görsele aynı anda filigran ekleyebilir, konum ve opaklığı tek seferinde ayarlayabilirsiniz.</p>`
+  },
+  {
     id: "css-gradient-tasarim-ipuclari",
     baslik: "CSS Gradient ile Profesyonel Tasarım: Renk Geçişi İpuçları",
     ozet: "CSS gradient ile web sitenize profesyonel dokunuş katın. Linear ve radial farkı, en iyi renk kombinasyonları ve hazır kod örnekleri.",
