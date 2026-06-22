@@ -26,89 +26,149 @@
 {"@context":"https://schema.org","@type":"Store","name":"EbruTech Studios Dijital Mağaza","url":"https://ebrutechsystems.com/magaza.html","description":"Hazır logo paketleri, kartvizit şablonları, Excel planlayıcılar ve sosyal medya şablonları.","currenciesAccepted":"TRY","paymentAccepted":"Bank Transfer, WhatsApp"}
 </script>
 <style>
-/* ── Kategori filtresi ── */
+/* ── Filter ── */
 .shop-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
-.shop-cat{padding:9px 18px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--txt-dim);font-size:.84rem;font-weight:600;cursor:pointer;transition:.15s}
+.shop-cat{padding:9px 18px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--txt-dim);font-size:.84rem;font-weight:600;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:6px}
 .shop-cat:hover{border-color:var(--accent);color:var(--txt)}
 .shop-cat.active{border-color:var(--accent);background:rgba(200,255,46,.10);color:var(--accent)}
 
-/* ── Ürün kartı ── */
+/* ── Grid ── */
 .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media(max-width:900px){.prod-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:540px){.prod-grid{grid-template-columns:1fr}}
-.prod-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.22s;position:relative}
-.prod-card:hover{border-color:var(--border-strong);transform:translateY(-4px);box-shadow:0 16px 44px rgba(0,0,0,.4)}
-.prod-card.featured{border-color:rgba(200,255,46,.35);background:linear-gradient(180deg,rgba(200,255,46,.04),var(--surface))}
+
+/* ── Card ── */
+.prod-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.22s;position:relative;cursor:pointer}
+.prod-card:hover{border-color:rgba(200,255,46,.4);transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.prod-card.featured{border-color:rgba(200,255,46,.3);background:linear-gradient(180deg,rgba(200,255,46,.04),var(--surface))}
 .prod-card.hidden{display:none!important}
 
-/* ── Ürün önizleme thumbnail ── */
-.prod-thumb{height:164px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative;overflow:hidden}
-.prod-thumb-ico{font-size:2.6rem;line-height:1}
-.prod-thumb-label{font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
-.prod-thumb-grid{position:absolute;inset:0;opacity:.07;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:24px 24px}
+/* ── Thumbnail (SVG art) ── */
+.prod-thumb{height:196px;overflow:hidden;position:relative;display:block}
+.prod-thumb svg{width:100%;height:100%;display:block}
+.prod-badge{position:absolute;top:12px;right:12px;font-size:.66rem;font-weight:800;padding:4px 9px;border-radius:7px;letter-spacing:.06em;text-transform:uppercase;z-index:1}
+.badge-feat{background:var(--accent);color:var(--accent-ink)}
+.badge-new{background:#29d3ff;color:#061a20}
+.badge-hot{background:#ff6b35;color:#fff}
 
-.thumb-logo   {background:linear-gradient(135deg,#1a1040,#2d1b6b)}
-.thumb-logo .prod-thumb-label{color:#b89dff}
-.thumb-kart   {background:linear-gradient(135deg,#0e2233,#0c3347)}
-.thumb-kart .prod-thumb-label{color:#7dd4fc}
-.thumb-excel  {background:linear-gradient(135deg,#1a1200,#2d2000)}
-.thumb-excel .prod-thumb-label{color:#fbbf24}
-.thumb-sosyal {background:linear-gradient(135deg,#200e2e,#3d0d2b)}
-.thumb-sosyal .prod-thumb-label{color:#f0abfc}
-.thumb-sunum  {background:linear-gradient(135deg,#0d1f2e,#0d2b1a)}
-.thumb-sunum .prod-thumb-label{color:#6ee7b7}
-.thumb-mockup {background:linear-gradient(135deg,#1a0c00,#2e1e00)}
-.thumb-mockup .prod-thumb-label{color:#fdba74}
+/* ── Card body ── */
+.prod-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.prod-cat-tag{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-faint);margin-bottom:6px}
+.prod-body h3{font-size:1.05rem;margin-bottom:5px;line-height:1.3}
+.prod-tagline{color:var(--txt-dim);font-size:.83rem;line-height:1.55;flex:1;margin-bottom:14px}
+.prod-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:12px;border-top:1px solid var(--border);margin-top:auto}
+.prod-price{font-family:var(--font-display);font-size:1.5rem;font-weight:800;color:var(--accent);line-height:1}
+.prod-price small{font-size:.72rem;color:var(--txt-faint);font-family:var(--font-body);font-weight:500;display:block}
+.btn-details{padding:9px 15px;border-radius:10px;background:rgba(200,255,46,.10);border:1px solid rgba(200,255,46,.25);color:var(--accent);font-size:.8rem;font-weight:700;cursor:pointer;transition:.15s;white-space:nowrap}
+.btn-details:hover{background:rgba(200,255,46,.18)}
 
-/* ── Öne çıkan rozeti ── */
-.badge-feat-prod{position:absolute;top:12px;right:12px;background:var(--accent);color:var(--accent-ink);font-size:.66rem;font-weight:800;padding:4px 9px;border-radius:7px;letter-spacing:.06em;text-transform:uppercase}
-.badge-new-prod{position:absolute;top:12px;right:12px;background:var(--accent-3);color:#1a0d00;font-size:.66rem;font-weight:800;padding:4px 9px;border-radius:7px;letter-spacing:.06em;text-transform:uppercase}
+/* ── Section dividers ── */
+.cat-divider{display:flex;align-items:center;gap:14px;margin:48px 0 24px}
+.cat-divider h2{font-size:1.42rem;white-space:nowrap}
+.cat-divider::after{content:"";flex:1;height:1px;background:var(--border)}
 
-/* ── Kart içeriği ── */
-.prod-body{padding:18px 20px;display:flex;flex-direction:column;flex:1;gap:0}
-.prod-cat-tag{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-faint);margin-bottom:7px}
-.prod-body h3{font-size:1.08rem;margin-bottom:6px;line-height:1.25}
-.prod-body p{color:var(--txt-dim);font-size:.86rem;line-height:1.68;flex:1;margin-bottom:12px}
-.prod-includes{list-style:none;padding:0;margin:0 0 14px;display:flex;flex-direction:column;gap:4px}
-.prod-includes li{font-size:.8rem;color:var(--txt-dim);padding-left:14px;position:relative}
-.prod-includes li::before{content:"✓";color:var(--accent);position:absolute;left:0;font-weight:800;font-size:.75rem}
-.prod-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:14px;border-top:1px solid var(--border);margin-top:auto}
-.prod-price{font-family:var(--font-display);font-size:1.6rem;font-weight:800;color:var(--accent)}
-.prod-price small{font-size:.8rem;color:var(--txt-faint);font-family:var(--font-body);font-weight:500;display:block;line-height:1.2}
-.btn-wa-prod{display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:11px;background:#25d366;color:#062b14;font-weight:700;font-size:.86rem;cursor:pointer;border:none;transition:.16s;white-space:nowrap}
-.btn-wa-prod:hover{filter:brightness(1.08);transform:translateY(-1px)}
-.btn-wa-prod svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
-
-/* ── Öne çıkan büyük ürün ── */
-.featured-prod{background:linear-gradient(120deg,rgba(200,255,46,.06),rgba(41,211,255,.04));border:1px solid rgba(200,255,46,.25);border-radius:16px;padding:30px;display:flex;gap:28px;align-items:center;margin-bottom:42px}
+/* ── Featured product banner ── */
+.featured-prod{background:linear-gradient(120deg,rgba(200,255,46,.07),rgba(41,211,255,.04));border:1px solid rgba(200,255,46,.25);border-radius:18px;padding:28px;display:flex;gap:28px;align-items:center;margin-bottom:40px;cursor:pointer;transition:.22s}
+.featured-prod:hover{border-color:rgba(200,255,46,.45);box-shadow:0 16px 44px rgba(0,0,0,.4)}
 @media(max-width:680px){.featured-prod{flex-direction:column}}
-.featured-prod .fp-thumb{width:140px;height:140px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;flex-shrink:0;background:linear-gradient(135deg,#1a1040,#0e2233,#200e2e)}
-.featured-prod .fp-thumb span{font-size:3rem}
+.featured-prod .fp-thumb{width:150px;height:150px;border-radius:14px;overflow:hidden;flex-shrink:0}
+.featured-prod .fp-thumb svg{width:100%;height:100%}
 .featured-prod .fp-body{flex:1}
 .featured-prod .fp-body .eyebrow{margin-bottom:8px}
-.featured-prod .fp-body h2{font-size:1.55rem;margin-bottom:8px}
-.featured-prod .fp-body p{color:var(--txt-dim);font-size:.92rem;line-height:1.72;margin-bottom:14px}
-.featured-prod .fp-includes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
-.featured-prod .fp-includes span{font-size:.78rem;padding:5px 11px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);color:var(--txt-dim)}
+.featured-prod .fp-body h2{font-size:1.5rem;margin-bottom:8px}
+.featured-prod .fp-body p{color:var(--txt-dim);font-size:.9rem;line-height:1.68;margin-bottom:14px}
+.featured-prod .fp-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.featured-prod .fp-tags span{font-size:.77rem;padding:4px 10px;border-radius:7px;background:var(--surface);border:1px solid var(--border);color:var(--txt-dim)}
 .featured-prod .fp-bottom{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .featured-prod .fp-price{font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--accent)}
 .featured-prod .fp-price del{font-size:1rem;color:var(--txt-faint);font-weight:400;margin-right:6px}
+.btn-wa-feat{display:inline-flex;align-items:center;gap:7px;padding:12px 20px;border-radius:11px;background:#25d366;color:#062b14;font-weight:700;font-size:.88rem;cursor:pointer;border:none;transition:.16s}
+.btn-wa-feat:hover{filter:brightness(1.08)}
+.btn-wa-feat svg{width:17px;height:17px;fill:currentColor;flex-shrink:0}
 
-/* ── Nasıl satın alınır? ── */
+/* ── How-to-buy ── */
 .how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}
 @media(max-width:680px){.how-steps{grid-template-columns:1fr}}
 .how-step{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
 .how-step .hs-num{width:36px;height:36px;border-radius:10px;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:1.1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-family:var(--font-display)}
 .how-step h4{font-size:.97rem;margin-bottom:5px}
 .how-step p{color:var(--txt-dim);font-size:.84rem;line-height:1.6;margin:0}
-
-/* ── Bölüm ayraçları ── */
-.cat-divider{display:flex;align-items:center;gap:14px;margin:48px 0 28px}
-.cat-divider h2{font-size:1.5rem;white-space:nowrap}
-.cat-divider::after{content:"";flex:1;height:1px;background:var(--border)}
-
-/* ── Boş durum ── */
 #shopNoResult{display:none;text-align:center;padding:64px 0;color:var(--txt-dim)}
+
+/* ══ MODAL ══ */
+.pm-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9000;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.pm-overlay.open{opacity:1;pointer-events:all}
+.pm-box{background:#0e1018;border:1px solid rgba(255,255,255,.12);border-radius:20px;width:100%;max-width:980px;max-height:92vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative}
+@media(max-width:700px){.pm-box{grid-template-columns:1fr;max-height:95vh;overflow-y:auto;border-radius:16px}}
+
+/* gallery pane */
+.pm-left{display:flex;flex-direction:column;background:#080b12;min-height:360px}
+.pm-gallery{flex:1;position:relative;overflow:hidden}
+.pm-slides{display:flex;height:100%;transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.pm-slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pm-slide svg{width:100%;height:100%;display:block}
+.pm-nav-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.15);color:#fff;width:34px;height:34px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;z-index:3;line-height:1}
+.pm-nav-btn:hover{background:rgba(255,255,255,.15)}
+.pm-prev{left:10px}
+.pm-next{right:10px}
+.pm-dots{display:flex;justify-content:center;align-items:center;gap:5px;padding:8px 12px}
+.pm-dot{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.25);cursor:pointer;transition:.2s}
+.pm-dot.on{width:20px;background:var(--accent)}
+
+/* info pane */
+.pm-right{padding:28px 26px;overflow-y:auto;display:flex;flex-direction:column;gap:14px;max-height:92vh}
+@media(max-width:700px){.pm-right{max-height:none}}
+.pm-cat{display:inline-flex;align-items:center;font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:rgba(200,255,46,.10);border:1px solid rgba(200,255,46,.2);border-radius:6px;padding:4px 10px}
+.pm-name{font-size:1.55rem;line-height:1.2;margin:0}
+.pm-tagline{color:var(--txt-dim);font-size:.88rem;line-height:1.65;margin:0}
+.pm-price-row{display:flex;align-items:baseline;gap:10px}
+.pm-price{font-family:var(--font-display);font-size:2.2rem;font-weight:800;color:var(--accent);line-height:1}
+.pm-old{font-size:1rem;color:var(--txt-faint);text-decoration:line-through}
+.pm-small{font-size:.78rem;color:var(--txt-faint)}
+.pm-btn-wa{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;background:#25d366;color:#062b14;font-weight:700;font-size:.95rem;border:none;border-radius:12px;cursor:pointer;transition:.15s;width:100%}
+.pm-btn-wa:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.pm-btn-wa svg{width:18px;height:18px;fill:currentColor;flex-shrink:0}
+.pm-hr{height:1px;background:rgba(255,255,255,.08)}
+.pm-section-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-faint)}
+.pm-desc{color:var(--txt-dim);font-size:.86rem;line-height:1.72;margin:0}
+.pm-includes{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.pm-includes li{display:flex;align-items:flex-start;gap:8px;font-size:.85rem;color:var(--txt)}
+.pm-includes li::before{content:"✓";color:var(--accent);font-weight:800;flex-shrink:0;margin-top:1px}
+.pm-fmts{display:flex;gap:6px;flex-wrap:wrap}
+.pm-fmt{padding:5px 11px;border-radius:7px;background:var(--surface);border:1px solid var(--border);font-size:.75rem;font-weight:700;color:var(--txt-dim);letter-spacing:.05em}
+.pm-close{position:absolute;top:13px;right:13px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:var(--txt);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:.15s;line-height:1}
+.pm-close:hover{background:rgba(255,255,255,.18)}
+
+/* ── Slide inner layouts ── */
+.sl-hero{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;gap:8px;position:relative;overflow:hidden}
+.sl-hero-badge{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);margin-bottom:4px}
+.sl-hero-name{font-family:var(--font-display);font-size:1.55rem;font-weight:800;color:#fff;line-height:1.2;z-index:1}
+.sl-hero-price{font-family:var(--font-display);font-size:1.2rem;font-weight:700;z-index:1}
+.sl-hero-deco{position:absolute;border-radius:50%;opacity:.18;pointer-events:none}
+
+.sl-info{width:100%;height:100%;display:flex;flex-direction:column;padding:24px;gap:0;overflow:hidden}
+.sl-info-title{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:12px}
+.sl-check-row{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.84rem;color:rgba(255,255,255,.85)}
+.sl-check-row:last-child{border-bottom:none}
+.sl-check-ico{color:var(--accent);font-weight:800;flex-shrink:0;font-size:.9rem}
+
+.sl-formats{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px}
+.sl-fmt-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.sl-fmt-item{display:flex;flex-direction:column;align-items:center;gap:5px}
+.sl-fmt-box{width:60px;height:70px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;letter-spacing:.05em}
+.sl-fmt-label{font-size:.7rem;color:rgba(255,255,255,.5)}
+
+.sl-palette{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px}
+.sl-palette-title{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.sl-swatches{display:flex;gap:8px}
+.sl-swatch{width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,.1)}
+
+.sl-specs{width:100%;height:100%;display:flex;flex-direction:column;padding:24px;gap:0;overflow:hidden}
+.sl-specs-title{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:12px}
+.sl-spec-row{display:grid;grid-template-columns:1fr 1fr;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.sl-spec-row:last-child{border-bottom:none}
+.sl-spec-key{font-size:.78rem;color:rgba(255,255,255,.45)}
+.sl-spec-val{font-size:.78rem;color:rgba(255,255,255,.85);font-weight:600;text-align:right}
 </style>
 </head>
 <body>
@@ -127,22 +187,22 @@
 
 <section style="padding-top:10px;padding-bottom:80px"><div class="wrap">
 
-<!-- ── Öne Çıkan Ürün ── -->
-<div class="featured-prod reveal">
-  <div class="fp-thumb"><span>🎁</span></div>
+<!-- Featured product -->
+<div class="featured-prod reveal" id="featCard" onclick="openModal('mega-paket')">
+  <div class="fp-thumb" id="featThumb"></div>
   <div class="fp-body">
     <span class="eyebrow">En Çok Satan · Tam Paket</span>
     <h2>Marka Kimliği Mega Paketi</h2>
-    <p>Logo, kartvizit ve sosyal medya şablonlarını tek seferde al. İşletmenizin tüm görsel kimliğini kapsayan eksiksiz set. Kafe, kuaför, oto servis ve genel işletmeler için uygundur.</p>
-    <div class="fp-includes">
-      <span>🎨 5 Logo Tasarımı (PNG + SVG)</span>
-      <span>💳 3 Kartvizit Şablonu</span>
-      <span>📱 15 Sosyal Medya Şablonu</span>
-      <span>📄 Kurulum Rehberi (Türkçe)</span>
+    <p>Logo, kartvizit ve sosyal medya şablonlarını tek seferde al. İşletmenizin tüm görsel kimliğini kapsayan eksiksiz set.</p>
+    <div class="fp-tags">
+      <span>5 Logo Tasarımı (PNG+SVG)</span>
+      <span>3 Kartvizit Şablonu</span>
+      <span>15 Sosyal Medya Şablonu</span>
+      <span>Türkçe Kurulum Rehberi</span>
     </div>
     <div class="fp-bottom">
-      <div class="fp-price"><del>999₺</del>649₺ <small style="font-size:.8rem;color:var(--txt-faint);display:inline">tek seferlik</small></div>
-      <button class="btn-wa-prod" onclick="buyProduct('Marka Kimliği Mega Paketi','649')">
+      <div class="fp-price"><del>999₺</del>649₺</div>
+      <button class="btn-wa-feat" onclick="event.stopPropagation();buyProduct('Marka Kimliği Mega Paketi','649')">
         <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         WhatsApp ile Al
       </button>
@@ -150,641 +210,28 @@
   </div>
 </div>
 
-<!-- ── Filtre ── -->
+<!-- Filter -->
 <div class="shop-filter reveal">
   <button class="shop-cat active" data-cat="all">Tümü</button>
-  <button class="shop-cat" data-cat="logo">🎨 Logo & Marka</button>
-  <button class="shop-cat" data-cat="kart">💳 Kartvizit</button>
-  <button class="shop-cat" data-cat="excel">📊 Excel & Planlayıcı</button>
-  <button class="shop-cat" data-cat="sosyal">📱 Sosyal Medya</button>
-  <button class="shop-cat" data-cat="sunum">🖥️ Sunum</button>
-  <button class="shop-cat" data-cat="mockup">📦 Mockup</button>
+  <button class="shop-cat" data-cat="logo">Logo & Marka</button>
+  <button class="shop-cat" data-cat="kart">Kartvizit</button>
+  <button class="shop-cat" data-cat="excel">Excel & Planlayıcı</button>
+  <button class="shop-cat" data-cat="sosyal">Sosyal Medya</button>
+  <button class="shop-cat" data-cat="sunum">Sunum</button>
+  <button class="shop-cat" data-cat="mockup">Mockup</button>
 </div>
 
-<!-- ══ LOGO PAKETLERİ ══ -->
-<div class="cat-divider reveal" data-cat-head="logo">
-  <h2>🎨 Logo & Marka Kimliği</h2>
-</div>
-<div class="prod-grid" id="prodGrid">
-
-  <div class="prod-card reveal" data-cat="logo">
-    <div class="prod-thumb thumb-logo">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">☕</span>
-      <span class="prod-thumb-label">Logo Paketi</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Logo & Marka</div>
-      <h3>Kafe & Restoran Logo Paketi</h3>
-      <p>Kafe, bistro veya restoran işletmeniz için hazırlanmış 5 farklı modern logo. Her logo PNG ve vektörel SVG formatında.</p>
-      <ul class="prod-includes">
-        <li>5 farklı logo tasarımı</li>
-        <li>PNG (şeffaf arka plan) + SVG</li>
-        <li>3 renk varyasyonu her logo için</li>
-        <li>Baskı ve dijital kullanıma hazır</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">249₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Kafe & Restoran Logo Paketi','249')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card reveal" data-cat="logo">
-    <div class="prod-thumb thumb-logo">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">✂️</span>
-      <span class="prod-thumb-label">Logo Paketi</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Logo & Marka</div>
-      <h3>Kuaför & Güzellik Logo Paketi</h3>
-      <p>Kuaför, güzellik salonu ve spa işletmeleri için 5 hazır logo. Şık, modern ve minimal tasarımlar.</p>
-      <ul class="prod-includes">
-        <li>5 farklı logo tasarımı</li>
-        <li>PNG (şeffaf arka plan) + SVG</li>
-        <li>3 renk varyasyonu her logo için</li>
-        <li>Baskı ve dijital kullanıma hazır</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">249₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Kuaför & Güzellik Logo Paketi','249')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card reveal" data-cat="logo">
-    <div class="prod-thumb thumb-logo">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">🔧</span>
-      <span class="prod-thumb-label">Logo Paketi</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Logo & Marka</div>
-      <h3>Oto Servis & Garaj Logo Paketi</h3>
-      <p>Oto servis, kaporta, yıkama ve garaj işletmeleri için güçlü ve profesyonel 5 logo tasarımı.</p>
-      <ul class="prod-includes">
-        <li>5 farklı logo tasarımı</li>
-        <li>PNG (şeffaf arka plan) + SVG</li>
-        <li>3 renk varyasyonu her logo için</li>
-        <li>Baskı ve dijital kullanıma hazır</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">249₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Oto Servis & Garaj Logo Paketi','249')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card featured reveal" data-cat="logo">
-    <span class="badge-feat-prod">En Kapsamlı</span>
-    <div class="prod-thumb thumb-logo">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">🏆</span>
-      <span class="prod-thumb-label">Genel Logo Paketi</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Logo & Marka</div>
-      <h3>Genel İşletme Logo Paketi</h3>
-      <p>Sektörden bağımsız, her işletmeye uygun 10'dan fazla evrensel logo tasarımı. Geniş seçenek, uygun fiyat.</p>
-      <ul class="prod-includes">
-        <li>10+ farklı logo tasarımı</li>
-        <li>PNG (şeffaf arka plan) + SVG</li>
-        <li>Her logo için açık/koyu versiyon</li>
-        <li>Yatay ve dikey düzen varyantları</li>
-        <li>Sosyal medya profil versiyonları</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">399₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Genel İşletme Logo Paketi','399')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-<!-- ══ KARTVİZİT ══ -->
-</div><!-- /prodGrid logo -->
-
-<div class="cat-divider reveal" data-cat-head="kart">
-  <h2>💳 Kartvizit Şablonları</h2>
-</div>
-<div class="prod-grid" id="prodGridKart">
-
-  <div class="prod-card reveal" data-cat="kart">
-    <div class="prod-thumb thumb-kart">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">🃏</span>
-      <span class="prod-thumb-label">Kartvizit</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Kartvizit</div>
-      <h3>Minimal Kartvizit Paketi</h3>
-      <p>Temiz çizgiler ve sade tasarımla öne çıkan 6 şık kartvizit. Teknoloji, danışmanlık ve finans sektörlerine uygun.</p>
-      <ul class="prod-includes">
-        <li>6 farklı tasarım</li>
-        <li>Canva düzenlenebilir template</li>
-        <li>Baskı boyutunda (85×55 mm) PNG</li>
-        <li>Ön ve arka yüz tasarımı</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">149₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Minimal Kartvizit Paketi','149')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card reveal" data-cat="kart">
-    <div class="prod-thumb thumb-kart">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">🏢</span>
-      <span class="prod-thumb-label">Kartvizit</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Kartvizit</div>
-      <h3>Kurumsal Kartvizit Paketi</h3>
-      <p>Koyu zemin, güçlü tipografi. Kurumsal şirketler, hukuk büroları ve gayrimenkul sektörü için 6 profesyonel tasarım.</p>
-      <ul class="prod-includes">
-        <li>6 farklı tasarım</li>
-        <li>Canva düzenlenebilir template</li>
-        <li>Baskı boyutunda (85×55 mm) PNG</li>
-        <li>Ön ve arka yüz tasarımı</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">149₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Kurumsal Kartvizit Paketi','149')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card reveal" data-cat="kart">
-    <span class="badge-new-prod">Yeni</span>
-    <div class="prod-thumb thumb-kart">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">🌿</span>
-      <span class="prod-thumb-label">Kartvizit</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Kartvizit</div>
-      <h3>Yaratıcı & Doğal Kartvizit Paketi</h3>
-      <p>Organik formlar, yeşil tonlar ve elle çizilmiş dokunuşlar. Butik, organik mağaza ve yaratıcı sektörler için 6 tasarım.</p>
-      <ul class="prod-includes">
-        <li>6 farklı tasarım</li>
-        <li>Canva düzenlenebilir template</li>
-        <li>Baskı boyutunda (85×55 mm) PNG</li>
-        <li>Ön ve arka yüz tasarımı</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">149₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Yaratıcı & Doğal Kartvizit Paketi','149')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-<!-- ══ EXCEL PLANLAYICI ══ -->
-</div><!-- /prodGridKart -->
-
-<div class="cat-divider reveal" data-cat-head="excel">
-  <h2>📊 Excel Planlayıcılar</h2>
-</div>
-<div class="prod-grid" id="prodGridExcel">
-
-  <div class="prod-card reveal" data-cat="excel">
-    <div class="prod-thumb thumb-excel">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">💰</span>
-      <span class="prod-thumb-label">Excel Planlayıcı</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Excel & Planlayıcı</div>
-      <h3>Kişisel Bütçe Planlayıcı</h3>
-      <p>Gelir, gider ve tasarruf hedeflerini aylık olarak takip edin. Otomatik grafikler ve kategori bazlı analiz dahil.</p>
-      <ul class="prod-includes">
-        <li>12 aylık takip tablosu</li>
-        <li>Otomatik pasta ve çubuk grafikler</li>
-        <li>Kategori bazlı harcama analizi</li>
-        <li>Türkçe formüller ve açıklamalar</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">49₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Kişisel Bütçe Planlayıcı (Excel)','49')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card reveal" data-cat="excel">
-    <div class="prod-thumb thumb-excel">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">🏪</span>
-      <span class="prod-thumb-label">Excel Planlayıcı</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Excel & Planlayıcı</div>
-      <h3>İşletme Gelir-Gider Tablosu</h3>
-      <p>Küçük işletmeler için gelir, gider, KDV ve kâr takibi. Aylık ve yıllık özet, fatura no takibi dahil.</p>
-      <ul class="prod-includes">
-        <li>Aylık gelir-gider kaydı</li>
-        <li>KDV otomatik hesaplama (%8 / %18 / %20)</li>
-        <li>Yıllık kâr-zarar özeti</li>
-        <li>Türkçe formüller ve açıklamalar</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">89₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('İşletme Gelir-Gider Tablosu (Excel)','89')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card reveal" data-cat="excel">
-    <div class="prod-thumb thumb-excel">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">🎯</span>
-      <span class="prod-thumb-label">Excel Planlayıcı</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Excel & Planlayıcı</div>
-      <h3>Yıllık Hedef & Planlama Şablonu</h3>
-      <p>Yılın 12 ayını planlayın, hedefleri takip edin, ilerlemeyi görselleştirin. Kişisel veya iş hedefleri için.</p>
-      <ul class="prod-includes">
-        <li>12 aylık hedef takip tablosu</li>
-        <li>Haftalık öncelik listesi</li>
-        <li>İlerleme yüzdesi otomatik</li>
-        <li>Türkçe açıklamalar ve kullanım rehberi</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">69₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Yıllık Hedef & Planlama Şablonu (Excel)','69')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card reveal" data-cat="excel">
-    <div class="prod-thumb thumb-excel">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">📅</span>
-      <span class="prod-thumb-label">Excel Planlayıcı</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Excel & Planlayıcı</div>
-      <h3>Sosyal Medya İçerik Takvimi</h3>
-      <p>Instagram, Facebook, TikTok ve LinkedIn için içerik planlayın. Aylık yayın takvimi, içerik fikirleri ve görev atama.</p>
-      <ul class="prod-includes">
-        <li>4 platform için ayrı sekmeler</li>
-        <li>Aylık yayın takvimi görünümü</li>
-        <li>İçerik kategorisi ve hashtag bölümü</li>
-        <li>Onay ve yayın durumu takibi</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">69₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Sosyal Medya İçerik Takvimi (Excel)','69')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card reveal" data-cat="excel">
-    <div class="prod-thumb thumb-excel">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">📋</span>
-      <span class="prod-thumb-label">Excel Planlayıcı</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Excel & Planlayıcı</div>
-      <h3>Proje Yönetim Şablonu</h3>
-      <p>Görev listesi, sorumlu atama, başlangıç/bitiş tarihleri ve Gantt benzeri görünüm. Freelancer ve ajanslar için ideal.</p>
-      <ul class="prod-includes">
-        <li>Görev ve alt görev takibi</li>
-        <li>Durum renk kodlaması</li>
-        <li>Haftalık ilerleme özeti</li>
-        <li>Birden fazla proje sekmesi</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">79₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Proje Yönetim Şablonu (Excel)','79')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-<!-- ══ SOSYAL MEDYA ══ -->
-</div><!-- /prodGridExcel -->
-
-<div class="cat-divider reveal" data-cat-head="sosyal">
-  <h2>📱 Sosyal Medya Şablonları</h2>
-</div>
-<div class="prod-grid" id="prodGridSosyal">
-
-  <div class="prod-card reveal" data-cat="sosyal">
-    <div class="prod-thumb thumb-sosyal">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">📸</span>
-      <span class="prod-thumb-label">Instagram Post</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Sosyal Medya</div>
-      <h3>Instagram Post Paketi</h3>
-      <p>Kare ve dikey formatta 20 hazır şablon. Ürün tanıtımı, duyuru ve motivasyon içerikleri için Canva uyumlu.</p>
-      <ul class="prod-includes">
-        <li>20 şablon (1080×1080 + 1080×1350)</li>
-        <li>Canva düzenlenebilir format</li>
-        <li>PNG yüksek çözünürlük</li>
-        <li>Türkçe ve İngilizce metin versiyonları</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">199₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Instagram Post Paketi (20 Şablon)','199')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card reveal" data-cat="sosyal">
-    <div class="prod-thumb thumb-sosyal">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">📲</span>
-      <span class="prod-thumb-label">Instagram Story</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Sosyal Medya</div>
-      <h3>Instagram Story Paketi</h3>
-      <p>Kaydırılabilir story serileri ve tekil story şablonları. Kampanya, duyuru, anket ve ürün vitrin formatları.</p>
-      <ul class="prod-includes">
-        <li>15 şablon (1080×1920)</li>
-        <li>Canva düzenlenebilir format</li>
-        <li>Swipe-up ve bağlantı alanı dahil</li>
-        <li>Animasyonlu varyant önerileri</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">149₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Instagram Story Paketi (15 Şablon)','149')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card featured reveal" data-cat="sosyal">
-    <span class="badge-feat-prod">En İyi Değer</span>
-    <div class="prod-thumb thumb-sosyal">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">🚀</span>
-      <span class="prod-thumb-label">Mega Paket</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Sosyal Medya</div>
-      <h3>Sosyal Medya Mega Paketi</h3>
-      <p>Post, story, LinkedIn ve Facebook kapak fotoğrafı dahil 50'den fazla şablon. Tüm yıl boyunca kullanabilirsiniz.</p>
-      <ul class="prod-includes">
-        <li>20 Instagram post şablonu</li>
-        <li>15 Instagram story şablonu</li>
-        <li>10 LinkedIn banner şablonu</li>
-        <li>8 Facebook kapak fotoğrafı</li>
-        <li>Canva + PNG formatları</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">349₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Sosyal Medya Mega Paketi (50+ Şablon)','349')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /prodGridSosyal -->
-
-<!-- ══ SUNUM ŞABLONLARI ══ -->
-<div class="cat-divider reveal" data-cat-head="sunum">
-  <h2>🖥️ Sunum Şablonları</h2>
-</div>
-<div class="prod-grid" id="prodGridSunum">
-
-  <div class="prod-card reveal" data-cat="sunum">
-    <div class="prod-thumb thumb-sunum">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">📊</span>
-      <span class="prod-thumb-label">PowerPoint</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Sunum Şablonu</div>
-      <h3>Kurumsal Sunum Paketi</h3>
-      <p>Toplantı, yatırımcı sunumu ve iş teklifi için şık, koyu temalı 20 slayt. PowerPoint ve Google Slides uyumlu.</p>
-      <ul class="prod-includes">
-        <li>20 slayt şablonu</li>
-        <li>PowerPoint (.pptx) + Google Slides</li>
-        <li>Açık ve koyu tema varyantı</li>
-        <li>Düzenlenebilir vektör ikonlar</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">179₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Kurumsal Sunum Paketi','179')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card reveal" data-cat="sunum">
-    <div class="prod-thumb thumb-sunum">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">🚀</span>
-      <span class="prod-thumb-label">Pitch Deck</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Sunum Şablonu</div>
-      <h3>Startup Pitch Deck Şablonu</h3>
-      <p>Problem, çözüm, pazar, ekip, finansal projeksiyonlar — yatırımcıya sunum için hazır 15 slayt iskelet.</p>
-      <ul class="prod-includes">
-        <li>15 slayt (standart pitch akışı)</li>
-        <li>PowerPoint (.pptx) + Google Slides</li>
-        <li>Grafik ve veri görselleştirme slaydi</li>
-        <li>Türkçe kullanım rehberi</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">229₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Startup Pitch Deck Şablonu','229')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card featured reveal" data-cat="sunum">
-    <span class="badge-new-prod">Yeni</span>
-    <div class="prod-thumb thumb-sunum">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">🎓</span>
-      <span class="prod-thumb-label">Eğitim</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Sunum Şablonu</div>
-      <h3>Eğitim & Atölye Sunum Paketi</h3>
-      <p>Kurs, workshop ve eğitim oturumları için öğrenmeye uygun renk şeması ve yerleşim. 25 slayt, tam düzenlenebilir.</p>
-      <ul class="prod-includes">
-        <li>25 slayt şablonu</li>
-        <li>Alıştırma, quiz ve özet slaydi</li>
-        <li>PowerPoint (.pptx) + Google Slides</li>
-        <li>3 farklı renk teması</li>
-        <li>İkon ve infografik seti dahil</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">199₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Eğitim & Atölye Sunum Paketi','199')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /prodGridSunum -->
-
-<!-- ══ MOCKUP PAKETLERİ ══ -->
-<div class="cat-divider reveal" data-cat-head="mockup">
-  <h2>📦 Mockup Paketleri</h2>
-</div>
-<div class="prod-grid" id="prodGridMockup">
-
-  <div class="prod-card reveal" data-cat="mockup">
-    <div class="prod-thumb thumb-mockup">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">☕</span>
-      <span class="prod-thumb-label">Mockup</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Mockup</div>
-      <h3>Kafe & İçecek Mockup Paketi</h3>
-      <p>Kahve bardağı, doypack, kağıt torba ve ambalaj üzerine logonuzu yerleştirin. Ürün kataloğu ve sosyal medya için.</p>
-      <ul class="prod-includes">
-        <li>12 mockup dosyası (PSD + PNG)</li>
-        <li>Akıllı nesne — logo tek tıkla yerleşir</li>
-        <li>Yüksek çözünürlük (3000×3000 px)</li>
-        <li>Değiştirilebilir arka plan rengi</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">189₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Kafe & İçecek Mockup Paketi','189')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card reveal" data-cat="mockup">
-    <div class="prod-thumb thumb-mockup">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">📱</span>
-      <span class="prod-thumb-label">Mockup</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Mockup</div>
-      <h3>Telefon & Tablet Ekran Mockup Paketi</h3>
-      <p>Mobil uygulama, web sitesi veya tasarımınızı gerçekçi cihaz ekranlarında gösterin. 10 farklı cihaz pozu.</p>
-      <ul class="prod-includes">
-        <li>10 mockup (iPhone, Android, iPad)</li>
-        <li>PSD akıllı nesne + PNG</li>
-        <li>Koyu ve açık arka plan versiyonu</li>
-        <li>3000 × 3000 px çözünürlük</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">149₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Telefon & Tablet Ekran Mockup Paketi','149')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prod-card featured reveal" data-cat="mockup">
-    <span class="badge-feat-prod">Çok Satan</span>
-    <div class="prod-thumb thumb-mockup">
-      <div class="prod-thumb-grid"></div>
-      <span class="prod-thumb-ico">🎁</span>
-      <span class="prod-thumb-label">Mega Mockup</span>
-    </div>
-    <div class="prod-body">
-      <div class="prod-cat-tag">Mockup</div>
-      <h3>Marka Mockup Mega Paketi</h3>
-      <p>Kartvizit, tişört, kupa, torba, etiket ve dijital ekran — marka kimliğinizi her yüzeyde göstermenizi sağlayan 30 mockup.</p>
-      <ul class="prod-includes">
-        <li>30 mockup dosyası (PSD + PNG)</li>
-        <li>Kartvizit, ambalaj, tekstil, ekran</li>
-        <li>Akıllı nesne — logonuz 1 dakikada</li>
-        <li>Ticari kullanım lisansı dahil</li>
-        <li>Türkçe kullanım rehberi</li>
-      </ul>
-      <div class="prod-footer">
-        <div class="prod-price">379₺ <small>tek seferlik</small></div>
-        <button class="btn-wa-prod" onclick="buyProduct('Marka Mockup Mega Paketi','379')">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Al
-        </button>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /prodGridMockup -->
-
+<!-- Dynamic grid -->
+<div id="shopSections"></div>
 <div id="shopNoResult"><p style="font-size:1.05rem">Bu kategoride ürün bulunamadı.</p></div>
 
-<!-- ── Nasıl satın alınır? ── -->
+<!-- How to buy -->
 <div style="margin-top:72px">
   <div class="section-head reveal"><span class="eyebrow">Satın Alma</span><h2>Nasıl çalışır?</h2><p class="lead">Üç adımda, dakikalar içinde dosyanız elinizde.</p></div>
   <div class="how-steps">
-    <div class="how-step reveal">
-      <div class="hs-num">1</div>
-      <h4>Ürünü seç</h4>
-      <p>İstediğin ürünün "WhatsApp ile Al" butonuna tıkla. Ürün adı ve fiyatı ile hazır mesaj açılır.</p>
-    </div>
-    <div class="how-step reveal">
-      <div class="hs-num">2</div>
-      <h4>Ödemeyi yap</h4>
-      <p>WhatsApp üzerinden iletişime geç. IBAN veya EFT/havale ile ödeme yap, dekontu paylaş.</p>
-    </div>
-    <div class="how-step reveal">
-      <div class="hs-num">3</div>
-      <h4>Dosyaları al</h4>
-      <p>Ödeme onayının hemen ardından dosyaların WhatsApp veya e-posta üzerinden gönderilir.</p>
-    </div>
+    <div class="how-step reveal"><div class="hs-num">1</div><h4>Ürünü seç</h4><p>İstediğin ürünün "Detayları Gör" butonuna tıkla. Görseller ve açıklama ile ürünü tanı.</p></div>
+    <div class="how-step reveal"><div class="hs-num">2</div><h4>Ödemeyi yap</h4><p>WhatsApp'tan iletişime geç. IBAN veya EFT ile ödeme yap, dekontu paylaş.</p></div>
+    <div class="how-step reveal"><div class="hs-num">3</div><h4>Dosyaları al</h4><p>Ödeme onayının hemen ardından dosyaların WhatsApp veya e-posta ile gönderilir.</p></div>
   </div>
   <div style="text-align:center;margin-top:28px">
     <a href="https://wa.me/905414792972?text=Merhaba%2C%20dijital%20ürünler%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer" class="btn btn-wa">
@@ -796,52 +243,619 @@
 
 </div></section>
 
+<!-- ══ MODAL ══ -->
+<div class="pm-overlay" id="prodModal" role="dialog" aria-modal="true">
+  <div class="pm-box">
+    <button class="pm-close" id="pmClose" aria-label="Kapat">&#10005;</button>
+    <!-- Gallery -->
+    <div class="pm-left">
+      <div class="pm-gallery" id="pmGallery">
+        <div class="pm-slides" id="pmSlides"></div>
+        <button class="pm-nav-btn pm-prev" id="pmPrev">&#8249;</button>
+        <button class="pm-nav-btn pm-next" id="pmNext">&#8250;</button>
+      </div>
+      <div class="pm-dots" id="pmDots"></div>
+    </div>
+    <!-- Info -->
+    <div class="pm-right">
+      <div class="pm-cat" id="pmCat"></div>
+      <h2 class="pm-name" id="pmName"></h2>
+      <p class="pm-tagline" id="pmTagline"></p>
+      <div class="pm-price-row">
+        <span class="pm-price" id="pmPrice"></span>
+        <span class="pm-old" id="pmOld"></span>
+      </div>
+      <button class="pm-btn-wa" id="pmBuyBtn">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp ile Satın Al
+      </button>
+      <div class="pm-hr"></div>
+      <div class="pm-section-label">Ürün Açıklaması</div>
+      <p class="pm-desc" id="pmDesc"></p>
+      <div class="pm-hr"></div>
+      <div class="pm-section-label">Dahil Olanlar</div>
+      <ul class="pm-includes" id="pmIncludes"></ul>
+      <div class="pm-hr"></div>
+      <div class="pm-section-label">Dosya Formatları</div>
+      <div class="pm-fmts" id="pmFmts"></div>
+    </div>
+  </div>
+</div>
+
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-const WA = "905414792972";
-function buyProduct(name, price) {
-  var msg = 'Merhaba, "' + name + '" ürününü satın almak istiyorum (' + price + '₺). Ödeme bilgilerini alabilir miyim?';
-  window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank', 'noopener,noreferrer');
+/* ══ SVG THUMB BUILDERS ══ */
+function svgLogo(v){
+  var bg=['#16102a','#1a0f2e','#130e24','#1e1240'][v%4];
+  var variants=[
+    /* 0 coffee */
+    '<circle cx="130" cy="74" r="36" fill="none" stroke="#7c3aed" stroke-width="3" opacity=".9"/><circle cx="130" cy="74" r="22" fill="rgba(124,58,237,.28)"/><rect x="118" y="62" width="24" height="24" rx="3" fill="rgba(124,58,237,.18)" stroke="#a78bfa" stroke-width="1.5"/><path d="M130 55 Q148 62 148 74 Q148 86 130 93" fill="none" stroke="#c4b5fd" stroke-width="1.5" opacity=".5"/><path d="M110 108 Q115 98 130 95 Q145 92 150 108" fill="rgba(124,58,237,.15)" stroke="#7c3aed" stroke-width="1.5"/>',
+    /* 1 scissors beauty */
+    '<line x1="105" y1="48" x2="155" y2="108" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round"/><line x1="155" y1="48" x2="105" y2="108" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round"/><circle cx="102" cy="46" r="14" fill="none" stroke="#a78bfa" stroke-width="2.5"/><circle cx="158" cy="46" r="14" fill="none" stroke="#a78bfa" stroke-width="2.5"/><circle cx="102" cy="46" r="6" fill="rgba(124,58,237,.5)"/><circle cx="158" cy="46" r="6" fill="rgba(124,58,237,.5)"/>',
+    /* 2 gear */
+    '<circle cx="130" cy="78" r="32" fill="none" stroke="#7c3aed" stroke-width="2.5"/><circle cx="130" cy="78" r="14" fill="rgba(124,58,237,.3)" stroke="#a78bfa" stroke-width="2"/><rect x="124" y="42" width="12" height="14" rx="3" fill="#7c3aed" opacity=".85"/><rect x="124" y="100" width="12" height="14" rx="3" fill="#7c3aed" opacity=".85"/><rect x="87" y="72" width="14" height="12" rx="3" fill="#7c3aed" opacity=".85"/><rect x="159" y="72" width="14" height="12" rx="3" fill="#7c3aed" opacity=".85"/><rect x="96" y="51" width="12" height="14" rx="3" fill="#a78bfa" opacity=".7" transform="rotate(45 102 58)"/><rect x="155" y="51" width="12" height="14" rx="3" fill="#a78bfa" opacity=".7" transform="rotate(-45 161 58)"/>',
+    /* 3 general multi-mark */
+    '<rect x="60" y="38" width="56" height="56" rx="8" fill="none" stroke="#7c3aed" stroke-width="2.5"/><circle cx="88" cy="66" r="16" fill="rgba(124,58,237,.3)"/><rect x="144" y="38" width="56" height="56" rx="28" fill="none" stroke="#a78bfa" stroke-width="2.5"/><polygon points="172,48 190,76 154,76" fill="none" stroke="#a78bfa" stroke-width="2.5"/><polygon points="88,104 74,128 102,128" fill="none" stroke="#7c3aed" stroke-width="2.5"/><rect x="144" y="100" width="56" height="36" rx="6" fill="rgba(124,58,237,.15)" stroke="#a78bfa" stroke-width="2"/>'
+  ];
+  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="'+bg+'"/><line x1="0" y1="39" x2="260" y2="39" stroke="rgba(124,58,237,.07)"/><line x1="0" y1="78" x2="260" y2="78" stroke="rgba(124,58,237,.07)"/><line x1="0" y1="117" x2="260" y2="117" stroke="rgba(124,58,237,.07)"/><line x1="65" y1="0" x2="65" y2="156" stroke="rgba(124,58,237,.07)"/><line x1="130" y1="0" x2="130" y2="156" stroke="rgba(124,58,237,.07)"/><line x1="195" y1="0" x2="195" y2="156" stroke="rgba(124,58,237,.07)"/>'+variants[v%4]+'<text x="130" y="148" text-anchor="middle" font-size="8" fill="rgba(167,139,250,.55)" font-family="sans-serif" letter-spacing="2.5" font-weight="700">LOGO PAKETİ</text></svg>';
 }
 
-(function(){
+function svgKart(v){
+  var styles=[
+    /* 0 minimal */
+    '<rect x="40" y="32" width="180" height="105" rx="8" fill="rgba(255,255,255,.06)" stroke="rgba(41,211,255,.4)" stroke-width="1.5"/><rect x="40" y="32" width="180" height="7" rx="4" fill="rgba(41,211,255,.5)"/><rect x="56" y="56" width="80" height="6" rx="3" fill="rgba(255,255,255,.5)"/><rect x="56" y="70" width="52" height="4" rx="2" fill="rgba(255,255,255,.2)"/><rect x="56" y="82" width="64" height="4" rx="2" fill="rgba(255,255,255,.18)"/><rect x="56" y="94" width="44" height="4" rx="2" fill="rgba(255,255,255,.15)"/><rect x="160" y="54" width="44" height="44" rx="6" fill="rgba(41,211,255,.12)" stroke="rgba(41,211,255,.25)" stroke-width="1"/><circle cx="182" cy="76" r="12" fill="rgba(41,211,255,.3)"/>',
+    /* 1 kurumsal */
+    '<rect x="30" y="28" width="200" height="112" rx="6" fill="rgba(8,18,32,.9)" stroke="rgba(41,211,255,.5)" stroke-width="2"/><rect x="30" y="28" width="16" height="112" rx="3" fill="rgba(41,211,255,.45)"/><rect x="62" y="50" width="100" height="8" rx="4" fill="rgba(255,255,255,.6)"/><rect x="62" y="67" width="68" height="5" rx="2.5" fill="rgba(255,255,255,.25)"/><rect x="62" y="80" width="80" height="4" rx="2" fill="rgba(255,255,255,.2)"/><rect x="62" y="92" width="56" height="4" rx="2" fill="rgba(255,255,255,.18)"/><rect x="62" y="104" width="44" height="4" rx="2" fill="rgba(255,255,255,.15)"/>',
+    /* 2 creative organic */
+    '<rect x="35" y="30" width="190" height="108" rx="10" fill="rgba(255,255,255,.05)" stroke="rgba(41,211,255,.35)" stroke-width="1.5"/><path d="M35 100 Q80 80 130 95 Q180 110 225 90 L225 138 Q180 138 130 138 Q80 138 35 138 Z" fill="rgba(41,211,255,.12)"/><circle cx="72" cy="65" r="22" fill="none" stroke="rgba(41,211,255,.4)" stroke-width="2"/><circle cx="72" cy="65" r="10" fill="rgba(41,211,255,.25)"/><rect x="108" y="55" width="72" height="7" rx="3.5" fill="rgba(255,255,255,.5)"/><rect x="108" y="70" width="48" height="4" rx="2" fill="rgba(255,255,255,.25)"/><rect x="108" y="82" width="60" height="4" rx="2" fill="rgba(255,255,255,.2)"/>'
+  ];
+  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="#0e1c2e"/>'+styles[v%3]+'<text x="130" y="148" text-anchor="middle" font-size="8" fill="rgba(41,211,255,.5)" font-family="sans-serif" letter-spacing="2" font-weight="700">KARTVİZİT</text></svg>';
+}
+
+function svgExcel(v){
+  var variants=[
+    /* 0 budget donut */
+    '<g><rect x="28" y="28" width="100" height="90" rx="4" fill="rgba(251,191,36,.06)" stroke="rgba(251,191,36,.2)" stroke-width="1"/><line x1="28" y1="56" x2="128" y2="56" stroke="rgba(251,191,36,.12)"/><line x1="28" y1="84" x2="128" y2="84" stroke="rgba(251,191,36,.12)"/><line x1="78" y1="28" x2="78" y2="118" stroke="rgba(251,191,36,.12)"/><rect x="34" y="34" width="38" height="16" rx="2" fill="rgba(251,191,36,.2)"/><rect x="82" y="34" width="38" height="16" rx="2" fill="rgba(251,191,36,.12)"/><rect x="34" y="62" width="38" height="16" rx="2" fill="rgba(34,197,94,.2)"/><rect x="82" y="62" width="38" height="16" rx="2" fill="rgba(34,197,94,.12)"/><rect x="34" y="90" width="38" height="16" rx="2" fill="rgba(251,191,36,.15)"/><rect x="82" y="90" width="38" height="16" rx="2" fill="rgba(251,191,36,.1)"/></g><g><circle cx="190" cy="72" r="40" fill="none" stroke="rgba(251,191,36,.25)" stroke-width="3"/><path d="M190 32 A40 40 0 0 1 230 72" fill="none" stroke="#fbbf24" stroke-width="8" stroke-linecap="round"/><path d="M230 72 A40 40 0 0 1 190 112" fill="none" stroke="#34d399" stroke-width="8" stroke-linecap="round"/><path d="M190 112 A40 40 0 0 1 150 72" fill="none" stroke="#f87171" stroke-width="8" stroke-linecap="round"/><path d="M150 72 A40 40 0 0 1 190 32" fill="none" stroke="#60a5fa" stroke-width="8" stroke-linecap="round"/><circle cx="190" cy="72" r="20" fill="#0e1018"/></g>',
+    /* 1 gelir-gider bar */
+    '<line x1="40" y1="120" x2="220" y2="120" stroke="rgba(251,191,36,.3)" stroke-width="1.5"/><line x1="40" y1="68" x2="220" y2="68" stroke="rgba(251,191,36,.1)" stroke-width="1" stroke-dasharray="4 3"/><rect x="50" y="80" width="22" height="40" rx="3" fill="rgba(52,211,153,.7)"/><rect x="82" y="72" width="22" height="48" rx="3" fill="rgba(52,211,153,.7)"/><rect x="114" y="86" width="22" height="34" rx="3" fill="rgba(52,211,153,.7)"/><rect x="146" y="76" width="22" height="44" rx="3" fill="rgba(52,211,153,.7)"/><rect x="178" y="84" width="22" height="36" rx="3" fill="rgba(52,211,153,.7)"/><rect x="50" y="120" width="22" height="18" rx="3" fill="rgba(248,113,113,.65)"/><rect x="82" y="120" width="22" height="26" rx="3" fill="rgba(248,113,113,.65)"/><rect x="114" y="120" width="22" height="14" rx="3" fill="rgba(248,113,113,.65)"/><rect x="146" y="120" width="22" height="22" rx="3" fill="rgba(248,113,113,.65)"/><rect x="178" y="120" width="22" height="16" rx="3" fill="rgba(248,113,113,.65)"/><text x="61" y="138" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif" text-anchor="middle">O</text><text x="93" y="138" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif" text-anchor="middle">Ş</text><text x="125" y="138" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif" text-anchor="middle">M</text><text x="157" y="138" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif" text-anchor="middle">N</text><text x="189" y="138" font-size="7" fill="rgba(255,255,255,.3)" font-family="sans-serif" text-anchor="middle">M</text>',
+    /* 2 hedef target */
+    '<circle cx="130" cy="72" r="52" fill="none" stroke="rgba(251,191,36,.18)" stroke-width="2"/><circle cx="130" cy="72" r="38" fill="none" stroke="rgba(251,191,36,.22)" stroke-width="2"/><circle cx="130" cy="72" r="24" fill="none" stroke="rgba(251,191,36,.3)" stroke-width="2"/><circle cx="130" cy="72" r="10" fill="#fbbf24" opacity=".7"/><line x1="130" y1="10" x2="130" y2="62" stroke="rgba(251,191,36,.5)" stroke-width="1.5"/><line x1="168" y1="72" x2="140" y2="72" stroke="rgba(251,191,36,.5)" stroke-width="1.5"/>',
+    /* 3 calendar */
+    '<rect x="44" y="28" width="172" height="110" rx="6" fill="rgba(251,191,36,.05)" stroke="rgba(251,191,36,.25)" stroke-width="1.5"/><rect x="44" y="28" width="172" height="22" rx="6" fill="rgba(251,191,36,.2)"/><line x1="44" y1="50" x2="216" y2="50" stroke="rgba(251,191,36,.2)"/><g fill="rgba(255,255,255,.35)" font-size="8" font-family="sans-serif" text-anchor="middle"><text x="68" y="64">Pzt</text><text x="93" y="64">Sal</text><text x="118" y="64">Çar</text><text x="143" y="64">Per</text><text x="168" y="64">Cum</text><text x="193" y="64">Cmt</text></g><g fill="rgba(255,255,255,.7)" font-size="9" font-family="sans-serif" text-anchor="middle"><text x="68" y="80">1</text><text x="93" y="80">2</text><text x="118" y="80">3</text><text x="143" y="80">4</text><text x="168" y="80">5</text><text x="193" y="80">6</text><text x="68" y="96">8</text><text x="93" y="96">9</text><text x="118" y="96">10</text><text x="143" y="96">11</text><text x="168" y="96">12</text><text x="193" y="96">13</text><text x="68" y="112">15</text><text x="93" y="112">16</text><text x="118" y="112">17</text><text x="143" y="112">18</text><text x="168" y="112">19</text><text x="193" y="112">20</text></g><rect x="104" y="70" width="28" height="16" rx="3" fill="rgba(251,191,36,.35)"/><rect x="56" y="87" width="28" height="16" rx="3" fill="rgba(52,211,153,.35)"/><rect x="160" y="87" width="28" height="16" rx="3" fill="rgba(251,191,36,.35)"/>',
+    /* 4 project gantt */
+    '<rect x="36" y="30" width="188" height="100" rx="4" fill="rgba(251,191,36,.04)" stroke="rgba(251,191,36,.15)" stroke-width="1"/><rect x="36" y="30" width="58" height="100" fill="rgba(251,191,36,.05)"/><text x="52" y="50" font-size="7.5" fill="rgba(255,255,255,.4)" font-family="sans-serif">Görev</text><text x="52" y="67" font-size="7.5" fill="rgba(255,255,255,.4)" font-family="sans-serif">Tasarım</text><text x="52" y="84" font-size="7.5" fill="rgba(255,255,255,.4)" font-family="sans-serif">Revizyon</text><text x="52" y="101" font-size="7.5" fill="rgba(255,255,255,.4)" font-family="sans-serif">Teslim</text><text x="52" y="118" font-size="7.5" fill="rgba(255,255,255,.4)" font-family="sans-serif">Fatura</text><rect x="100" y="40" width="90" height="12" rx="3" fill="rgba(52,211,153,.6)"/><rect x="100" y="57" width="58" height="12" rx="3" fill="rgba(251,191,36,.7)"/><rect x="130" y="74" width="74" height="12" rx="3" fill="rgba(96,165,250,.7)"/><rect x="148" y="91" width="40" height="12" rx="3" fill="rgba(251,191,36,.6)"/><rect x="172" y="108" width="28" height="12" rx="3" fill="rgba(52,211,153,.5)"/>'
+  ];
+  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="#1a1200"/>'+variants[v%5]+'<text x="130" y="150" text-anchor="middle" font-size="8" fill="rgba(251,191,36,.5)" font-family="sans-serif" letter-spacing="2" font-weight="700">EXCEL PLANLAYICI</text></svg>';
+}
+
+function svgSosyal(v){
+  var content=[
+    /* 0 post square */
+    '<rect x="95" y="36" width="70" height="70" rx="6" fill="rgba(255,255,255,.05)" stroke="rgba(240,171,252,.4)" stroke-width="1.5"/><rect x="95" y="36" width="70" height="42" rx="6" fill="rgba(167,139,250,.25)"/><rect x="95" y="36" width="70" height="6" rx="3" fill="rgba(167,139,250,.5)"/><circle cx="107" cy="96" r="5" fill="rgba(240,171,252,.6)"/><rect x="115" y="93" width="36" height="4" rx="2" fill="rgba(255,255,255,.3)"/><rect x="115" y="100" width="24" height="3" rx="1.5" fill="rgba(255,255,255,.2)"/><rect x="95" y="110" width="70" height="4" rx="2" fill="rgba(255,255,255,.15)"/><rect x="95" y="118" width="50" height="4" rx="2" fill="rgba(255,255,255,.1)"/>',
+    /* 1 story vertical */
+    '<rect x="108" y="20" width="44" height="82" rx="6" fill="rgba(255,255,255,.05)" stroke="rgba(240,171,252,.4)" stroke-width="1.5"/><rect x="108" y="20" width="44" height="56" rx="6" fill="linear-gradient(180deg,rgba(167,139,250,.4),rgba(240,171,252,.2))"/><defs><linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(167,139,250,.5)"/><stop offset="100%" stop-color="rgba(240,171,252,.2)"/></linearGradient></defs><rect x="108" y="20" width="44" height="56" rx="6" fill="url(#sg1)"/><rect x="113" y="24" width="34" height="24" rx="3" fill="rgba(255,255,255,.08)"/><rect x="113" y="52" width="34" height="4" rx="2" fill="rgba(255,255,255,.4)"/><rect x="118" y="59" width="24" height="3" rx="1.5" fill="rgba(255,255,255,.25)"/><rect x="113" y="78" width="34" height="14" rx="4" fill="rgba(240,171,252,.5)"/><text x="130" y="89" font-size="7" fill="#2d0a3e" font-family="sans-serif" text-anchor="middle" font-weight="700">SWIPE</text>',
+    /* 2 mega platforms */
+    '<rect x="46" y="30" width="74" height="74" rx="10" fill="rgba(167,139,250,.12)" stroke="rgba(167,139,250,.3)" stroke-width="1.5"/><text x="83" y="78" font-size="28" text-anchor="middle" font-family="sans-serif">📷</text><rect x="140" y="30" width="74" height="74" rx="10" fill="rgba(240,171,252,.12)" stroke="rgba(240,171,252,.3)" stroke-width="1.5"/><text x="177" y="78" font-size="28" text-anchor="middle" font-family="sans-serif">in</text><rect x="46" y="112" width="74" height="30" rx="8" fill="rgba(96,165,250,.12)" stroke="rgba(96,165,250,.3)" stroke-width="1.5"/><rect x="140" y="112" width="74" height="30" rx="8" fill="rgba(251,191,36,.1)" stroke="rgba(251,191,36,.3)" stroke-width="1.5"/><text x="83" y="132" font-size="10" fill="rgba(96,165,250,.7)" font-family="sans-serif" text-anchor="middle" font-weight="700">LinkedIn</text><text x="177" y="132" font-size="10" fill="rgba(251,191,36,.7)" font-family="sans-serif" text-anchor="middle" font-weight="700">Facebook</text>'
+  ];
+  /* phone frame wrapper */
+  var phone='<rect x="68" y="10" width="124" height="136" rx="14" fill="rgba(255,255,255,.04)" stroke="rgba(240,171,252,.3)" stroke-width="2"/><rect x="75" y="20" width="110" height="116" rx="8" fill="rgba(0,0,0,.3)"/><rect x="110" y="13" width="40" height="6" rx="3" fill="rgba(255,255,255,.2)"/>';
+  if(v===2) phone='';
+  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="#200e2e"/>'+phone+content[v%3]+'<text x="130" y="152" text-anchor="middle" font-size="8" fill="rgba(240,171,252,.5)" font-family="sans-serif" letter-spacing="2" font-weight="700">SOSYAL MEDYA</text></svg>';
+}
+
+function svgSunum(v){
+  var inner=[
+    /* 0 kurumsal dark slide */
+    '<rect x="38" y="34" width="184" height="104" rx="5" fill="rgba(8,18,32,.8)" stroke="rgba(110,231,183,.4)" stroke-width="1.5"/><rect x="38" y="34" width="184" height="28" rx="5" fill="rgba(110,231,183,.15)"/><rect x="48" y="41" width="64" height="8" rx="4" fill="rgba(255,255,255,.5)"/><rect x="48" y="52" width="42" height="4" rx="2" fill="rgba(110,231,183,.5)"/><rect x="48" y="74" width="18" height="52" rx="3" fill="rgba(110,231,183,.6)"/><rect x="74" y="84" width="18" height="42" rx="3" fill="rgba(96,165,250,.6)"/><rect x="100" y="78" width="18" height="48" rx="3" fill="rgba(251,191,36,.6)"/><rect x="126" y="90" width="18" height="36" rx="3" fill="rgba(110,231,183,.5)"/><rect x="152" y="80" width="18" height="46" rx="3" fill="rgba(96,165,250,.5)"/><line x1="48" y1="126" x2="196" y2="126" stroke="rgba(255,255,255,.2)" stroke-width="1"/>',
+    /* 1 pitch funnel */
+    '<rect x="38" y="30" width="184" height="108" rx="5" fill="rgba(8,18,32,.8)" stroke="rgba(110,231,183,.35)" stroke-width="1.5"/><rect x="38" y="30" width="184" height="22" rx="5" fill="rgba(110,231,183,.12)"/><rect x="48" y="36" width="76" height="8" rx="4" fill="rgba(255,255,255,.45)"/><polygon points="130,58 175,58 165,80 140,80" fill="rgba(110,231,183,.4)"/><polygon points="140,82 165,82 158,100 147,100" fill="rgba(96,165,250,.4)"/><polygon points="147,102 158,102 152.5,118" fill="rgba(251,191,36,.5)"/><rect x="60" y="58" width="58" height="8" rx="4" fill="rgba(255,255,255,.2)"/><rect x="60" y="72" width="48" height="6" rx="3" fill="rgba(255,255,255,.15)"/><rect x="60" y="84" width="40" height="5" rx="2.5" fill="rgba(255,255,255,.12)"/><rect x="60" y="96" width="32" height="5" rx="2.5" fill="rgba(255,255,255,.1)"/>',
+    /* 2 education colorful */
+    '<rect x="38" y="28" width="184" height="108" rx="5" fill="rgba(8,18,32,.8)" stroke="rgba(110,231,183,.35)" stroke-width="1.5"/><rect x="38" y="28" width="184" height="24" rx="5" fill="rgba(96,165,250,.25)"/><rect x="48" y="33" width="80" height="9" rx="4" fill="rgba(255,255,255,.5)"/><rect x="48" y="62" width="80" height="60" rx="4" fill="rgba(110,231,183,.08)" stroke="rgba(110,231,183,.25)" stroke-width="1"/><rect x="140" y="62" width="70" height="28" rx="4" fill="rgba(251,191,36,.08)" stroke="rgba(251,191,36,.25)" stroke-width="1"/><rect x="140" y="94" width="70" height="28" rx="4" fill="rgba(248,113,113,.08)" stroke="rgba(248,113,113,.25)" stroke-width="1"/><rect x="54" y="70" width="48" height="5" rx="2.5" fill="rgba(110,231,183,.5)"/><rect x="54" y="80" width="60" height="4" rx="2" fill="rgba(255,255,255,.2)"/><rect x="54" y="89" width="52" height="4" rx="2" fill="rgba(255,255,255,.18)"/><rect x="54" y="98" width="40" height="4" rx="2" fill="rgba(255,255,255,.15)"/><text x="175" y="82" font-size="10" fill="rgba(251,191,36,.6)" font-family="sans-serif" text-anchor="middle">Quiz?</text><text x="175" y="114" font-size="9" fill="rgba(248,113,113,.6)" font-family="sans-serif" text-anchor="middle">Özet</text>'
+  ];
+  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="#0d1f2e"/>'+inner[v%3]+'<text x="130" y="150" text-anchor="middle" font-size="8" fill="rgba(110,231,183,.5)" font-family="sans-serif" letter-spacing="2" font-weight="700">SUNUM ŞABLONU</text></svg>';
+}
+
+function svgMockup(v){
+  var art=[
+    /* 0 coffee cup */
+    '<ellipse cx="130" cy="54" rx="38" ry="10" fill="rgba(253,186,116,.2)" stroke="rgba(253,186,116,.4)" stroke-width="1.5"/><rect x="92" y="54" width="76" height="62" rx="0" fill="rgba(253,186,116,.1)" stroke="rgba(253,186,116,.3)" stroke-width="1.5"/><rect x="88" y="112" width="84" height="8" rx="4" fill="rgba(253,186,116,.3)"/><path d="M168 68 Q186 72 186 84 Q186 96 168 100" fill="none" stroke="rgba(253,186,116,.5)" stroke-width="4" stroke-linecap="round"/><rect x="105" y="72" width="50" height="36" rx="5" fill="rgba(253,186,116,.08)" stroke="rgba(253,186,116,.2)" stroke-width="1"/><text x="130" y="96" font-size="11" fill="rgba(253,186,116,.5)" font-family="sans-serif" text-anchor="middle" font-weight="700">LOGO</text><path d="M115 70 Q130 58 145 70" fill="none" stroke="rgba(253,186,116,.35)" stroke-width="1.5"/><path d="M118 66 Q130 55 142 66" fill="none" stroke="rgba(253,186,116,.25)" stroke-width="1.5"/>',
+    /* 1 phone screen */
+    '<rect x="96" y="16" width="68" height="124" rx="12" fill="rgba(253,186,116,.06)" stroke="rgba(253,186,116,.4)" stroke-width="2"/><rect x="103" y="28" width="54" height="96" rx="6" fill="rgba(0,0,0,.4)"/><rect x="113" y="20" width="34" height="5" rx="2.5" fill="rgba(255,255,255,.2)"/><circle cx="130" cy="134" r="5" fill="rgba(253,186,116,.3)"/><rect x="108" y="34" width="44" height="32" rx="4" fill="rgba(253,186,116,.2)"/><rect x="108" y="70" width="44" height="6" rx="3" fill="rgba(255,255,255,.3)"/><rect x="108" y="80" width="32" height="4" rx="2" fill="rgba(255,255,255,.2)"/><rect x="108" y="88" width="38" height="4" rx="2" fill="rgba(255,255,255,.18)"/><rect x="108" y="100" width="44" height="14" rx="4" fill="rgba(253,186,116,.4)"/>',
+    /* 2 brand items flat lay */
+    '<rect x="30" y="30" width="82" height="52" rx="5" fill="rgba(253,186,116,.08)" stroke="rgba(253,186,116,.35)" stroke-width="1.5"/><rect x="36" y="34" width="36" height="26" rx="3" fill="rgba(253,186,116,.2)"/><rect x="78" y="36" width="28" height="4" rx="2" fill="rgba(255,255,255,.3)"/><rect x="78" y="44" width="20" height="3" rx="1.5" fill="rgba(255,255,255,.2)"/><rect x="148" y="30" width="82" height="52" rx="5" fill="rgba(253,186,116,.08)" stroke="rgba(253,186,116,.35)" stroke-width="1.5"/><circle cx="178" cy="56" r="18" fill="none" stroke="rgba(253,186,116,.4)" stroke-width="2"/><text x="178" y="61" font-size="9" fill="rgba(253,186,116,.6)" font-family="sans-serif" text-anchor="middle" font-weight="700">LOGO</text><rect x="88" y="96" width="84" height="40" rx="5" fill="rgba(253,186,116,.08)" stroke="rgba(253,186,116,.35)" stroke-width="1.5"/><rect x="94" y="102" width="72" height="28" rx="4" fill="rgba(253,186,116,.12)"/><text x="130" y="121" font-size="10" fill="rgba(253,186,116,.5)" font-family="sans-serif" text-anchor="middle" font-weight="700">T-Shirt</text>'
+  ];
+  return '<svg viewBox="0 0 260 156" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="156" fill="#1a0c00"/>'+art[v%3]+'<text x="130" y="150" text-anchor="middle" font-size="8" fill="rgba(253,186,116,.5)" font-family="sans-serif" letter-spacing="2" font-weight="700">MOCKUP PAKETİ</text></svg>';
+}
+
+function svgMega(){
+  return '<svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a1040"/><stop offset="50%" stop-color="#0e2233"/><stop offset="100%" stop-color="#200e2e"/></linearGradient></defs><rect width="150" height="150" fill="url(#mg)"/><rect x="12" y="12" width="56" height="56" rx="8" fill="rgba(124,58,237,.2)" stroke="rgba(124,58,237,.4)" stroke-width="1.5"/><circle cx="40" cy="40" r="16" fill="none" stroke="#a78bfa" stroke-width="2"/><circle cx="40" cy="40" r="8" fill="rgba(124,58,237,.5)"/><rect x="82" y="12" width="56" height="56" rx="8" fill="rgba(41,211,255,.12)" stroke="rgba(41,211,255,.35)" stroke-width="1.5"/><rect x="90" y="20" width="40" height="28" rx="3" fill="rgba(41,211,255,.15)"/><rect x="90" y="52" width="40" height="4" rx="2" fill="rgba(255,255,255,.35)"/><rect x="90" y="59" width="28" height="3" rx="1.5" fill="rgba(255,255,255,.2)"/><rect x="12" y="82" width="56" height="56" rx="8" fill="rgba(251,191,36,.1)" stroke="rgba(251,191,36,.3)" stroke-width="1.5"/><rect x="20" y="92" width="14" height="38" rx="2" fill="rgba(52,211,153,.6)"/><rect x="38" y="100" width="14" height="30" rx="2" fill="rgba(251,191,36,.7)"/><rect x="56" y="96" width="6" height="34" rx="2" fill="rgba(96,165,250,.6)"/><rect x="82" y="82" width="56" height="56" rx="8" fill="rgba(240,171,252,.1)" stroke="rgba(240,171,252,.3)" stroke-width="1.5"/><rect x="92" y="90" width="36" height="26" rx="5" fill="rgba(167,139,250,.2)"/><rect x="97" y="95" width="26" height="16" rx="3" fill="rgba(167,139,250,.35)"/><rect x="92" y="120" width="36" height="4" rx="2" fill="rgba(255,255,255,.3)"/><rect x="92" y="127" width="24" height="3" rx="1.5" fill="rgba(255,255,255,.2)"/><text x="75" y="78" font-size="8" fill="rgba(200,255,46,.7)" font-family="sans-serif" text-anchor="middle" font-weight="800">MEGA</text></svg>';
+}
+
+/* ══ PRODUCT DATA ══ */
+var WA = '905414792972';
+var CATS = {
+  logo:   {label:'Logo & Marka',  color:'#a78bfa'},
+  kart:   {label:'Kartvizit',     color:'#29d3ff'},
+  excel:  {label:'Excel & Planlayıcı', color:'#fbbf24'},
+  sosyal: {label:'Sosyal Medya',  color:'#f0abfc'},
+  sunum:  {label:'Sunum Şablonu', color:'#6ee7b7'},
+  mockup: {label:'Mockup',        color:'#fdba74'},
+  paket:  {label:'Mega Paket',    color:'#c8ff2e'}
+};
+
+var PRODUCTS = [
+  /* ── LOGO ── */
+  {id:'logo-kafe',cat:'logo',vi:0,badge:null,
+   name:'Kafe & Restoran Logo Paketi',tagline:'Kahve, bistro ve restoran için 5 hazır logo',
+   price:249,oldPrice:null,
+   desc:'Kafe, bistro veya restoran işletmeniz için özel tasarlanmış 5 farklı modern logo. Her logo yüksek çözünürlüklü PNG ve düzenlenebilir SVG formatında teslim edilir. Açık, koyu ve renksiz versiyon dahil.',
+   includes:['5 farklı logo tasarımı','PNG (şeffaf arka plan) + SVG vektörel','3 renk varyasyonu her logo için','Sosyal medya profil boyutları','Baskı ve dijital kullanıma hazır'],
+   formats:['PNG','SVG'],
+   colors:['#7c3aed','#f5f0ff','#1a0b2e','#c8ff2e'],
+   specs:[['Çözünürlük','300 DPI'],['Format','PNG + SVG'],['Renk','CMYK + RGB'],['Lisans','Tek işletme']]},
+
+  {id:'logo-kuafor',cat:'logo',vi:1,badge:null,
+   name:'Kuaför & Güzellik Logo Paketi',tagline:'Güzellik salonu, spa ve kuaför için şık logolar',
+   price:249,oldPrice:null,
+   desc:'Kuaför, güzellik salonu ve spa işletmeleri için 5 hazır logo. Şık, minimal ve modern tasarımlar. Saç, cilt ve estetik sektörlerine özel sembolizm.',
+   includes:['5 farklı logo tasarımı','PNG (şeffaf arka plan) + SVG vektörel','3 renk varyasyonu her logo için','Sosyal medya profil boyutları','Baskı ve dijital kullanıma hazır'],
+   formats:['PNG','SVG'],
+   colors:['#7c3aed','#fce7f3','#1a0b2e','#f9a8d4'],
+   specs:[['Çözünürlük','300 DPI'],['Format','PNG + SVG'],['Renk','CMYK + RGB'],['Lisans','Tek işletme']]},
+
+  {id:'logo-oto',cat:'logo',vi:2,badge:null,
+   name:'Oto Servis & Garaj Logo Paketi',tagline:'Tamir, bakım ve garaj işletmeleri için güçlü logolar',
+   price:249,oldPrice:null,
+   desc:'Oto servis, kaporta, yıkama ve garaj işletmeleri için güçlü ve profesyonel 5 logo. Endüstriyel ve modern tasarım dili. Her biri baskı ve dijitale hazır.',
+   includes:['5 farklı logo tasarımı','PNG (şeffaf arka plan) + SVG vektörel','3 renk varyasyonu her logo için','Sosyal medya profil boyutları','Baskı ve dijital kullanıma hazır'],
+   formats:['PNG','SVG'],
+   colors:['#7c3aed','#1e1b4b','#f59e0b','#0f172a'],
+   specs:[['Çözünürlük','300 DPI'],['Format','PNG + SVG'],['Renk','CMYK + RGB'],['Lisans','Tek işletme']]},
+
+  {id:'logo-genel',cat:'logo',vi:3,badge:'En Kapsamlı',badgeClass:'badge-feat',
+   name:'Genel İşletme Logo Paketi',tagline:'Her sektöre uygun 10+ evrensel logo tasarımı',
+   price:399,oldPrice:null,
+   desc:'Sektörden bağımsız, her işletmeye uygun 10\'dan fazla evrensel logo tasarımı. Geniş seçenek, uygun fiyat. Kurumsal, yaratıcı ve minimal stiller bir arada.',
+   includes:['10+ farklı logo tasarımı','PNG (şeffaf arka plan) + SVG vektörel','Her logo için açık/koyu versiyon','Yatay ve dikey düzen varyantları','Sosyal medya profil versiyonları'],
+   formats:['PNG','SVG'],
+   colors:['#7c3aed','#a78bfa','#c4b5fd','#ede9fe'],
+   specs:[['Tasarım Adedi','10+'],['Format','PNG + SVG'],['Varyasyon','Açık + Koyu'],['Lisans','Tek işletme']]},
+
+  /* ── KARTVİZİT ── */
+  {id:'kart-minimal',cat:'kart',vi:0,badge:null,
+   name:'Minimal Kartvizit Paketi',tagline:'Sade, temiz, modern — 6 profesyonel şablon',
+   price:149,oldPrice:null,
+   desc:'Temiz çizgiler ve sade tasarımla öne çıkan 6 şık kartvizit şablonu. Teknoloji, danışmanlık ve finans sektörlerine uygun. Canva üzerinde kolayca düzenleyebilirsiniz.',
+   includes:['6 farklı tasarım','Canva düzenlenebilir template','Baskı boyutunda (85×55 mm) PNG','Ön ve arka yüz tasarımı','Türkçe ve İngilizce metin alanı'],
+   formats:['Canva','PNG'],
+   colors:['#f0f4f8','#1e293b','#29d3ff','#fff'],
+   specs:[['Boyut','85 × 55 mm'],['Çözünürlük','300 DPI'],['Format','Canva + PNG'],['Şablon','6 adet']]},
+
+  {id:'kart-kurumsal',cat:'kart',vi:1,badge:null,
+   name:'Kurumsal Kartvizit Paketi',tagline:'Koyu zemin, güçlü tipografi — 6 etkileyici tasarım',
+   price:149,oldPrice:null,
+   desc:'Koyu zemin, güçlü tipografi. Kurumsal şirketler, hukuk büroları ve gayrimenkul sektörü için 6 profesyonel tasarım. Ciddi ve güvenilir bir ilk izlenim.',
+   includes:['6 farklı tasarım','Canva düzenlenebilir template','Baskı boyutunda (85×55 mm) PNG','Ön ve arka yüz tasarımı','Türkçe ve İngilizce metin alanı'],
+   formats:['Canva','PNG'],
+   colors:['#0f172a','#1e293b','#29d3ff','#fff'],
+   specs:[['Boyut','85 × 55 mm'],['Çözünürlük','300 DPI'],['Format','Canva + PNG'],['Şablon','6 adet']]},
+
+  {id:'kart-yaratici',cat:'kart',vi:2,badge:'Yeni',badgeClass:'badge-new',
+   name:'Yaratıcı & Doğal Kartvizit Paketi',tagline:'Organik formlar, yeşil tonlar — 6 butik tasarım',
+   price:149,oldPrice:null,
+   desc:'Organik formlar, yeşil tonlar ve elle çizilmiş dokunuşlar. Butik, organik mağaza ve yaratıcı sektörler için 6 özgün tasarım. Doğallık ve özgünlük bir arada.',
+   includes:['6 farklı tasarım','Canva düzenlenebilir template','Baskı boyutunda (85×55 mm) PNG','Ön ve arka yüz tasarımı','Organik ikon seti dahil'],
+   formats:['Canva','PNG'],
+   colors:['#14532d','#86efac','#faf5eb','#713f12'],
+   specs:[['Boyut','85 × 55 mm'],['Çözünürlük','300 DPI'],['Format','Canva + PNG'],['Şablon','6 adet']]},
+
+  /* ── EXCEL ── */
+  {id:'excel-butce',cat:'excel',vi:0,badge:null,
+   name:'Kişisel Bütçe Planlayıcı',tagline:'12 aylık gelir-gider takibi, otomatik grafikler',
+   price:49,oldPrice:null,
+   desc:'Gelir, gider ve tasarruf hedeflerini aylık olarak takip edin. Otomatik pasta ve çubuk grafikler, kategori bazlı harcama analizi ve tasarruf hedefi takip sistemi dahil.',
+   includes:['12 aylık takip tablosu','Otomatik pasta ve çubuk grafikler','Kategori bazlı harcama analizi','Tasarruf hedefi takip paneli','Türkçe formüller ve açıklamalar'],
+   formats:['XLSX','Google Sheets'],
+   colors:['#fbbf24','#34d399','#f87171','#60a5fa'],
+   specs:[['Platform','Excel + G.Sheets'],['Dil','Türkçe'],['Sayfa Sayısı','13'],['Güncelleme','Ücretsiz']]},
+
+  {id:'excel-gelir',cat:'excel',vi:1,badge:null,
+   name:'İşletme Gelir-Gider Tablosu',tagline:'KDV, kâr-zarar ve fatura takibi küçük işletmeler için',
+   price:89,oldPrice:null,
+   desc:'Küçük işletmeler için gelir, gider, KDV ve kâr takibi. Aylık ve yıllık özet, fatura numarası takibi dahil. Muhasebeciye göndermek için de ideal.',
+   includes:['Aylık gelir-gider kaydı','KDV otomatik hesaplama (%8/%18/%20)','Yıllık kâr-zarar özeti','Fatura numarası ve müşteri takibi','Türkçe formüller ve açıklamalar'],
+   formats:['XLSX','Google Sheets'],
+   colors:['#34d399','#f87171','#fbbf24','#1a1200'],
+   specs:[['Platform','Excel + G.Sheets'],['Dil','Türkçe'],['KDV Oranı','%8/%18/%20'],['Güncelleme','Ücretsiz']]},
+
+  {id:'excel-hedef',cat:'excel',vi:2,badge:null,
+   name:'Yıllık Hedef & Planlama Şablonu',tagline:'12 ay hedef takibi, haftalık öncelik listesi',
+   price:69,oldPrice:null,
+   desc:'Yılın 12 ayını planlayın, hedefleri takip edin, ilerlemeyi görselleştirin. Kişisel veya iş hedefleri için. Haftalık öncelik listesi ve ilerleme yüzdesi otomatik hesaplanır.',
+   includes:['12 aylık hedef takip tablosu','Haftalık öncelik listesi','İlerleme yüzdesi otomatik','Kategorilere göre hedef ayrımı','Türkçe açıklamalar ve kullanım rehberi'],
+   formats:['XLSX','Google Sheets'],
+   colors:['#fbbf24','#60a5fa','#34d399','#1a1200'],
+   specs:[['Platform','Excel + G.Sheets'],['Dil','Türkçe'],['Sayfa','12 ay + özet'],['Güncelleme','Ücretsiz']]},
+
+  {id:'excel-takvim',cat:'excel',vi:3,badge:null,
+   name:'Sosyal Medya İçerik Takvimi',tagline:'4 platform için aylık içerik planlama',
+   price:69,oldPrice:null,
+   desc:'Instagram, Facebook, TikTok ve LinkedIn için içerik planlayın. Aylık yayın takvimi, içerik fikirleri ve görev atama. Ekip ile birlikte kullanıma uygun.',
+   includes:['4 platform için ayrı sekmeler','Aylık yayın takvimi görünümü','İçerik kategorisi ve hashtag bölümü','Onay ve yayın durumu takibi','Canva link ve not alanı'],
+   formats:['XLSX','Google Sheets'],
+   colors:['#f0abfc','#60a5fa','#fbbf24','#34d399'],
+   specs:[['Platform','Excel + G.Sheets'],['Sosyal Platform','4 adet'],['Görünüm','Takvim + Liste'],['Güncelleme','Ücretsiz']]},
+
+  {id:'excel-proje',cat:'excel',vi:4,badge:null,
+   name:'Proje Yönetim Şablonu',tagline:'Gantt görünümlü görev ve süre takibi',
+   price:79,oldPrice:null,
+   desc:'Görev listesi, sorumlu atama, başlangıç/bitiş tarihleri ve Gantt benzeri görünüm. Freelancer ve ajanslar için ideal. Birden fazla proje aynı anda takip edilebilir.',
+   includes:['Görev ve alt görev takibi','Durum renk kodlaması','Haftalık ilerleme özeti','Gantt benzeri zaman çizelgesi','Birden fazla proje sekmesi'],
+   formats:['XLSX','Google Sheets'],
+   colors:['#34d399','#60a5fa','#fbbf24','#f87171'],
+   specs:[['Platform','Excel + G.Sheets'],['Dil','Türkçe'],['Proje Sayısı','5 sekme'],['Güncelleme','Ücretsiz']]},
+
+  /* ── SOSYAL ── */
+  {id:'sosyal-post',cat:'sosyal',vi:0,badge:null,
+   name:'Instagram Post Paketi',tagline:'20 şablon — kare ve dikey, Canva hazır',
+   price:199,oldPrice:null,
+   desc:'Kare ve dikey formatta 20 hazır şablon. Ürün tanıtımı, duyuru ve motivasyon içerikleri için Canva uyumlu. Türkçe ve İngilizce metin versiyonları dahil.',
+   includes:['20 şablon (1080×1080 + 1080×1350)','Canva düzenlenebilir format','PNG yüksek çözünürlük','Türkçe ve İngilizce metin versiyonları','Renk değiştirme rehberi'],
+   formats:['Canva','PNG'],
+   colors:['#f0abfc','#a78bfa','#1a0b2e','#fff'],
+   specs:[['Boyut','1080 × 1080 + 1080 × 1350'],['Şablon Adedi','20'],['Format','Canva + PNG'],['Dil','TR + EN']]},
+
+  {id:'sosyal-story',cat:'sosyal',vi:1,badge:null,
+   name:'Instagram Story Paketi',tagline:'15 story şablonu — kampanya, anket, vitrin',
+   price:149,oldPrice:null,
+   desc:'Kaydırılabilir story serileri ve tekil story şablonları. Kampanya, duyuru, anket ve ürün vitrin formatları. Bağlantı ve swipe-up alanları dahil.',
+   includes:['15 şablon (1080×1920)','Canva düzenlenebilir format','Swipe-up ve bağlantı alanı dahil','Animasyon önerileri','Türkçe ve İngilizce metin alanı'],
+   formats:['Canva','PNG'],
+   colors:['#f0abfc','#c084fc','#581c87','#fff'],
+   specs:[['Boyut','1080 × 1920'],['Şablon Adedi','15'],['Format','Canva + PNG'],['Dil','TR + EN']]},
+
+  {id:'sosyal-mega',cat:'sosyal',vi:2,badge:'En İyi Değer',badgeClass:'badge-feat',
+   name:'Sosyal Medya Mega Paketi',tagline:'50+ şablon — Instagram, LinkedIn, Facebook',
+   price:349,oldPrice:null,
+   desc:'Post, story, LinkedIn ve Facebook kapak fotoğrafı dahil 50\'den fazla şablon. Tüm yıl boyunca kullanabilirsiniz. Tutarlı marka görünümü için idealdir.',
+   includes:['20 Instagram post şablonu','15 Instagram story şablonu','10 LinkedIn banner şablonu','8 Facebook kapak fotoğrafı','Canva + PNG formatları'],
+   formats:['Canva','PNG'],
+   colors:['#f0abfc','#60a5fa','#fbbf24','#34d399'],
+   specs:[['Toplam Şablon','50+'],['Platform Sayısı','4'],['Format','Canva + PNG'],['Lisans','Tek kullanıcı']]},
+
+  /* ── SUNUM ── */
+  {id:'sunum-kurumsal',cat:'sunum',vi:0,badge:null,
+   name:'Kurumsal Sunum Paketi',tagline:'Toplantı ve yatırımcı sunumu için 20 slayt',
+   price:179,oldPrice:null,
+   desc:'Toplantı, yatırımcı sunumu ve iş teklifi için şık, koyu temalı 20 slayt. PowerPoint ve Google Slides uyumlu. Açık ve koyu tema varyantı dahil.',
+   includes:['20 slayt şablonu','PowerPoint (.pptx) + Google Slides','Açık ve koyu tema varyantı','Düzenlenebilir vektör ikonlar','Veri görselleştirme slaydi'],
+   formats:['PPTX','Google Slides'],
+   colors:['#6ee7b7','#0d1f2e','#1e40af','#fff'],
+   specs:[['Slayt Adedi','20'],['Format','PPTX + G.Slides'],['Tema','Açık + Koyu'],['Boyut','16:9']]},
+
+  {id:'sunum-pitch',cat:'sunum',vi:1,badge:null,
+   name:'Startup Pitch Deck Şablonu',tagline:'Yatırımcıya sunum için 15 slayt iskelet',
+   price:229,oldPrice:null,
+   desc:'Problem, çözüm, pazar, ekip, finansal projeksiyonlar — yatırımcıya sunum için hazır 15 slayt iskelet. Her slayt amacına göre kılavuz metin içerir.',
+   includes:['15 slayt (standart pitch akışı)','PowerPoint (.pptx) + Google Slides','Grafik ve veri görselleştirme slaydi','Türkçe kullanım rehberi','Slayt başına kılavuz notlar'],
+   formats:['PPTX','Google Slides'],
+   colors:['#6ee7b7','#0d2b1a','#10b981','#fff'],
+   specs:[['Slayt Adedi','15'],['Format','PPTX + G.Slides'],['Akış','Problem→Çözüm→Pazar'],['Boyut','16:9']]},
+
+  {id:'sunum-egitim',cat:'sunum',vi:2,badge:'Yeni',badgeClass:'badge-new',
+   name:'Eğitim & Atölye Sunum Paketi',tagline:'Kurs ve workshop için 25 slayt, 3 renk teması',
+   price:199,oldPrice:null,
+   desc:'Kurs, workshop ve eğitim oturumları için öğrenmeye uygun renk şeması ve yerleşim. 25 slayt, tam düzenlenebilir. Quiz, alıştırma ve özet slaydi dahil.',
+   includes:['25 slayt şablonu','Alıştırma, quiz ve özet slaydi','PowerPoint (.pptx) + Google Slides','3 farklı renk teması','İkon ve infografik seti dahil'],
+   formats:['PPTX','Google Slides'],
+   colors:['#6ee7b7','#60a5fa','#f87171','#fbbf24'],
+   specs:[['Slayt Adedi','25'],['Format','PPTX + G.Slides'],['Tema Rengi','3 adet'],['Boyut','16:9']]},
+
+  /* ── MOCKUP ── */
+  {id:'mockup-kafe',cat:'mockup',vi:0,badge:null,
+   name:'Kafe & İçecek Mockup Paketi',tagline:'Bardak, torba, ambalaj — 12 profesyonel mockup',
+   price:189,oldPrice:null,
+   desc:'Kahve bardağı, doypack, kağıt torba ve ambalaj üzerine logonuzu yerleştirin. Ürün kataloğu ve sosyal medya için. Akıllı nesne ile tek tıkta logo değişimi.',
+   includes:['12 mockup dosyası (PSD + PNG)','Akıllı nesne — logo tek tıkla yerleşir','Yüksek çözünürlük (3000×3000 px)','Değiştirilebilir arka plan rengi','Photoshop kullanım rehberi'],
+   formats:['PSD','PNG'],
+   colors:['#fdba74','#1a0c00','#78350f','#fef3c7'],
+   specs:[['Dosya Sayısı','12'],['Format','PSD + PNG'],['Çözünürlük','3000 × 3000 px'],['Lisans','Ticari']]},
+
+  {id:'mockup-telefon',cat:'mockup',vi:1,badge:null,
+   name:'Telefon & Tablet Ekran Mockup Paketi',tagline:'10 cihaz pozu — iPhone, Android, iPad',
+   price:149,oldPrice:null,
+   desc:'Mobil uygulama, web sitesi veya tasarımınızı gerçekçi cihaz ekranlarında gösterin. 10 farklı cihaz pozu. Koyu ve açık arka plan versiyonları dahil.',
+   includes:['10 mockup (iPhone, Android, iPad)','PSD akıllı nesne + PNG','Koyu ve açık arka plan versiyonu','3000 × 3000 px çözünürlük','Farklı açı ve pozisyonlar'],
+   formats:['PSD','PNG'],
+   colors:['#fdba74','#0f172a','#1e293b','#e2e8f0'],
+   specs:[['Dosya Sayısı','10'],['Format','PSD + PNG'],['Çözünürlük','3000 × 3000 px'],['Cihaz','iPhone + Android + iPad']]},
+
+  {id:'mockup-marka',cat:'mockup',vi:2,badge:'Çok Satan',badgeClass:'badge-hot',
+   name:'Marka Mockup Mega Paketi',tagline:'Kartvizit, tişört, kupa, torba — 30 mockup',
+   price:379,oldPrice:null,
+   desc:'Kartvizit, tişört, kupa, torba, etiket ve dijital ekran — marka kimliğinizi her yüzeyde göstermenizi sağlayan 30 mockup. Ticari kullanım lisansı dahil.',
+   includes:['30 mockup dosyası (PSD + PNG)','Kartvizit, ambalaj, tekstil, ekran','Akıllı nesne — logonuz 1 dakikada','Ticari kullanım lisansı dahil','Türkçe kullanım rehberi'],
+   formats:['PSD','PNG'],
+   colors:['#fdba74','#1a0c00','#c2410c','#fef3c7'],
+   specs:[['Dosya Sayısı','30'],['Format','PSD + PNG'],['Yüzey Tipi','6 kategori'],['Lisans','Ticari']]},
+
+  /* ── MEGA ── */
+  {id:'mega-paket',cat:'paket',vi:0,badge:'Mega Paket',badgeClass:'badge-feat',
+   name:'Marka Kimliği Mega Paketi',tagline:'Logo + kartvizit + sosyal medya — tam set',
+   price:649,oldPrice:999,
+   desc:'Logo, kartvizit ve sosyal medya şablonlarını tek seferde alın. İşletmenizin tüm görsel kimliğini kapsayan eksiksiz set. Kafe, kuaför, oto servis ve genel işletmeler için uygundur.',
+   includes:['5 Logo Tasarımı (PNG + SVG)','3 Kartvizit Şablonu (Canva)','15 Sosyal Medya Şablonu','Türkçe Kurulum Rehberi','Öncelikli WhatsApp Destek'],
+   formats:['PNG','SVG','Canva','XLSX'],
+   colors:['#c8ff2e','#29d3ff','#f0abfc','#a78bfa'],
+   specs:[['Ürün Adedi','23+'],['Format','PNG+SVG+Canva'],['Destek','WhatsApp öncelikli'],['Lisans','Tam ticari']]}
+];
+
+/* ══ GALLERY SLIDE BUILDERS ══ */
+function slideHero(p){
+  var c = CATS[p.cat] || CATS.paket;
+  var grad = {
+    logo:  'linear-gradient(135deg,#1a1040 0%,#2d1b6b 100%)',
+    kart:  'linear-gradient(135deg,#0e2233 0%,#0c3347 100%)',
+    excel: 'linear-gradient(135deg,#1a1200 0%,#2d2000 100%)',
+    sosyal:'linear-gradient(135deg,#200e2e 0%,#3d0d2b 100%)',
+    sunum: 'linear-gradient(135deg,#0d1f2e 0%,#0d2b1a 100%)',
+    mockup:'linear-gradient(135deg,#1a0c00 0%,#2e1e00 100%)',
+    paket: 'linear-gradient(135deg,#1a1040 0%,#0e2233 30%,#200e2e 100%)'
+  }[p.cat] || 'linear-gradient(135deg,#0e1018,#1e2030)';
+  var priceStr = p.oldPrice
+    ? '<del style="font-size:.9rem;opacity:.5;text-decoration:line-through">'+p.oldPrice+'₺</del> <span style="color:'+c.color+'">'+p.price+'₺</span>'
+    : '<span style="color:'+c.color+'">'+p.price+'₺</span>';
+  return '<div class="pm-slide"><div class="sl-hero" style="background:'+grad+';width:100%;height:100%">'
+    +'<div class="sl-hero-deco" style="width:280px;height:280px;background:'+c.color+';top:-80px;left:-80px"></div>'
+    +'<div class="sl-hero-deco" style="width:200px;height:200px;background:'+c.color+';bottom:-60px;right:-60px"></div>'
+    +'<div class="sl-hero-badge" style="position:relative;z-index:1">'+c.label+'</div>'
+    +'<div class="sl-hero-name" style="position:relative;z-index:1">'+p.name+'</div>'
+    +'<div class="sl-hero-price" style="position:relative;z-index:1;color:rgba(255,255,255,.7)">'+priceStr+' <span style="font-size:.75rem;opacity:.6">tek seferlik</span></div>'
+    +'</div></div>';
+}
+
+function slidePreview(p){
+  var svgFn = {logo:svgLogo,kart:svgKart,excel:svgExcel,sosyal:svgSosyal,sunum:svgSunum,mockup:svgMockup}[p.cat];
+  var art = svgFn ? svgFn(p.vi) : svgMega();
+  return '<div class="pm-slide" style="padding:20px;background:#08080f">'
+    +'<div style="width:100%;height:100%;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center">'+art+'</div>'
+    +'</div>';
+}
+
+function slideIncludes(p){
+  var rows = p.includes.map(function(item){
+    return '<div class="sl-check-row"><span class="sl-check-ico">✓</span>'+item+'</div>';
+  }).join('');
+  return '<div class="pm-slide" style="background:#0a0e1a;padding:0"><div class="sl-info">'
+    +'<div class="sl-info-title">Paket İçeriği</div>'
+    +rows+'</div></div>';
+}
+
+function slideFormats(p){
+  var fmtData = {
+    'PNG':  {bg:'rgba(52,211,153,.15)',border:'rgba(52,211,153,.4)',color:'#34d399'},
+    'SVG':  {bg:'rgba(96,165,250,.15)',border:'rgba(96,165,250,.4)',color:'#60a5fa'},
+    'XLSX': {bg:'rgba(52,211,153,.15)',border:'rgba(52,211,153,.4)',color:'#34d399'},
+    'Google Sheets':{bg:'rgba(96,165,250,.1)',border:'rgba(96,165,250,.3)',color:'#60a5fa'},
+    'PPTX': {bg:'rgba(248,113,113,.15)',border:'rgba(248,113,113,.4)',color:'#f87171'},
+    'Google Slides':{bg:'rgba(251,191,36,.1)',border:'rgba(251,191,36,.3)',color:'#fbbf24'},
+    'Canva':{bg:'rgba(167,139,250,.15)',border:'rgba(167,139,250,.4)',color:'#a78bfa'},
+    'PSD':  {bg:'rgba(41,211,255,.12)',border:'rgba(41,211,255,.35)',color:'#29d3ff'}
+  };
+  var items = p.formats.map(function(f){
+    var d = fmtData[f] || {bg:'rgba(255,255,255,.08)',border:'rgba(255,255,255,.2)',color:'rgba(255,255,255,.7)'};
+    return '<div class="sl-fmt-item">'
+      +'<div class="sl-fmt-box" style="background:'+d.bg+';border:1.5px solid '+d.border+';color:'+d.color+';font-size:.78rem;font-weight:800">'+f+'</div>'
+      +'<div class="sl-fmt-label">'+f+'</div></div>';
+  }).join('');
+  return '<div class="pm-slide" style="background:#080c18"><div class="sl-formats">'
+    +'<div style="font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:4px">Teslim Formatları</div>'
+    +'<div class="sl-fmt-row">'+items+'</div>'
+    +'<div style="font-size:.8rem;color:rgba(255,255,255,.4);text-align:center;max-width:220px;line-height:1.5">Sipariş sonrası WhatsApp veya e-posta ile anında teslim.</div>'
+    +'</div></div>';
+}
+
+function slideColors(p){
+  var swatches = p.colors.map(function(c){
+    return '<div class="sl-swatch" style="background:'+c+'"></div>';
+  }).join('');
+  return '<div class="pm-slide" style="background:#08080f"><div class="sl-palette">'
+    +'<div class="sl-palette-title">Tasarım Renk Paleti</div>'
+    +'<div class="sl-swatches">'+swatches+'</div>'
+    +'<div style="font-size:.8rem;color:rgba(255,255,255,.4);text-align:center;max-width:220px;line-height:1.55">Tüm renkler özelleştirilebilir. İstediğiniz renk paletine uyarlanabilir.</div>'
+    +'</div></div>';
+}
+
+function slideSpecs(p){
+  var rows = p.specs.map(function(s){
+    return '<div class="sl-spec-row"><div class="sl-spec-key">'+s[0]+'</div><div class="sl-spec-val">'+s[1]+'</div></div>';
+  }).join('');
+  return '<div class="pm-slide" style="background:#0a0e1a;padding:0"><div class="sl-specs">'
+    +'<div class="sl-specs-title">Teknik Özellikler</div>'
+    +rows+'</div></div>';
+}
+
+/* ══ CARD BUILDER ══ */
+function catLabel(cat){ return (CATS[cat]||CATS.paket).label; }
+
+function buildThumb(p){
+  if(p.cat==='logo')   return svgLogo(p.vi);
+  if(p.cat==='kart')   return svgKart(p.vi);
+  if(p.cat==='excel')  return svgExcel(p.vi);
+  if(p.cat==='sosyal') return svgSosyal(p.vi);
+  if(p.cat==='sunum')  return svgSunum(p.vi);
+  if(p.cat==='mockup') return svgMockup(p.vi);
+  return svgMega();
+}
+
+function buildCard(p){
+  var badge = p.badge
+    ? '<span class="prod-badge '+(p.badgeClass||'badge-feat')+'">'+p.badge+'</span>'
+    : '';
+  var priceHtml = p.oldPrice
+    ? '<del style="font-size:.78rem;color:var(--txt-faint);font-weight:400">'+p.oldPrice+'₺</del><br>'+p.price+'₺'
+    : p.price+'₺';
+  return '<div class="prod-card'+(p.badge&&p.badgeClass==='badge-feat'?' featured':'')
+    +' reveal" data-cat="'+p.cat+'" onclick="openModal(\''+p.id+'\')">'
+    +badge
+    +'<div class="prod-thumb">'+buildThumb(p)+'</div>'
+    +'<div class="prod-body">'
+    +'<div class="prod-cat-tag">'+catLabel(p.cat)+'</div>'
+    +'<h3>'+p.name+'</h3>'
+    +'<p class="prod-tagline">'+p.tagline+'</p>'
+    +'<div class="prod-footer">'
+    +'<div class="prod-price">'+priceHtml+'<small>tek seferlik</small></div>'
+    +'<button class="btn-details" onclick="event.stopPropagation();openModal(\''+p.id+'\')">Detayları Gör</button>'
+    +'</div></div></div>';
+}
+
+/* ══ RENDER SECTIONS ══ */
+var CAT_ORDER = [
+  {key:'logo',   title:'Logo & Marka Kimliği'},
+  {key:'kart',   title:'Kartvizit Şablonları'},
+  {key:'excel',  title:'Excel Planlayıcılar'},
+  {key:'sosyal', title:'Sosyal Medya Şablonları'},
+  {key:'sunum',  title:'Sunum Şablonları'},
+  {key:'mockup', title:'Mockup Paketleri'}
+];
+
+function renderAll(){
+  var container = document.getElementById('shopSections');
+  var html = '';
+  CAT_ORDER.forEach(function(sec){
+    var prods = PRODUCTS.filter(function(p){return p.cat===sec.key;});
+    html += '<div class="cat-divider reveal" data-sec="'+sec.key+'"><h2>'+sec.title+'</h2></div>';
+    html += '<div class="prod-grid" data-grid="'+sec.key+'">';
+    prods.forEach(function(p){ html += buildCard(p); });
+    html += '</div>';
+  });
+  container.innerHTML = html;
+  /* inject featured thumb */
+  document.getElementById('featThumb').innerHTML = svgMega();
+}
+
+/* ══ FILTER ══ */
+function setupFilter(){
   var cats = document.querySelectorAll('.shop-cat');
-  var allCards = document.querySelectorAll('[data-cat]');
-  var allHeads = document.querySelectorAll('[data-cat-head]');
-  var noResult = document.getElementById('shopNoResult');
+  var noRes = document.getElementById('shopNoResult');
   var activeCat = 'all';
 
-  function filter() {
-    var visible = 0;
-    allCards.forEach(function(card) {
-      var show = activeCat === 'all' || card.dataset.cat === activeCat;
-      card.classList.toggle('hidden', !show);
-      if (show) visible++;
+  function applyFilter(){
+    var total = 0;
+    CAT_ORDER.forEach(function(sec){
+      var grid = document.querySelector('[data-grid="'+sec.key+'"]');
+      var divider = document.querySelector('[data-sec="'+sec.key+'"]');
+      if(!grid) return;
+      var show = activeCat==='all' || activeCat===sec.key;
+      grid.style.display = show ? '' : 'none';
+      divider.style.display = show ? '' : 'none';
+      if(show) total += grid.querySelectorAll('.prod-card').length;
     });
-    allHeads.forEach(function(head) {
-      var show = activeCat === 'all' || head.dataset.catHead === activeCat;
-      head.parentElement.style.display = show ? '' : 'none';
-    });
-    // hide/show grid wrappers
-    ['prodGrid','prodGridKart','prodGridExcel','prodGridSosyal','prodGridSunum','prodGridMockup'].forEach(function(id){
-      var g = document.getElementById(id);
-      if(!g) return;
-      var hasVisible = Array.from(g.querySelectorAll('[data-cat]')).some(function(c){ return !c.classList.contains('hidden'); });
-      g.style.display = hasVisible ? '' : 'none';
-    });
-    noResult.style.display = visible === 0 ? 'block' : 'none';
+    noRes.style.display = total===0 ? 'block' : 'none';
   }
 
-  cats.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      cats.forEach(function(b){ b.classList.remove('active'); });
+  cats.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      cats.forEach(function(b){b.classList.remove('active');});
       btn.classList.add('active');
       activeCat = btn.dataset.cat;
-      filter();
+      applyFilter();
     });
   });
-})();
+}
+
+/* ══ MODAL ══ */
+var modalSlides = [], modalIdx = 0, currentProduct = null;
+
+function openModal(id){
+  var p = null;
+  for(var i=0;i<PRODUCTS.length;i++){ if(PRODUCTS[i].id===id){p=PRODUCTS[i];break;} }
+  if(!p) return;
+  currentProduct = p;
+
+  /* populate info */
+  document.getElementById('pmCat').textContent = catLabel(p.cat);
+  document.getElementById('pmName').textContent = p.name;
+  document.getElementById('pmTagline').textContent = p.tagline;
+  var priceEl = document.getElementById('pmPrice');
+  priceEl.textContent = p.price+'₺';
+  var oldEl = document.getElementById('pmOld');
+  oldEl.textContent = p.oldPrice ? p.oldPrice+'₺' : '';
+  oldEl.style.display = p.oldPrice ? '' : 'none';
+  document.getElementById('pmDesc').textContent = p.desc;
+
+  var inc = document.getElementById('pmIncludes');
+  inc.innerHTML = p.includes.map(function(i){ return '<li>'+i+'</li>'; }).join('');
+
+  var fmts = document.getElementById('pmFmts');
+  fmts.innerHTML = p.formats.map(function(f){ return '<span class="pm-fmt">'+f+'</span>'; }).join('');
+
+  document.getElementById('pmBuyBtn').onclick = function(){
+    buyProduct(p.name, p.price);
+  };
+
+  /* build slides */
+  modalSlides = [
+    slideHero(p),
+    slidePreview(p),
+    slideIncludes(p),
+    slideFormats(p),
+    slideColors(p),
+    slideSpecs(p)
+  ];
+  var slidesEl = document.getElementById('pmSlides');
+  slidesEl.innerHTML = modalSlides.join('');
+  slidesEl.style.transform = 'translateX(0)';
+  modalIdx = 0;
+
+  /* dots */
+  var dots = document.getElementById('pmDots');
+  dots.innerHTML = modalSlides.map(function(_,i){
+    return '<span class="pm-dot'+(i===0?' on':'')+'" data-i="'+i+'"></span>';
+  }).join('');
+  dots.querySelectorAll('.pm-dot').forEach(function(d){
+    d.addEventListener('click', function(){ goSlide(parseInt(d.dataset.i)); });
+  });
+
+  document.getElementById('prodModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function goSlide(idx){
+  modalIdx = Math.max(0, Math.min(idx, modalSlides.length-1));
+  document.getElementById('pmSlides').style.transform = 'translateX(-'+modalIdx*100+'%)';
+  document.querySelectorAll('.pm-dot').forEach(function(d,i){
+    d.classList.toggle('on', i===modalIdx);
+  });
+}
+
+function closeModal(){
+  document.getElementById('prodModal').classList.remove('open');
+  document.body.style.overflow = '';
+  currentProduct = null;
+}
+
+/* ══ INIT ══ */
+document.getElementById('pmClose').addEventListener('click', closeModal);
+document.getElementById('pmPrev').addEventListener('click', function(){ goSlide(modalIdx-1); });
+document.getElementById('pmNext').addEventListener('click', function(){ goSlide(modalIdx+1); });
+document.getElementById('prodModal').addEventListener('click', function(e){
+  if(e.target===this) closeModal();
+});
+document.addEventListener('keydown', function(e){
+  if(e.key==='Escape') closeModal();
+  if(e.key==='ArrowLeft') goSlide(modalIdx-1);
+  if(e.key==='ArrowRight') goSlide(modalIdx+1);
+});
+
+function buyProduct(name, price){
+  var msg = 'Merhaba, "'+name+'" ürününü satın almak istiyorum ('+price+'₺). Ödeme bilgilerini alabilir miyim?';
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank','noopener,noreferrer');
+}
+
+renderAll();
+setupFilter();
 </script>
 </body>
 </html>
