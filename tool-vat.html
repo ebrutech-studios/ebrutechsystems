@@ -1,14 +1,31 @@
 <!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KDV Hesaplama — EbruTech Studios</title>
-<meta name="description" content="KDV dahil ve hariç tutar hesaplama. %1, %10, %20 KDV oranları. Fiyata KDV ekleme veya çıkarma. Ücretsiz KDV hesaplama.">
+<title>KDV Hesaplama — Ücretsiz KDV Dahil / Hariç Hesaplama</title>
+<meta name="description" content="KDV hesaplama aracı: fiyata %20, %10 veya %1 KDV ekle ya da KDV dahil fiyattan KDV'yi ayır. Anında sonuç, kayıt gerekmez. Türkiye KDV oranları dahil.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-vat.html">
-<meta property="og:title" content="KDV Hesaplama — EbruTech Studios"><meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png"><meta property="og:type" content="website">
+<meta property="og:title" content="KDV Hesaplama — Ücretsiz KDV Dahil / Hariç Hesaplama">
+<meta property="og:description" content="KDV hesaplama aracı: fiyata KDV ekle ya da KDV dahil fiyattan KDV'yi ayır. Ücretsiz, anında.">
+<meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png"><meta property="og:type" content="website">
+<meta property="og:url" content="https://ebrutechsystems.com/tool-vat.html">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="EbruTech Studios">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#10140a">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"KDV Hesaplama","description":"KDV dahil ve hariç tutar hesaplama aracı. Fiyata KDV ekleme veya çıkarma.","applicationCategory":"FinanceApplication","operatingSystem":"Web","inLanguage":"tr","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-vat.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"KDV dahil hesaplama nasıl yapılır?","acceptedAnswer":{"@type":"Answer","text":"KDV dahil hesaplamak için: tutarı girin, KDV oranını seçin (%20, %10 veya %1), 'KDV Ekle' seçeneğini işaretleyin. Araç otomatik olarak KDV tutarını ve KDV dahil brüt fiyatı hesaplar."}},
+{"@type":"Question","name":"KDV hariç fiyatı nasıl bulurum?","acceptedAnswer":{"@type":"Answer","text":"KDV dahil fiyattan KDV'yi ayırmak için: KDV dahil tutarı girin, oranı seçin, 'KDV Ayır' seçeneğini seçin. Araç KDV hariç net tutarı ve KDV miktarını gösterir. Formül: Net = Brüt ÷ (1 + KDV Oranı)"}},
+{"@type":"Question","name":"Türkiye'de KDV oranları nelerdir?","acceptedAnswer":{"@type":"Answer","text":"Türkiye'de üç temel KDV oranı vardır: %20 genel KDV oranı (çoğu ürün ve hizmet), %10 indirimli oran (bazı gıda maddeleri, ilaç, konaklama), %1 çok indirimli oran (temel gıda, tarım ürünleri). 2023 yılında %18 oranı %20'ye yükseltilmiştir."}},
+{"@type":"Question","name":"KDV hesaplama formülü nedir?","acceptedAnswer":{"@type":"Answer","text":"KDV ekleme: KDV Dahil = Net Tutar × (1 + KDV Oranı). Örnek: 1000 ₺ × 1.20 = 1200 ₺. KDV ayırma: Net Tutar = KDV Dahil ÷ (1 + KDV Oranı). Örnek: 1200 ₺ ÷ 1.20 = 1000 ₺."}}
+]}
+</script>
 <style>
 .vat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 18px;text-align:center;transition:.2s}
 .vat-card.accent{border-color:var(--accent);background:rgba(200,255,46,.06)}
@@ -26,6 +43,13 @@
 .compare-table td{padding:9px 10px;text-align:right;border-bottom:1px solid rgba(255,255,255,.04);color:var(--txt)}
 .compare-table td:first-child{text-align:left;color:var(--txt-dim)}
 .compare-table tr.active-row td{color:var(--accent);font-weight:700}
+.faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.faq-q{padding:14px 16px;font-weight:600;font-size:.92rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--surface)}
+.faq-q:hover{color:var(--accent)}
+.faq-q .ico{transition:.2s;font-size:.8rem;color:var(--txt-faint)}
+.faq-item.open .faq-q .ico{transform:rotate(180deg)}
+.faq-a{padding:0 16px;max-height:0;overflow:hidden;transition:.25s;font-size:.88rem;color:var(--txt-dim);line-height:1.6}
+.faq-item.open .faq-a{padding:0 16px 14px;max-height:300px}
 </style>
 </head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
@@ -72,6 +96,46 @@
 </div>
 
 </div></div></section>
+
+<section style="padding:40px 0 50px"><div class="wrap" style="max-width:760px">
+<h2 style="font-size:1.4rem;margin-bottom:16px">KDV Hesaplama Nasıl Yapılır?</h2>
+<p style="color:var(--txt-dim);line-height:1.7;margin-bottom:20px">
+KDV (Katma Değer Vergisi) hesaplamak için yukarıdaki araca tutarı girin, KDV oranını seçin (%20 genel oran, %10 veya %1 indirimli oran) ve işlem türünü belirleyin:
+</p>
+<ol style="color:var(--txt-dim);line-height:2;padding-left:20px;margin-bottom:28px">
+  <li><b>KDV Ekle:</b> Net (KDV hariç) fiyattan KDV dahil fiyatı bulur.</li>
+  <li><b>KDV Ayır:</b> Brüt (KDV dahil) fiyattan KDV tutarını ve net fiyatı ayırır.</li>
+</ol>
+
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:28px">
+<div style="font-size:.82rem;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:10px">TÜRK KDV ORANLARI</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center">
+<div><div style="font-size:1.5rem;font-weight:800;color:var(--txt)">%20</div><div style="font-size:.78rem;color:var(--txt-faint)">Genel oran<br>Çoğu ürün ve hizmet</div></div>
+<div><div style="font-size:1.5rem;font-weight:800;color:var(--txt)">%10</div><div style="font-size:.78rem;color:var(--txt-faint)">İndirimli oran<br>Gıda, ilaç, konaklama</div></div>
+<div><div style="font-size:1.5rem;font-weight:800;color:var(--txt)">%1</div><div style="font-size:.78rem;color:var(--txt-faint)">Çok indirimli<br>Temel gıda, tarım</div></div>
+</div></div>
+
+<h2 style="font-size:1.3rem;margin-bottom:16px">Sık Sorulan Sorular</h2>
+<div id="faqList">
+<div class="faq-item open">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">KDV dahil hesaplama nasıl yapılır? <span class="ico">▼</span></div>
+<div class="faq-a">Tutarı girin, KDV oranını seçin (%20, %10 veya %1), <b>KDV Ekle</b> seçeneğini işaretleyin. Araç otomatik olarak KDV tutarını ve KDV dahil brüt fiyatı hesaplar.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">KDV hariç fiyatı nasıl bulurum? <span class="ico">▼</span></div>
+<div class="faq-a">KDV dahil fiyattan net tutarı bulmak için: KDV dahil tutarı girin, oranı seçin, <b>KDV Ayır</b> seçeneğini seçin. Formül: Net = Brüt ÷ (1 + KDV Oranı). Örneğin 1.200 ₺ KDV dahil fiyat için: 1.200 ÷ 1.20 = 1.000 ₺ net.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Türkiye'de KDV oranları nelerdir? <span class="ico">▼</span></div>
+<div class="faq-a">Türkiye'de geçerli KDV oranları: <b>%20</b> (genel oran — çoğu ürün ve hizmet), <b>%10</b> (indirimli — bazı gıda, ilaç, konaklama), <b>%1</b> (çok indirimli — temel gıda, tarım ürünleri). 2023 yılında genel oran %18'den %20'ye yükseltilmiştir.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">KDV hesaplama formülü nedir? <span class="ico">▼</span></div>
+<div class="faq-a"><b>KDV ekleme:</b> KDV Dahil = Net Tutar × (1 + KDV Oranı). Örnek: 1.000 ₺ × 1.20 = 1.200 ₺<br><b>KDV ayırma:</b> Net Tutar = KDV Dahil ÷ (1 + KDV Oranı). Örnek: 1.200 ₺ ÷ 1.20 = 1.000 ₺</div>
+</div>
+</div>
+</div></section>
+
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
@@ -101,7 +165,6 @@ function calc(){
     card(fmt(kdv),"KDV Tutarı",true)+
     card(fmt(brut),"KDV Dahil (Brüt)");
 
-  // compare table
   const rates=[1,8,10,18,20];
   const tbody=document.getElementById("compareBody");
   tbody.innerHTML=rates.map(rv=>{
