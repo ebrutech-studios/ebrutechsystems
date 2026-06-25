@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blog — Rehberler ve İpuçları | EbruTech Studios</title>
+<meta name="description" content="Görsel araçlar, PDF, tasarım ve dijital çözümler hakkında pratik rehberler ve ipuçları. EbruTech Studios blog.">
+<link rel="canonical" href="https://ebrutechsystems.com/blog.html">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="Blog — Rehberler ve İpuçları | EbruTech Studios">
+<meta property="og:description" content="Görsel araçlar, PDF ve dijital çözümler hakkında pratik rehberler.">
+<meta property="og:url" content="https://ebrutechsystems.com/blog.html">
+<meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog — Rehberler ve İpuçları | EbruTech Studios">
+<meta name="twitter:description" content="Görsel araçlar, PDF, tasarım ve dijital çözümler hakkında pratik rehberler ve ipuçları. EbruTech Studios blog.">
+<meta name="twitter:image" content="https://ebrutechsystems.com/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<section class="hero" style="padding-bottom:28px">
+  <div class="wrap">
+    <span class="eyebrow">Blog</span>
+    <h1>Rehberler ve ipuçları</h1>
+    <p class="lead" style="margin-top:14px">Araçlarımızı en iyi şekilde kullanmak ve dijital çözümler üretmek için pratik anlatımlar.</p>
+  </div>
+</section>
+
+<section style="padding-top:4px">
+  <div class="wrap">
+    <div class="blog-toolbar reveal">
+      <div class="blog-cats" id="blogCats">
+        <button class="cat-btn active" data-cat="all">Tümü</button>
+        <button class="cat-btn" data-cat="Rehber">Rehber</button>
+        <button class="cat-btn" data-cat="İşletme">İşletme</button>
+        <button class="cat-btn" data-cat="İpucu">İpucu</button>
+      </div>
+      <div class="blog-search-box">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="search" id="blogSearch" placeholder="Yazı ara…" autocomplete="off">
+      </div>
+    </div>
+    <div id="list" class="blog-grid"></div>
+    <p id="blogEmpty" style="display:none;color:var(--txt-faint);text-align:center;padding:40px 0">Bu kategoride henüz yazı yok.</p>
+  </div>
+</section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="callout reveal">
+    <span class="eyebrow">Araçlar</span>
+    <h2>Yazıda bahsedilen aracı hemen deneyin</h2>
+    <p class="lead" style="margin:10px auto 22px">40 online araç tarayıcınızda; ücretsiz araçlar için kayıt gerekmez.</p>
+    <a href="tools.html" class="btn btn-primary">Tüm Araçları Gör →</a>
+  </div>
+</div></section>
+
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/blog-data.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+(function(){
+  const catColor={Rehber:'var(--accent)',İşletme:'var(--accent-3)',İpucu:'var(--accent-2)'};
+  const posts=(window.BLOG_POSTS||[]).slice().sort((a,b)=>b.tarih.localeCompare(a.tarih));
+  const list=document.getElementById('list');
+  const empty=document.getElementById('blogEmpty');
+  let activeCat='all', searchVal='';
+
+  function card(p){
+    const dt=new Date(p.tarih).toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'});
+    const clr=catColor[p.kat]||'var(--accent)';
+    return `<a class="blog-card reveal" href="yazi.html?id=${p.id}">
+      <div class="blog-card-stripe" style="background:${clr}"></div>
+      <div class="blog-card-body">
+        <div class="blog-card-meta">
+          <span class="blog-cat-tag" style="color:${clr}">${p.kat||'Genel'}</span>
+          <span class="blog-time">${dt} · ${p.okuma} dk</span>
+        </div>
+        <h3 class="blog-card-title">${p.baslik}</h3>
+        <p class="blog-card-ozet">${p.ozet}</p>
+        <span class="blog-read-more">Devamını oku →</span>
+      </div>
+    </a>`;
+  }
+
+  function render(){
+    let filtered=posts;
+    if(activeCat!=='all') filtered=filtered.filter(p=>p.kat===activeCat);
+    if(searchVal) filtered=filtered.filter(p=>(p.baslik+p.ozet).toLowerCase().includes(searchVal));
+    list.innerHTML=filtered.map(card).join('');
+    empty.style.display=filtered.length?'none':'block';
+    if(typeof initReveal==='function') initReveal();
+  }
+
+  document.querySelectorAll('#blogCats .cat-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('#blogCats .cat-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCat=btn.dataset.cat;
+      render();
+    });
+  });
+
+  document.getElementById('blogSearch').addEventListener('input',function(){
+    searchVal=this.value.trim().toLowerCase();
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

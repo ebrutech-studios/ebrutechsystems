@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sayı Türkçe Yazıyla — Rakamı Yazıya Çevir | EbruTech Studios</title>
+<meta name="description" content="Rakamı Türkçe yazıya çevir. Fatura, çek ve resmi belgeler için sayıyı kelimeyle yaz. Ücretsiz, tarayıcıda çalışır.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-number.html">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="Sayı Türkçe Yazıyla — EbruTech Studios">
+<meta property="og:description" content="Rakamı Türkçe kelimeye çevir. Fatura ve belgeler için idealdir.">
+<meta property="og:url" content="https://ebrutechsystems.com/tool-number.html">
+<meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Sayı Türkçe Yazıyla","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-number.html"}
+</script>
+<style>
+.num-input-wrap{position:relative;margin-bottom:22px}
+.num-input{
+  width:100%;padding:16px 18px;border-radius:10px;
+  border:1px solid var(--border-strong);background:var(--bg-2);
+  color:var(--txt);font-family:var(--font-display);font-size:1.6rem;
+  font-weight:700;outline:none;transition:.18s;box-sizing:border-box;
+}
+.num-input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(200,255,46,.1)}
+.num-formatted{font-size:.82rem;color:var(--txt-faint);margin-top:6px;margin-bottom:0;text-align:right;letter-spacing:.02em}
+.num-result{
+  background:rgba(200,255,46,.06);border:1px solid rgba(200,255,46,.18);
+  border-radius:10px;padding:22px 26px;margin-bottom:18px;
+  display:none;
+}
+.num-result-text{
+  font-family:var(--font-display);font-size:1.4rem;font-weight:700;
+  color:var(--txt);line-height:1.5;
+}
+.num-result-text .cap{color:var(--accent)}
+.num-error{
+  background:rgba(255,80,80,.07);border:1px solid rgba(255,80,80,.2);
+  border-radius:10px;padding:14px 18px;color:#ff9999;font-size:.9rem;
+  display:none;margin-bottom:18px;
+}
+.num-examples{margin-top:28px}
+.num-examples h3{font-size:.9rem;color:var(--txt-dim);font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+.num-ex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.num-ex-btn{
+  padding:10px 14px;border-radius:8px;border:1px solid var(--border);
+  background:transparent;color:var(--txt-dim);cursor:pointer;
+  font-family:var(--font-body);font-size:.9rem;text-align:left;transition:.18s;
+}
+.num-ex-btn:hover{border-color:var(--border-strong);color:var(--txt);background:var(--bg-2)}
+</style>
+</head>
+<body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+  <span class="eyebrow">Araç</span>
+  <h1 style="font-size:2.2rem">Sayı → Türkçe Yazıyla</h1>
+  <p class="lead" style="margin:14px 0 26px">Rakamı Türkçe kelimeyle yaz. Fatura, çek ve resmi belgeler için idealdir.</p>
+
+  <div class="num-input-wrap">
+    <input class="num-input" id="numIn" type="text" inputmode="decimal" placeholder="0" autocomplete="off">
+    <p class="num-formatted" id="numFmt"></p>
+  </div>
+
+  <div class="num-error" id="numErr"></div>
+
+  <div class="num-result" id="numResult">
+    <div class="num-result-text" id="numText"></div>
+  </div>
+
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px">
+    <button class="btn btn-ghost" id="numCopy">Kopyala</button>
+    <button class="btn btn-ghost" id="numCopyCap">Büyük Harfle Kopyala</button>
+    <button class="btn btn-ghost" id="numClear">Temizle</button>
+  </div>
+
+  <div class="num-examples">
+    <h3>Örnekler</h3>
+    <div class="num-ex-grid">
+      <button class="num-ex-btn" data-n="1000">1.000</button>
+      <button class="num-ex-btn" data-n="1500">1.500</button>
+      <button class="num-ex-btn" data-n="12500">12.500</button>
+      <button class="num-ex-btn" data-n="100000">100.000</button>
+      <button class="num-ex-btn" data-n="1234567">1.234.567</button>
+      <button class="num-ex-btn" data-n="999999999">999.999.999</button>
+    </div>
+  </div>
+
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const B=["","bir","iki","üç","dört","beş","altı","yedi","sekiz","dokuz"];
+const O=["","on","yirmi","otuz","kırk","elli","altmış","yetmiş","seksen","doksan"];
+
+function toTR(n){
+  n=Math.floor(n);
+  if(n===0) return "sıfır";
+  let r="",neg=false;
+  if(n<0){neg=true;n=-n;}
+  if(n>=1000000000){const q=Math.floor(n/1000000000);r+=(q===1?"":toTR(q)+" ")+"milyar ";n%=1000000000;}
+  if(n>=1000000){const q=Math.floor(n/1000000);r+=(q===1?"":toTR(q)+" ")+"milyon ";n%=1000000;}
+  if(n>=1000){const q=Math.floor(n/1000);r+=(q===1?"":toTR(q)+" ")+"bin ";n%=1000;}
+  if(n>=100){const q=Math.floor(n/100);r+=(q===1?"yüz":B[q]+" yüz")+" ";n%=100;}
+  if(n>=10){r+=O[Math.floor(n/10)]+" ";n%=10;}
+  if(n>0) r+=B[n]+" ";
+  return (neg?"eksi ":"")+r.trim();
+}
+
+function fmtNum(s){
+  const n=parseFloat(s.replace(",","."));
+  if(isNaN(n)) return "";
+  const parts=n.toString().split(".");
+  parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,".");
+  return parts.join(",");
+}
+
+function update(){
+  const raw=document.getElementById("numIn").value.replace(/\./g,"").replace(",",".");
+  const err=document.getElementById("numErr");
+  const res=document.getElementById("numResult");
+  const txt=document.getElementById("numText");
+  const fmt=document.getElementById("numFmt");
+  if(!raw||raw==="-"){
+    res.style.display="none";err.style.display="none";fmt.textContent="";return;
+  }
+  const n=parseFloat(raw);
+  if(isNaN(n)){
+    err.style.display="block";err.textContent="Geçerli bir sayı girin.";
+    res.style.display="none";fmt.textContent="";return;
+  }
+  if(Math.abs(n)>=1000000000000){
+    err.style.display="block";err.textContent="Desteklenen maksimum: 999.999.999.999";
+    res.style.display="none";return;
+  }
+  err.style.display="none";
+  const intPart=Math.floor(Math.abs(n));
+  const dec=Math.round((Math.abs(n)-intPart)*100);
+  let result=toTR(n<0?-intPart:intPart);
+  if(dec>0) result+=" virgül "+toTR(dec);
+  txt.textContent=result;
+  res.style.display="block";
+  fmt.textContent=fmtNum(raw);
+}
+
+document.getElementById("numIn").addEventListener("input",update);
+document.getElementById("numCopy").addEventListener("click",async()=>{
+  const t=document.getElementById("numText").textContent;
+  if(!t) return;
+  await navigator.clipboard.writeText(t);
+  const b=document.getElementById("numCopy");b.textContent="Kopyalandı";setTimeout(()=>b.textContent="Kopyala",1800);
+});
+document.getElementById("numCopyCap").addEventListener("click",async()=>{
+  const t=document.getElementById("numText").textContent.toUpperCase();
+  if(!t) return;
+  await navigator.clipboard.writeText(t);
+  const b=document.getElementById("numCopyCap");b.textContent="Kopyalandı";setTimeout(()=>b.textContent="Büyük Harfle Kopyala",1800);
+});
+document.getElementById("numClear").addEventListener("click",()=>{
+  document.getElementById("numIn").value="";
+  document.getElementById("numResult").style.display="none";
+  document.getElementById("numErr").style.display="none";
+  document.getElementById("numFmt").textContent="";
+});
+document.querySelectorAll(".num-ex-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.getElementById("numIn").value=btn.dataset.n;
+    update();
+  });
+});
+</script>
+</body>
+</html>

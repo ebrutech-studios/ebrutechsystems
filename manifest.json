@@ -1,0 +1,48 @@
+{
+  "name": "EbruTech Studios",
+  "short_name": "EbruTech",
+  "description": "40 ücretsiz online araç: resim, PDF, QR, hesaplama ve KOBİ çözümleri.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#10140a",
+  "theme_color": "#10140a",
+  "lang": "tr",
+  "dir": "ltr",
+  "orientation": "any",
+  "scope": "/",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Araçlar",
+      "short_name": "Araçlar",
+      "url": "/tools.html",
+      "description": "40 online araç"
+    },
+    {
+      "name": "Format Dönüştür",
+      "short_name": "Dönüştür",
+      "url": "/tool-converter.html",
+      "description": "Görsel format dönüştürücü"
+    },
+    {
+      "name": "Resim Sıkıştır",
+      "short_name": "Sıkıştır",
+      "url": "/tool-compressor.html",
+      "description": "Resim sıkıştırıcı"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ücretsiz QR Kod Üretici — EbruTech Studios</title>
+<meta name="description" content="QR kod üretici: Link, WiFi, telefon, e-posta, SMS. Renk, boyut özelleştirme. PNG ve SVG indirme. Ücretsiz online QR oluşturucu.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-qr.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="Ücretsiz QR Kod Üretici — EbruTech Studios">
+<meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<style>
+.type-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.type-tab{padding:7px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.82rem;cursor:pointer;transition:.15s}
+.type-tab.active{border-color:var(--accent);background:rgba(200,255,46,.08);color:var(--accent);font-weight:600}
+.qr-result{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center;margin-top:20px}
+.qr-wrapper{display:inline-block;background:#fff;padding:16px;border-radius:14px;box-shadow:0 8px 32px -8px rgba(0,0,0,.4)}
+.qr-actions{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.qr-meta{font-size:.8rem;color:var(--txt-faint);margin-top:12px;padding:8px 12px;background:rgba(255,255,255,.03);border-radius:8px;word-break:break-all}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Ücretsiz QR Kod Üretici","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-qr.html"}
+</script>
+</head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">🔳 QR Kod Üretici</h1>
+<p class="lead" style="margin:14px 0 26px">Link, WiFi, telefon, e-posta veya metin için QR kod oluştur. PNG ve SVG indirme destekli.</p>
+
+<div class="type-tabs" id="typeTabs">
+<button class="type-tab active" data-t="url">🔗 Link / Metin</button>
+<button class="type-tab" data-t="wifi">📶 WiFi</button>
+<button class="type-tab" data-t="tel">📞 Telefon</button>
+<button class="type-tab" data-t="mail">✉️ E-posta</button>
+<button class="type-tab" data-t="sms">💬 SMS</button>
+</div>
+
+<div class="controls">
+
+<div id="f-url" class="field"><label>İçerik (link veya metin)</label><input id="txt" placeholder="https://ebrutechsystems.com" value="https://ebrutechsystems.com"></div>
+
+<div id="f-wifi" class="hidden">
+<div class="field"><label>Ağ Adı (SSID)</label><input id="wifiSsid" placeholder="Ev_WiFi"></div>
+<div class="row">
+<div class="field"><label>Şifre</label><input id="wifiPass" placeholder="WiFi şifresi" type="password"></div>
+<div class="field"><label>Güvenlik</label><select id="wifiEnc"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">Şifresiz</option></select></div>
+</div></div>
+
+<div id="f-tel" class="field hidden"><label>Telefon Numarası</label><input id="telNo" placeholder="05551234567"></div>
+
+<div id="f-mail" class="hidden">
+<div class="field"><label>E-posta Adresi</label><input id="mailTo" placeholder="ornek@mail.com"></div>
+<div class="field"><label>Konu (opsiyonel)</label><input id="mailSub" placeholder="Merhaba"></div>
+</div>
+
+<div id="f-sms" class="hidden">
+<div class="field"><label>Telefon</label><input id="smsNo" placeholder="05551234567"></div>
+<div class="field"><label>Mesaj</label><input id="smsBody" placeholder="Mesaj metni"></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:end">
+<div class="field" style="margin:0"><label>QR Rengi</label><input id="color" type="color" value="#0a0a0b" style="height:42px;padding:4px;border-radius:8px;border:1px solid var(--border-strong)"></div>
+<div class="field" style="margin:0"><label>Arka Plan</label><input id="bg" type="color" value="#ffffff" style="height:42px;padding:4px;border-radius:8px;border:1px solid var(--border-strong)"></div>
+<div class="field" style="margin:0"><label>Hata Düzeyi</label><select id="ecl"><option value="M">Orta (M)</option><option value="L">Düşük (L)</option><option value="Q">Yüksek (Q)</option><option value="H">Çok Yüksek (H)</option></select></div>
+</div>
+
+<div class="field"><label>Boyut: <strong id="szVal" style="color:var(--accent)">240</strong> px</label><input id="sz" type="range" min="120" max="600" value="240" step="20"></div>
+
+<button id="go" class="btn btn-primary btn-lg" style="width:100%">QR Kod Oluştur</button>
+</div>
+
+<div id="preview" class="qr-result hidden">
+<div class="qr-wrapper"><div id="qr"></div></div>
+<div class="qr-actions">
+<button id="dlPng" class="btn btn-primary">PNG İndir</button>
+<button id="dlSvg" class="btn btn-ghost">SVG İndir</button>
+<button id="printBtn" class="btn btn-ghost">🖨 Yazdır</button>
+</div>
+<div class="qr-meta" id="qrMeta"></div>
+</div>
+
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+let currentTip="url",currentContent="";
+
+document.querySelectorAll(".type-tab").forEach(b=>{
+  b.onclick=()=>{
+    currentTip=b.dataset.t;
+    document.querySelectorAll(".type-tab").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");
+    ["url","wifi","tel","mail","sms"].forEach(t=>{
+      const el=$("f-"+t);if(el)el.classList.toggle("hidden",t!==currentTip);
+    });
+  };
+});
+
+function buildContent(){
+  const t=currentTip;
+  if(t==="url")return $("txt").value.trim();
+  if(t==="wifi"){const e=$("wifiEnc").value;return"WIFI:T:"+e+";S:"+$("wifiSsid").value+";P:"+(e==="nopass"?"":$("wifiPass").value)+";;";}
+  if(t==="tel")return"tel:"+$("telNo").value.trim();
+  if(t==="mail")return"mailto:"+$("mailTo").value.trim()+($("mailSub").value?"?subject="+encodeURIComponent($("mailSub").value):"");
+  if(t==="sms")return"SMSTO:"+$("smsNo").value.trim()+":"+$("smsBody").value;
+  return"";
+}
+
+$("sz").oninput=()=>$("szVal").textContent=$("sz").value;
+
+$("go").onclick=()=>{
+  const v=buildContent();if(!v||v.length<2){ETSlib.toast("Önce içerik girin");return;}
+  currentContent=v;
+  const sz=parseInt($("sz").value);
+  const ecl=QRCode.CorrectLevel[$("ecl").value]||QRCode.CorrectLevel.M;
+  $("qr").innerHTML="";
+  new QRCode($("qr"),{text:v,width:sz,height:sz,colorDark:$("color").value,colorLight:$("bg").value,correctLevel:ecl});
+  $("preview").classList.remove("hidden");
+  const short=v.length>60?v.slice(0,60)+"…":v;
+  $("qrMeta").textContent="İçerik: "+short+" · "+v.length+" karakter";
+  ETSlib.toast("QR oluşturuldu ✓");
+};
+
+$("dlPng").onclick=()=>{
+  const c=document.querySelector("#qr canvas");if(!c)return;
+  const a=document.createElement("a");a.href=c.toDataURL("image/png");a.download="ebrutech-qr.png";a.click();
+  ETSlib.toast("PNG indiriliyor ✓");
+};
+
+$("dlSvg").onclick=()=>{
+  const img=document.querySelector("#qr img");
+  const c=document.querySelector("#qr canvas");
+  const src=img?img.src:(c?c.toDataURL("image/png"):null);
+  if(!src){ETSlib.toast("Önce QR oluşturun");return;}
+  const sz=parseInt($("sz").value);
+  const svgContent=`<svg xmlns="http://www.w3.org/2000/svg" width="${sz}" height="${sz}"><image href="${src}" width="${sz}" height="${sz}"/></svg>`;
+  const blob=new Blob([svgContent],{type:"image/svg+xml"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="ebrutech-qr.svg";a.click();
+  ETSlib.toast("SVG indiriliyor ✓");
+};
+
+$("printBtn").onclick=()=>{
+  const c=document.querySelector("#qr canvas");const img=document.querySelector("#qr img");
+  const src=c?c.toDataURL("image/png"):(img?img.src:null);
+  if(!src){ETSlib.toast("Önce QR oluşturun");return;}
+  const w=window.open("","_blank","width=400,height=500");
+  w.document.write(`<html><body style="text-align:center;padding:40px;font-family:sans-serif"><img src="${src}" style="max-width:300px"><p style="font-size:12px;margin-top:12px;word-break:break-all">${currentContent}</p><script>window.onload=()=>window.print()<\/script></body></html>`);
+  w.document.close();
+};
+</script></body></html>

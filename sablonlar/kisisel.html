@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- KİŞİSEL/CV/PORTFOLYO ŞABLONU — EbruTech Studios | CONFIG değerlerini düzenle -->
+<title>Ahmet Yılmaz — Dijital Tasarımcı & Geliştirici</title>
+<meta name="description" content="Ahmet Yılmaz — yaratıcı dijital tasarımcı ve geliştirici. Projelerim, yeteneklerim ve iletişim bilgilerim.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0d12;--bg2:#14141c;--surface:#1a1a24;--text:#f2f2f5;--dim:#9a9aac;--faint:#62626f;
+  --accent:#7c5cff;--accent2:#6344e0;--mint:#3ee8b5;--border:rgba(255,255,255,.09);
+  --grad:linear-gradient(135deg,#7c5cff,#3ee8b5);
+  --fd:'Space Grotesk',sans-serif;--fb:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);line-height:1.65}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--fd);font-weight:600;line-height:1.1}
+header{position:sticky;top:0;z-index:50;background:rgba(13,13,18,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:var(--fd);font-size:1.3rem;font-weight:700}.logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:26px}.nav-links a{color:var(--dim);font-size:.92rem;transition:.2s}.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--accent);color:#fff!important;padding:10px 20px;border-radius:10px;font-weight:600}
+@media(max-width:720px){.nav-links{display:none}}
+.hero{position:relative;min-height:80vh;display:flex;align-items:center;overflow:hidden}
+.hero::before{content:"";position:absolute;width:500px;height:500px;background:var(--grad);filter:blur(140px);opacity:.22;top:-100px;right:-100px;border-radius:50%}
+.hero-content{position:relative;z-index:2}
+.avatar{width:110px;height:110px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-family:var(--fd);font-weight:700;color:#fff;margin-bottom:28px}
+.hero .eyebrow{display:inline-block;color:var(--mint);letter-spacing:.1em;font-size:.85rem;font-weight:600;margin-bottom:16px}
+.hero h1{font-size:clamp(2.6rem,7vw,4.6rem);margin-bottom:18px}
+.hero h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.2rem;color:var(--dim);margin-bottom:32px;max-width:560px}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:14px 28px;border-radius:11px;font-weight:600;font-size:.98rem;transition:.2s;border:none;cursor:pointer}
+.btn:hover{background:var(--accent2);transform:translateY(-2px)}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap}
+section{padding:80px 0}
+.section-title{margin-bottom:44px}
+.section-title .eyebrow{color:var(--mint);letter-spacing:.1em;font-size:.85rem;font-weight:600}
+.section-title h2{font-size:clamp(1.8rem,4.5vw,2.8rem);margin-top:8px}
+/* hakkımda + yetenekler */
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr}}
+.about p{color:var(--dim);margin-bottom:16px;font-size:1.02rem}
+.skills{display:flex;flex-direction:column;gap:14px}
+.skill .top{display:flex;justify-content:space-between;margin-bottom:6px;font-size:.9rem}
+.skill .bar{height:7px;background:var(--surface);border-radius:10px;overflow:hidden}
+.skill .fill{height:100%;background:var(--grad);border-radius:10px}
+/* portfolyo galeri */
+.portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:760px){.portfolio{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.portfolio{grid-template-columns:1fr}}
+.proj{aspect-ratio:4/3;border-radius:14px;background:var(--surface);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:.2s;cursor:pointer}
+.proj:hover{transform:translateY(-4px);border-color:var(--accent)}
+.proj .ico{font-size:2.4rem}
+.proj .name{font-family:var(--fd);font-weight:600;font-size:1rem}
+.proj .cat{color:var(--faint);font-size:.8rem}
+/* hizmetler */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:760px){.services{grid-template-columns:1fr}}
+.svc{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px}
+.svc .icon{font-size:2rem;margin-bottom:12px}
+.svc h3{font-size:1.2rem;margin-bottom:8px}
+.svc p{color:var(--dim);font-size:.9rem}
+/* yorumlar */
+.reviews{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:760px){.reviews{grid-template-columns:1fr}}
+.review{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:26px}
+.review p{color:var(--dim);font-size:.95rem;margin-bottom:14px;font-style:italic}
+.review .who{font-weight:600;font-size:.9rem}.review .who span{color:var(--faint);font-weight:400}
+/* sss */
+.faq{max-width:720px}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{padding:18px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:1.02rem}
+.faq-q span{color:var(--accent);transition:.3s;font-size:1.4rem;line-height:1}
+.faq-a{max-height:0;overflow:hidden;transition:.3s;color:var(--dim)}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:18px}
+.faq-item.open .faq-q span{transform:rotate(45deg)}
+/* iletişim */
+.contact{text-align:center;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:56px}
+.contact h2{font-size:2.2rem;margin-bottom:14px}
+.contact p{color:var(--dim);margin-bottom:26px}
+.social{display:flex;gap:14px;justify-content:center;margin-top:24px}
+.social a{width:46px;height:46px;border-radius:12px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:.2s}
+.social a:hover{background:var(--accent);transform:translateY(-3px)}
+footer{padding:36px 0;text-align:center;color:var(--faint);font-size:.85rem;border-top:1px solid var(--border)}
+footer a{color:var(--accent)}
+.reveal{opacity:0;transform:translateY(20px);transition:.7s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
+@media(max-width:720px){.hamburger{display:flex}.nav-links{display:none;position:fixed;inset:72px 0 0 0;background:var(--bg);flex-direction:column;align-items:flex-start;padding:24px;gap:24px;z-index:49}.nav-links.open{display:flex}}
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:999;background:#25d366;color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;box-shadow:0 6px 24px rgba(37,211,102,.45);transition:.2s;text-decoration:none}
+.wa-float:hover{transform:scale(1.1)}
+</style></head><body>
+<header><div class="wrap"><nav>
+<a href="#" class="logo">Ahmet<span>.</span></a>
+<div class="nav-links"><a href="#hakkimda">Hakkımda</a><a href="#portfolyo">Projeler</a><a href="#hizmetler">Hizmetler</a><a href="#iletisim">İletişim</a></div>
+<a href="#iletisim" class="nav-cta">İletişime Geç</a>
+<button class="hamburger" id="ham" aria-label="Menü"><span></span><span></span><span></span></button>
+</nav></div></header>
+<section class="hero"><div class="wrap"><div class="hero-content">
+<div class="avatar">AY</div>
+<span class="eyebrow">👋 Merhaba, ben Ahmet</span>
+<h1>Dijital <span>tasarımcı</span><br>& geliştirici</h1>
+<p>Markaların dijitalde fark yaratmasına yardımcı oluyorum. Yaratıcı tasarım ve temiz kod ile fikirlerinizi hayata geçiriyorum.</p>
+<div class="btn-row"><a href="#portfolyo" class="btn">Projelerimi Gör</a><a href="#iletisim" class="btn btn-outline">İletişime Geç</a></div>
+</div></div></section>
+<section id="hakkimda"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Hakkımda</div><h2>Kısaca ben</h2></div>
+<div class="about-grid">
+<div class="about reveal">
+<p>5 yılı aşkın süredir dijital tasarım ve web geliştirme alanında çalışıyorum. Küçük işletmelerden büyük markalara kadar birçok projede yer aldım.</p>
+<p>Tutkum, kullanıcı dostu ve estetik açıdan güçlü dijital deneyimler yaratmak. Her projeye özen ve detay odağıyla yaklaşıyorum.</p>
+<p>Birlikte çalışmak isterseniz, bir kahve içip projenizi konuşalım.</p>
+</div>
+<div class="skills reveal">
+<div class="skill"><div class="top"><span>UI/UX Tasarım</span><span>95%</span></div><div class="bar"><div class="fill" style="width:95%"></div></div></div>
+<div class="skill"><div class="top"><span>Web Geliştirme</span><span>90%</span></div><div class="bar"><div class="fill" style="width:90%"></div></div></div>
+<div class="skill"><div class="top"><span>Marka Kimliği</span><span>85%</span></div><div class="bar"><div class="fill" style="width:85%"></div></div></div>
+<div class="skill"><div class="top"><span>Mobil Tasarım</span><span>88%</span></div><div class="bar"><div class="fill" style="width:88%"></div></div></div>
+</div>
+</div></div></section>
+<section id="portfolyo" style="background:var(--bg2)"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Portfolyo</div><h2>Seçili projeler</h2></div>
+<div class="portfolio">
+<div class="proj reveal"><div class="ico">🛍️</div><div class="name">E-Ticaret Sitesi</div><div class="cat">Web Tasarım</div></div>
+<div class="proj reveal"><div class="ico">📱</div><div class="name">Mobil Uygulama</div><div class="cat">UI/UX</div></div>
+<div class="proj reveal"><div class="ico">🎨</div><div class="name">Marka Kimliği</div><div class="cat">Branding</div></div>
+<div class="proj reveal"><div class="ico">📊</div><div class="name">Dashboard</div><div class="cat">Web App</div></div>
+<div class="proj reveal"><div class="ico">🍽️</div><div class="name">Restoran Sitesi</div><div class="cat">Web Tasarım</div></div>
+<div class="proj reveal"><div class="ico">💼</div><div class="name">Kurumsal Site</div><div class="cat">Web Tasarım</div></div>
+</div></div></section>
+<section id="hizmetler"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Hizmetler</div><h2>Neler yapıyorum</h2></div>
+<div class="services">
+<div class="svc reveal"><div class="icon">🎨</div><h3>Web Tasarım</h3><p>Modern, mobil uyumlu ve dönüşüm odaklı web siteleri.</p></div>
+<div class="svc reveal"><div class="icon">📱</div><h3>UI/UX Tasarım</h3><p>Kullanıcı dostu arayüzler ve akıcı deneyimler.</p></div>
+<div class="svc reveal"><div class="icon">✨</div><h3>Marka Kimliği</h3><p>Logo, renk paleti ve görsel dil tasarımı.</p></div>
+</div></div></section>
+<section id="yorumlar" style="background:var(--bg2)"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">Referanslar</div><h2>Müşterilerim ne diyor</h2></div>
+<div class="reviews">
+<div class="review reveal"><p>"Ahmet ile çalışmak harikaydı. Markamızı tam anladı ve beklentimizin üzerinde bir iş çıkardı."</p><div class="who">Elif Demir <span>— Marka Sahibi</span></div></div>
+<div class="review reveal"><p>"Profesyonel, hızlı ve yaratıcı. Web sitemiz lansmandan sonra dönüşümlerimizi ikiye katladı."</p><div class="who">Mert Kaya <span>— Girişimci</span></div></div>
+</div></div></section>
+<section id="sss"><div class="wrap">
+<div class="section-title reveal"><div class="eyebrow">SSS</div><h2>Sıkça sorulan sorular</h2></div>
+<div class="faq">
+<div class="faq-item reveal"><div class="faq-q">Bir proje ne kadar sürer?<span>+</span></div><div class="faq-a">Kapsamına göre değişir; basit bir site 1-2 hafta, kapsamlı projeler 4-6 hafta sürebilir. Görüşmede net süre veririm.</div></div>
+<div class="faq-item reveal"><div class="faq-q">Fiyatlandırma nasıl?<span>+</span></div><div class="faq-a">Her proje benzersiz. İhtiyacınızı dinledikten sonra şeffaf, sabit bir teklif sunuyorum.</div></div>
+<div class="faq-item reveal"><div class="faq-q">Uzaktan çalışıyor musunuz?<span>+</span></div><div class="faq-a">Evet, dünyanın her yerinden müşterilerle çevrimiçi olarak rahatça çalışıyorum.</div></div>
+<div class="faq-item reveal"><div class="faq-q">Teslim sonrası destek var mı?<span>+</span></div><div class="faq-a">Tabii ki. Teslim sonrası belirli bir süre ücretsiz revizyon ve destek sağlıyorum.</div></div>
+</div></div></section>
+<section id="iletisim"><div class="wrap">
+<div class="contact reveal">
+<h2>Birlikte çalışalım</h2>
+<p>Bir projeniz mi var? Hayalinizdeki dijital ürünü birlikte hayata geçirelim.</p>
+<a href="mailto:ahmet@ornek.com" class="btn">E-posta Gönder</a>
+<div class="social">
+<a href="#" title="LinkedIn">in</a><a href="#" title="Instagram">📷</a><a href="#" title="Twitter">𝕏</a><a href="tel:05551112233" title="Telefon">📞</a>
+</div>
+</div></div></section>
+<footer><div class="wrap"><p>© 2026 Ahmet Yılmaz — Tüm hakları saklıdır.</p><p style="margin-top:8px">Web sitesi <a href="https://ebrutechsystems.com" target="_blank" rel="noopener noreferrer">EbruTech Studios</a> tarafından hazırlanmıştır.</p></div></footer>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.1});
+document.querySelectorAll(".reveal").forEach((e,i)=>{e.style.transitionDelay=(i%3*0.07)+"s";io.observe(e)});
+document.querySelectorAll(".faq-q").forEach(q=>q.onclick=()=>q.parentElement.classList.toggle("open"));
+const ham=document.getElementById("ham"),navL=document.querySelector(".nav-links");
+ham.onclick=()=>navL.classList.toggle("open");
+navL.querySelectorAll("a").forEach(a=>a.onclick=()=>navL.classList.remove("open"));
+</script>
+<a href="https://wa.me/905313814971?text=Merhaba" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">💬</a>
+</body></html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yaş Hesaplama — EbruTech Studios</title>
+<meta name="description" content="Doğum tarihinizden yaşınızı yıl, ay, gün olarak hesaplayın. Kaç gün yaşadığınızı öğrenin. Burç ve sonraki doğum gününüze kaç gün. Ücretsiz yaş hesaplama.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-age.html">
+<meta property="og:title" content="Yaş Hesaplama — EbruTech Studios"><meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<style>
+.age-big{background:linear-gradient(135deg,rgba(200,255,46,.12),rgba(41,211,255,.06));border:1px solid var(--accent);border-radius:18px;padding:28px;text-align:center;margin-bottom:20px}
+.age-big .main-val{font-family:var(--font-display);font-size:3rem;font-weight:800;color:var(--accent);line-height:1}
+.age-big .sub-val{color:var(--txt-dim);font-size:.95rem;margin-top:8px}
+.age-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:500px){.age-grid{grid-template-columns:repeat(2,1fr)}}
+.age-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.age-card .v{font-family:var(--font-display);font-size:1.4rem;color:var(--accent-2);margin-bottom:3px}
+.age-card .l{font-size:.78rem;color:var(--txt-faint)}
+.info-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.info-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
+.info-box .il{font-size:.75rem;color:var(--txt-faint);margin-bottom:4px}
+.info-box .iv{font-size:.95rem;color:var(--txt);font-weight:600}
+.bday-box{background:rgba(200,255,46,.05);border:1px dashed var(--accent);border-radius:12px;padding:16px;text-align:center;margin-top:12px}
+</style>
+</head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">🎂 Yaş Hesaplama</h1>
+<p class="lead" style="margin:14px 0 26px">Doğum tarihinizi girin; yaşınızı, doğduğunuz günü ve sonraki doğum gününüzü hesaplayalım.</p>
+<div class="controls">
+<div class="field"><label>Doğum Tarihi</label><input id="dob" type="date"></div>
+<div class="field"><label>Hesaplama Tarihi <span style="color:var(--txt-faint);font-weight:400">(varsayılan bugün)</span></label><input id="target" type="date"></div>
+<button id="go" class="btn btn-primary btn-lg" style="width:100%">Hesapla</button>
+</div>
+<div id="resultArea" style="display:none;margin-top:24px">
+<div class="age-big">
+  <div class="main-val" id="mainAge"></div>
+  <div class="sub-val" id="subAge"></div>
+</div>
+<div class="age-grid" id="cards"></div>
+<div class="info-row" id="infoRow"></div>
+<div class="bday-box" id="bdayBox"></div>
+</div>
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+document.getElementById("target").valueAsDate=new Date();
+const DAYS=["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
+const MONTHS=["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
+const zodiac=[
+  ["Oğlak","♑",1,20],["Kova","♒",2,18],["Balık","♓",3,20],["Koç","♈",4,20],
+  ["Boğa","♉",5,21],["İkizler","♊",6,21],["Yengeç","♋",7,23],["Aslan","♌",8,23],
+  ["Başak","♍",9,23],["Terazi","♎",10,23],["Akrep","♏",11,22],["Yay","♐",12,22],["Oğlak","♑",12,31]
+];
+function getZodiac(m,d){
+  for(let i=0;i<zodiac.length-1;i++){const z=zodiac[i];if(m<z[2]||(m===z[2]&&d<z[3]))return{name:z[0],sym:z[1]};}
+  return{name:"Oğlak",sym:"♑"};
+}
+function card(v,l){return `<div class="age-card"><div class="v">${v}</div><div class="l">${l}</div></div>`;}
+
+document.getElementById("go").onclick=()=>{
+  const dob=document.getElementById("dob").valueAsDate;
+  const target=document.getElementById("target").valueAsDate||new Date();
+  if(!dob){ETSlib.toast("Doğum tarihi gir");return;}
+  if(dob>target){ETSlib.toast("Doğum tarihi ileride olamaz");return;}
+
+  let y=target.getFullYear()-dob.getFullYear();
+  let m=target.getMonth()-dob.getMonth();
+  let d=target.getDate()-dob.getDate();
+  if(d<0){m--;d+=new Date(target.getFullYear(),target.getMonth(),0).getDate();}
+  if(m<0){y--;m+=12;}
+  const gun=Math.floor((target-dob)/86400000);
+  const hafta=Math.floor(gun/7);
+  const saat=gun*24;
+  const dobMonth=dob.getMonth()+1,dobDay=dob.getDate();
+
+  // next birthday
+  let nextBday=new Date(target.getFullYear(),dob.getMonth(),dob.getDate());
+  if(nextBday<=target)nextBday.setFullYear(nextBday.getFullYear()+1);
+  const daysUntilBday=Math.ceil((nextBday-target)/86400000);
+  const isBirthdayToday=(dob.getMonth()===target.getMonth()&&dob.getDate()===target.getDate());
+
+  // zodiac
+  const {name:zName,sym:zSym}=getZodiac(dobMonth,dobDay);
+
+  // born day of week
+  const bornDay=DAYS[dob.getDay()];
+  const bornDate=`${dob.getDate()} ${MONTHS[dob.getMonth()]} ${dob.getFullYear()}`;
+
+  document.getElementById("mainAge").textContent=y;
+  document.getElementById("subAge").textContent=`${y} yıl ${m} ay ${d} gün`;
+
+  document.getElementById("cards").innerHTML=
+    card(gun.toLocaleString("tr-TR"),"Toplam Gün")+
+    card(hafta.toLocaleString("tr-TR"),"Toplam Hafta")+
+    card((y*12+m).toLocaleString("tr-TR"),"Toplam Ay")+
+    card(saat.toLocaleString("tr-TR"),"Toplam Saat")+
+    card((gun*24*60).toLocaleString("tr-TR"),"Toplam Dakika")+
+    card((y+1)+"","Sonraki Yaş");
+
+  document.getElementById("infoRow").innerHTML=
+    `<div class="info-box"><div class="il">Doğduğunuz Gün</div><div class="iv">${bornDay}, ${bornDate}</div></div>`+
+    `<div class="info-box"><div class="il">Burç</div><div class="iv">${zSym} ${zName}</div></div>`;
+
+  document.getElementById("bdayBox").innerHTML=isBirthdayToday
+    ? `<div style="font-size:1.5rem">🎉</div><div style="font-weight:700;margin-top:6px">Doğum Günün Kutlu Olsun!</div>`
+    : `<div style="font-size:.82rem;color:var(--txt-faint);margin-bottom:4px">Sonraki Doğum Gününe</div><div style="font-family:var(--font-display);font-size:2rem;color:var(--accent)">${daysUntilBday} gün</div><div style="font-size:.82rem;color:var(--txt-faint);margin-top:4px">${nextBday.getDate()} ${MONTHS[nextBday.getMonth()]} ${nextBday.getFullYear()}</div>`;
+
+  document.getElementById("resultArea").style.display="block";
+  ETSlib.toast("Hesaplandı ✓");
+};
+</script></body></html>

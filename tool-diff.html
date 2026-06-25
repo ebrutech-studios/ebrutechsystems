@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Metin Karşılaştırma (Diff) Aracı — Online | EbruTech Studios</title>
+<meta name="description" content="İki metni online karşılaştır. Eklenen ve silinen satırları renkli olarak gör. Ücretsiz, tarayıcıda çalışır, kayıt gerekmez.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-diff.html">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="Metin Karşılaştırma Aracı — EbruTech Studios">
+<meta property="og:description" content="İki metni karşılaştır, eklenen ve silinen satırları anında gör.">
+<meta property="og:url" content="https://ebrutechsystems.com/tool-diff.html">
+<meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Metin Karşılaştırma Aracı","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-diff.html"}
+</script>
+<style>
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+@media(max-width:680px){.diff-grid{grid-template-columns:1fr}}
+.diff-label{font-size:.8rem;font-weight:700;color:var(--txt-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.diff-ta{
+  width:100%;height:220px;padding:14px;border-radius:8px;
+  border:1px solid var(--border-strong);background:var(--bg-2);
+  color:var(--txt);font-family:monospace;font-size:.88rem;
+  line-height:1.6;resize:vertical;outline:none;transition:.18s;
+  box-sizing:border-box;
+}
+.diff-ta:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,255,46,.1)}
+.diff-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
+.diff-stats{font-size:.82rem;color:var(--txt-faint)}
+.diff-result{
+  background:var(--bg-2);border:1px solid var(--border);border-radius:10px;
+  overflow:auto;font-family:monospace;font-size:.88rem;line-height:1.6;
+  min-height:80px;max-height:380px;
+}
+.diff-result:empty::after{content:"Karşılaştırma sonucu burada görünecek.";padding:22px;display:block;color:var(--txt-faint);font-family:var(--font-body)}
+.dl{display:flex;padding:3px 14px}
+.dl-num{color:var(--txt-faint);min-width:42px;user-select:none;flex-shrink:0;font-size:.78rem;padding-top:1px}
+.dl-txt{flex:1;white-space:pre-wrap;word-break:break-all}
+.dl.same .dl-txt{color:var(--txt-dim)}
+.dl.added{background:rgba(41,211,80,.1)}
+.dl.added .dl-txt{color:#7efca0}
+.dl.added .dl-num::before{content:"+ "}
+.dl.removed{background:rgba(255,80,80,.1)}
+.dl.removed .dl-txt{color:#ff9999;text-decoration:line-through}
+.dl.removed .dl-num::before{content:"− "}
+</style>
+</head>
+<body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+  <span class="eyebrow">Araç</span>
+  <h1 style="font-size:2.2rem">Metin Karşılaştırma</h1>
+  <p class="lead" style="margin:14px 0 26px">İki metni satır satır karşılaştır — eklenen ve silinen satırlar renkli olarak işaretlenir.</p>
+
+  <div class="diff-grid">
+    <div>
+      <div class="diff-label">Orijinal Metin</div>
+      <textarea class="diff-ta" id="diffOld" placeholder="Eski / orijinal metni buraya yapıştır..."></textarea>
+    </div>
+    <div>
+      <div class="diff-label">Yeni Metin</div>
+      <textarea class="diff-ta" id="diffNew" placeholder="Yeni / değiştirilmiş metni buraya yapıştır..."></textarea>
+    </div>
+  </div>
+
+  <div class="diff-actions">
+    <button class="btn btn-primary" id="diffBtn">Karşılaştır</button>
+    <button class="btn btn-ghost" id="diffClear">Temizle</button>
+    <span class="diff-stats" id="diffStats"></span>
+  </div>
+
+  <div class="diff-result" id="diffResult"></div>
+
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+function lcs(a, b) {
+  const m=a.length, n=b.length;
+  const dp=[];
+  for(let i=0;i<=m;i++){dp[i]=new Array(n+1).fill(0);}
+  for(let i=1;i<=m;i++) for(let j=1;j<=n;j++)
+    dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]+1:Math.max(dp[i-1][j],dp[i][j-1]);
+  const res=[];
+  let i=m,j=n;
+  while(i>0||j>0){
+    if(i>0&&j>0&&a[i-1]===b[j-1]){res.unshift({t:"same",v:a[i-1]});i--;j--;}
+    else if(j>0&&(i===0||dp[i][j-1]>=dp[i-1][j])){res.unshift({t:"added",v:b[j-1]});j--;}
+    else{res.unshift({t:"removed",v:a[i-1]});i--;}
+  }
+  return res;
+}
+
+function runDiff(){
+  const oldTxt=document.getElementById("diffOld").value;
+  const newTxt=document.getElementById("diffNew").value;
+  const a=oldTxt.split("\n");
+  const b=newTxt.split("\n");
+  if(a.length>300||b.length>300){
+    document.getElementById("diffResult").innerHTML="<div style='padding:16px;color:#ff9999'>Metin çok uzun (max 300 satır). Lütfen daha kısa metin girin.</div>";
+    return;
+  }
+  const diff=lcs(a,b);
+  let oldLine=1,newLine=1,same=0,added=0,removed=0;
+  const html=diff.map(d=>{
+    let lbl="";
+    if(d.t==="same"){lbl=oldLine+"/"+newLine;oldLine++;newLine++;same++;}
+    else if(d.t==="added"){lbl=newLine;newLine++;added++;}
+    else{lbl=oldLine;oldLine++;removed++;}
+    const cls=d.t;
+    const safe=d.v.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    return "<div class='dl "+cls+"'><span class='dl-num'>"+lbl+"</span><span class='dl-txt'>"+safe+"</span></div>";
+  }).join("");
+  document.getElementById("diffResult").innerHTML=html||"<div style='padding:16px;color:var(--txt-faint)'>Metinler aynı.</div>";
+  const parts=[];
+  if(same) parts.push(same+" aynı");
+  if(added) parts.push("<span style='color:#7efca0'>+"+added+" eklendi</span>");
+  if(removed) parts.push("<span style='color:#ff9999'>-"+removed+" silindi</span>");
+  document.getElementById("diffStats").innerHTML=parts.join(" · ")||"";
+}
+
+document.getElementById("diffBtn").addEventListener("click",runDiff);
+document.getElementById("diffClear").addEventListener("click",()=>{
+  document.getElementById("diffOld").value="";
+  document.getElementById("diffNew").value="";
+  document.getElementById("diffResult").innerHTML="";
+  document.getElementById("diffStats").innerHTML="";
+});
+document.getElementById("diffOld").addEventListener("input",()=>{if(document.getElementById("diffResult").innerHTML) runDiff();});
+document.getElementById("diffNew").addEventListener("input",()=>{if(document.getElementById("diffResult").innerHTML) runDiff();});
+</script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Base64 Encode / Decode Aracı — EbruTech Studios</title>
+<meta name="description" content="Base64 encode ve decode aracı. Metin veya dosyayı Base64'e çevir, otomatik yön tespiti. Türkçe karakter destekli. Ücretsiz.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-base64.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="Base64 Encode / Decode Aracı — EbruTech Studios">
+<meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<style>
+.ta{width:100%;min-height:130px;padding:14px;border-radius:12px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-family:monospace;font-size:.88rem;resize:vertical;line-height:1.55}
+.ta:focus{outline:none;border-color:var(--accent)}
+.file-dropzone{border:2px dashed var(--border-strong);border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:.2s;margin-bottom:14px}
+.file-dropzone:hover,.file-dropzone.drag{border-color:var(--accent);background:rgba(200,255,46,.04)}
+.file-dropzone p{color:var(--txt-faint);font-size:.88rem;margin-top:6px}
+.detect-hint{padding:8px 12px;border-radius:8px;font-size:.8rem;background:rgba(41,211,255,.08);border:1px solid rgba(41,211,255,.2);color:var(--accent-2);display:none;margin-bottom:10px}
+.stat-row{display:flex;gap:12px;flex-wrap:wrap;font-size:.8rem;color:var(--txt-faint);margin-top:6px}
+.stat-row b{color:var(--txt-dim)}
+.tab-btns{display:flex;gap:6px;margin-bottom:14px}
+.tab-btn{padding:8px 18px;border-radius:20px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.82rem;cursor:pointer;transition:.15s}
+.tab-btn.active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Base64 Encode / Decode Aracı","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-base64.html"}
+</script>
+</head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç · Geliştirici</span><h1 style="font-size:2.2rem">🔐 Base64 Encode / Decode</h1>
+<p class="lead" style="margin:14px 0 26px">Metni veya dosyayı Base64'e çevir ya da çöz. Otomatik yön tespiti. Türkçe karakter destekli.</p>
+
+<div class="tab-btns">
+<button class="tab-btn active" id="tabText">Metin</button>
+<button class="tab-btn" id="tabFile">Dosya / Data URL</button>
+</div>
+
+<div id="textMode">
+<div class="controls">
+<div class="field"><label>Giriş</label>
+<textarea id="text" class="ta" placeholder="Metin veya Base64 yazın... Otomatik yön tespit edilir"></textarea>
+<div class="detect-hint" id="detectHint"></div>
+<div class="stat-row" id="inStats"></div>
+</div>
+<div class="row">
+<button id="enc" class="btn btn-primary">→ Base64 Yap</button>
+<button id="dec" class="btn btn-ghost">← Çöz</button>
+<button id="auto" class="btn btn-ghost" title="Otomatik tespit">⚡ Otomatik</button>
+<button id="swap" class="btn btn-ghost">↕ Yer Değiştir</button>
+</div>
+<div id="err" style="display:none;padding:10px 12px;border-radius:10px;background:rgba(255,80,80,.1);color:#ff8080;font-size:.86rem;margin-top:6px"></div>
+<div class="field"><label>Sonuç</label>
+<textarea id="res" class="ta" readonly></textarea>
+<div class="stat-row" id="outStats"></div>
+</div>
+<button id="copy" class="btn btn-ghost">Sonucu Kopyala</button>
+</div>
+</div>
+
+<div id="fileMode" style="display:none">
+<div class="file-dropzone" id="fileDz">
+<div style="font-size:2rem">📁</div>
+<div style="font-weight:600;margin-top:8px">Dosya seç veya sürükle</div>
+<p>Herhangi bir dosya: resim, PDF, ses, video... Base64 Data URL oluşturulur</p>
+<input type="file" id="fileInput" class="hidden">
+</div>
+<div id="fileResult" class="controls" style="display:none">
+<div class="field"><label>Dosya Bilgisi</label>
+<div id="fileInfo" style="padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--border);font-size:.85rem;color:var(--txt-dim)"></div>
+</div>
+<div class="field"><label>Base64 Data URL (ilk 500 karakter)</label>
+<textarea id="fileOut" class="ta" readonly style="min-height:80px"></textarea>
+</div>
+<div class="row">
+<button id="copyDataUrl" class="btn btn-primary">Tamamını Kopyala</button>
+<button id="dlFile" class="btn btn-ghost">Dosyayı İndir</button>
+</div>
+</div>
+</div>
+
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const text=document.getElementById("text"),res=document.getElementById("res"),err=document.getElementById("err");
+let fullDataUrl="";
+
+function e(m){err.style.display=m?"block":"none";err.textContent=m||"";}
+function fmtSize(n){return n<1024?n+" B":n<1048576?(n/1024).toFixed(1)+" KB":(n/1048576).toFixed(2)+" MB";}
+
+function isBase64(s){
+  const b64=/^[A-Za-z0-9+/=\s]+$/.test(s.trim());
+  if(!b64)return false;
+  const stripped=s.trim().replace(/\s/g,"");
+  return stripped.length>8&&stripped.length%4===0;
+}
+
+function updateStats(){
+  const v=text.value;
+  const b64like=isBase64(v);
+  const hint=document.getElementById("detectHint");
+  if(v.length>4&&b64like){
+    hint.style.display="block";
+    hint.textContent="⚡ Bu metin Base64 gibi görünüyor — 'Otomatik' veya '← Çöz' butonunu deneyin";
+  }else{
+    hint.style.display="none";
+  }
+  document.getElementById("inStats").innerHTML=
+    v.length?`<b>${v.length}</b> karakter &nbsp;·&nbsp; <b>${fmtSize(new Blob([v]).size)}</b>`:""
+}
+
+function encode(){
+  try{const r=btoa(unescape(encodeURIComponent(text.value)));res.value=r;e("");
+  document.getElementById("outStats").innerHTML=`<b>${r.length}</b> karakter &nbsp;·&nbsp; ~${Math.ceil(r.length*0.75)} B orijinal`;
+  ETSlib.toast("Kodlandı ✓");}catch(x){e("Kodlama hatası: "+x.message);}
+}
+function decode(){
+  try{const r=decodeURIComponent(escape(atob(text.value.trim())));res.value=r;e("");
+  document.getElementById("outStats").innerHTML=`<b>${r.length}</b> karakter`;
+  ETSlib.toast("Çözüldü ✓");}catch(x){e("Geçersiz Base64 — Lütfen geçerli Base64 girin.");}
+}
+
+document.getElementById("enc").onclick=encode;
+document.getElementById("dec").onclick=decode;
+document.getElementById("auto").onclick=()=>{if(isBase64(text.value))decode();else encode();};
+document.getElementById("swap").onclick=()=>{const tmp=text.value;text.value=res.value;res.value=tmp;updateStats();};
+document.getElementById("copy").onclick=()=>{if(!res.value)return;navigator.clipboard.writeText(res.value);ETSlib.toast("Kopyalandı ✓");};
+text.oninput=updateStats;
+
+// tabs
+document.getElementById("tabText").onclick=()=>{
+  document.getElementById("textMode").style.display="";
+  document.getElementById("fileMode").style.display="none";
+  document.getElementById("tabText").classList.add("active");
+  document.getElementById("tabFile").classList.remove("active");
+};
+document.getElementById("tabFile").onclick=()=>{
+  document.getElementById("fileMode").style.display="";
+  document.getElementById("textMode").style.display="none";
+  document.getElementById("tabFile").classList.add("active");
+  document.getElementById("tabText").classList.remove("active");
+};
+
+// file mode
+const fileDz=document.getElementById("fileDz"),fileInput=document.getElementById("fileInput");
+fileDz.onclick=()=>fileInput.click();
+fileDz.ondragover=e=>{e.preventDefault();fileDz.classList.add("drag");};
+fileDz.ondragleave=()=>fileDz.classList.remove("drag");
+fileDz.ondrop=e=>{e.preventDefault();fileDz.classList.remove("drag");if(e.dataTransfer.files[0])readFile(e.dataTransfer.files[0]);};
+fileInput.onchange=e=>{if(e.target.files[0])readFile(e.target.files[0]);};
+
+function readFile(f){
+  const reader=new FileReader();
+  reader.onload=()=>{
+    fullDataUrl=reader.result;
+    document.getElementById("fileInfo").textContent=`${f.name}  ·  ${fmtSize(f.size)}  ·  ${f.type||"bilinmeyen tip"}`;
+    document.getElementById("fileOut").value=fullDataUrl.slice(0,500)+(fullDataUrl.length>500?"…":"");
+    document.getElementById("fileResult").style.display="block";
+    ETSlib.toast("Dosya yüklendi ✓");
+  };
+  reader.readAsDataURL(f);
+}
+document.getElementById("copyDataUrl").onclick=()=>{if(fullDataUrl){navigator.clipboard.writeText(fullDataUrl);ETSlib.toast("Data URL kopyalandı ✓");}};
+document.getElementById("dlFile").onclick=()=>{
+  if(!fullDataUrl)return;
+  const a=document.createElement("a");a.href=fullDataUrl;a.download="decoded-file";a.click();
+};
+</script></body></html>

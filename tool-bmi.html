@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VKİ / BMI Hesaplama — Vücut Kitle İndeksi Online | EbruTech Studios</title>
+<meta name="description" content="Ücretsiz online VKİ (BMI) hesaplama aracı. Boy ve kilonuzu girin, vücut kitle indeksinizi ve ideal kilo aralığınızı anında öğrenin.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-bmi.html">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="VKİ / BMI Hesaplama — EbruTech Studios">
+<meta property="og:description" content="Boy ve kilonuzu girin, vücut kitle indeksinizi ve ideal kilo aralığınızı öğrenin.">
+<meta property="og:url" content="https://ebrutechsystems.com/tool-bmi.html">
+<meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"VKİ / BMI Hesaplama","applicationCategory":"HealthApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-bmi.html"}
+</script>
+<style>
+.bmi-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
+@media(max-width:560px){.bmi-grid{grid-template-columns:1fr}}
+.bmi-field{display:flex;flex-direction:column;gap:6px}
+.bmi-field label{font-size:.8rem;font-weight:700;color:var(--txt-dim);text-transform:uppercase;letter-spacing:.06em}
+.bmi-input{padding:14px 16px;border-radius:10px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-family:var(--font-display);font-size:1.5rem;font-weight:700;outline:none;transition:.18s;width:100%;box-sizing:border-box}
+.bmi-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,255,46,.1)}
+.bmi-unit{font-size:.82rem;color:var(--txt-faint);margin-top:3px}
+.bmi-result{background:var(--bg-2);border:1px solid var(--border);border-radius:12px;padding:26px;display:none;margin-bottom:20px}
+.bmi-val{font-family:var(--font-display);font-size:3.4rem;font-weight:800;line-height:1;margin-bottom:6px}
+.bmi-cat{font-size:1.1rem;font-weight:700;margin-bottom:18px}
+.bmi-gauge{height:14px;border-radius:99px;background:linear-gradient(90deg,#5599ff 0%,#29d3ff 23%,#c8ff2e 49%,#ffb020 74%,#ff5050 100%);position:relative;margin-bottom:8px;overflow:visible}
+.bmi-gauge-arrow{position:absolute;top:-6px;width:6px;height:26px;background:var(--txt);border-radius:3px;transform:translateX(-50%);transition:left .4s cubic-bezier(.34,1.56,.64,1)}
+.bmi-gauge-labels{display:flex;justify-content:space-between;font-size:.72rem;color:var(--txt-faint);margin-bottom:18px}
+.bmi-ideal{padding:14px 18px;border-radius:8px;background:rgba(200,255,46,.07);border:1px solid rgba(200,255,46,.15);font-size:.9rem;color:var(--txt-dim)}
+.bmi-ideal b{color:var(--accent)}
+.bmi-table{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:28px}
+.bmi-table th{text-align:left;padding:8px 12px;color:var(--txt-faint);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border)}
+.bmi-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--txt-dim)}
+.bmi-table tr.current td{color:var(--txt);font-weight:700}
+.cat-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+</style>
+</head>
+<body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+  <span class="eyebrow">Araç</span>
+  <h1 style="font-size:2.2rem">VKİ / BMI Hesaplama</h1>
+  <p class="lead" style="margin:14px 0 26px">Boy ve kilonuzu girin — Vücut Kitle İndeksinizi ve ideal kilo aralığınızı öğrenin.</p>
+
+  <div class="bmi-grid">
+    <div class="bmi-field">
+      <label>Boy</label>
+      <input class="bmi-input" id="bmiH" type="number" min="100" max="250" placeholder="170" inputmode="numeric">
+      <span class="bmi-unit">santimetre (cm)</span>
+    </div>
+    <div class="bmi-field">
+      <label>Kilo</label>
+      <input class="bmi-input" id="bmiW" type="number" min="20" max="400" placeholder="70" inputmode="decimal">
+      <span class="bmi-unit">kilogram (kg)</span>
+    </div>
+  </div>
+
+  <div class="bmi-result" id="bmiResult">
+    <div class="bmi-val" id="bmiVal"></div>
+    <div class="bmi-cat" id="bmiCat"></div>
+    <div class="bmi-gauge"><div class="bmi-gauge-arrow" id="bmiArrow" style="left:0"></div></div>
+    <div class="bmi-gauge-labels"><span>Zayıf</span><span>Normal</span><span>Fazla Kilolu</span><span>Obez</span></div>
+    <div class="bmi-ideal" id="bmiIdeal"></div>
+  </div>
+
+  <table class="bmi-table">
+    <thead><tr><th>Kategori</th><th>VKİ Aralığı</th></tr></thead>
+    <tbody>
+      <tr id="rUnder"><td><span class="cat-dot" style="background:#5599ff"></span>Zayıf</td><td>&lt; 18.5</td></tr>
+      <tr id="rNorm"><td><span class="cat-dot" style="background:#c8ff2e"></span>Normal</td><td>18.5 – 24.9</td></tr>
+      <tr id="rOver"><td><span class="cat-dot" style="background:#ffb020"></span>Fazla Kilolu</td><td>25.0 – 29.9</td></tr>
+      <tr id="rObese"><td><span class="cat-dot" style="background:#ff5050"></span>Obez</td><td>≥ 30.0</td></tr>
+    </tbody>
+  </table>
+
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const CATS=[
+  {lbl:"Zayıf",     col:"#5599ff", max:18.5, gaugeP:0},
+  {lbl:"Normal",    col:"#c8ff2e", max:25.0, gaugeP:23},
+  {lbl:"Fazla Kilolu",col:"#ffb020",max:30.0,gaugeP:49},
+  {lbl:"Obez",      col:"#ff5050", max:99,   gaugeP:74}
+];
+function calc(){
+  const h=parseFloat(document.getElementById("bmiH").value);
+  const w=parseFloat(document.getElementById("bmiW").value);
+  const res=document.getElementById("bmiResult");
+  if(!h||!w||h<100||h>250||w<20){res.style.display="none";return;}
+  const hm=h/100;
+  const bmi=w/(hm*hm);
+  const bmiR=Math.round(bmi*10)/10;
+  const cat=CATS.find(c=>bmi<c.max)||CATS[3];
+  res.style.display="block";
+  document.getElementById("bmiVal").textContent=bmiR.toFixed(1);
+  document.getElementById("bmiVal").style.color=cat.col;
+  document.getElementById("bmiCat").textContent=cat.lbl;
+  document.getElementById("bmiCat").style.color=cat.col;
+  const minIdeal=18.5*hm*hm, maxIdeal=24.9*hm*hm;
+  document.getElementById("bmiIdeal").innerHTML="<b>İdeal kilo aralığın:</b> "+minIdeal.toFixed(1)+" – "+maxIdeal.toFixed(1)+" kg · Fark: "+(w-maxIdeal>0?"+":"")+(w-maxIdeal>0?(w-maxIdeal).toFixed(1)+" kg fazla":(minIdeal-w>0?(minIdeal-w).toFixed(1)+" kg eksik":"İdeal aralıkta"));
+  const gaugeP=Math.min(96,Math.max(2,cat.gaugeP+(bmi-cat.gaugeP<18.5?0:0)+((bmi-(CATS[CATS.indexOf(cat)-1]?.max||0))/(cat.max-(CATS[CATS.indexOf(cat)-1]?.max||0)))*23));
+  const pct=Math.min(97,Math.max(3,CATS.indexOf(cat)*25+((bmi-(CATS[CATS.indexOf(cat)-1]?.max||0))/(cat.max-(CATS[CATS.indexOf(cat)-1]?.max||2)))*25));
+  document.getElementById("bmiArrow").style.left=pct.toFixed(1)+"%";
+  document.querySelectorAll(".bmi-table tr[id]").forEach(r=>r.classList.remove("current"));
+  const map={Zayıf:"rUnder",Normal:"rNorm","Fazla Kilolu":"rOver","Obez":"rObese"};
+  if(map[cat.lbl]) document.getElementById(map[cat.lbl]).classList.add("current");
+}
+document.getElementById("bmiH").addEventListener("input",calc);
+document.getElementById("bmiW").addEventListener("input",calc);
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lorem Ipsum Üretici — Türkçe ve Latin Dolgu Metin | EbruTech Studios</title>
+<meta name="description" content="Ücretsiz online lorem ipsum üretici. Paragraf sayısını seç, Latin veya Türkçe dolgu metin oluştur ve kopyala. Tasarım ve prototip çalışmaları için ideal.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-lorem.html">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="Lorem Ipsum Üretici — EbruTech Studios">
+<meta property="og:description" content="Paragraf sayısını seç, Latin veya Türkçe dolgu metin üret ve kopyala.">
+<meta property="og:url" content="https://ebrutechsystems.com/tool-lorem.html">
+<meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Lorem Ipsum Üretici","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-lorem.html"}
+</script>
+<style>
+.lorem-controls{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;margin-bottom:22px}
+.lorem-ctrl{display:flex;flex-direction:column;gap:6px}
+.lorem-ctrl label{font-size:.8rem;font-weight:700;color:var(--txt-dim);text-transform:uppercase;letter-spacing:.06em}
+.lorem-ctrl select,.lorem-ctrl input[type=number]{padding:9px 13px;border-radius:8px;border:1px solid var(--border-strong);background:var(--bg-2);color:var(--txt);font-family:var(--font-body);font-size:.95rem;outline:none;transition:.18s;min-width:100px}
+.lorem-ctrl select:focus,.lorem-ctrl input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,255,46,.1)}
+.lorem-output{background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:22px;min-height:180px;max-height:420px;overflow-y:auto;font-size:.95rem;line-height:1.75;color:var(--txt-dim);word-break:break-word}
+.lorem-output p{margin:0 0 16px;color:var(--txt-dim)}
+.lorem-output p:last-child{margin-bottom:0}
+.lorem-stats{font-size:.8rem;color:var(--txt-faint);margin-top:10px;margin-bottom:14px}
+.lorem-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+</style>
+</head>
+<body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+  <span class="eyebrow">Araç</span>
+  <h1 style="font-size:2.2rem">Lorem Ipsum Üretici</h1>
+  <p class="lead" style="margin:14px 0 26px">Tasarım ve prototip için anında dolgu metin oluştur. Latin veya Türkçe formatı seç.</p>
+  <div class="lorem-controls">
+    <div class="lorem-ctrl">
+      <label>Format</label>
+      <select id="loremLang">
+        <option value="latin">Lorem Ipsum (Latin)</option>
+        <option value="tr">Türkçe Dolgu</option>
+      </select>
+    </div>
+    <div class="lorem-ctrl">
+      <label>Paragraf Sayısı</label>
+      <input type="number" id="loremCount" min="1" max="20" value="3">
+    </div>
+    <div class="lorem-ctrl" style="justify-content:flex-end">
+      <button class="btn btn-primary" id="loremGen">Oluştur</button>
+    </div>
+  </div>
+  <div class="lorem-actions">
+    <button class="btn btn-ghost" id="loremCopy">Tümünü Kopyala</button>
+    <button class="btn btn-ghost" id="loremHtml">HTML Olarak Kopyala</button>
+  </div>
+  <div class="lorem-stats" id="loremStats"></div>
+  <div class="lorem-output" id="loremOut"></div>
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const LW="lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum curabitur pretium tincidunt lacus nulla gravida orci a odio nullam varius turpis".split(" ");
+const TW="bir bu her ile için de da ne en çok hem daha hiç ama veya gibi kadar çünkü ancak sadece bile artık nasıl neden sonra önce üzerinde altında içinde dışında arasında yanında zamanında özellikle genellikle ayrıca bunun yanı sıra öte yandan bununla birlikte dolayısıyla bu nedenle örneğin yani kısacası sonuç olarak dolgu metin tasarım prototip çalışma sayfa görsel içerik başlık alt başlık paragraf bölüm iletişim hizmet ürün bilgi firma müşteri kullanıcı ziyaretçi site web uygulama yazılım destek ekip proje süreç adım aşama hedef amaç sonuç etki fayda değer kalite".split(" ");
+function rp(words,isFirst){
+  const len=40+Math.floor(Math.random()*35);
+  let arr=[];
+  if(isFirst&&words===LW) arr=["Lorem","ipsum","dolor","sit","amet,","consectetur","adipiscing","elit."];
+  while(arr.length<len){
+    arr.push(words[Math.floor(Math.random()*words.length)]);
+    if(arr.length%(8+Math.floor(Math.random()*10))===0) arr[arr.length-1]=arr[arr.length-1].replace(/[,.]?$/,",");
+  }
+  let s=arr.join(" ").replace(/,\s*$/,"")+".";
+  return s.charAt(0).toUpperCase()+s.slice(1);
+}
+function generate(){
+  const lang=document.getElementById("loremLang").value;
+  const count=Math.min(20,Math.max(1,parseInt(document.getElementById("loremCount").value)||3));
+  const words=lang==="latin"?LW:TW;
+  const paras=Array.from({length:count},(_,i)=>rp(words,i===0));
+  document.getElementById("loremOut").innerHTML=paras.map(p=>"<p>"+p+"</p>").join("");
+  document.getElementById("loremStats").textContent=count+" paragraf · "+paras.reduce((s,p)=>s+p.split(/\s+/).length,0)+" kelime";
+}
+document.getElementById("loremGen").addEventListener("click",generate);
+document.getElementById("loremCount").addEventListener("input",generate);
+document.getElementById("loremLang").addEventListener("change",generate);
+document.getElementById("loremCopy").addEventListener("click",async()=>{
+  const t=Array.from(document.querySelectorAll("#loremOut p")).map(p=>p.textContent).join("\n\n");
+  await navigator.clipboard.writeText(t);
+  const b=document.getElementById("loremCopy");b.textContent="Kopyalandı";setTimeout(()=>b.textContent="Tümünü Kopyala",1800);
+});
+document.getElementById("loremHtml").addEventListener("click",async()=>{
+  const h=Array.from(document.querySelectorAll("#loremOut p")).map(p=>"<p>"+p.textContent+"</p>").join("\n");
+  await navigator.clipboard.writeText(h);
+  const b=document.getElementById("loremHtml");b.textContent="HTML Kopya";setTimeout(()=>b.textContent="HTML Olarak Kopyala",1800);
+});
+generate();
+</script>
+</body>
+</html>

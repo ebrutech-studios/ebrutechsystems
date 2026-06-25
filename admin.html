@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pro Yönetimi — EbruTech Studios</title>
+<meta name="description" content="EbruTech Studios yetkili Pro üyelik yönetim paneli.">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+</head>
+<body>
+<main class="admin-page">
+  <section class="admin-hero"><div class="wrap">
+    <span class="eyebrow">Yetkili Alan</span><h1>Pro üyelik yönetimi</h1>
+    <p class="lead">Ödemesi gelen kullanıcıya aylık veya yıllık Pro tanımlayın, mevcut üyeliği görüntüleyin ve gerektiğinde iptal edin.</p>
+  </div></section>
+  <section class="admin-content"><div class="wrap">
+    <div id="adminLoading" class="admin-state-card">Yönetici oturumu kontrol ediliyor…</div>
+    <div id="adminLoginRequired" class="admin-state-card" hidden><h2>Giriş yapmanız gerekiyor</h2><p>Yönetim paneline erişmek için yetkili hesabınızla giriş yapın.</p><a href="giris.html" class="btn btn-primary">Giriş sayfasına git</a></div>
+    <div id="adminDenied" class="admin-state-card denied" hidden><h2>Erişim reddedildi</h2><p id="adminDeniedText">Bu hesap yönetici olarak yetkilendirilmemiş.</p><a href="giris.html" class="btn btn-ghost">Hesabı değiştir</a></div>
+    <div id="adminApp" hidden>
+      <div class="admin-toolbar"><span>Yönetici: <strong id="adminIdentity"></strong></span><button id="adminLogout" class="btn btn-ghost" type="button">Çıkış Yap</button></div>
+      <div class="admin-grid">
+        <div class="admin-panel">
+          <h2>Kullanıcı bul</h2><p>Ödeme yapan kullanıcının kayıtlı e-posta adresini girin.</p>
+          <form id="adminSearch" class="admin-search"><label for="adminEmail">Kullanıcı e-postası</label><div><input id="adminEmail" type="email" autocomplete="off" maxlength="254" placeholder="kullanici@ornek.com" required><button class="btn btn-primary" type="submit">Kullanıcıyı Bul</button></div></form>
+          <p id="adminMessage" class="admin-message" hidden aria-live="polite"></p>
+          <div id="adminUserCard" class="admin-user-card" hidden>
+            <div class="admin-user-head"><div><h3 id="userName"></h3><p id="userEmail"></p></div><span id="userStatus" class="admin-status"></span></div>
+            <dl class="admin-user-meta">
+              <div><dt>Plan</dt><dd id="userPlan"></dd></div><div><dt>Bitiş tarihi</dt><dd id="userUntil"></dd></div>
+              <div><dt>Kayıt tarihi</dt><dd id="userCreated"></dd></div><div><dt>Son giriş</dt><dd id="userLastLogin"></dd></div>
+              <div class="wide"><dt>Kullanıcı UID</dt><dd id="userUid"></dd></div>
+            </dl>
+            <div class="admin-pro-actions"><button id="grantMonthly" class="btn btn-primary" type="button">+ 1 Ay Pro</button><button id="grantYearly" class="btn btn-primary" type="button">+ 1 Yıl Pro</button><button id="revokePro" class="btn btn-danger" type="button">Pro’yu İptal Et</button></div>
+            <p class="admin-note">Süre uzatılırken aktif üyeliğin mevcut bitiş tarihi esas alınır.</p>
+          </div>
+        </div>
+        <aside class="admin-panel"><h2>Son işlemler</h2><p>Panel üzerinden yapılan son 25 üyelik değişikliği.</p><div id="adminHistory" class="admin-history"><p class="admin-empty">Yükleniyor…</p></div></aside>
+      </div>
+    </div>
+  </div></section>
+</main>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script type="module" src="assets/js/admin.js"></script>
+</body>
+</html>

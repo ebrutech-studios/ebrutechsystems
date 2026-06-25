@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resme Filigran (Watermark) Ekleme — EbruTech Studios</title>
+<meta name="description" content="Resme metin filigranı ekle. Konum, yazı tipi, renk, gölge ve saydamlık ayarları. Ücretsiz online watermark aracı.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-watermark.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="Resme Filigran (Watermark) Ekleme — EbruTech Studios">
+<meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<style>
+.pos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
+.pos-btn{padding:10px 6px;border-radius:10px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.8rem;cursor:pointer;transition:.15s;text-align:center;line-height:1.2}
+.pos-btn:hover,.pos-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(200,255,46,.05)}
+.font-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.font-tab{padding:7px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.8rem;cursor:pointer;transition:.15s}
+.font-tab:hover,.font-tab.active{border-color:var(--accent);color:var(--accent)}
+.toggle-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.toggle-btn{padding:7px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.82rem;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:5px}
+.toggle-btn.on{border-color:var(--accent);color:var(--accent);background:rgba(200,255,46,.07)}
+.wm-preview{width:100%;border-radius:12px;overflow:hidden;background:repeating-conic-gradient(#1a1a1a 0% 25%,#111 25% 50%) 0 0/20px 20px;margin-top:14px}
+.wm-preview canvas{display:block;max-width:100%;height:auto}
+.info-strip{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px}
+.info-strip span{font-size:.8rem;color:var(--txt-faint)}
+.info-strip strong{color:var(--txt-dim);font-size:.82rem}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Resme Filigran (Watermark) Ekleme","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-watermark.html"}
+</script>
+</head><body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">💧 Filigran (Watermark) Ekle</h1>
+<p class="lead" style="margin:14px 0 26px">Görselinize metin filigranı ekleyin. Yazı tipi, konum, renk, gölge ve saydamlık tamamen sizin kontrolünüzde.</p>
+
+<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli buraya sürükle</b> veya tıkla<br><span style="color:var(--txt-faint);font-size:.85rem">PNG · JPG · WebP</span></p><input id="file" type="file" accept="image/*" class="hidden"></div>
+
+<div id="panel" class="controls hidden">
+
+<div class="field"><label>Filigran Metni</label><input id="txt" placeholder="© Markanız" value="© EbruTech Studios"></div>
+
+<div style="font-size:.82rem;font-weight:600;color:var(--txt-dim);margin-bottom:8px">Yazı Tipi</div>
+<div class="font-tabs" id="fontTabs">
+  <button class="font-tab active" data-font="Arial, sans-serif">Sans-Serif</button>
+  <button class="font-tab" data-font="Georgia, serif" style="font-family:Georgia,serif">Serif</button>
+  <button class="font-tab" data-font="'Courier New', monospace" style="font-family:'Courier New',monospace">Mono</button>
+  <button class="font-tab" data-font="Impact, fantasy" style="font-family:Impact,fantasy">Impact</button>
+</div>
+
+<div class="toggle-row">
+  <button class="toggle-btn on" id="boldBtn"><b>B</b> Kalın</button>
+  <button class="toggle-btn" id="italicBtn"><i>İ</i> İtalik</button>
+  <button class="toggle-btn" id="shadowBtn">◐ Gölge</button>
+  <button class="toggle-btn" id="strokeBtn">□ Kontur</button>
+</div>
+
+<div class="row">
+  <div class="field"><label>Renk</label><input id="color" type="color" value="#ffffff" style="height:42px;padding:4px"></div>
+  <div class="field"><label>Boyut: <strong id="sVal">5</strong>%</label><input id="size" type="range" min="2" max="20" value="5"></div>
+</div>
+
+<div class="field"><label>Saydamlık: <strong id="oVal">60</strong>%</label><input id="op" type="range" min="5" max="100" value="60"></div>
+
+<div style="font-size:.82rem;font-weight:600;color:var(--txt-dim);margin-bottom:8px">Konum</div>
+<div class="pos-grid">
+  <button class="pos-btn active" data-pos="tl">↖ Sol Üst</button>
+  <button class="pos-btn" data-pos="tc">↑ Üst Orta</button>
+  <button class="pos-btn" data-pos="tr">↗ Sağ Üst</button>
+  <button class="pos-btn" data-pos="ml">← Sol Orta</button>
+  <button class="pos-btn" data-pos="center">⊕ Tam Orta</button>
+  <button class="pos-btn" data-pos="mr">→ Sağ Orta</button>
+  <button class="pos-btn" data-pos="bl">↙ Sol Alt</button>
+  <button class="pos-btn" data-pos="bc">↓ Alt Orta</button>
+  <button class="pos-btn" data-pos="br">↘ Sağ Alt</button>
+</div>
+<button class="pos-btn" data-pos="tile" style="width:100%;margin-bottom:14px">⠿ Tüm Yüzey (Desen)</button>
+
+<button id="go" class="btn btn-primary btn-lg" style="width:100%">Filigran Ekle & İndir</button>
+</div>
+
+<div id="preview" class="hidden">
+  <div class="wm-preview"><canvas id="cv"></canvas></div>
+  <div class="info-strip" id="infoStrip"></div>
+</div>
+
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+let imgEl=null,origName="resim",selFont="Arial, sans-serif",selPos="tl",isBold=true,isItalic=false,hasShadow=false,hasStroke=false;
+const $=id=>document.getElementById(id);
+const dz=$("dz"),file=$("file"),cv=$("cv");
+
+dz.onclick=()=>file.click();
+dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};
+dz.ondragleave=()=>dz.classList.remove("drag");
+dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);};
+file.onchange=e=>{if(e.target.files[0])load(e.target.files[0]);};
+
+function load(f){
+  origName=(f.name||"resim").replace(/\.[^.]+$/,"");
+  const r=new FileReader();
+  r.onload=ev=>{
+    imgEl=new Image();
+    imgEl.onload=()=>{
+      $("preview").classList.remove("hidden");
+      $("panel").classList.remove("hidden");
+      draw();
+    };
+    imgEl.src=ev.target.result;
+  };
+  r.readAsDataURL(f);
+}
+
+document.querySelectorAll(".font-tab").forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll(".font-tab").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");selFont=b.dataset.font;draw();
+  };
+});
+
+document.querySelectorAll(".pos-btn").forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll(".pos-btn").forEach(x=>x.classList.remove("active"));
+    b.classList.add("active");selPos=b.dataset.pos;draw();
+  };
+});
+
+$("boldBtn").onclick=()=>{isBold=!isBold;$("boldBtn").classList.toggle("on",isBold);draw();};
+$("italicBtn").onclick=()=>{isItalic=!isItalic;$("italicBtn").classList.toggle("on",isItalic);draw();};
+$("shadowBtn").onclick=()=>{hasShadow=!hasShadow;$("shadowBtn").classList.toggle("on",hasShadow);draw();};
+$("strokeBtn").onclick=()=>{hasStroke=!hasStroke;$("strokeBtn").classList.toggle("on",hasStroke);draw();};
+
+$("size").oninput=()=>{$("sVal").textContent=$("size").value;draw();};
+$("op").oninput=()=>{$("oVal").textContent=$("op").value;draw();};
+[$("txt"),$("color")].forEach(el=>{el.oninput=draw;el.onchange=draw;});
+
+function draw(){
+  if(!imgEl)return;
+  cv.width=imgEl.naturalWidth;cv.height=imgEl.naturalHeight;
+  const ctx=cv.getContext("2d");
+  ctx.drawImage(imgEl,0,0);
+
+  const txt=$("txt").value||"";
+  if(!txt)return;
+
+  const fs=Math.round(cv.width*parseInt($("size").value)/100);
+  const style=(isBold?"bold ":"")+(isItalic?"italic ":"");
+  ctx.font=style+fs+"px "+selFont;
+  ctx.fillStyle=$("color").value;
+  ctx.globalAlpha=parseInt($("op").value)/100;
+  ctx.textBaseline="middle";
+
+  if(hasShadow){ctx.shadowColor="rgba(0,0,0,0.7)";ctx.shadowBlur=fs*0.15;ctx.shadowOffsetX=fs*0.04;ctx.shadowOffsetY=fs*0.04;}
+  else{ctx.shadowColor="transparent";ctx.shadowBlur=0;}
+
+  const m=ctx.measureText(txt);
+  const tw=m.width,th=fs;
+  const pad=fs*0.6;
+
+  if(selPos==="tile"){
+    const stepX=tw+fs*2,stepY=th*3;
+    ctx.save();ctx.translate(cv.width/2,cv.height/2);ctx.rotate(-Math.PI/8);ctx.translate(-cv.width/2,-cv.height/2);
+    for(let y=-stepY;y<cv.height+stepY*2;y+=stepY)
+      for(let x=-stepX;x<cv.width+stepX*2;x+=stepX){
+        if(hasStroke){ctx.strokeStyle="rgba(0,0,0,0.3)";ctx.lineWidth=fs*0.04;ctx.strokeText(txt,x,y);}
+        ctx.fillText(txt,x,y);
+      }
+    ctx.restore();
+  } else {
+    let x,y;
+    const posMap={
+      tl:[pad,pad+th/2],tc:[cv.width/2-tw/2,pad+th/2],tr:[cv.width-tw-pad,pad+th/2],
+      ml:[pad,cv.height/2],center:[cv.width/2-tw/2,cv.height/2],mr:[cv.width-tw-pad,cv.height/2],
+      bl:[pad,cv.height-pad-th/2],bc:[cv.width/2-tw/2,cv.height-pad-th/2],br:[cv.width-tw-pad,cv.height-pad-th/2]
+    };
+    [x,y]=posMap[selPos]||posMap.br;
+    if(hasStroke){ctx.strokeStyle="rgba(0,0,0,0.5)";ctx.lineWidth=fs*0.06;ctx.shadowColor="transparent";ctx.strokeText(txt,x,y);ctx.shadowColor=hasShadow?"rgba(0,0,0,0.7)":"transparent";}
+    ctx.fillText(txt,x,y);
+  }
+  ctx.globalAlpha=1;ctx.shadowColor="transparent";ctx.shadowBlur=0;
+
+  $("infoStrip").innerHTML=`<span>Boyut: <strong>${cv.width} × ${cv.height} px</strong></span><span>Metin: <strong>${txt}</strong></span><span>Yazı Boyutu: <strong>${fs}px</strong></span>`;
+}
+
+$("go").onclick=()=>{
+  if(!imgEl)return;
+  cv.toBlob(b=>{
+    const a=document.createElement("a");
+    a.href=URL.createObjectURL(b);
+    a.download=origName+"-filigranli.png";a.click();
+    ETSlib.toast("Filigran eklendi & indirildi ✓");
+  },"image/png");
+};
+</script></body></html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yazı — EbruTech Studios</title>
+<meta name="description" content="EbruTech Studios blog yazısı.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<section class="hero" style="padding-bottom:20px">
+  <div class="wrap">
+    <div class="article-wrap">
+      <a href="blog.html" class="back-link">← Tüm yazılar</a>
+      <div id="meta" class="article-meta"></div>
+      <h1 id="baslik" style="margin:12px 0 0">Yükleniyor…</h1>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:16px">
+  <div class="wrap">
+    <div class="article-wrap">
+      <div id="icerik" class="article-body"></div>
+
+      <div id="share" class="article-share" style="display:none">
+        <span class="article-share-label">Bu yazıyı paylaş:</span>
+        <a id="shareWa" target="_blank" class="btn btn-wa" style="padding:10px 18px">
+          <svg viewBox="0 0 24 24" fill="white" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp'ta Paylaş
+        </a>
+      </div>
+
+      <div id="cta" style="margin-top:36px"></div>
+
+      <div id="related" class="article-related" style="display:none">
+        <h2 class="related-title">İlgili Yazılar</h2>
+        <div id="relatedList" class="related-grid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/blog-data.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+(function(){
+  const id=new URLSearchParams(location.search).get("id");
+  const posts=window.BLOG_POSTS||[];
+  const post=posts.find(p=>p.id===id);
+  const catColor={Rehber:'var(--accent)',İşletme:'var(--accent-3)',İpucu:'var(--accent-2)'};
+
+  if(!post){
+    document.getElementById("baslik").textContent="Yazı bulunamadı";
+    document.getElementById("icerik").innerHTML='<p style="color:var(--txt-dim)">Bu yazı mevcut değil veya kaldırılmış. <a href="blog.html" style="color:var(--accent)">Tüm yazılara dön →</a></p>';
+    return;
+  }
+
+  document.title=post.baslik+" — EbruTech Studios Blog";
+  const desc=document.querySelector('meta[name="description"]');
+  if(desc) desc.content=post.ozet;
+
+  const dt=new Date(post.tarih).toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'});
+  const clr=catColor[post.kat]||'var(--accent)';
+  document.getElementById("meta").innerHTML=`
+    <span class="blog-cat-tag" style="color:${clr};margin-right:10px">${post.kat||'Genel'}</span>
+    <span style="color:var(--txt-faint);font-size:.88rem">${dt} · ${post.okuma} dakika okuma</span>`;
+
+  document.getElementById("baslik").textContent=post.baslik;
+  document.getElementById("icerik").innerHTML=post.icerik;
+
+  const shareEl=document.getElementById('share');
+  const shareWa=document.getElementById('shareWa');
+  if(shareEl && shareWa){
+    shareEl.style.display='flex';
+    const shareText=`${post.baslik} — EbruTech Studios Blog: ${location.href}`;
+    shareWa.href='https://wa.me/?text='+encodeURIComponent(shareText);
+  }
+
+  if(post.tool){
+    document.getElementById("cta").innerHTML=`<div class="callout"><span class="eyebrow">Hemen deneyin</span><h2 style="font-size:1.4rem;margin:8px 0 10px">Bu rehberde anlatılan aracı kullanın</h2><p class="lead" style="margin:0 auto 20px">Ücretsiz, kayıt gerekmez, tarayıcıda çalışır.</p><a href="${post.tool}" class="btn btn-primary btn-lg">Aracı Aç →</a></div>`;
+  }
+
+  const related=posts.filter(p=>p.id!==post.id&&p.kat===post.kat).slice(0,3);
+  if(related.length){
+    document.getElementById('related').style.display='block';
+    document.getElementById('relatedList').innerHTML=related.map(p=>`
+      <a class="related-card reveal" href="yazi.html?id=${p.id}">
+        <span class="blog-cat-tag" style="color:${catColor[p.kat]||'var(--accent)'}">${p.kat}</span>
+        <h3>${p.baslik}</h3>
+        <span style="color:var(--accent);font-weight:700;font-size:.88rem">Oku →</span>
+      </a>`).join('');
+    if(typeof initReveal==='function') initReveal();
+  }
+
+  const ld=document.createElement("script");
+  ld.type="application/ld+json";
+  ld.textContent=JSON.stringify({
+    "@context":"https://schema.org","@type":"Article",
+    "headline":post.baslik,"description":post.ozet,
+    "datePublished":post.tarih,
+    "author":{"@type":"Organization","name":"EbruTech Studios"},
+    "publisher":{"@type":"Organization","name":"EbruTech Studios"}
+  });
+  document.head.appendChild(ld);
+})();
+</script>
+</body>
+</html>

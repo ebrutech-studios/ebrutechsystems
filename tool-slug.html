@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>URL Slug Oluşturucu — SEO Uyumlu, Türkçe Karakter Desteği | EbruTech Studios</title>
+<meta name="description" content="Ücretsiz URL slug oluşturucu. Türkçe karakter desteği, SEO uyumlu URL. Metni yapıştır, slug'ı kopyala. EbruTech Studios.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-slug.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="URL Slug Oluşturucu — EbruTech Studios">
+<meta property="og:description" content="Türkçe karakter desteği ile SEO uyumlu URL slug oluşturucu. Ücretsiz.">
+<meta property="og:url" content="https://ebrutechsystems.com/tool-slug.html">
+<meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<style>
+.sep-chips{display:flex;gap:8px;margin-bottom:16px}
+.sep-chip{padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:var(--bg-2);color:var(--txt-dim);font-size:.82rem;cursor:pointer;transition:.15s;font-family:monospace}
+.sep-chip.active{border-color:var(--accent);color:var(--accent);background:rgba(200,255,46,.07)}
+.slug-meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+.slug-meta span{font-size:.78rem;color:var(--txt-faint)}
+.slug-meta strong{color:var(--txt-dim)}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"URL Slug Oluşturucu","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-slug.html"}
+</script>
+</head>
+<body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+  <span class="eyebrow">Araç</span>
+  <h1 style="font-size:2.2rem">🔗 URL Slug Oluşturucu</h1>
+  <p class="lead" style="margin:14px 0 26px">Başlığı yapıştır, SEO uyumlu slug'ı kopyala. Türkçe karakter desteği ile.</p>
+
+  <div class="field" style="margin-bottom:16px">
+    <label>Başlık veya metin</label>
+    <input id="inputText" type="text" placeholder="Örn: Türkçe Karakter Destekli Blog Başlığı" autocomplete="off">
+  </div>
+
+  <div style="font-size:.82rem;font-weight:600;color:var(--txt-dim);margin-bottom:8px">Ayraç</div>
+  <div class="sep-chips">
+    <button class="sep-chip active" data-sep="-">- Tire (hyphen)</button>
+    <button class="sep-chip" data-sep="_">_ Alt çizgi (underscore)</button>
+    <button class="sep-chip" data-sep=".">. Nokta</button>
+  </div>
+
+  <div class="field" style="margin-bottom:20px">
+    <label style="display:flex;align-items:center;justify-content:space-between">
+      <span>URL Slug</span>
+      <button id="copyBtn" class="btn btn-ghost" style="padding:5px 14px;font-size:.82rem;min-height:auto">Kopyala</button>
+    </label>
+    <input id="outputSlug" type="text" readonly placeholder="slug-buraya-gelecek" style="letter-spacing:.02em;background:rgba(200,255,46,.04);border-color:rgba(200,255,46,.2)">
+  </div>
+
+  <div id="slugPreview" style="display:none;padding:14px 18px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:.85rem;color:var(--txt-dim);word-break:break-all">
+    <span style="color:var(--txt-faint)">https://siteniz.com/</span><span id="slugPreviewText" style="color:var(--accent);font-weight:700"></span>
+  </div>
+
+  <div class="slug-meta" id="slugMeta" style="display:none">
+    <span>Karakter: <strong id="slugLen">0</strong></span>
+    <span>Kelime: <strong id="slugWords">0</strong></span>
+  </div>
+
+  <div style="margin-top:18px;display:flex;gap:16px;flex-wrap:wrap">
+    <div style="font-size:.82rem;color:var(--txt-faint)">✓ ş→s, ç→c, ğ→g, ı→i, ö→o, ü→u</div>
+    <div style="font-size:.82rem;color:var(--txt-faint)">✓ Boşluklar ayraça dönüşür</div>
+    <div style="font-size:.82rem;color:var(--txt-faint)">✓ Özel karakterler temizlenir</div>
+  </div>
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+let SEP='-';
+
+function toSlug(str,sep){
+  return str
+    .replace(/[Şş]/g,'s').replace(/[Çç]/g,'c').replace(/[Ğğ]/g,'g')
+    .replace(/İ/g,'i').replace(/ı/g,'i')
+    .replace(/[Öö]/g,'o').replace(/[Üü]/g,'u')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g,'')
+    .trim()
+    .replace(/\s+/g,sep)
+    .replace(new RegExp('\\'+sep+'+','g'),sep)
+    .replace(new RegExp('^\\'+sep+'|\\'+sep+'$','g'),'');
+}
+
+const inp=document.getElementById('inputText');
+const out=document.getElementById('outputSlug');
+const preview=document.getElementById('slugPreview');
+const previewText=document.getElementById('slugPreviewText');
+const slugMeta=document.getElementById('slugMeta');
+
+document.querySelectorAll('.sep-chip').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.sep-chip').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');SEP=btn.dataset.sep;update();
+  });
+});
+
+function update(){
+  const slug=toSlug(inp.value,SEP);
+  out.value=slug;
+  if(slug){
+    preview.style.display='block';previewText.textContent=slug;
+    slugMeta.style.display='flex';
+    document.getElementById('slugLen').textContent=slug.length;
+    document.getElementById('slugWords').textContent=slug.split(SEP).filter(Boolean).length;
+  } else {
+    preview.style.display='none';slugMeta.style.display='none';
+  }
+}
+
+inp.addEventListener('input',update);
+
+document.getElementById('copyBtn').addEventListener('click',()=>{
+  if(!out.value) return;
+  navigator.clipboard.writeText(out.value).then(()=>{
+    ETSlib.toast('Slug kopyalandı ✓');
+  }).catch(()=>{
+    out.select();document.execCommand('copy');
+    ETSlib.toast('Slug kopyalandı ✓');
+  });
+});
+</script>
+</body>
+</html>

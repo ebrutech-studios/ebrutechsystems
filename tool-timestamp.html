@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unix Timestamp Dönüştürücü — Online Tarih/Saat Çevirici | EbruTech Studios</title>
+<meta name="description" content="Unix timestamp'i tarihe çevir veya tarihten Unix timestamp oluştur. Şu anki timestamp, UTC ve yerel saat dönüşümü. Ücretsiz online araç.">
+<link rel="canonical" href="https://ebrutechsystems.com/tool-timestamp.html">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="Unix Timestamp Dönüştürücü — EbruTech Studios">
+<meta property="og:description" content="Unix timestamp tarih çevirici — şu anki timestamp, UTC/yerel saat dönüşümü.">
+<meta property="og:url" content="https://ebrutechsystems.com/tool-timestamp.html">
+<meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10140a">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Unix Timestamp Dönüştürücü","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-timestamp.html"}
+</script>
+<style>
+.ts-now{background:rgba(200,255,46,.07);border:1px solid rgba(200,255,46,.2);border-radius:12px;padding:20px 24px;margin-bottom:26px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.ts-now-val{font-family:var(--font-display);font-size:2.2rem;font-weight:800;color:var(--accent);line-height:1}
+.ts-now-sub{font-size:.8rem;color:var(--txt-faint);margin-top:4px}
+.ts-card{background:var(--bg-2);border:1px solid var(--border);border-radius:12px;padding:22px 24px;margin-bottom:18px}
+.ts-card h3{font-size:.8rem;font-weight:700;color:var(--txt-dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+.ts-input-row{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap;margin-bottom:14px}
+.ts-input{flex:1;min-width:160px;padding:11px 14px;border-radius:8px;border:1px solid var(--border-strong);background:var(--bg-3,var(--bg));color:var(--txt);font-family:monospace;font-size:1rem;outline:none;transition:.18s}
+.ts-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(200,255,46,.1)}
+.ts-result-grid{display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:center}
+.ts-rk{font-size:.78rem;color:var(--txt-faint);font-weight:600;white-space:nowrap}
+.ts-rv{font-family:monospace;font-size:.9rem;color:var(--txt);word-break:break-all}
+.ts-copy-sm{padding:4px 10px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--txt-dim);cursor:pointer;font-size:.72rem;font-weight:700;transition:.18s;white-space:nowrap}
+.ts-copy-sm:hover{border-color:var(--border-strong);color:var(--txt)}
+.ts-err{color:#ff8080;font-size:.83rem;margin-bottom:8px}
+</style>
+</head>
+<body>
+<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
+  <span class="eyebrow">Araç</span>
+  <h1 style="font-size:2.2rem">Unix Timestamp Dönüştürücü</h1>
+  <p class="lead" style="margin:14px 0 24px">Timestamp'i tarihe çevir, tarihten timestamp üret — UTC ve yerel saat.</p>
+
+  <div class="ts-now">
+    <div>
+      <div class="ts-now-val" id="tsNow">—</div>
+      <div class="ts-now-sub">Şu anki Unix Timestamp (saniye)</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-ghost" id="tsNowCopy">Kopyala</button>
+      <button class="btn btn-ghost" id="tsNowMs">Milisaniye</button>
+    </div>
+  </div>
+
+  <!-- Timestamp → Tarih -->
+  <div class="ts-card">
+    <h3>Timestamp → Tarih / Saat</h3>
+    <div class="ts-input-row">
+      <input class="ts-input" id="ts2dInput" type="number" placeholder="1718812800" inputmode="numeric">
+      <button class="btn btn-primary" id="ts2dBtn">Çevir</button>
+      <button class="btn btn-ghost" id="ts2dNowBtn">Şimdi</button>
+    </div>
+    <div class="ts-err" id="ts2dErr"></div>
+    <div class="ts-result-grid" id="ts2dResult" style="display:none">
+      <span class="ts-rk">Yerel Saat</span><span class="ts-rv" id="ts2dLocal"></span><button class="ts-copy-sm" data-copy="ts2dLocal">Kopyala</button>
+      <span class="ts-rk">UTC</span><span class="ts-rv" id="ts2dUtc"></span><button class="ts-copy-sm" data-copy="ts2dUtc">Kopyala</button>
+      <span class="ts-rk">ISO 8601</span><span class="ts-rv" id="ts2dIso"></span><button class="ts-copy-sm" data-copy="ts2dIso">Kopyala</button>
+      <span class="ts-rk">Göreli</span><span class="ts-rv" id="ts2dRel"></span><button class="ts-copy-sm" data-copy="ts2dRel">Kopyala</button>
+    </div>
+  </div>
+
+  <!-- Tarih → Timestamp -->
+  <div class="ts-card">
+    <h3>Tarih / Saat → Timestamp</h3>
+    <div class="ts-input-row">
+      <input class="ts-input" id="d2tsInput" type="datetime-local">
+      <button class="btn btn-primary" id="d2tsBtn">Çevir</button>
+    </div>
+    <div class="ts-err" id="d2tsErr"></div>
+    <div class="ts-result-grid" id="d2tsResult" style="display:none">
+      <span class="ts-rk">Unix (sn)</span><span class="ts-rv" id="d2tsSec"></span><button class="ts-copy-sm" data-copy="d2tsSec">Kopyala</button>
+      <span class="ts-rk">Unix (ms)</span><span class="ts-rv" id="d2tsMs"></span><button class="ts-copy-sm" data-copy="d2tsMs">Kopyala</button>
+      <span class="ts-rk">ISO 8601</span><span class="ts-rv" id="d2tsIso"></span><button class="ts-copy-sm" data-copy="d2tsIso">Kopyala</button>
+    </div>
+  </div>
+
+</div></div></section>
+<script type="module" src="assets/js/firebase.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+function pad(n){return String(n).padStart(2,"0");}
+function fmtLocal(d){return d.toLocaleDateString("tr-TR",{year:"numeric",month:"2-digit",day:"2-digit"})+" "+d.toLocaleTimeString("tr-TR");}
+function fmtUtc(d){return d.getUTCFullYear()+"-"+pad(d.getUTCMonth()+1)+"-"+pad(d.getUTCDate())+" "+pad(d.getUTCHours())+":"+pad(d.getUTCMinutes())+":"+pad(d.getUTCSeconds())+" UTC";}
+function fmtRel(d){
+  const diff=Date.now()-d.getTime();
+  const abs=Math.abs(diff);
+  const suf=diff>0?"önce":"sonra";
+  if(abs<60000) return Math.round(abs/1000)+" saniye "+suf;
+  if(abs<3600000) return Math.round(abs/60000)+" dakika "+suf;
+  if(abs<86400000) return Math.round(abs/3600000)+" saat "+suf;
+  if(abs<2592000000) return Math.round(abs/86400000)+" gün "+suf;
+  return Math.round(abs/2592000000)+" ay "+suf;
+}
+
+/* Şu anki timestamp */
+function tickNow(){
+  const s=Math.floor(Date.now()/1000);
+  document.getElementById("tsNow").textContent=s;
+}
+tickNow();setInterval(tickNow,1000);
+let showMs=false;
+document.getElementById("tsNowMs").addEventListener("click",function(){
+  showMs=!showMs;
+  this.textContent=showMs?"Saniye":"Milisaniye";
+  setInterval(()=>{
+    document.getElementById("tsNow").textContent=showMs?Date.now():Math.floor(Date.now()/1000);
+  },showMs?10:1000);
+});
+document.getElementById("tsNowCopy").addEventListener("click",async()=>{
+  const t=document.getElementById("tsNow").textContent;
+  await navigator.clipboard.writeText(t);
+  const b=document.getElementById("tsNowCopy");b.textContent="Kopyalandı";setTimeout(()=>b.textContent="Kopyala",1800);
+});
+
+/* Timestamp → Tarih */
+function conv_ts2d(val){
+  let n=parseFloat(val);
+  if(isNaN(n)){document.getElementById("ts2dErr").textContent="Geçerli bir timestamp girin.";document.getElementById("ts2dResult").style.display="none";return;}
+  document.getElementById("ts2dErr").textContent="";
+  if(n>9999999999) n=Math.floor(n/1000);
+  const d=new Date(n*1000);
+  document.getElementById("ts2dLocal").textContent=fmtLocal(d);
+  document.getElementById("ts2dUtc").textContent=fmtUtc(d);
+  document.getElementById("ts2dIso").textContent=d.toISOString();
+  document.getElementById("ts2dRel").textContent=fmtRel(d);
+  document.getElementById("ts2dResult").style.display="grid";
+}
+document.getElementById("ts2dBtn").addEventListener("click",()=>conv_ts2d(document.getElementById("ts2dInput").value));
+document.getElementById("ts2dInput").addEventListener("keydown",e=>{if(e.key==="Enter") conv_ts2d(e.target.value);});
+document.getElementById("ts2dNowBtn").addEventListener("click",()=>{
+  const v=Math.floor(Date.now()/1000);
+  document.getElementById("ts2dInput").value=v;
+  conv_ts2d(v);
+});
+
+/* Tarih → Timestamp */
+const now=new Date();
+document.getElementById("d2tsInput").value=now.toISOString().slice(0,16);
+function conv_d2ts(){
+  const val=document.getElementById("d2tsInput").value;
+  if(!val){document.getElementById("d2tsErr").textContent="Tarih seçin.";return;}
+  document.getElementById("d2tsErr").textContent="";
+  const d=new Date(val);
+  if(isNaN(d.getTime())){document.getElementById("d2tsErr").textContent="Geçersiz tarih.";return;}
+  const sec=Math.floor(d.getTime()/1000);
+  document.getElementById("d2tsSec").textContent=sec;
+  document.getElementById("d2tsMs").textContent=d.getTime();
+  document.getElementById("d2tsIso").textContent=d.toISOString();
+  document.getElementById("d2tsResult").style.display="grid";
+}
+document.getElementById("d2tsBtn").addEventListener("click",conv_d2ts);
+conv_d2ts();
+
+/* Kopyala butonları */
+document.querySelectorAll("[data-copy]").forEach(btn=>{
+  btn.addEventListener("click",async()=>{
+    const t=document.getElementById(btn.dataset.copy).textContent;
+    await navigator.clipboard.writeText(t);
+    const o=btn.textContent;btn.textContent="✓";setTimeout(()=>btn.textContent=o,1500);
+  });
+});
+</script>
+</body>
+</html>
