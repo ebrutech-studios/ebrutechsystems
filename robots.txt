@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /giris.html
-Disallow: /admin.html
-
-Sitemap: https://ebrutechsystems.com/sitemap.xml
