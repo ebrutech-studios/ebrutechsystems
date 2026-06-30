@@ -1,6 +1,13 @@
 User-agent: *
 Allow: /
+
+# Crawler bütçesini boşa harcayan sayfalar
 Disallow: /giris.html
 Disallow: /admin.html
+Disallow: /kayit.html
+
+# URL parametre tuzakları — duplicate content engeli
+Disallow: /*?*print=
+Disallow: /*?*preview=
 
 Sitemap: https://ebrutechsystems.com/sitemap.xml

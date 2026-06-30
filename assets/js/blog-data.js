@@ -46,7 +46,7 @@ window.BLOG_POSTS = [
 <li><b>Depolama:</b> Sıkıştırılmış görseller cihazınızda daha az yer kaplar.</li>
 </ul>
 <h2>Kalite nasıl korunur?</h2>
-<p>Sıkıştırma sırasında "kalite" ayarı, dosya boyutu ile görüntü netliği arasındaki dengeyi belirler. %70-80 kalite çoğu durumda gözle fark edilmez ama dosyayı yarıdan fazla küçültür. EbruTech sıkıştırıcısı bu ayarı kaydırarak anında sonucu görmenizi sağlar.</p>
+<p>Sıkıştırma sırasında "kalite" ayarı, dosya boyutu ile görüntü netliği arasındaki dengeyi belirler. %70-80 kalite çoğu durumda gözle fark edilmez ama dosyayı yarıdan fazla küçültür. <a href="tool-compressor.html">EbruTech Resim Sıkıştırıcısı</a> bu ayarı kaydırarak anında sonucu görmenizi sağlar.</p>
 <h2>Adımlar</h2>
 <p>Aracı açın, görselinizi yükleyin, kalite çubuğunu ayarlayın ve indirin. Orijinal ve yeni boyut karşılaştırması ekranda gösterilir. Hepsi tarayıcıda olur, fotoğrafınız hiçbir yere yüklenmez.</p>`
   },
@@ -67,7 +67,7 @@ window.BLOG_POSTS = [
 <li><b>Profesyonel görünüm:</b> Modern bir işletme izlenimi verir.</li>
 </ul>
 <h2>3 adımda QR menü</h2>
-<p><b>1. Menüyü oluşturun:</b> EbruTech QR Menü aracında işletme adınızı ve ürünlerinizi fiyatlarıyla girin. Araç size hazır bir menü sayfası (HTML dosyası) üretir.</p>
+<p><b>1. Menüyü oluşturun:</b> <a href="tool-qrmenu.html">EbruTech QR Menü</a> aracında işletme adınızı ve ürünlerinizi fiyatlarıyla girin. Araç size hazır bir menü sayfası (HTML dosyası) üretir.</p>
 <p><b>2. Yayınlayın:</b> Bu dosyayı web sitenize veya ücretsiz bir barındırma servisine koyun, bir adres (link) alın.</p>
 <p><b>3. QR üretin:</b> Aracın QR bölümüne bu adresi yapıştırın, QR kodunuzu indirin. Masalara, kapıya veya tezgaha yapıştırın.</p>
 <h2>İpuçları</h2>
@@ -90,7 +90,7 @@ window.BLOG_POSTS = [
 <li><b>Sıralama kontrolü:</b> Hangi belgenin önce geleceğini siz belirlersiniz.</li>
 </ul>
 <h2>Nasıl birleştirilir?</h2>
-<p>EbruTech PDF Birleştirici aracını açın. Birleştirmek istediğiniz PDF'leri seçin veya sürükleyin. Listede ok tuşlarıyla sıralamayı ayarlayın, gereksizleri çıkarın. "Birleştir" butonuna basın — tek PDF dosyanız anında iner.</p>
+<p><a href="tool-pdf.html">EbruTech PDF Birleştirici</a> aracını açın. Birleştirmek istediğiniz PDF'leri seçin veya sürükleyin. Listede ok tuşlarıyla sıralamayı ayarlayın, gereksizleri çıkarın. "Birleştir" butonuna basın — tek PDF dosyanız anında iner.</p>
 <p>İhtiyaç duyarsanız aynı araç ailesinde resimden PDF oluşturma ve PDF sayfa düzenleme araçları da bulunuyor.</p>`
   }
   ,{
@@ -110,7 +110,7 @@ window.BLOG_POSTS = [
 <li><b>Menü/katalog:</b> Dijital menünüze veya ürün listenize yönlendirin.</li>
 </ul>
 <h2>Nasıl oluşturulur?</h2>
-<p>EbruTech QR Kod Üretici aracını açın, yönlendirmek istediğiniz bağlantıyı veya metni yazın, "QR Oluştur" butonuna basın. Kodunuz anında ekranda belirir ve PNG olarak indirebilirsiniz. Baskıya hazırdır.</p>
+<p><a href="tool-qr.html">EbruTech QR Kod Üretici</a> aracını açın, yönlendirmek istediğiniz bağlantıyı veya metni yazın, "QR Oluştur" butonuna basın. Kodunuz anında ekranda belirir ve PNG olarak indirebilirsiniz. Baskıya hazırdır.</p>
 <p><b>İpucu:</b> QR kodu bastırırken yeterince büyük tutun ve etrafında boşluk bırakın; çok küçük kodlar okunmakta zorlanır.</p>`
   },
   {
@@ -609,7 +609,7 @@ window.BLOG_POSTS = [
 <li>Erken kapatmada bazı bankalar ceza uygular — sözleşmeyi okuyun</li>
 <li>Farklı vadeler deneyin: vade uzadıkça taksit düşer ama toplam faiz artar</li>
 </ul>
-<p>Aşağıdaki araçla farklı vade ve faiz oranlarını hızlıca karşılaştırın.</p>`
+<p><a href="tool-loan.html">Aşağıdaki araçla</a> farklı vade ve faiz oranlarını hızlıca karşılaştırın.</p>`
   },
   {
     id: "instagram-reels-boyutu-2026",

@@ -77,47 +77,69 @@
       <div class="contact-form-wrap reveal">
         <div class="card" style="padding:32px">
           <h2 style="font-size:1.5rem;margin-bottom:6px">Mesaj Gönderin</h2>
-          <p style="color:var(--txt-dim);font-size:.9rem;margin-bottom:24px">Bilgileri WhatsApp mesajı olarak hazırlayıp açıyoruz.</p>
 
-          <div class="field" style="margin-bottom:14px">
-            <label>Ad Soyad</label>
-            <input id="ad" placeholder="Örn: Ahmet Yılmaz">
+          <div style="display:flex;gap:4px;background:var(--surface);border-radius:8px;padding:4px;margin-bottom:22px">
+            <button class="form-tab active" data-tab="wa" style="flex:1;padding:8px;border:none;background:var(--surface-2);border-radius:6px;color:var(--txt);cursor:pointer;font-size:.88rem;font-weight:600;transition:.15s">WhatsApp ile</button>
+            <button class="form-tab" data-tab="email" style="flex:1;padding:8px;border:none;background:transparent;border-radius:6px;color:var(--txt-dim);cursor:pointer;font-size:.88rem;font-weight:500;transition:.15s">E-posta ile</button>
           </div>
-          <div class="field" style="margin-bottom:14px">
-            <label>E-posta (isteğe bağlı)</label>
-            <input id="eposta" type="email" placeholder="ornek@mail.com">
+
+          <div id="tab-wa">
+            <p style="color:var(--txt-dim);font-size:.9rem;margin-bottom:20px">Bilgileri WhatsApp mesajı olarak hazırlayıp açıyoruz.</p>
+            <div class="field" style="margin-bottom:14px"><label>Ad Soyad</label><input id="ad" placeholder="Örn: Ahmet Yılmaz"></div>
+            <div class="field" style="margin-bottom:14px"><label>E-posta (isteğe bağlı)</label><input id="eposta" type="email" placeholder="ornek@mail.com"></div>
+            <div class="field" style="margin-bottom:14px">
+              <label>Hizmet Türü</label>
+              <select id="hizmet">
+                <option>Web Sitesi</option><option>Mobil Uygulama</option><option>Logo / Kurumsal Kimlik</option>
+                <option>Kartvizit Tasarımı</option><option>Sosyal Medya Tasarımı</option>
+                <option>Nova AI & Otomasyon</option><option>Pro Üyelik Desteği</option><option>Diğer</option>
+              </select>
+            </div>
+            <div class="field" style="margin-bottom:14px">
+              <label>Bütçe Aralığı</label>
+              <select id="butce">
+                <option>Belirtmek istemiyorum</option><option>500₺ – 1.500₺</option>
+                <option>1.500₺ – 5.000₺</option><option>5.000₺ – 15.000₺</option><option>15.000₺+</option>
+              </select>
+            </div>
+            <div class="field" style="margin-bottom:20px">
+              <label>Mesajınız</label>
+              <textarea id="mesaj" rows="4" placeholder="Projenizi veya ihtiyacınızı kısaca anlatın…" style="width:100%;resize:vertical;padding:12px 14px;border-radius:8px;border:1px solid var(--border-strong);background:#0f141c;color:var(--txt);font-family:var(--font-body);font-size:.95rem;outline:none;transition:.18s"></textarea>
+            </div>
+            <button id="send" class="btn btn-wa" style="width:100%;justify-content:center;font-size:1rem">WhatsApp'tan Gönder →</button>
+            <p style="text-align:center;color:var(--txt-faint);font-size:.8rem;margin-top:12px">Bilgiler WhatsApp'a hazır mesaj olarak iletilir.</p>
           </div>
-          <div class="field" style="margin-bottom:14px">
-            <label>Hizmet Türü</label>
-            <select id="hizmet">
-              <option>Web Sitesi</option>
-              <option>Mobil Uygulama</option>
-              <option>Logo / Kurumsal Kimlik</option>
-              <option>Kartvizit Tasarımı</option>
-              <option>Sosyal Medya Tasarımı</option>
-              <option>Nova AI & Otomasyon</option>
-              <option>Pro Üyelik Desteği</option>
-              <option>Diğer</option>
-            </select>
+
+          <div id="tab-email" style="display:none">
+            <p style="color:var(--txt-dim);font-size:.9rem;margin-bottom:20px">Formu doldurun, doğrudan e-posta olarak iletiriz. 24 saat içinde yanıtlarız.</p>
+            <form id="formspree-form" action="https://formspree.io/f/FORM_ID_HERE" method="POST" novalidate>
+              <input type="hidden" name="_subject" value="EbruTech Studios — Yeni İletişim Formu">
+              <div class="field" style="margin-bottom:14px">
+                <label for="fs-name">Ad Soyad</label>
+                <input id="fs-name" name="name" placeholder="Örn: Ahmet Yılmaz" required>
+              </div>
+              <div class="field" style="margin-bottom:14px">
+                <label for="fs-email">E-posta</label>
+                <input id="fs-email" name="email" type="email" placeholder="ornek@mail.com" required>
+              </div>
+              <div class="field" style="margin-bottom:14px">
+                <label for="fs-hizmet">Hizmet Türü</label>
+                <select id="fs-hizmet" name="hizmet">
+                  <option>Web Sitesi</option><option>Mobil Uygulama</option><option>Logo / Kurumsal Kimlik</option>
+                  <option>Kartvizit Tasarımı</option><option>Sosyal Medya Tasarımı</option>
+                  <option>Nova AI & Otomasyon</option><option>Pro Üyelik Desteği</option><option>Diğer</option>
+                </select>
+              </div>
+              <div class="field" style="margin-bottom:20px">
+                <label for="fs-mesaj">Mesajınız</label>
+                <textarea id="fs-mesaj" name="message" rows="4" placeholder="Projenizi veya ihtiyacınızı kısaca anlatın…" style="width:100%;resize:vertical;padding:12px 14px;border-radius:8px;border:1px solid var(--border-strong);background:#0f141c;color:var(--txt);font-family:var(--font-body);font-size:.95rem;outline:none;transition:.18s" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-accent" style="width:100%;justify-content:center;font-size:1rem">E-posta Gönder →</button>
+              <p id="fs-success" style="display:none;text-align:center;color:var(--accent);font-size:.9rem;margin-top:12px">Mesajınız alındı! En kısa sürede dönüş yapacağız.</p>
+              <p id="fs-error" style="display:none;text-align:center;color:#ff6b6b;font-size:.9rem;margin-top:12px">Bir hata oluştu. Lütfen tekrar deneyin veya WhatsApp'tan yazın.</p>
+            </form>
           </div>
-          <div class="field" style="margin-bottom:14px">
-            <label>Bütçe Aralığı</label>
-            <select id="butce">
-              <option>Belirtmek istemiyorum</option>
-              <option>500₺ – 1.500₺</option>
-              <option>1.500₺ – 5.000₺</option>
-              <option>5.000₺ – 15.000₺</option>
-              <option>15.000₺+</option>
-            </select>
-          </div>
-          <div class="field" style="margin-bottom:20px">
-            <label>Mesajınız</label>
-            <textarea id="mesaj" rows="4" placeholder="Projenizi veya ihtiyacınızı kısaca anlatın…" style="width:100%;resize:vertical;padding:12px 14px;border-radius:8px;border:1px solid var(--border-strong);background:#0f141c;color:var(--txt);font-family:var(--font-body);font-size:.95rem;outline:none;transition:.18s"></textarea>
-          </div>
-          <button id="send" class="btn btn-wa" style="width:100%;justify-content:center;font-size:1rem">
-            WhatsApp'tan Gönder →
-          </button>
-          <p style="text-align:center;color:var(--txt-faint);font-size:.8rem;margin-top:12px">Bilgiler WhatsApp'a hazır mesaj olarak iletilir.</p>
+
         </div>
       </div>
 
@@ -135,7 +157,26 @@ document.addEventListener("DOMContentLoaded",()=>{
   const emailLink=document.getElementById('email-link');
   if(emailLink) emailLink.href="mailto:"+ETS.email;
 
-  document.getElementById("send").onclick=()=>{
+  // Form tab switching
+  document.querySelectorAll('.form-tab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.form-tab').forEach(b=>{
+        b.classList.remove('active');
+        b.style.background='transparent';
+        b.style.color='var(--txt-dim)';
+      });
+      btn.classList.add('active');
+      btn.style.background='var(--surface-2)';
+      btn.style.color='var(--txt)';
+      const tab=btn.dataset.tab;
+      document.getElementById('tab-wa').style.display=tab==='wa'?'':'none';
+      document.getElementById('tab-email').style.display=tab==='email'?'':'none';
+    });
+  });
+
+  // WhatsApp form submit
+  const sendBtn=document.getElementById("send");
+  if(sendBtn) sendBtn.onclick=()=>{
     const ad=document.getElementById("ad").value||"–";
     const ep=document.getElementById("eposta").value||"–";
     const h=document.getElementById("hizmet").value;
@@ -145,6 +186,26 @@ document.addEventListener("DOMContentLoaded",()=>{
     window.open("https://wa.me/"+ETS.whatsapp+"?text="+msg,"_blank","noopener,noreferrer");
     ETSlib.toast("WhatsApp açılıyor ✓");
   };
+
+  // Formspree email form submit
+  const fsForm=document.getElementById('formspree-form');
+  if(fsForm) fsForm.addEventListener('submit', async e=>{
+    e.preventDefault();
+    const submitBtn=fsForm.querySelector('[type=submit]');
+    const successEl=document.getElementById('fs-success');
+    const errorEl=document.getElementById('fs-error');
+    successEl.style.display='none';
+    errorEl.style.display='none';
+    submitBtn.disabled=true;
+    submitBtn.textContent='Gönderiliyor…';
+    try{
+      const res=await fetch(fsForm.action,{method:'POST',body:new FormData(fsForm),headers:{Accept:'application/json'}});
+      if(res.ok){successEl.style.display='';fsForm.reset();}
+      else{errorEl.style.display='';}
+    }catch(err){errorEl.style.display='';}
+    submitBtn.disabled=false;
+    submitBtn.textContent='E-posta Gönder →';
+  });
 });
 </script>
 </body>
