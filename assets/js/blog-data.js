@@ -620,23 +620,41 @@ window.BLOG_POSTS = [
     kat: "Rehber",
     tool: "tool-social.html",
     icerik: `
-<p>Instagram Reels boyutlarını yanlış ayarlamak videonuzun kesilmesine, bulanık görünmesine veya platform tarafından sıkıştırılmasına neden olur. 2026 yılında Instagram'ın algoritması, doğru formattaki içerikleri öne çıkarmaya devam ediyor.</p>
-<h2>Instagram Reels için önerilen boyutlar</h2>
+<p>Instagram Reels boyutlarını yanlış ayarlamak videonuzun kesilmesine, bulanık görünmesine veya platform tarafından sıkıştırılmasına neden olur. 2026 yılında Instagram'ın algoritması doğru formattaki içerikleri öne çıkarmaya devam ediyor — doğru boyutları bir kez öğrenin, her seferinde doğru yapın.</p>
+<h2>Instagram Reels için önerilen boyutlar (2026)</h2>
 <ul>
 <li><b>Çözünürlük:</b> 1080 × 1920 piksel (9:16 dikey)</li>
 <li><b>En boy oranı:</b> 9:16 (tam ekran dikey)</li>
 <li><b>Minimum çözünürlük:</b> 500 piksel genişlik</li>
-<li><b>Format:</b> MP4 veya MOV</li>
+<li><b>Format:</b> MP4 veya MOV (H.264 codec önerilir)</li>
 <li><b>Maksimum dosya boyutu:</b> 4 GB</li>
 <li><b>Süre:</b> 3 saniye – 90 saniye</li>
-<li><b>Kare hızı:</b> 24–60 fps (30 fps önerilir)</li>
+<li><b>Kare hızı:</b> 24–60 fps (30 fps standart, 60 fps akıcı hareket için)</li>
+<li><b>Bit hızı:</b> 500 Mbps ve üzeri önerilir</li>
 </ul>
-<h2>Güvenli alan (Safe Zone)</h2>
-<p>Ekranın alt %20'sinde etiket, müzik adı ve butonlar göründüğünden, önemli içerikleri videonun ortasında tutun. Üst %10'da da profil adı çıktığından başlık metnini merkezde konumlandırın.</p>
-<h2>Feed ve Explore için boyut</h2>
-<p>Reels feed'de kare (1:1) veya dikey (4:5) görünebilir. En geniş görüntüleme için 9:16 oranında çekin; Instagram gerektiğinde otomatik kırpar.</p>
-<h2>Görsellerinizi doğru boyuta getirin</h2>
-<p>Kapak fotoğrafı için 1080 × 1920 piksel PNG veya JPG yükleyin. <a href="tool-resizer.html">Boyutlandırıcı aracımızla</a> görselinizi anında doğru ölçüye getirebilir, <a href="tool-converter.html">format dönüştürücüyle</a> de WebP veya PNG'yi JPG'ye çevirebilirsiniz.`
+<h2>Tüm Instagram format boyutları — tek tabloda</h2>
+<p>Sadece Reels değil, her format için doğru boyut:</p>
+<ul>
+<li><b>Kare Post:</b> 1080 × 1080 px (1:1) — en güvenli format</li>
+<li><b>Dikey Post:</b> 1080 × 1350 px (4:5) — daha fazla ekran kaplar</li>
+<li><b>Yatay Post:</b> 1080 × 566 px (1.91:1) — manzara fotoğrafları için</li>
+<li><b>Story:</b> 1080 × 1920 px (9:16) — tam ekran</li>
+<li><b>Reels:</b> 1080 × 1920 px (9:16) — Story ile aynı</li>
+<li><b>Profil Fotoğrafı:</b> 320 × 320 px (1:1) — yuvarlak kırpılır</li>
+<li><b>Carousel:</b> 1080 × 1080 px (1:1) önerilir, tüm kartlar aynı boyutta olmalı</li>
+</ul>
+<h2>Güvenli alan (Safe Zone) nedir?</h2>
+<p>Ekranın <b>alt %20'sinde</b> etiket, müzik adı ve eylem butonları görünür. Önemli yazı ve logolarınızı bu alana yerleştirmeyin. <b>Üst %10'da</b> profil adı ve kapatma butonu bulunduğundan başlık metninizi ekranın ortasında tutun. Story ve Reels kapak görselleri için güvenli alan, üst ve alt 250 piksel boş bırakılmasıdır.</p>
+<h2>Feed ve Explore'da nasıl görünür?</h2>
+<p>Reels, Keşfet sayfasında ve feed'de genellikle <b>kare (1:1) veya 4:5</b> biçiminde küçük boyutlu önizleme olarak görünür. Tam ekran oynatmada ise 9:16 oranıyla gösterilir. Bu nedenle kapak fotoğrafınızı ortada önemli içerik olacak şekilde çerçevelemeniz önerilir.</p>
+<h2>Instagram fotoğraf kalitesini artırmak için 3 ipucu</h2>
+<ol>
+<li><b>Doğru boyuta getirin:</b> <a href="tool-ig-boyut.html">Instagram Boyut Aracımızla</a> fotoğrafınızı seçtiğiniz formata saniyeler içinde uyarlayın. Story, Post, Reels ve diğer platformlar için hazır presetler var.</li>
+<li><b>Sıkıştırın, yükleyin:</b> Çok büyük dosyalar Instagram tarafından tekrar sıkıştırılır. <a href="tool-compressor.html">Resim Sıkıştırıcımızla</a> %80–85 kalitede önceden optimize edin.</li>
+<li><b>Format seçin:</b> JPEG en iyi sıkıştırma-kalite dengesini sunar. PNG'yi gereksiz kullanmayın — dosya boyutu büyür. <a href="tool-converter.html">Format Dönüştürücü</a> ile PNG → JPG dönüşümü birkaç saniye alır.</li>
+</ol>
+<h2>Diğer platformların boyutları</h2>
+<p>Instagram dışında da doğru boyutlar önemlidir: Twitter/X için 1200 × 675 px, YouTube thumbnail için 1280 × 720 px, LinkedIn post görseli için 1200 × 627 px önerilir. <a href="tool-ig-boyut.html">Sosyal medya boyut aracımız</a> tüm bu platformlar için hazır presetler sunar.</p>`
   },
   {
     id: "pdf-sifre-koyma-ucretsiz",
@@ -653,15 +671,29 @@ window.BLOG_POSTS = [
 <li><b>Sözleşmeler:</b> İçerik gizliliği için alıcı dışında kimse okuyamamalı.</li>
 <li><b>Finansal belgeler:</b> Banka ekstreleri, faturalar — yanlış kişilere ulaşmamalı.</li>
 <li><b>Kişisel veriler:</b> Kimlik bilgileri, tıbbi kayıtlar — ekstra koruma gerektirir.</li>
+<li><b>Telif koruması:</b> Tasarım, rapor veya araştırma içeriklerinin kopyalanmasını önlemek.</li>
 </ul>
-<h2>Tarayıcıda PDF şifreleme yöntemleri</h2>
-<p><b>1. PDF koruma araçları:</b> Smallpdf, ILovePDF gibi servisler belgeyi sunucularına yükler ve şifreli haliyle geri gönderir. Gizli belgeler için dikkatli olun — verileriniz yabancı sunuculara gidiyor.</p>
-<p><b>2. Açık kaynaklı çözümler:</b> LibreOffice ile PDF'i açıp "şifreli kaydet" seçeneği kullanılabilir. Program kurulumu gerektirir ama veriler bilgisayarınızda kalır.</p>
-<p><b>3. PDF'i başka yollarla koruyun:</b> Şifre yerine belge oluşturma aşamasında izinleri kısıtlayabilirsiniz (yazdırma, kopyalama engeli).</p>
-<h2>PDF belgelerinizi kolayca yönetin</h2>
-<p>Birden fazla PDF'i birleştirmek, sıralamak veya birlikte tek dosyada paylaşmak için <a href="tool-pdf.html">PDF Birleştirici aracımızı</a> kullanabilirsiniz. Program kurulumu gerekmez, tüm işlem tarayıcıda gerçekleşir ve dosyalarınız cihazınızdan çıkmaz.</p>
-<h2>İpucu: Şifre seçimi</h2>
-<p>PDF şifresini en az 12 karakter, büyük/küçük harf, rakam ve sembol içerecek şekilde oluşturun. <a href="tool-password.html">Şifre üreticimizle</a> anında güvenli bir parola oluşturabilirsiniz.</p>`
+<h2>Yöntem 1: Tarayıcıda online araçlar</h2>
+<p><b>Smallpdf, ILovePDF, PDF2Go</b> gibi servisler belgeyi sunucularına yükler, şifreli haliyle geri gönderir. Kurulum gerektirmez, her cihazda çalışır. Ancak <b>gizli belgeler için dikkatli olun</b> — dosyanız yabancı sunuculara gidiyor. Bu araçlar genel amaçlı belgeler için uygundur.</p>
+<h2>Yöntem 2: LibreOffice ile yerel şifreleme</h2>
+<p>Ücretsiz açık kaynaklı ofis programı LibreOffice ile PDF'e şifre koyabilirsiniz:</p>
+<ol>
+<li>PDF'yi LibreOffice Draw ile açın</li>
+<li>Dosya → PDF olarak dışa aktar seçin</li>
+<li>"Güvenlik" sekmesinde açma şifresi belirleyin</li>
+<li>Dilerseniz yazdırma ve kopyalama iznini de kısıtlayın</li>
+</ol>
+<p>Veriler bilgisayarınızda kalır, internet bağlantısı gerekmez. En güvenli yöntemdir.</p>
+<h2>Yöntem 3: Microsoft Word veya Google Docs</h2>
+<p>Word belgesini "Farklı Kaydet → PDF" ile kaydederken <b>"Seçenekler"</b> menüsünden şifre ekleyebilirsiniz. Google Docs'ta ise doğrudan şifre ekleme yoktur, ancak dosyayı indirip LibreOffice ile şifreleyebilirsiniz.</p>
+<h2>Yöntem 4: macOS'ta Önizleme ile</h2>
+<p>Mac kullanıcıları için en kolay yöntem: PDF'yi Önizleme (Preview) uygulamasında açın → Dosya → PDF'i Dışa Aktar → "İzinler" sekmesinden şifre belirleyin.</p>
+<h2>İzin kısıtlamaları: Şifresiz ama korumalı</h2>
+<p>Şifre koymak istemiyorsanız, belge izinlerini kısıtlayarak yazdırma ve kopyalamayı engelleyebilirsiniz. Bu yöntem ek bir giriş adımı olmadan içerik koruması sağlar.</p>
+<h2>Güçlü şifre nasıl oluşturulur?</h2>
+<p>PDF şifresi en az <b>12 karakter</b>, büyük/küçük harf, rakam ve sembol içermelidir. Örneğin: <code>Tr!pdf2026@X</code>. <a href="tool-password.html">Şifre Üreticimizle</a> anında güvenli bir parola oluşturabilirsiniz — herhangi bir karakter kombinasyonunu özelleştirebilirsiniz.</p>
+<h2>PDF belgelerinizi yönetmek için</h2>
+<p>Birden fazla PDF'i birleştirmek, sıralamak veya tek dosyada paylaşmak için <a href="tool-pdf.html">PDF Birleştirici aracımızı</a> kullanabilirsiniz. Program kurulumu gerekmez, tüm işlem tarayıcıda gerçekleşir ve dosyalarınız cihazınızdan çıkmaz. Ayrıca PDF boyutu sorunuyla karşılaşıyorsanız <a href="tool-pdf-compress.html">PDF Sıkıştırıcı aracımız</a> yakında yayında olacak.</p>`
   },
   {
     id: "whatsapp-fotograf-boyutu-kucultme",
@@ -674,20 +706,36 @@ window.BLOG_POSTS = [
     icerik: `
 <p>WhatsApp, gönderilen fotoğrafları otomatik olarak sıkıştırır. Bu bazen yüzde 70–80 kalite düşüşüne neden olur; ürün fotoğrafları, tasarımlar veya belgeler bulanık görünür. Çözüm: fotoğrafı kendiniz sıkıştırıp belge olarak göndermek.</p>
 <h2>Neden WhatsApp fotoğrafları bozuluyor?</h2>
-<p>WhatsApp, veri kullanımını ve depolamayı azaltmak için her gönderilen fotoğrafı agresif biçimde sıkıştırır. Özellikle ürün görselleri, ekran görüntüleri ve ince detaylı tasarımlarda bu sıkıştırma çok belirgin olur.</p>
-<h2>Çözüm 1: Belge olarak gönder</h2>
-<p>WhatsApp'ta fotoğraf yerine "Belge" seçeneğiyle gönderin. Belge olarak gönderilen dosyalar WhatsApp tarafından sıkıştırılmaz, orijinal kalitesinde ulaşır. Tek dezavantajı: önizleme otomatik gösterilmez.</p>
-<h2>Çözüm 2: Önceden sıkıştır, kaliteyi kontrol et</h2>
-<p>Kendiniz sıkıştırırsanız kalite ayarını kontrol altında tutarsınız. WhatsApp'ın rastgele sıkıştırmasından çok daha iyi sonuç alırsınız:</p>
+<p>WhatsApp, veri kullanımını ve depolamayı azaltmak için her gönderilen fotoğrafı agresif biçimde sıkıştırır. Özellikle ürün görselleri, ekran görüntüleri ve ince detaylı tasarımlarda bu sıkıştırma çok belirgin olur. Gönderdiğiniz 3 MB'lık fotoğraf karşı tarafa 200 KB civarında ulaşabilir — bu %93 kalite kaybı demektir.</p>
+<h2>Çözüm 1: Belge olarak gönder (en kolay)</h2>
+<p>WhatsApp'ta fotoğraf eki yerine <b>"Belge"</b> seçeneğiyle gönderin. Belge olarak gönderilen dosyalar WhatsApp tarafından <em>sıkıştırılmaz</em>, orijinal kalitesinde ulaşır.</p>
 <ul>
-<li>Fotoğrafı <a href="tool-compressor.html">Resim Sıkıştırıcı aracımıza</a> yükleyin</li>
-<li>Kalite ayarını %80–85 yapın</li>
-<li>WebP veya JPG olarak indirin</li>
-<li>WhatsApp'ta bu sıkıştırılmış dosyayı gönderin</li>
+<li>Android: Ataç ikonuna tıklayın → "Belge" seçin → fotoğrafı bulun</li>
+<li>iOS: Ataç ikonuna tıklayın → "Belge" seçin → "Fotoğraf Kütüphanesi"nden seçin</li>
 </ul>
-<p>Sonuç: WhatsApp'ın kendi sıkıştırmasından çok daha keskin bir görüntü elde edersiniz.</p>
+<p>Tek dezavantajı: fotoğraf önizlemesi otomatik gösterilmez, alıcının açması gerekir.</p>
+<h2>Çözüm 2: Önceden optimize et, sonra gönder</h2>
+<p>Kendiniz sıkıştırırsanız kalite ayarını kontrol altında tutarsınız. WhatsApp'ın rastgele sıkıştırmasından çok daha iyi sonuç alırsınız:</p>
+<ol>
+<li>Fotoğrafı <a href="tool-compressor.html">Resim Sıkıştırıcı aracımıza</a> yükleyin</li>
+<li>Kalite ayarını %80–85 yapın (genellikle %70'in altı gözle görülür kalite kaybı verir)</li>
+<li>JPG veya WebP olarak indirin</li>
+<li>WhatsApp'ta bu optimize edilmiş dosyayı fotoğraf olarak gönderin</li>
+</ol>
+<p><b>Sonuç:</b> WhatsApp'ın kendi sıkıştırmasından çok daha keskin görüntü elde edersiniz, çünkü algoritmayı siz kontrol ettiniz.</p>
 <h2>Fotoğraf boyutu ne kadar olmalı?</h2>
-<p>WhatsApp için ideal fotoğraf boyutu 1280 piksel genişlikte, %80 kalitede JPG veya WebP olarak 200–400 KB arasındadır. <a href="tool-resizer.html">Boyutlandırıcı aracımızla</a> genişliği 1280 piksele düşürebilirsiniz.</p>`
+<p>WhatsApp için ideal fotoğraf boyutları:</p>
+<ul>
+<li><b>Genişlik:</b> 1280 piksel yeterli (4K'ya gerek yok)</li>
+<li><b>Dosya boyutu:</b> 200–500 KB arası ideal</li>
+<li><b>Format:</b> JPG (en iyi uyumluluk) veya WebP (küçük boyut)</li>
+<li><b>Kalite:</b> %80–85 optimum nokta</li>
+</ul>
+<p><a href="tool-resizer.html">Boyutlandırıcı aracımızla</a> genişliği 1280 piksele düşürebilir, ardından <a href="tool-compressor.html">sıkıştırıcıyla</a> dosya boyutunu optimize edebilirsiniz.</p>
+<h2>Ürün fotoğrafı gönderiyorsanız</h2>
+<p>E-ticaret veya işletme için ürün görseli gönderiyorsanız, belge yöntemi her zaman daha iyidir. Alternatif olarak görselinizi bir Google Drive veya Dropbox linkiyle paylaşmak orijinal kaliteyi %100 korur.</p>
+<h2>Instagram için fotoğraf boyutu</h2>
+<p>Instagram da WhatsApp gibi görselleri sıkıştırır. Her platform için doğru boyutu öğrenmek için <a href="tool-ig-boyut.html">Instagram Boyut Aracımıza</a> göz atın — Story, Post, Reels için hazır presetler sunar.</p>`
   },
   {
     id: "online-kartvizit-tasarimi-ucretsiz",
@@ -698,33 +746,40 @@ window.BLOG_POSTS = [
     kat: "İşletme",
     tool: "",
     icerik: `
-<p>Profesyonel bir kartvizit, işletmenizin ilk fiziksel izlenimidir. Yanlış boyut, düşük çözünürlük veya zayıf tasarım, karşınızdaki kişide olumsuz etki bırakır. Oysa iyi bir kartvizit için büyük bütçe veya tasarımcı deneyimi şart değil.</p>
+<p>Profesyonel bir kartvizit, işletmenizin ilk fiziksel izlenimidir. Yanlış boyut, düşük çözünürlük veya kalabalık tasarım, karşınızdaki kişide olumsuz etki bırakır. Oysa iyi bir kartvizit için büyük bütçe veya tasarımcı deneyimi şart değil.</p>
 <h2>Standart kartvizit boyutları</h2>
 <ul>
-<li><b>Türkiye standardı:</b> 85 × 55 mm (en yaygın)</li>
-<li><b>Avrupa standardı:</b> 85 × 54 mm</li>
-<li><b>Baskı kesmesi (bleed):</b> Kenarlara 3 mm ekleyin — matbaanın kesme payı</li>
+<li><b>Türkiye standardı:</b> 85 × 55 mm (en yaygın, matbaaların varsayılanı)</li>
+<li><b>Avrupa standardı:</b> 85 × 54 mm (1 mm fark — çoğu matbaa her ikisini de basar)</li>
+<li><b>Baskı kesmesi (bleed):</b> Her kenara 3 mm ekleyin — matbaanın kesme payı, baskı sırasında beyaz kenar kalmaması için</li>
 <li><b>Güvenli alan:</b> Yazı ve logolar kenara en az 5 mm uzakta olsun</li>
+<li><b>Tam tasarım boyutu:</b> 91 × 61 mm (bleed dahil)</li>
 </ul>
 <h2>Baskı için çözünürlük</h2>
-<p>Matbaa için görseller en az <b>300 DPI</b> çözünürlükte hazırlanmalıdır. Ekranda güzel görünen 72 DPI görsel basıldığında bulanık çıkar. Logonuzu vektör (SVG veya PDF) formatta hazırsanız bu sorun yaşanmaz.</p>
-<h2>Ücretsiz tasarım araçları</h2>
-<p><b>Canva:</b> Hazır şablonlar, sürükle-bırak editör. Ücretsiz sürümde yeterli seçenek var. PNG veya PDF indirilebilir.</p>
-<p><b>Adobe Express:</b> Canva'ya benzer, Adobe ekosistemiyle entegre. Ücretsiz plan mevcut.</p>
-<p><b>Google Slaytlar:</b> 85×55 mm özel slayt boyutu oluşturup PDF olarak indirilebilir. Basit ve tamamen ücretsiz.</p>
+<p>Matbaa için görseller en az <b>300 DPI</b> çözünürlükte hazırlanmalıdır. Ekranda güzel görünen 72 DPI görsel basıldığında bulanık çıkar. Logonuzu vektör formatta (SVG veya PDF/AI) hazırsanız bu sorun yaşanmaz — vektörler her boyuta keskin kopyalanır.</p>
+<h2>Ücretsiz tasarım araçları — karşılaştırma</h2>
+<ul>
+<li><b>Canva (canva.com):</b> Hazır şablonlar, sürükle-bırak editör. Ücretsiz sürümde yeterli seçenek var. PNG veya PDF indirilebilir. <em>Başlangıç için en iyi seçim.</em></li>
+<li><b>Adobe Express:</b> Canva'ya benzer, Adobe ekosistemiyle entegre. Ücretsiz plan mevcut, bazı premium öğeler ücretli.</li>
+<li><b>Google Slaytlar:</b> Dosya → Sayfa Ayarları → 8,5×5,5 cm özel boyut oluşturun, PDF olarak indirin. Tamamen ücretsiz, en basit yöntem.</li>
+<li><b>Figma:</b> Profesyonel kullanıcılar için. Vektör tabanlı, piksel mükemmeliyetçiliği için ideal. Ücretsiz plan yeterli.</li>
+</ul>
 <h2>Kartvizitte olması gerekenler</h2>
 <ul>
-<li>Adı soyadı ve unvan (net, okunur font)</li>
-<li>Şirket adı ve logo</li>
-<li>Telefon (WhatsApp ikonu ile)</li>
-<li>E-posta</li>
-<li>Web sitesi veya Instagram hesabı</li>
-<li>QR kod (WhatsApp veya web sitenize yönlendiren)</li>
+<li>Ad Soyad ve unvan (net, okunur font — 9 punto altına inmeyin)</li>
+<li>Şirket adı ve logo (vektör formatta olsun)</li>
+<li>Telefon numarası (WhatsApp ikonu ekleyin)</li>
+<li>E-posta adresi</li>
+<li>Web sitesi veya Instagram profil linki</li>
+<li>QR kod (WhatsApp veya sitenize yönlendiren)</li>
 </ul>
-<h2>QR kod ekleyin</h2>
-<p>Kartvizitinize QR kod eklemek modern ve pratik bir dokunuş katar. <a href="tool-qr.html">Ücretsiz QR Kod Üreticimizle</a> web sitenize veya WhatsApp numaranıza yönlendiren bir QR kodu saniyeler içinde oluşturabilirsiniz. PNG veya SVG olarak indirip tasarımınıza ekleyin.</p>
-<h2>Profesyonel tasarım için</h2>
-<p>Zaman tasarrufu veya kurumsal kimlik oluşturmak istiyorsanız EbruTech Studios kartvizit tasarımı hizmeti 250₺'den başlıyor. Çift taraflı, baskıya hazır, vektör kaynak dosyaları dahil. WhatsApp'tan sipariş verebilirsiniz.</p>`
+<p><b>Kalabalıktan kaçının:</b> Çok fazla bilgi okunabilirliği düşürür. Renk paletinizi 2–3 renkle sınırlı tutun.</p>
+<h2>QR kod ekleyin — ücretsiz</h2>
+<p>Kartvizitinize QR kod eklemek modern ve pratik bir dokunuş katar. <a href="tool-qr.html">Ücretsiz QR Kod Üreticimizle</a> web sitenize veya WhatsApp numaranıza yönlendiren QR kodu saniyeler içinde oluşturabilirsiniz. <b>PNG veya SVG</b> olarak indirip Canva veya Figma tasarımınıza ekleyin. SVG formatı baskıda piksel mükemmeliyeti sağlar.</p>
+<h2>Matbaaya nasıl gönderilir?</h2>
+<p>Matbaaların büyük çoğunluğu <b>PDF (baskı kalitesi)</b> veya TIFF formatında dosya kabul eder. Canva'dan "Baskı İçin PDF" olarak indirirseniz 300 DPI ve renk profili (CMYK) ayarları otomatik yapılır. Bleed seçeneğini aktif etmeyi unutmayın.</p>
+<h2>Profesyonel kartvizit tasarımı</h2>
+<p>Zaman tasarrufu veya kurumsal kimlik oluşturmak istiyorsanız EbruTech Studios <b>kartvizit tasarımı hizmeti 250₺'den başlıyor</b>. Çift taraflı, baskıya hazır, vektör kaynak dosyaları (AI/SVG) dahil. Tasarımı görmeden ödeme yapmazsınız. WhatsApp'tan sipariş verebilirsiniz.</p>`
   },
   {
     id: "png-jpg-webp-fark",
