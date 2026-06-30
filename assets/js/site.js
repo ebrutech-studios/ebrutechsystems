@@ -425,7 +425,7 @@ function buildShell(){
   document.body.insertAdjacentHTML("afterbegin",`
   <header class="site-head"><div class="wrap"><nav class="nav">
     <a class="brand" href="index.html">
-      <span class="logo">E</span>
+      <span class="logo"><img src="assets/logo-mark.png" alt="" aria-hidden="true"></span>
       <span>EbruTech Studios<small>Tasarım + Yazılım</small></span>
     </a>
     <button class="burger" aria-label="Menü">☰</button>
@@ -439,7 +439,7 @@ function buildShell(){
     <div class="foot-grid">
       <div class="col" style="max-width:280px">
         <a class="brand" href="index.html" style="margin-bottom:12px">
-          <span class="logo">E</span><span>EbruTech Studios</span></a>
+          <span class="logo"><img src="assets/logo-mark.png" alt="" aria-hidden="true"></span><span>EbruTech Studios</span></a>
         <p style="color:var(--txt-dim);font-size:.9rem">Tarayıcıda çalışan profesyonel görsel araçlar ve KOBİ'lere özel tasarım & yazılım çözümleri.</p>
       </div>
       <div class="col"><h5>Ürün</h5>
