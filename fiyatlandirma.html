@@ -26,6 +26,9 @@
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#10140a">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"EbruTech Pro üyelik ne kadara mal olur?","acceptedAnswer":{"@type":"Answer","text":"Pro üyelik aylık 149₺ veya yıllık 1.490₺'dir (2 ay bedava). WhatsApp'tan sipariş verebilirsiniz."}},{"@type":"Question","name":"Pro üyeliği nasıl satın alabilirim?","acceptedAnswer":{"@type":"Answer","text":"WhatsApp üzerinden iletişime geçmeniz yeterli. Ödeme sonrası hesabınız hemen Pro olarak aktive edilir."}},{"@type":"Question","name":"Üyeliği istediğim zaman iptal edebilir miyim?","acceptedAnswer":{"@type":"Answer","text":"Evet, istediğiniz zaman iptal edebilirsiniz. Herhangi bir bağlayıcılık yoktur."}},{"@type":"Question","name":"Logo tasarımı ne kadar sürer?","acceptedAnswer":{"@type":"Answer","text":"Logo tasarımı genellikle 3-5 iş günü içinde teslim edilir. 3 konsept + revizyon hakkı + kaynak dosyalar pakete dahildir."}},{"@type":"Question","name":"Web sitesi yaptırmak ne kadar tutar?","acceptedAnswer":{"@type":"Answer","text":"Tek sayfa (landing page) web sitesi 2.500₺'den başlar. Çok sayfalı kurumsal siteler ve özel projeler için WhatsApp'tan teklif alabilirsiniz."}},{"@type":"Question","name":"Mobil uygulama fiyatları nedir?","acceptedAnswer":{"@type":"Answer","text":"Mobil uygulama projeleri kapsam ve platforma göre değişir. WhatsApp'tan projenizi anlatın, size özel teklif hazırlayalım."}}]}
+</script>
 </head>
 <body>
 
@@ -157,6 +160,22 @@
   </div>
 </div></section>
 
+<section style="padding-top:0;padding-bottom:20px"><div class="wrap">
+  <div class="section-head reveal" style="margin-bottom:28px">
+    <span class="eyebrow">Sık Sorulan Sorular</span>
+    <h2>Aklınızdaki soruları yanıtlıyoruz</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item reveal"><button class="faq-q">Pro üyelik ne kadara mal olur?</button><div class="faq-a">Pro üyelik <strong>aylık 149₺</strong> veya <strong>yıllık 1.490₺</strong> (2 ay bedava, %17 indirim). WhatsApp'tan mesaj atarak satın alabilirsiniz; banka havalesi veya EFT ile ödeme kabul ediyoruz.</div></div>
+    <div class="faq-item reveal"><button class="faq-q">Pro üyeliği nasıl satın alabilirim?</button><div class="faq-a">WhatsApp'tan "Pro üyelik almak istiyorum" diye mesaj atmanız yeterli. Ödeme bilgileri iletilir, ödeme onayı sonrasında hesabınız <strong>aynı gün</strong> Pro olarak aktive edilir.</div></div>
+    <div class="faq-item reveal"><button class="faq-q">Üyeliği istediğim zaman iptal edebilir miyim?</button><div class="faq-a">Evet. Herhangi bir bağlayıcılık veya otomatik ödeme yoktur. İptal için WhatsApp'tan bir mesaj atmanız yeterlidir; bir sonraki dönem için ücret alınmaz.</div></div>
+    <div class="faq-item reveal"><button class="faq-q">Logo veya kartvizit tasarımı ne kadar sürer?</button><div class="faq-a">Kartvizit tasarımı genellikle <strong>1-2 iş günü</strong>, logo tasarımı <strong>3-5 iş günü</strong> içinde teslim edilir. Paket; 3 farklı konsept, revizyon hakkı ve baskıya/dijitale hazır kaynak dosyaları kapsar.</div></div>
+    <div class="faq-item reveal"><button class="faq-q">Web sitesi yaptırmak ne kadar tutar?</button><div class="faq-a">Tek sayfa (landing page) web sitesi <strong>2.500₺</strong>'den başlar. Çok sayfalı kurumsal siteler ve özel projeler için WhatsApp'tan projenizi anlatın; 24 saat içinde size özel teklif hazırlayalım.</div></div>
+    <div class="faq-item reveal"><button class="faq-q">Mobil uygulama fiyatları nedir?</button><div class="faq-a">Mobil uygulama projeleri kapsam ve platforma (iOS / Android / her ikisi) göre değişkenlik gösterir. WhatsApp'tan projenizi kısaca anlatın, size özel teklif hazırlayalım.</div></div>
+    <div class="faq-item reveal"><button class="faq-q">Fatura kesiyor musunuz?</button><div class="faq-a">Evet, bireysel ve kurumsal fatura kesilmektedir. Sipariş aşamasında fatura bilgilerinizi paylaşmanız yeterlidir.</div></div>
+  </div>
+</div></section>
+
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
@@ -192,6 +211,14 @@ document.addEventListener("DOMContentLoaded",()=>{
   link("pkg-web","Tek Sayfa Web paketi (2.500₺)");
   link("pkg-sosyal","Sosyal Medya Seti paketi (500₺)");
   document.getElementById("wa-quote").href=ETSlib.wa("Merhaba EbruTech Studios, özel bir proje için teklif almak istiyorum.");
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const item=btn.closest('.faq-item');
+      const wasOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
 });
 </script>
 </body>

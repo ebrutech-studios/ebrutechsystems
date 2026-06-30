@@ -175,7 +175,9 @@ h2{font-size:clamp(1.8rem,4vw,2.7rem)}
 .foot-grid .col h5{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-faint);margin-bottom:14px}
 .foot-grid .col a{display:block;color:var(--txt-dim);font-size:.92rem;padding:5px 0}
 .foot-grid .col a:hover{color:var(--accent)}
-.foot-bottom{margin-top:34px;padding-top:22px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--txt-faint);font-size:.85rem}
+.foot-newsletter{margin-top:36px;padding:22px 28px;background:rgba(200,255,46,.05);border:1px solid rgba(200,255,46,.15);border-radius:12px}
+.foot-newsletter-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.foot-bottom{margin-top:24px;padding-top:22px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:var(--txt-faint);font-size:.85rem}
 
 /* ===== Toast ===== */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--accent);color:var(--accent-ink);padding:13px 22px;border-radius:13px;font-weight:700;z-index:200;transition:.32s;box-shadow:var(--shadow)}
