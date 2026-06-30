@@ -822,5 +822,106 @@ window.BLOG_POSTS = [
 <li>🖨️ Baskı → <b>PNG</b> veya orijinal RAW</li>
 </ul>
 <p>Formatlar arasında geçiş yapmak için aşağıdaki ücretsiz dönüştürücüyü kullanın — yükleme gerekmez, tarayıcıda çalışır.</p>`
+  },
+  {
+    id: "kafe-dijital-menu-qr-kod-rehberi",
+    baslik: "Kafeniz İçin QR Menü ve Dijital Menü Sistemi Kurma Rehberi (2026)",
+    ozet: "Kafelerde QR menü sistemi nasıl kurulur? Müşteri deneyimini iyileştiren dijital menünün avantajları, kurulum adımları ve maliyet karşılaştırması.",
+    tarih: "2026-06-30",
+    okuma: 5,
+    kat: "İşletme",
+    tool: "tool-qrmenu.html",
+    icerik: `
+<p>QR menü artık lüks değil, zorunluluk. Akıllı telefonların yaygınlaşmasıyla müşteriler menüye kendi telefonlarından bakmayı tercih ediyor. Kafe sahipleri içinse bu, baskı maliyetinden kurtulma ve menüyü anlık güncelleme imkânı demek.</p>
+<h2>QR menü nedir, nasıl çalışır?</h2>
+<p>QR menü; masaya veya tezgâha konulan bir QR kodun telefonla okutulmasıyla açılan dijital menüdür. Müşteri kendi cihazında menüyü görür, uygulama indirmesi gerekmez. Sistem tamamen web tabanlı çalışır.</p>
+<h2>QR menünün avantajları</h2>
+<ul>
+<li><b>Anlık güncelleme:</b> Fiyat değişikliğini hemen yansıtın, baskı masrafı yok</li>
+<li><b>Hijyen:</b> Ortak menü kartı kullanımını ortadan kaldırır</li>
+<li><b>Fotoğraflı sunum:</b> Her ürünün görseliyle sunumu müşteriyi ikna eder</li>
+<li><b>Stok yönetimi:</b> Biten ürünü anında "tükendi" olarak işaretleyin</li>
+<li><b>WhatsApp entegrasyonu:</b> Sipariş butonu direkt WhatsApp'ınıza bağlanabilir</li>
+</ul>
+<h2>Adım 1: Menü içeriğini hazırlayın</h2>
+<p>Kategoriler (kahveler, soğuk içecekler, tatlılar vb.), ürün adları, fiyatlar ve varsa açıklamaları bir liste halinde hazırlayın. Fotoğraf eklemek istiyorsanız her ürün için kare (1:1) veya 4:3 oranında görsel hazırlayın. Görselleri <a href="tool-compressor.html">Resim Sıkıştırıcımızla</a> optimize edin — web menüde büyük dosyalar sayfayı yavaşlatır.</p>
+<h2>Adım 2: QR kod oluşturun</h2>
+<p>Menünüzün URL'sine yönlendiren bir QR kod oluşturun. <a href="tool-qr.html">Ücretsiz QR Kod Üreticimizle</a> saniyeler içinde PNG veya SVG formatında QR kodunuzu alabilirsiniz. Baskı için SVG formatını tercih edin — her boyutta keskin kalır.</p>
+<h2>Adım 3: QR kodu bastırın ve yerleştirin</h2>
+<p>QR kodu masa etiketlerine, tabak altlarına, giriş kapısına veya kasa yanına yerleştirin. Minimum 3×3 cm boyutunda basın — küçük QR kodlar okunmakta zorlanabilir. Yanına kısa bir yönlendirme metni ekleyin: <em>"Menüyü görmek için telefonunla okut."</em></p>
+<h2>Adım 4: Kafeye özel web sitenize entegre edin</h2>
+<p>QR menüyü kafeye özel web sitenizle birleştirince tam dijital deneyim ortaya çıkar: Google'da bulunabilirlik + dijital menü + WhatsApp rezervasyon = tam döngü. <a href="landing-kafe-web-sitesi.html">Kafe web sitesi paketimiz</a> QR menü sistemini de içermektedir — tek seferlik 2.500₺ ile tüm bunları kuruyoruz.</p>
+<h2>Maliyet karşılaştırması</h2>
+<ul>
+<li><b>Basılı menü:</b> Her güncellemede 200–500₺ baskı maliyeti, değişiklik yavaş</li>
+<li><b>QR menü + web sitesi:</b> Tek seferlik kurulum, sınırsız güncelleme, sıfır baskı maliyeti</li>
+</ul>
+<p>İlk yılda bile basılı menüye kıyasla net kazanım sağlanmaktadır.</p>`
+  },
+  {
+    id: "emlak-danismani-web-sitesi-neden-onemli",
+    baslik: "Emlak Danışmanları İçin Web Sitesi Neden Zorunlu Hale Geldi? (2026)",
+    ozet: "Sahibinden.com ve Hürriyet Emlak'ta ilan vermek yetmiyor. Kendi web sitesi olan emlak danışmanları neden daha fazla müşteri kazanıyor? Rakamlar ve stratejiler.",
+    tarih: "2026-06-29",
+    okuma: 5,
+    kat: "İşletme",
+    tool: "",
+    icerik: `
+<p>Türkiye'de gayrimenkul alıcılarının <b>%87'si</b> arama sürecine internetten başlıyor. Sahibinden.com veya Hürriyet Emlak'a güvenmek bu aşamada yeterli gibi görünse de platformlardaki rekabet her geçen yıl artıyor ve organik görünürlük azalıyor. Kendi web sitesi olan danışmanlar farklı bir oyun oynuyor.</p>
+<h2>Platform ilanı vs. kendi web sitesi</h2>
+<ul>
+<li><b>Sahibinden.com ilanı:</b> Rakiplerinizle yan yana görünürsünüz, marka değeri platforma aittir, öne çıkarma için ücret ödersiniz</li>
+<li><b>Kendi web siteniz:</b> Google'da adınız ve bölgenizle sıralanırsınız, müşteri sizi bulduktan sonra doğrudan size ulaşır, marka güveni oluşur</li>
+</ul>
+<h2>Google'da "bölge + satılık daire" aramaları</h2>
+<p>Bir alıcı "Kadıköy satılık 2+1" diye aradığında platform ilanları ve Google Haritalar sonuçları çıkar. Ancak "Kadıköy emlak danışmanı" veya "Maltepe emlak ofisi" gibi aramalarda kendi sitesi olan danışmanlar, platformların önüne geçebilir. Bu, nitelikli lead (alıcı adayı) demektir.</p>
+<h2>Web sitenizde olması gerekenler</h2>
+<ul>
+<li><b>İlan portföyü:</b> Aktif satılık/kiralık ilanlarınız, fotoğraf ve detaylarıyla</li>
+<li><b>Bölge uzmanlığı sayfası:</b> "10 yıldır Kadıköy'de" gibi güven oluşturan içerik</li>
+<li><b>Müşteri yorumları:</b> Google yorumlarınızı sitenize taşıyın</li>
+<li><b>WhatsApp butonu:</b> Her ilan kartında doğrudan iletişim</li>
+<li><b>Piyasa bilgisi:</b> Bölgedeki fiyat trendleri — uzmanlığınızı sergileyin</li>
+</ul>
+<h2>SEO ile bölgesel görünürlük</h2>
+<p>Web sitenizin başlığına ve içeriğine <em>"[İlçe adı] emlak danışmanı"</em>, <em>"[İlçe adı] satılık daire"</em> gibi yerel anahtar kelimeler eklemek, Google'da platformsuz da sıralanmanızı sağlar. <a href="tool-slug.html">URL Slug Aracımızla</a> SEO uyumlu sayfa başlıkları oluşturabilirsiniz.</p>
+<h2>Görsel tur ve fotoğraf kalitesi</h2>
+<p>İlan fotoğraflarınızın kalitesi doğrudan dönüşüm oranınızı etkiler. Web sitenize yüklenmeden önce görselleri <a href="tool-compressor.html">Resim Sıkıştırıcımızla</a> optimize edin ve <a href="tool-resizer.html">Boyutlandırıcımızla</a> 1200px genişliğe getirin. Hızlı yüklenen, keskin görüntülü bir site daha fazla ziyaret demektir.</p>
+<h2>Ne kadara mal olur?</h2>
+<p><a href="landing-emlak-web-sitesi.html">Emlak web sitesi paketimiz</a> tek seferlik <b>2.500₺</b>'den başlar. İlan portföyü (10 ilan), danışman profili, WhatsApp butonu ve SEO temel ayarları dahildir. 3-5 iş gününde teslim edilir.</p>`
+  },
+  {
+    id: "kucuk-isletme-web-sitesi-neden-gerekli-2026",
+    baslik: "Küçük İşletmeler İçin Web Sitesi Neden Zorunlu Hale Geldi? (2026)",
+    ozet: "Esnaf, kafe, kuaför, oto servis: web siteniz yoksa Google'da görünmüyorsunuz. Küçük işletmelerin web sitesi olmadan ne kaybettiğini ve çözümü anlattık.",
+    tarih: "2026-06-28",
+    okuma: 6,
+    kat: "İşletme",
+    tool: "",
+    icerik: `
+<p>Türkiye'de yakın çevre aramaları ("yakınımdaki kuaför", "en yakın oto tamirci") son 3 yılda <b>%140 artış</b> gösterdi. Bu aramaların neredeyse tamamı akıllı telefondan yapılıyor. Arama yapan kişinin karşısına çıkamazsanız — rakibiniz çıkıyor.</p>
+<h2>Web sitesi olmadan ne kaybediyorsunuz?</h2>
+<ul>
+<li><b>Google aramalarında yokluk:</b> "Yakınımdaki + sektör" aramalarında görünmüyorsunuz</li>
+<li><b>Güven eksikliği:</b> Araştıran müşteriler sizi bulamayınca rakibe gidiyor</li>
+<li><b>Sosyal medya bağımlılığı:</b> Instagram hesabı kapandığında dijital varlığınız sıfırlanıyor</li>
+<li><b>Çalışma saati ve konum karışıklığı:</b> Müşteri ulaşamadı, vazgeçti</li>
+</ul>
+<h2>Google İşletme Profili yetmez mi?</h2>
+<p>Google İşletme Profili harika bir başlangıç, ancak yetersiz. Profil sayfanız Google'a bağlıdır ve içerik kontrolünüz sınırlıdır. Kendi web siteniz; logonuzu, renklerinizi, hikayenizi ve tüm hizmetlerinizi istediğiniz şekilde sunmanızı sağlar. İkisi birlikte çok daha güçlü.</p>
+<h2>Sektöre göre web sitesinde olması gerekenler</h2>
+<ul>
+<li><b>Kafe & Restoran:</b> Dijital menü, QR menü, rezervasyon, atmosfer görselleri → <a href="landing-kafe-web-sitesi.html">Kafe web sitesi paketi</a></li>
+<li><b>Kuaför & Güzellik:</b> Hizmet listesi, fiyatlar, randevu, öncesi/sonrası galeri → <a href="landing-kuafor-web-sitesi.html">Kuaför web sitesi paketi</a></li>
+<li><b>Doktor & Klinik:</b> Randevu, ekip profili, hasta yorumları, KVKK → <a href="landing-doktor-klinik-web-sitesi.html">Klinik web sitesi paketi</a></li>
+<li><b>Oto Servis:</b> Servis hizmetleri, araç kabul randevusu, yorumlar → <a href="landing-oto-servis-web-sitesi.html">Oto servis web sitesi paketi</a></li>
+<li><b>Emlak:</b> İlan portföyü, danışman profili, WhatsApp iletişim → <a href="landing-emlak-web-sitesi.html">Emlak web sitesi paketi</a></li>
+</ul>
+<h2>Web sitesi maliyeti ne kadar?</h2>
+<p>Profesyonel, hazır şablon web sitesi <b>2.500₺'den başlıyor</b>. Bu; logo tasarımı, sosyal medya bütçesi veya bir aylık Instagram reklamı gibi düşünüldüğünde oldukça uygun. Tek seferlik ödeme, yıllarca kullanım.</p>
+<h2>Kaç günde hazır?</h2>
+<p>İçeriklerinizi (metin, fotoğraf, hizmet listesi) verdikten sonra <b>3-5 iş günü</b> içinde siteniz yayında. Acil projeler için 2 iş günü ekspres seçenek de mevcut. Tüm hazır şablonlarımızı görmek için <a href="hazir-siteler.html">Hazır Web Siteleri</a> sayfamıza göz atın.</p>
+<h2>Başlamak için ne gerekiyor?</h2>
+<p>Sadece işletme adınız, telefon numaranız ve varsa birkaç fotoğraf yeterli. Geri kalanını biz hallederiz. <a href="iletisim.html">İletişim sayfamızdan</a> veya WhatsApp'tan bize ulaşın — 24 saat içinde dönüş yapıyoruz.</p>`
   }
 ];
