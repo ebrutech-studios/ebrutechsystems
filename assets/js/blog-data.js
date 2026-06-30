@@ -612,6 +612,121 @@ window.BLOG_POSTS = [
 <p>Aşağıdaki araçla farklı vade ve faiz oranlarını hızlıca karşılaştırın.</p>`
   },
   {
+    id: "instagram-reels-boyutu-2026",
+    baslik: "Instagram Reels Boyutu ve Formatı 2026 (Tam Kılavuz)",
+    ozet: "Instagram Reels için doğru video boyutu, en iyi çözünürlük ve format ayarları. 2026'da değişen boyutlar ve önerilen ayarlar.",
+    tarih: "2026-06-28",
+    okuma: 4,
+    kat: "Rehber",
+    tool: "tool-social.html",
+    icerik: `
+<p>Instagram Reels boyutlarını yanlış ayarlamak videonuzun kesilmesine, bulanık görünmesine veya platform tarafından sıkıştırılmasına neden olur. 2026 yılında Instagram'ın algoritması, doğru formattaki içerikleri öne çıkarmaya devam ediyor.</p>
+<h2>Instagram Reels için önerilen boyutlar</h2>
+<ul>
+<li><b>Çözünürlük:</b> 1080 × 1920 piksel (9:16 dikey)</li>
+<li><b>En boy oranı:</b> 9:16 (tam ekran dikey)</li>
+<li><b>Minimum çözünürlük:</b> 500 piksel genişlik</li>
+<li><b>Format:</b> MP4 veya MOV</li>
+<li><b>Maksimum dosya boyutu:</b> 4 GB</li>
+<li><b>Süre:</b> 3 saniye – 90 saniye</li>
+<li><b>Kare hızı:</b> 24–60 fps (30 fps önerilir)</li>
+</ul>
+<h2>Güvenli alan (Safe Zone)</h2>
+<p>Ekranın alt %20'sinde etiket, müzik adı ve butonlar göründüğünden, önemli içerikleri videonun ortasında tutun. Üst %10'da da profil adı çıktığından başlık metnini merkezde konumlandırın.</p>
+<h2>Feed ve Explore için boyut</h2>
+<p>Reels feed'de kare (1:1) veya dikey (4:5) görünebilir. En geniş görüntüleme için 9:16 oranında çekin; Instagram gerektiğinde otomatik kırpar.</p>
+<h2>Görsellerinizi doğru boyuta getirin</h2>
+<p>Kapak fotoğrafı için 1080 × 1920 piksel PNG veya JPG yükleyin. <a href="tool-resizer.html">Boyutlandırıcı aracımızla</a> görselinizi anında doğru ölçüye getirebilir, <a href="tool-converter.html">format dönüştürücüyle</a> de WebP veya PNG'yi JPG'ye çevirebilirsiniz.`
+  },
+  {
+    id: "pdf-sifre-koyma-ucretsiz",
+    baslik: "PDF'e Şifre Koyma: Ücretsiz Online Yöntemler (2026)",
+    ozet: "PDF belgenizi programa gerek kalmadan şifrelemenin ücretsiz yolları. Güvenli, hızlı ve tarayıcıda çalışan çözümler.",
+    tarih: "2026-06-25",
+    okuma: 4,
+    kat: "Rehber",
+    tool: "tool-pdf.html",
+    icerik: `
+<p>Sözleşme, rapor veya kişisel belgeler içeren PDF'leri paylaşmadan önce şifrelemek artık kolay. Pahalı yazılım satın almadan, programa gerek kalmadan online PDF şifreleme araçlarıyla bunu yapabilirsiniz.</p>
+<h2>PDF şifreleme neden önemli?</h2>
+<ul>
+<li><b>Sözleşmeler:</b> İçerik gizliliği için alıcı dışında kimse okuyamamalı.</li>
+<li><b>Finansal belgeler:</b> Banka ekstreleri, faturalar — yanlış kişilere ulaşmamalı.</li>
+<li><b>Kişisel veriler:</b> Kimlik bilgileri, tıbbi kayıtlar — ekstra koruma gerektirir.</li>
+</ul>
+<h2>Tarayıcıda PDF şifreleme yöntemleri</h2>
+<p><b>1. PDF koruma araçları:</b> Smallpdf, ILovePDF gibi servisler belgeyi sunucularına yükler ve şifreli haliyle geri gönderir. Gizli belgeler için dikkatli olun — verileriniz yabancı sunuculara gidiyor.</p>
+<p><b>2. Açık kaynaklı çözümler:</b> LibreOffice ile PDF'i açıp "şifreli kaydet" seçeneği kullanılabilir. Program kurulumu gerektirir ama veriler bilgisayarınızda kalır.</p>
+<p><b>3. PDF'i başka yollarla koruyun:</b> Şifre yerine belge oluşturma aşamasında izinleri kısıtlayabilirsiniz (yazdırma, kopyalama engeli).</p>
+<h2>PDF belgelerinizi kolayca yönetin</h2>
+<p>Birden fazla PDF'i birleştirmek, sıralamak veya birlikte tek dosyada paylaşmak için <a href="tool-pdf.html">PDF Birleştirici aracımızı</a> kullanabilirsiniz. Program kurulumu gerekmez, tüm işlem tarayıcıda gerçekleşir ve dosyalarınız cihazınızdan çıkmaz.</p>
+<h2>İpucu: Şifre seçimi</h2>
+<p>PDF şifresini en az 12 karakter, büyük/küçük harf, rakam ve sembol içerecek şekilde oluşturun. <a href="tool-password.html">Şifre üreticimizle</a> anında güvenli bir parola oluşturabilirsiniz.</p>`
+  },
+  {
+    id: "whatsapp-fotograf-boyutu-kucultme",
+    baslik: "WhatsApp'ta Fotoğraf Boyutu Küçültme (Kalite Kaybetmeden)",
+    ozet: "WhatsApp'ta gönderdiğiniz fotoğraflar neden bozuk görünüyor? Kaliteyi koruyarak dosya boyutunu küçültmenin yolu.",
+    tarih: "2026-06-22",
+    okuma: 3,
+    kat: "İpucu",
+    tool: "tool-compressor.html",
+    icerik: `
+<p>WhatsApp, gönderilen fotoğrafları otomatik olarak sıkıştırır. Bu bazen yüzde 70–80 kalite düşüşüne neden olur; ürün fotoğrafları, tasarımlar veya belgeler bulanık görünür. Çözüm: fotoğrafı kendiniz sıkıştırıp belge olarak göndermek.</p>
+<h2>Neden WhatsApp fotoğrafları bozuluyor?</h2>
+<p>WhatsApp, veri kullanımını ve depolamayı azaltmak için her gönderilen fotoğrafı agresif biçimde sıkıştırır. Özellikle ürün görselleri, ekran görüntüleri ve ince detaylı tasarımlarda bu sıkıştırma çok belirgin olur.</p>
+<h2>Çözüm 1: Belge olarak gönder</h2>
+<p>WhatsApp'ta fotoğraf yerine "Belge" seçeneğiyle gönderin. Belge olarak gönderilen dosyalar WhatsApp tarafından sıkıştırılmaz, orijinal kalitesinde ulaşır. Tek dezavantajı: önizleme otomatik gösterilmez.</p>
+<h2>Çözüm 2: Önceden sıkıştır, kaliteyi kontrol et</h2>
+<p>Kendiniz sıkıştırırsanız kalite ayarını kontrol altında tutarsınız. WhatsApp'ın rastgele sıkıştırmasından çok daha iyi sonuç alırsınız:</p>
+<ul>
+<li>Fotoğrafı <a href="tool-compressor.html">Resim Sıkıştırıcı aracımıza</a> yükleyin</li>
+<li>Kalite ayarını %80–85 yapın</li>
+<li>WebP veya JPG olarak indirin</li>
+<li>WhatsApp'ta bu sıkıştırılmış dosyayı gönderin</li>
+</ul>
+<p>Sonuç: WhatsApp'ın kendi sıkıştırmasından çok daha keskin bir görüntü elde edersiniz.</p>
+<h2>Fotoğraf boyutu ne kadar olmalı?</h2>
+<p>WhatsApp için ideal fotoğraf boyutu 1280 piksel genişlikte, %80 kalitede JPG veya WebP olarak 200–400 KB arasındadır. <a href="tool-resizer.html">Boyutlandırıcı aracımızla</a> genişliği 1280 piksele düşürebilirsiniz.</p>`
+  },
+  {
+    id: "online-kartvizit-tasarimi-ucretsiz",
+    baslik: "Online Kartvizit Tasarımı: Ücretsiz ve Hızlı Yöntemler",
+    ozet: "Profesyonel kartvizit tasarımı için en iyi ücretsiz araçlar ve dikkat edilmesi gereken baskı detayları.",
+    tarih: "2026-06-18",
+    okuma: 5,
+    kat: "İşletme",
+    tool: "",
+    icerik: `
+<p>Profesyonel bir kartvizit, işletmenizin ilk fiziksel izlenimidir. Yanlış boyut, düşük çözünürlük veya zayıf tasarım, karşınızdaki kişide olumsuz etki bırakır. Oysa iyi bir kartvizit için büyük bütçe veya tasarımcı deneyimi şart değil.</p>
+<h2>Standart kartvizit boyutları</h2>
+<ul>
+<li><b>Türkiye standardı:</b> 85 × 55 mm (en yaygın)</li>
+<li><b>Avrupa standardı:</b> 85 × 54 mm</li>
+<li><b>Baskı kesmesi (bleed):</b> Kenarlara 3 mm ekleyin — matbaanın kesme payı</li>
+<li><b>Güvenli alan:</b> Yazı ve logolar kenara en az 5 mm uzakta olsun</li>
+</ul>
+<h2>Baskı için çözünürlük</h2>
+<p>Matbaa için görseller en az <b>300 DPI</b> çözünürlükte hazırlanmalıdır. Ekranda güzel görünen 72 DPI görsel basıldığında bulanık çıkar. Logonuzu vektör (SVG veya PDF) formatta hazırsanız bu sorun yaşanmaz.</p>
+<h2>Ücretsiz tasarım araçları</h2>
+<p><b>Canva:</b> Hazır şablonlar, sürükle-bırak editör. Ücretsiz sürümde yeterli seçenek var. PNG veya PDF indirilebilir.</p>
+<p><b>Adobe Express:</b> Canva'ya benzer, Adobe ekosistemiyle entegre. Ücretsiz plan mevcut.</p>
+<p><b>Google Slaytlar:</b> 85×55 mm özel slayt boyutu oluşturup PDF olarak indirilebilir. Basit ve tamamen ücretsiz.</p>
+<h2>Kartvizitte olması gerekenler</h2>
+<ul>
+<li>Adı soyadı ve unvan (net, okunur font)</li>
+<li>Şirket adı ve logo</li>
+<li>Telefon (WhatsApp ikonu ile)</li>
+<li>E-posta</li>
+<li>Web sitesi veya Instagram hesabı</li>
+<li>QR kod (WhatsApp veya web sitenize yönlendiren)</li>
+</ul>
+<h2>QR kod ekleyin</h2>
+<p>Kartvizitinize QR kod eklemek modern ve pratik bir dokunuş katar. <a href="tool-qr.html">Ücretsiz QR Kod Üreticimizle</a> web sitenize veya WhatsApp numaranıza yönlendiren bir QR kodu saniyeler içinde oluşturabilirsiniz. PNG veya SVG olarak indirip tasarımınıza ekleyin.</p>
+<h2>Profesyonel tasarım için</h2>
+<p>Zaman tasarrufu veya kurumsal kimlik oluşturmak istiyorsanız EbruTech Studios kartvizit tasarımı hizmeti 250₺'den başlıyor. Çift taraflı, baskıya hazır, vektör kaynak dosyaları dahil. WhatsApp'tan sipariş verebilirsiniz.</p>`
+  },
+  {
     id: "png-jpg-webp-fark",
     baslik: "PNG mı, JPG mı, WebP mi? Doğru Resim Formatını Seçme Rehberi",
     ozet: "Her resim formatının ne işe yaradığını, ne zaman hangisini kullanmanız gerektiğini ve web için en iyi seçimi öğrenin.",
