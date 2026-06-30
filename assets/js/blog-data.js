@@ -891,6 +891,140 @@ window.BLOG_POSTS = [
 <p><a href="landing-emlak-web-sitesi.html">Emlak web sitesi paketimiz</a> tek seferlik <b>2.500₺</b>'den başlar. İlan portföyü (10 ilan), danışman profili, WhatsApp butonu ve SEO temel ayarları dahildir. 3-5 iş gününde teslim edilir.</p>`
   },
   {
+    id: "sosyal-medya-yonetimi-kucuk-isletme",
+    baslik: "KOBİ'ler İçin Sosyal Medya Yönetimi: Haftada 2 Saat ile Nasıl Büyürsünüz? (2026)",
+    ozet: "Küçük işletmeler için etkili sosyal medya yönetimi rehberi. Az zamanda çok etki yaratmak için pratik ipuçları, içerik takvimi ve ücretsiz araçlar.",
+    tarih: "2026-07-01",
+    okuma: 6,
+    kat: "İşletme",
+    tool: "tool-social.html",
+    icerik: `
+<p>Sosyal medya yönetimi için büyük bir ekibe veya aylarca bütçeye ihtiyacınız yok. Küçük işletmeler için asıl sır: <b>tutarlılık ve doğru içerik.</b> Haftada yalnızca 2-3 saat ayırarak markanızı büyütebilirsiniz.</p>
+<h2>Hangi platformda aktif olmalısınız?</h2>
+<p>Her platformda olmaya çalışmak en büyük hatadır. Sektörünüze göre seçin:</p>
+<ul>
+<li><b>Kafe, restoran, kuaför:</b> Instagram öncelik. Görsel içerik kraldır. TikTok ikinci sırada.</li>
+<li><b>B2B hizmetler (muhasebe, hukuk, danışmanlık):</b> LinkedIn odaklı çalışın.</li>
+<li><b>Lokal işletmeler (oto servis, market):</b> Facebook yerel grupları + Google İşletme Profili.</li>
+<li><b>E-ticaret:</b> Instagram + Pinterest + TikTok Shop.</li>
+</ul>
+<h2>Haftada 2 saatlik içerik planı</h2>
+<ul>
+<li><b>Pazartesi (30 dk):</b> Haftanın 3 gönderisini planlayın ve görselleri hazırlayın</li>
+<li><b>Çarşamba (30 dk):</b> Zamanlanmış gönderi yayınlayın, yorumlara yanıt verin</li>
+<li><b>Cuma (30 dk):</b> Haftalık analiz — hangi gönderi ne kadar etkileşim aldı?</li>
+<li><b>Haftanın herhangi bir günü (30 dk):</b> Story paylaşımı, anlık içerik</li>
+</ul>
+<h2>Ücretsiz görsel araçları kullanın</h2>
+<p>Her görseli sıfırdan tasarlamak gerekmez. <a href="tool-social.html">EbruTech Sosyal Medya Boyut Aracı</a> ile Instagram, Twitter/X, Facebook ve LinkedIn için doğru piksel boyutlarını anında öğrenin. Boyutu bilmeden tasarım yapmak israf.</p>
+<h2>Algoritma dostu içerik türleri (2026)</h2>
+<ul>
+<li><b>Reels / Kısa video:</b> Her platformda organik erişim %3-5x daha yüksek</li>
+<li><b>Döngüsel carousel:</b> Instagram'da 5-10 slaytlı gönderiler kaydetme oranını artırır</li>
+<li><b>Before & After:</b> Kuaför, tadilat, temizlik sektörü için vazgeçilmez</li>
+<li><b>Müşteri yorumları ve hikayeleri:</b> En güvenilir içerik türü — ekran görüntüsünü paylaşın</li>
+</ul>
+<h2>Sosyal medya görsel boyutları neden önemli?</h2>
+<p>Yanlış boyutta yüklenen görseller kırpılır, bulanıklaşır ve profesyonellik algınızı düşürür. 2026 itibarıyla önerilen boyutlar sık değişiyor. <a href="blog-sosyal-medya-gorsel-boyutlari-2026.html">Sosyal medya boyutları rehberimize</a> göz atın veya Instagram özelinde için <a href="tool-ig-boyut.html">Instagram Boyut Aracı'mızı</a> kullanın.</p>
+<h2>İlk adım: Marka tutarlılığı</h2>
+<p>Renk paletinizi belirleyin, aynı font ailesini kullanın, profil fotoğrafınızı tüm platformlarda aynı yapın. Bu üçü sağlandığında takipçiler sizi anında tanımaya başlar. Logo ve kurumsal kimlik konusunda yardıma ihtiyaç duyarsanız <a href="landing-kuafor-web-sitesi.html">web sitesi ve marka paketlerimize</a> göz atabilirsiniz.</p>`
+  },
+  {
+    id: "oto-servis-dijitallesme-rehberi",
+    baslik: "Oto Servis İşletmeleri İçin Dijitalleşme Rehberi (2026)",
+    ozet: "Oto servis atölyenizi Google'da üst sıralara taşımanın yolları. Web sitesi, online randevu ve dijital pazarlama stratejileri.",
+    tarih: "2026-06-30",
+    okuma: 6,
+    kat: "İşletme",
+    tool: "",
+    icerik: `
+<p>Türkiye'de her yıl yaklaşık <b>23 milyon araç</b> servise giriyor. Bu araçların sahipleri ilk önce Google'da "yakınımdaki oto servis" yazıyor. Dijital varlığınız yoksa bu müşterilerin büyük çoğunluğu rakibinize gidiyor.</p>
+<h2>Oto servisler için dijitalleşmenin 5 adımı</h2>
+<ul>
+<li><b>1. Google İşletme Profili:</b> Ücretsiz ve zorunlu. Adresiniz, çalışma saatleriniz ve fotoğraflarınız eksiksiz olmalı.</li>
+<li><b>2. Web Sitesi:</b> Hizmet listesi, araç kabul bilgileri, iletişim formu ve müşteri yorumları.</li>
+<li><b>3. Online Randevu:</b> WhatsApp üzerinden randevu almak bile büyük fark yaratır.</li>
+<li><b>4. Müşteri yorumları:</b> Google'da 4.5+ puan, aramalarda üst sıraya taşır.</li>
+<li><b>5. Sosyal medya:</b> Tamir öncesi/sonrası fotoğrafları, güvenilirlik oluşturur.</li>
+</ul>
+<h2>Web sitesinde olması gereken sayfalar</h2>
+<ul>
+<li><b>Ana sayfa:</b> Konumunuz, telefon, WhatsApp butonu — hemen görünür yerde</li>
+<li><b>Hizmetler:</b> Motor bakımı, fren, egzoz, kaporta — ayrıntılı liste</li>
+<li><b>Çalışma saatleri:</b> Akşam/hafta sonu da açıksanız mutlaka belirtin</li>
+<li><b>Yorumlar:</b> Gerçek müşteri deneyimleri — güveni ikiye katlar</li>
+<li><b>İletişim:</b> Telefon + WhatsApp + Google Harita embed</li>
+</ul>
+<h2>"Yakınımdaki oto servis" aramasında üst çıkmak</h2>
+<p>Lokal SEO için en etkili 3 strateji: (1) Google İşletme Profilinizi her hafta fotoğraf ve gönderiyle güncel tutun. (2) Memnun müşterilerinizden Google yorumu isteyin — 20+ yorum büyük fark yaratır. (3) Web sitenizde mahalle ve ilçe adlarını doğal bir şekilde kullanın ("Kadıköy oto servis", "Bağcılar motor bakımı").</p>
+<h2>WhatsApp ile randevu sistemi</h2>
+<p>Çoğu oto servis hâlâ telefonla randevu alıyor. Basit bir WhatsApp butonu bile dönüşümü artırır: "Randevu almak için tıklayın → [WhatsApp]". Araç kabul saatini, müşteriyi karşılayan ustayı ve servis süresini mesajla bildirmek memnuniyeti artırır.</p>
+<h2>Maliyetsiz başlangıç noktası</h2>
+<p><a href="landing-oto-servis-web-sitesi.html">Oto Servis Web Sitesi paketimiz</a> ile 3-5 iş günü içinde profesyonel siteniz yayında. Hizmet listesi, çalışma saatleri, konum ve WhatsApp butonu dahil. Tek seferlik ödeme, yıllarca kullanım.</p>`
+  },
+  {
+    id: "doktor-klinik-web-sitesi-seo",
+    baslik: "Doktor ve Klinikler İçin Web Sitesi ve SEO Rehberi (2026)",
+    ozet: "Klinik web sitenizi Google'da üst sıralara taşıyın. Randevu sistemi, hasta güveni ve KVKK uyumu için pratik rehber.",
+    tarih: "2026-06-29",
+    okuma: 7,
+    kat: "İşletme",
+    tool: "",
+    icerik: `
+<p>Hastaların <b>%77'si</b> klinik seçmeden önce internet araştırması yapıyor (Sağlık Araştırmaları Derneği, 2025). Bu araştırmanın büyük çoğunluğu Google araması ile başlıyor. Klinik web siteniz hasta güveni oluşturan en önemli dijital varlığınızdır.</p>
+<h2>Klinik web sitesinde olması gerekenler</h2>
+<ul>
+<li><b>Doktor profili:</b> Diploma, uzmanlık alanı, deneyim yılı, fotoğraf — güveni ilk 5 saniyede kurar</li>
+<li><b>Hizmetler sayfası:</b> Her tedavi/işlem ayrı başlıkla, kısa açıklamayla</li>
+<li><b>Online randevu:</b> En az WhatsApp üzerinden randevu imkânı</li>
+<li><b>İletişim ve konum:</b> Telefon, adres, Google Harita embed, park imkânı bilgisi</li>
+<li><b>KVKK metni:</b> Kişisel sağlık verisi işleyen siteler için zorunlu</li>
+<li><b>SSL (HTTPS):</b> Güvenli bağlantı — hem Google hem hasta için şart</li>
+</ul>
+<h2>Lokal SEO: "Kadıköy dişçi" aramalarında üst çıkmak</h2>
+<p>Sağlık klinikleri için lokal SEO çok güçlüdür çünkü hastalar genellikle yakın çevresinde hizmet arar. Etkili adımlar:</p>
+<ul>
+<li>Google İşletme Profilinizi doldurun: uzmanlık alanı, fotoğraflar, çalışma saatleri</li>
+<li>Web sitenizin başlığında şehir/ilçe adı olsun: "Dr. Ayşe Yıldız — Beşiktaş Diş Kliniği"</li>
+<li>Her uzmanlık alanı için ayrı sayfa: "İmplant Tedavisi", "Ortodonti", "Çocuk Diş Hekimliği"</li>
+<li>Hasta yorumları: Google'da 4.7+ puan sıralamayı doğrudan etkiler</li>
+</ul>
+<h2>KVKK uyumu — ne yapmalısınız?</h2>
+<p>Klinikler kişisel sağlık verisi işlediğinden KVKK kapsamında en hassas kategoridedir. Web sitenizde: (1) Aydınlatma Metni yayınlayın. (2) İletişim formlarına açık rıza onay kutusu ekleyin. (3) Çerez politikası banner'ı gösterin. KVKK ihlali hem idari para cezası hem de hasta güven kaybı riski taşır.</p>
+<h2>Randevu sistemini basit tutun</h2>
+<p>Hastaların çoğu karmaşık randevu formlarını terk eder. En etkili çözüm: WhatsApp butonu + telefon numarası. İkisi birlikte yeterli. İleride büyüdükçe Doktortakvimi veya Doktorsitesi gibi sistemlerle entegrasyon ekleyebilirsiniz.</p>
+<h2>Hazır klinik web sitesi</h2>
+<p><a href="landing-doktor-klinik-web-sitesi.html">Doktor & Klinik web sitesi paketimiz</a> KVKK uyumlu, SSL'li, randevu butonu ve doktor profili sayfası ile birlikte gelir. 3-5 iş günü içinde yayında.</p>`
+  },
+  {
+    id: "kuafor-web-sitesi-neden-gerekli",
+    baslik: "Kuaför ve Güzellik Salonu İçin Web Sitesi Neden Gerekli? (2026)",
+    ozet: "Müşteriniz randevu almadan önce sizi Google'da arıyor. Kuaför web sitesinin getirdiği faydalar, fiyatlar ve hızlı kurulum rehberi.",
+    tarih: "2026-06-28",
+    okuma: 5,
+    kat: "İşletme",
+    tool: "",
+    icerik: `
+<p>"Yakınımdaki kuaför" araması, Google'da en hızlı büyüyen lokal arama kategorilerinden biri. 2026'da bu aramayı yapan kişilerin <b>%85'i mobil cihaz</b> kullanıyor ve ilk 3 sonuçtan birini seçiyor. Web siteniz yoksa o 3 arasına girme şansınız neredeyse yok.</p>
+<h2>Instagram hesabı yetmez mi?</h2>
+<p>Instagram harika bir vitrin, ama yeterli değil. Şu senaryoyu düşünün: müşteri sizi arıyor, hesabı görüyor, randevu almak istiyor. Telefon numarası bio'da mı var? Çalışma saatleriniz nerede yazıyor? Fiyatlarınız? Adresiniz? Web sitesi bu soruları anında yanıtlar ve randevu almanın önündeki her engeli kaldırır.</p>
+<h2>Kuaför web sitesinde olması gerekenler</h2>
+<ul>
+<li><b>Hizmet listesi + fiyatlar:</b> Saç kesimi, boyama, brezilya, ombre — fiyatla birlikte</li>
+<li><b>Çalışma saatleri:</b> Pazartesi-Pazar, randevu saatleri</li>
+<li><b>Öncesi/Sonrası galeri:</b> En güçlü sosyal kanıt</li>
+<li><b>WhatsApp randevu butonu:</b> Tek tıkla randevu</li>
+<li><b>Konum ve park imkânı:</b> Google Harita embed</li>
+<li><b>Hakkımızda:</b> Usta kadro, deneyim, sertifikalar</li>
+</ul>
+<h2>Google'da üst sıralara çıkmak</h2>
+<p>Lokal SEO, kuaförler için son derece etkili. "Beşiktaş kuaför", "Bağcılar bayan kuaför" gibi aramalar yüksek dönüşümlüdür çünkü o kişi aktif olarak hizmet arıyor. Web sitenizin URL, başlık ve sayfa içeriğinde ilçe + "kuaför" kombinasyonu kullanın. Google İşletme Profilinizle web sitenizi birbirine bağlayın.</p>
+<h2>Randevu sistemi nasıl kurulur?</h2>
+<p>Başlangıç için en pratik çözüm WhatsApp randevu: "Randevu almak için WhatsApp'a tıklayın" butonu yeterli. Büyüdükçe Setmore, Booksy gibi ücretsiz randevu sistemlerini entegre edebilirsiniz.</p>
+<h2>Hazır kuaför web sitesi</h2>
+<p><a href="landing-kuafor-web-sitesi.html">Kuaför & Güzellik Salonu web sitesi paketimiz</a> hizmet listesi, galeri bölümü, WhatsApp randevu ve konum sayfası ile birlikte gelir. 3-5 iş günü içinde yayında, tek seferlik ödeme.</p>`
+  },
+  {
     id: "kucuk-isletme-web-sitesi-neden-gerekli-2026",
     baslik: "Küçük İşletmeler İçin Web Sitesi Neden Zorunlu Hale Geldi? (2026)",
     ozet: "Esnaf, kafe, kuaför, oto servis: web siteniz yoksa Google'da görünmüyorsunuz. Küçük işletmelerin web sitesi olmadan ne kaybettiğini ve çözümü anlattık.",

@@ -868,6 +868,45 @@ function initProModal(){
   });
 }
 
+function initRecentToolsFooter(){
+  let recent;
+  try{ recent=JSON.parse(localStorage.getItem('ets-recent')||'[]'); }
+  catch(e){ return; }
+  const chips = recent.slice(0,5).filter(r => TOOL_META[r&&r.key]);
+  if(!chips.length) return;
+
+  const footer=document.querySelector('.site-foot');
+  if(!footer) return;
+
+  const strip=document.createElement('div');
+  strip.style.cssText='border-top:1px solid var(--border);padding:14px 0;background:var(--bg)';
+  const inner=document.createElement('div');
+  inner.className='wrap';
+  inner.style.cssText='display:flex;align-items:center;gap:10px;flex-wrap:wrap';
+
+  const lbl=document.createElement('span');
+  lbl.style.cssText='color:var(--txt-faint);font-size:.8rem;font-weight:600;white-space:nowrap';
+  lbl.textContent='Son kullandıklarınız:';
+  inner.appendChild(lbl);
+
+  chips.forEach(r=>{
+    const meta=TOOL_META[r.key];
+    const a=document.createElement('a');
+    a.href=meta.href;
+    a.className='recent-chip';
+    a.textContent=(meta.ico||'')+'  '+(r.title||meta.name).slice(0,30);
+    inner.appendChild(a);
+  });
+  strip.appendChild(inner);
+  footer.before(strip);
+}
+
+function registerSW(){
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  }
+}
+
 document.addEventListener("DOMContentLoaded",()=>{
   buildShell();
   hardenNewTabLinks();
@@ -881,6 +920,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   initToolCounter();
   initToolReviews();
   initRecentTools();
+  initRecentToolsFooter();
+  registerSW();
   loadToolsPageCounts();
   initScrollProgress();
   initCounters();
