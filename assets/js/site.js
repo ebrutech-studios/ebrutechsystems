@@ -506,8 +506,8 @@ function buildShell(){
 function injectFavicon(){
   if(document.querySelector('link[rel~="icon"]')) return;
   const link=document.createElement('link');
-  link.rel='icon'; link.type='image/svg+xml';
-  link.href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23c8ff2e'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='18' font-weight='900' fill='%2310140a'%3EE%3C/text%3E%3C/svg%3E";
+  link.rel='icon';
+  link.href='/favicon.ico';
   document.head.appendChild(link);
 }
 
@@ -901,9 +901,16 @@ function initRecentToolsFooter(){
   footer.before(strip);
 }
 
-function registerSW(){
+function disablePwaShell(){
   if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+    navigator.serviceWorker.getRegistrations()
+      .then(regs=>Promise.all(regs.map(reg=>reg.unregister())))
+      .catch(()=>{});
+  }
+  if(window.caches&&caches.keys){
+    caches.keys()
+      .then(keys=>Promise.all(keys.filter(key=>key.indexOf('ets-')===0).map(key=>caches.delete(key))))
+      .catch(()=>{});
   }
 }
 
@@ -921,7 +928,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   initToolReviews();
   initRecentTools();
   initRecentToolsFooter();
-  registerSW();
+  disablePwaShell();
   loadToolsPageCounts();
   initScrollProgress();
   initCounters();
