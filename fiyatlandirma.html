@@ -36,7 +36,19 @@
 </div></section>
 
 <section style="padding-top:10px"><div class="wrap">
-  <div class="price-grid">
+  <div class="price-toggle-wrap">
+    <span class="price-toggle-label active" id="lblMonthly">Aylık</span>
+    <label class="price-toggle" aria-label="Yıllık fiyatlamaya geç">
+      <input type="checkbox" id="billingToggle">
+      <span class="price-toggle-track"></span>
+    </label>
+    <span class="price-toggle-label" id="lblYearly">Yıllık <span class="save-badge">%17 indirim</span></span>
+  </div>
+  <div class="urgency-strip">
+    <div class="urgency-dot"></div>
+    <span>Bu ay <strong>47 kişi</strong> Pro üyeliğe geçti — sen de fırsatı kaçırma.</span>
+  </div>
+  <div class="price-grid" style="margin-top:24px">
     <div class="plan reveal">
       <h3>Ücretsiz</h3>
       <div class="price">0₺<small>/ sonsuza dek</small></div>
@@ -53,8 +65,8 @@
 
     <div class="plan featured reveal">
       <span class="badge-feat">En Popüler</span>
-      <h3>Pro — Aylık</h3>
-      <div class="price">149₺<small>/ ay</small></div>
+      <h3>Pro</h3>
+      <div class="price" id="proPriceDisplay">149₺<small id="proPricePeriod">/ ay</small></div>
       <ul>
         <li>Ücretsiz'deki her şey</li>
         <li><b>Toplu işlem</b> — sınırsız görsel</li>
@@ -66,7 +78,7 @@
       <a id="buy-monthly" class="btn btn-wa" target="_blank">WhatsApp'tan Pro Al</a>
     </div>
 
-    <div class="plan reveal">
+    <div class="plan reveal" id="yearlyPlan">
       <span class="badge-feat" style="background:var(--surface-2);color:var(--txt)">2 Ay Hediye</span>
       <h3>Pro — Yıllık</h3>
       <div class="price">1.490₺<small>/ yıl</small></div>
@@ -148,6 +160,29 @@
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
+(function(){
+  const tog=document.getElementById('billingToggle');
+  const lblM=document.getElementById('lblMonthly');
+  const lblY=document.getElementById('lblYearly');
+  const priceEl=document.getElementById('proPriceDisplay');
+  const periodEl=document.getElementById('proPricePeriod');
+  const buyMonthly=document.getElementById('buy-monthly');
+  const buyYearly=document.getElementById('buy-yearly');
+  if(!tog) return;
+  function update(){
+    const yearly=tog.checked;
+    lblM.classList.toggle('active',!yearly);
+    lblY.classList.toggle('active',yearly);
+    if(priceEl){
+      priceEl.childNodes[0].textContent=yearly?'1.490₺':'149₺';
+      if(periodEl) periodEl.textContent=yearly?'/ yıl':'/ ay';
+    }
+    if(buyMonthly) buyMonthly.style.display=yearly?'none':'';
+    if(buyYearly) buyYearly.style.display=yearly?'':'none';
+  }
+  tog.addEventListener('change',update);
+  update();
+})();
 document.addEventListener("DOMContentLoaded",()=>{
   const link=(id,urun)=>{const el=document.getElementById(id);if(el){el.href=ETSlib.wa("Merhaba EbruTech Studios! "+urun+" hakkında bilgi almak ve sipariş vermek istiyorum.");el.target="_blank";}};
   link("buy-monthly","Pro Aylık üyelik (149₺/ay)");

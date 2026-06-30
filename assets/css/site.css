@@ -1013,3 +1013,135 @@ button.faq-q{
   transition:background .15s;
 }
 .fav-chip:hover{background:rgba(255,107,138,.16)}
+
+/* ===== Premium: Gradient Text ===== */
+.gradient-text{
+  background:linear-gradient(110deg,#c8ff2e 0%,#29d3ff 45%,#ffb020 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:gradient-shift 5s linear infinite;
+}
+@keyframes gradient-shift{
+  0%{background-position:0% center}
+  100%{background-position:200% center}
+}
+
+/* ===== Premium: Pro Upsell Modal ===== */
+.pro-modal-overlay{
+  position:fixed;inset:0;z-index:999;
+  background:rgba(0,0,0,.76);
+  backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;pointer-events:none;transition:opacity .22s;
+}
+.pro-modal-overlay.open{opacity:1;pointer-events:auto}
+.pro-modal{
+  background:var(--bg-2);
+  border:1px solid var(--border-strong);
+  border-radius:20px;
+  padding:36px 32px 30px;
+  max-width:460px;width:100%;
+  box-shadow:0 40px 100px -20px rgba(0,0,0,.92),0 0 0 1px rgba(200,255,46,.08);
+  transform:translateY(22px) scale(.97);
+  transition:transform .24s;
+  position:relative;
+}
+.pro-modal-overlay.open .pro-modal{transform:none}
+.pro-modal-close{
+  position:absolute;top:14px;right:14px;
+  background:var(--surface-2);border:none;border-radius:8px;
+  color:var(--txt-dim);width:32px;height:32px;
+  font-size:1.05rem;cursor:pointer;transition:.15s;
+  display:grid;place-items:center;line-height:1;
+}
+.pro-modal-close:hover{color:var(--txt);background:var(--surface-solid)}
+.pro-modal-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 12px;border-radius:20px;
+  background:rgba(200,255,46,.1);border:1px solid rgba(200,255,46,.22);
+  color:var(--accent);font-size:.74rem;font-weight:800;
+  letter-spacing:.09em;text-transform:uppercase;margin-bottom:12px;
+}
+.pro-modal h2{font-size:1.5rem;margin-bottom:8px;line-height:1.25}
+.pro-modal-tool-name{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:5px 12px;border-radius:8px;
+  background:rgba(255,255,255,.06);border:1px solid var(--border);
+  font-size:.85rem;color:var(--txt-dim);margin-bottom:18px;
+}
+.pro-modal-features{
+  list-style:none;margin-bottom:22px;display:grid;gap:7px;
+}
+.pro-modal-features li{
+  display:flex;align-items:center;gap:9px;
+  font-size:.88rem;color:var(--txt-dim);
+}
+.pro-modal-features li::before{
+  content:'✓';color:var(--accent);font-weight:800;flex:none;font-size:.8rem;
+}
+.pro-modal-price-box{
+  text-align:center;padding:12px 18px;border-radius:12px;
+  background:rgba(200,255,46,.05);border:1px solid rgba(200,255,46,.14);
+  margin-bottom:18px;
+}
+.pro-modal-price-box strong{font-size:2rem;color:var(--accent)}
+.pro-modal-price-box span{color:var(--txt-faint);font-size:.84rem;margin-left:4px}
+.pro-modal-actions{display:flex;flex-direction:column;gap:10px}
+@media(max-width:500px){
+  .pro-modal{padding:26px 18px 22px}
+  .pro-modal h2{font-size:1.25rem}
+}
+
+/* ===== Pricing Toggle ===== */
+.price-toggle-wrap{
+  display:flex;align-items:center;justify-content:center;
+  gap:14px;margin-bottom:28px;
+}
+.price-toggle-label{font-size:.9rem;color:var(--txt-dim);transition:.15s}
+.price-toggle-label.active{color:var(--txt);font-weight:700}
+.price-toggle{position:relative;width:50px;height:26px;flex:none}
+.price-toggle input{opacity:0;width:0;height:0;position:absolute}
+.price-toggle-track{
+  position:absolute;inset:0;
+  background:var(--surface-2);border:1px solid var(--border-strong);
+  border-radius:13px;cursor:pointer;transition:background .22s;
+}
+.price-toggle input:checked+.price-toggle-track{background:var(--accent)}
+.price-toggle-track::after{
+  content:'';position:absolute;left:3px;top:3px;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--txt);transition:transform .22s;
+}
+.price-toggle input:checked+.price-toggle-track::after{
+  transform:translateX(24px);background:var(--accent-ink);
+}
+.save-badge{
+  display:inline-block;padding:2px 8px;border-radius:20px;
+  background:rgba(200,255,46,.14);color:var(--accent);
+  font-size:.7rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+}
+
+/* ===== Urgency / Live Strip ===== */
+.urgency-strip{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 18px;border-radius:10px;
+  background:rgba(200,255,46,.05);border:1px solid rgba(200,255,46,.13);
+  font-size:.84rem;color:var(--txt-dim);
+  margin:18px auto 0;max-width:480px;
+}
+.urgency-strip strong{color:var(--accent)}
+.urgency-dot{
+  width:8px;height:8px;border-radius:50%;flex:none;
+  background:var(--accent);box-shadow:0 0 6px var(--accent);
+  animation:udot 2s infinite;
+}
+@keyframes udot{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ===== Hero stat enhancement ===== */
+.hero-stats .s b{font-size:1.9rem;letter-spacing:-.03em}
+
+/* ===== Glow card hover ===== */
+.card:hover{box-shadow:0 0 0 1px rgba(200,255,46,.12),0 18px 52px -22px rgba(0,0,0,.7)}

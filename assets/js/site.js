@@ -791,6 +791,68 @@ function initFavorites(){
   }
 }
 
+/* ═══════════════════════════════════════════════
+   13. PRO UPSELL MODAL
+   ═══════════════════════════════════════════════ */
+function initProModal(){
+  const PRO_FEATURES=[
+    'Toplu (batch) görsel işleme — sınırsız',
+    'Watermark\'sız yüksek çözünürlük çıktısı',
+    'Arka Plan Kaldırıcı (AI destekli)',
+    'PDF sayfa düzenleme ve dönüştürme',
+    'Fatura, barkod ve QR menü araçları',
+    'Öncelikli WhatsApp desteği'
+  ];
+
+  const overlay=document.createElement('div');
+  overlay.className='pro-modal-overlay';
+  overlay.setAttribute('role','dialog');
+  overlay.setAttribute('aria-modal','true');
+  overlay.innerHTML=`
+<div class="pro-modal" id="proModalBox">
+  <button class="pro-modal-close" id="proModalClose" aria-label="Kapat">✕</button>
+  <div class="pro-modal-badge">⭐ Pro Özellik</div>
+  <h2>Bu araç Pro üyelere özel</h2>
+  <div class="pro-modal-tool-name" id="proModalToolName"></div>
+  <ul class="pro-modal-features">${PRO_FEATURES.map(f=>`<li>${f}</li>`).join('')}</ul>
+  <div class="pro-modal-price-box">
+    <strong>149₺</strong><span>/ ay</span>
+    <div style="font-size:.78rem;color:var(--txt-faint);margin-top:4px">veya 1.490₺/yıl · 2 ay bedava</div>
+  </div>
+  <div class="pro-modal-actions">
+    <a id="proModalWa" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-wa" style="justify-content:center">WhatsApp'tan Pro Al →</a>
+    <a href="fiyatlandirma.html" class="btn btn-ghost" style="justify-content:center">Planları Karşılaştır</a>
+  </div>
+</div>`;
+  document.body.appendChild(overlay);
+
+  function open(toolName,toolIco){
+    const nameEl=document.getElementById('proModalToolName');
+    if(nameEl) nameEl.innerHTML=(toolIco||'🔒')+' <span>'+toolName+'</span>';
+    const waEl=document.getElementById('proModalWa');
+    if(waEl) waEl.href=ETSlib.wa('Merhaba! Pro üyelik hakkında bilgi almak istiyorum. Araç: '+toolName);
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+    setTimeout(()=>document.getElementById('proModalClose')&&document.getElementById('proModalClose').focus(),50);
+  }
+  function close(){
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('proModalClose').addEventListener('click',close);
+  overlay.addEventListener('click',function(e){if(e.target===overlay) close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('open')) close();});
+
+  document.querySelectorAll('.card.locked, [data-pro="true"]').forEach(card=>{
+    card.addEventListener('click',function(e){
+      e.preventDefault();
+      const title=card.querySelector('h3');
+      const ico=card.querySelector('.ico');
+      open(title?title.textContent:'Pro Araç', ico?ico.textContent:'🔒');
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded",()=>{
   buildShell();
   hardenNewTabLinks();
@@ -798,6 +860,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   injectFavicon();
   initWaFloat();
   initKvkk();
+  initProModal();
   injectToolBadge();
   trackToolUse();
   initToolCounter();
