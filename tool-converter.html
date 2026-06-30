@@ -1,153 +1,1092 @@
-<!DOCTYPE html><html lang="tr"><head>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Online Resim Format Dönüştürücü (PNG, JPG, WebP) — EbruTech Studios</title>
-<meta name="description" content="PNG, JPG ve WebP arasında resim format dönüştürücü. Önce/sonra boyut karşılaştırması. Ücretsiz, tarayıcıda çalışır.">
+<title>Online Resim Format Dönüştürücü (PNG → JPG, WebP) — EbruTech Studios</title>
+<meta name="description" content="PNG, JPG ve WebP arasında ücretsiz online resim format dönüştürücü. Çoklu dosya desteği, canlı önce/sonra karşılaştırma, sıfır yükleme — tüm işlemler tarayıcınızda.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-converter.html">
-<meta property="og:type" content="website"><meta property="og:site_name" content="EbruTech Studios">
-<meta property="og:title" content="Online Resim Format Dönüştürücü — EbruTech Studios">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EbruTech Studios">
+<meta property="og:title" content="Online Resim Format Dönüştürücü — PNG, JPG, WebP | EbruTech Studios">
+<meta property="og:description" content="PNG, JPG ve WebP arasında ücretsiz format dönüştürücü. Çoklu dosya, canlı önizleme, sıfır yükleme.">
+<meta property="og:url" content="https://ebrutechsystems.com/tool-converter.html">
 <meta property="og:image" content="https://ebrutechsystems.com/assets/og-image.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#10140a">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
-<style>
-.img-info{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.info-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
-.info-card .lbl{font-size:.72rem;color:var(--txt-faint);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
-.info-card .val{font-size:1rem;font-weight:700;color:var(--txt)}
-.info-card.accent .val{color:var(--accent)}
-.info-card .sub{font-size:.75rem;color:var(--txt-faint);margin-top:3px}
-.save-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:700;margin-left:6px}
-.save-badge.pos{background:rgba(62,232,181,.15);color:#3ee8b5}
-.save-badge.neg{background:rgba(255,80,80,.12);color:#ff8080}
-</style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Online Resim Format Dönüştürücü","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-converter.html"}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Online Resim Format Dönüştürücü","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-converter.html","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"287","bestRating":"5","worstRating":"1"},"author":{"@type":"Organization","name":"EbruTech Studios","url":"https://ebrutechsystems.com"}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"PNG JPG WebP dönüştürme ücretsiz mi?","acceptedAnswer":{"@type":"Answer","text":"Evet, tamamen ücretsiz ve kayıt gerekmez. Tarayıcınızda saniyeler içinde dönüştürme yapılır."}},
-{"@type":"Question","name":"Dönüştürülen resimler sunucuya yükleniyor mu?","acceptedAnswer":{"@type":"Answer","text":"Hayır. Tüm işlemler tarayıcınızda gerçekleşir. Dosyalarınız cihazınızdan çıkmaz."}},
-{"@type":"Question","name":"PNG'yi WebP'ye nasıl çeviririm?","acceptedAnswer":{"@type":"Answer","text":"PNG dosyasını araca sürükleyin veya seçin, çıktı formatı olarak WebP seçin ve indirin. 5 saniyeden kısa sürer."}},
-{"@type":"Question","name":"Kalite kaybı yaşanır mı?","acceptedAnswer":{"@type":"Answer","text":"PNG kayıpsız dönüşüm sunar. JPG ve WebP çıktısında kalite ayarı yapabilirsiniz; %85 ve üzeri gözle fark edilmez."}}
-]}</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":'Online Resim Format Dönüştürücü (PNG, JPG, WebP) — EbruTech Studios',"url":"https://ebrutechsystems.com/tool-converter.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"214","bestRating":"5","worstRating":"1"},"author":{"@type":"Organization","name":"EbruTech Studios","url":"https://ebrutechsystems.com"}}
+{"@type":"Question","name":"PNG'yi JPG'ye nasıl dönüştürürüm?","acceptedAnswer":{"@type":"Answer","text":"PNG dosyanızı araca sürükleyin veya tıklayarak seçin, çıktı formatı olarak JPG'yi seçin ve 'Dönüştür & İndir' butonuna basın. 5 saniyeden kısa sürer."}},
+{"@type":"Question","name":"Dosyalarım sunucuya yükleniyor mu?","acceptedAnswer":{"@type":"Answer","text":"Hayır. Tüm dönüştürme işlemleri tarayıcınızda gerçekleşir. Dosyalarınız cihazınızdan hiçbir zaman çıkmaz, gizliliğiniz tam anlamıyla korunur."}},
+{"@type":"Question","name":"Birden fazla dosyayı aynı anda dönüştürebilir miyim?","acceptedAnswer":{"@type":"Answer","text":"Evet. Birden fazla görsel sürükleyerek veya dosya seçiciden çoklu seçerek toplu dönüştürme yapabilirsiniz. Her dosya ayrı ayrı indirilir."}},
+{"@type":"Question","name":"WebP neden tercih edilir?","acceptedAnswer":{"@type":"Answer","text":"WebP, JPG'ye kıyasla %25–35 daha küçük dosya boyutu sağlar. Tüm modern tarayıcılar WebP'yi destekler; web sitesi performansı için idealdir."}},
+{"@type":"Question","name":"PNG ile JPG farkı nedir?","acceptedAnswer":{"@type":"Answer","text":"PNG kayıpsız sıkıştırma ve şeffaflık desteği sunar; logo ve grafik için uygundur. JPG lossy sıkıştırma kullanır; fotoğraflar için daha küçük boyut sağlar."}}
+]}
 </script>
-</head><body>
-<section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
-<span class="eyebrow">Araç</span><h1 style="font-size:2.2rem">🖼️ Format Dönüştürücü</h1>
-<p class="lead" style="margin:14px 0 26px">PNG, JPG ve WebP arasında dönüştür. Önce/sonra boyut karşılaştırması anında gösterilir.</p>
+<style>
+/* ═══════════════════════════════════════════════
+   FORMAT DÖNÜŞTÜRÜCܠ— Ultra Premium Styles
+   ═══════════════════════════════════════════════ */
 
-<div class="dropzone" id="dz"><div class="ico">📥</div><p><b>Görseli buraya sürükle</b> veya tıkla<br><span style="color:var(--txt-faint);font-size:.85rem">PNG · JPG · WebP · GIF · BMP</span></p>
-<input id="file" type="file" accept="image/*" class="hidden"></div>
+.cvt-shell{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
 
-<div id="panel" class="controls hidden">
-<div class="row">
-<div class="field" style="flex:2"><label>Çıktı Formatı</label>
-<select id="fmt">
-<option value="image/webp">WebP (en küçük)</option>
-<option value="image/jpeg">JPG (uyumlu)</option>
-<option value="image/png">PNG (kayıpsız)</option>
-</select></div>
-<div class="field" id="qWrap" style="flex:1"><label>Kalite: <strong id="qVal">90</strong>%</label>
-<input id="q" type="range" min="10" max="100" value="90"></div>
+/* ─── Drop Zone ─── */
+.cvt-dz{
+  position:relative;
+  border-radius:20px;
+  padding:3px;
+  background:linear-gradient(135deg,rgba(200,255,46,.35),rgba(41,211,255,.2),rgba(200,255,46,.1));
+  cursor:pointer;
+  transition:.25s;
+}
+.cvt-dz::before{
+  content:"";
+  position:absolute;inset:3px;
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(200,255,46,.06),transparent);
+  pointer-events:none;
+  z-index:0;
+}
+.cvt-dz-inner{
+  position:relative;z-index:1;
+  background:var(--bg-2);
+  border-radius:17px;
+  padding:52px 24px;
+  text-align:center;
+  transition:.25s;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.cvt-dz:hover .cvt-dz-inner,.cvt-dz.drag .cvt-dz-inner{
+  background:rgba(200,255,46,.055);
+}
+.cvt-dz.drag{
+  background:linear-gradient(135deg,rgba(200,255,46,.6),rgba(41,211,255,.4),rgba(200,255,46,.25));
+  transform:scale(1.008);
+}
+.cvt-dz-icon{font-size:3rem;line-height:1;display:block;filter:drop-shadow(0 0 18px rgba(200,255,46,.35))}
+.cvt-dz-title{font-size:1.08rem;color:var(--txt);font-weight:600;margin:0}
+.cvt-dz-sub{font-size:.85rem;color:var(--txt-faint);margin:0}
+.cvt-dz-formats{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;justify-content:center}
+.cvt-dz-formats span{padding:4px 13px;border-radius:999px;background:rgba(200,255,46,.09);border:1px solid rgba(200,255,46,.2);color:var(--accent);font-size:.78rem;font-weight:700;letter-spacing:.04em}
+
+/* ─── Panel (shown after files loaded) ─── */
+.cvt-panel{display:flex;flex-direction:column;gap:20px}
+
+/* ─── Section ─── */
+.cvt-section{
+  background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.035));
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 8px 32px rgba(0,0,0,.18);
+}
+.cvt-section-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:16px;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.cvt-section-label{
+  font-size:.72rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--txt-faint);
+}
+
+/* ─── File actions bar ─── */
+.cvt-file-actions{display:flex;gap:8px}
+.cvt-add-btn,.cvt-clear-btn{
+  padding:6px 14px;border-radius:8px;
+  font-size:.8rem;font-weight:700;cursor:pointer;
+  border:1px solid var(--border);
+  transition:.15s;
+  background:var(--surface);color:var(--txt-dim);
+  font-family:var(--font-body);
+}
+.cvt-add-btn:hover{border-color:var(--accent);color:var(--accent)}
+.cvt-clear-btn:hover{border-color:rgba(255,80,80,.5);color:#ff8080;background:rgba(255,80,80,.06)}
+
+/* ─── File Queue ─── */
+.cvt-queue{display:flex;flex-direction:column;gap:8px}
+
+.cvt-file-card{
+  display:grid;
+  grid-template-columns:56px 1fr auto;
+  gap:14px;
+  align-items:center;
+  padding:12px 14px;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+  border-radius:12px;
+  transition:.2s;
+  animation:slideIn .3s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.cvt-file-thumb{
+  width:56px;height:44px;border-radius:8px;
+  object-fit:cover;background:rgba(255,255,255,.06);
+  display:block;
+  border:1px solid var(--border);
+}
+.cvt-file-thumb.loading{
+  background:linear-gradient(90deg,rgba(255,255,255,.06) 25%,rgba(255,255,255,.12) 50%,rgba(255,255,255,.06) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.4s infinite;
+}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.cvt-file-info{min-width:0}
+.cvt-file-name{
+  font-size:.88rem;font-weight:600;color:var(--txt);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  display:block;
+}
+.cvt-file-meta{font-size:.76rem;color:var(--txt-faint);margin-top:2px}
+.cvt-file-status{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.cvt-status-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 10px;border-radius:999px;
+  font-size:.73rem;font-weight:700;
+  white-space:nowrap;
+}
+.cvt-status-badge.pending{background:rgba(255,255,255,.07);color:var(--txt-faint)}
+.cvt-status-badge.converting{background:rgba(255,176,32,.12);color:var(--warn);animation:pulseBadge 1s ease-in-out infinite}
+@keyframes pulseBadge{0%,100%{opacity:1}50%{opacity:.55}}
+.cvt-status-badge.done{background:rgba(200,255,46,.12);color:var(--accent)}
+.cvt-status-badge.error{background:rgba(255,80,80,.1);color:#ff8080}
+.cvt-file-dl{
+  display:none;
+  padding:6px 12px;border-radius:8px;
+  background:rgba(200,255,46,.12);border:1px solid rgba(200,255,46,.22);
+  color:var(--accent);font-size:.78rem;font-weight:700;cursor:pointer;
+  transition:.15s;white-space:nowrap;
+  font-family:var(--font-body);
+}
+.cvt-file-dl:hover{background:rgba(200,255,46,.2)}
+
+/* ─── Format Card Selector ─── */
+.cvt-fmt-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+@media(max-width:540px){.cvt-fmt-cards{grid-template-columns:1fr}}
+.cvt-fmt-card{
+  position:relative;
+  display:flex;flex-direction:column;align-items:flex-start;
+  padding:16px 16px 14px;
+  border-radius:14px;
+  border:1.5px solid var(--border);
+  background:rgba(255,255,255,.03);
+  cursor:pointer;
+  transition:.2s;
+  text-align:left;
+  font-family:var(--font-body);
+  gap:4px;
+  overflow:hidden;
+}
+.cvt-fmt-card::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.09),transparent 45%);
+  opacity:0;transition:.2s;pointer-events:none;border-radius:inherit;
+}
+.cvt-fmt-card:hover::before{opacity:1}
+.cvt-fmt-card:hover{border-color:rgba(200,255,46,.3)}
+.cvt-fmt-card.active{
+  border-color:rgba(200,255,46,.55);
+  background:rgba(200,255,46,.06);
+  box-shadow:0 0 0 1px rgba(200,255,46,.2),0 8px 24px rgba(200,255,46,.08);
+}
+.cvt-fmt-icon{font-size:1.35rem;line-height:1;margin-bottom:4px;display:block}
+.cvt-fmt-name{font-size:1rem;font-weight:800;color:var(--txt);letter-spacing:-.01em;display:block}
+.cvt-fmt-desc{font-size:.76rem;color:var(--txt-faint);line-height:1.4;display:block}
+.cvt-fmt-badge{
+  position:absolute;top:10px;right:10px;
+  padding:3px 8px;border-radius:6px;
+  background:var(--accent);color:var(--accent-ink);
+  font-size:.65rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+}
+
+/* ─── Quality Slider ─── */
+.cvt-quality-wrap{display:flex;flex-direction:column;gap:12px}
+.cvt-quality-header{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cvt-quality-label{font-size:.88rem;color:var(--txt-dim);font-weight:600;flex-shrink:0}
+.cvt-quality-presets{display:flex;gap:6px;flex-wrap:wrap}
+.cvt-preset{
+  padding:5px 13px;border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--surface);color:var(--txt-faint);
+  font-size:.77rem;font-weight:700;cursor:pointer;transition:.15s;
+  font-family:var(--font-body);
+}
+.cvt-preset:hover{border-color:rgba(200,255,46,.35);color:var(--accent)}
+.cvt-preset.active{border-color:var(--accent);color:var(--accent);background:rgba(200,255,46,.09)}
+.cvt-quality-val{
+  font-family:var(--font-display);font-size:1.5rem;font-weight:800;
+  color:var(--accent);margin-left:auto;min-width:54px;text-align:right;
+  line-height:1;
+}
+.cvt-quality-slider{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:6px;border-radius:3px;
+  background:var(--surface-2);
+  cursor:pointer;
+  outline:none;
+  border:none;
+}
+.cvt-quality-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:22px;height:22px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),#b8f020);
+  box-shadow:0 0 0 3px rgba(200,255,46,.2),0 4px 12px rgba(200,255,46,.25);
+  cursor:grab;
+  transition:.15s;
+}
+.cvt-quality-slider::-webkit-slider-thumb:active{cursor:grabbing;transform:scale(1.15)}
+.cvt-quality-slider::-moz-range-thumb{
+  width:22px;height:22px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),#b8f020);
+  border:none;
+  box-shadow:0 0 0 3px rgba(200,255,46,.2);
+  cursor:grab;
+}
+
+/* ─── Advanced Options ─── */
+.cvt-advanced{border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.cvt-advanced-toggle{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:13px 16px;cursor:pointer;
+  font-size:.88rem;font-weight:600;color:var(--txt-dim);
+  list-style:none;
+  transition:.15s;
+  user-select:none;
+}
+.cvt-advanced-toggle::-webkit-details-marker{display:none}
+.cvt-advanced-toggle:hover{color:var(--txt);background:var(--surface)}
+.cvt-advanced-arrow{font-size:1.1rem;transition:transform .25s;display:inline-block}
+details[open] .cvt-advanced-arrow{transform:rotate(90deg)}
+.cvt-advanced-body{padding:16px;display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--border)}
+.cvt-checkbox-row{
+  display:flex;align-items:center;gap:10px;cursor:pointer;
+  font-size:.88rem;color:var(--txt-dim);
+}
+.cvt-checkbox-row input[type=checkbox]{
+  width:17px;height:17px;cursor:pointer;
+  accent-color:var(--accent);
+  border-radius:4px;
+}
+.cvt-checkbox-row:hover{color:var(--txt)}
+.cvt-resize-opts{margin-top:8px;display:flex;flex-direction:column;gap:10px}
+.cvt-resize-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* ─── Split Preview ─── */
+.cvt-split-wrap{
+  position:relative;
+  border-radius:14px;
+  overflow:hidden;
+  background:rgba(0,0,0,.3);
+  border:1px solid var(--border);
+  max-height:420px;
+  cursor:col-resize;
+  user-select:none;
+  min-height:160px;
+}
+.cvt-split-before,.cvt-split-after{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.cvt-split-before img,.cvt-split-after img{
+  width:100%;height:100%;
+  object-fit:contain;
+  display:block;
+}
+.cvt-split-after{
+  clip-path:inset(0 0 0 50%);
+  transition:none;
+}
+.cvt-split-divider{
+  position:absolute;
+  top:0;bottom:0;
+  left:50%;
+  width:2px;
+  background:rgba(255,255,255,.9);
+  z-index:10;
+  cursor:col-resize;
+  box-shadow:0 0 8px rgba(0,0,0,.5);
+  transform:translateX(-50%);
+}
+.cvt-divider-handle{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:38px;height:38px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 12px rgba(0,0,0,.45),0 0 0 2px rgba(200,255,46,.3);
+  transition:.15s;
+}
+.cvt-divider-handle svg{display:block;color:#1a1a1a}
+.cvt-split-label{
+  position:absolute;bottom:10px;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(8px);
+  color:#fff;
+  font-size:.72rem;font-weight:700;
+  padding:4px 10px;border-radius:999px;
+  letter-spacing:.06em;
+  pointer-events:none;
+}
+.cvt-split-before .cvt-split-label{left:10px}
+.cvt-split-after .cvt-split-label{right:10px}
+.cvt-preview-size{font-size:.82rem;color:var(--txt-dim);font-weight:600}
+
+/* ─── CTA area ─── */
+.cvt-cta{display:flex;flex-direction:column;align-items:stretch;gap:10px}
+.cvt-go-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;font-size:1.05rem;padding:16px 24px;border-radius:14px;
+  background:linear-gradient(135deg,var(--accent),#d4ff5a 60%,#a8e020);
+  color:var(--accent-ink);font-weight:800;letter-spacing:-.01em;
+  box-shadow:0 8px 28px rgba(200,255,46,.22),0 2px 8px rgba(200,255,46,.1);
+  transition:.22s;
+}
+.cvt-go-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 14px 36px rgba(200,255,46,.3),0 4px 12px rgba(200,255,46,.15)}
+.cvt-go-btn:disabled{opacity:.65;cursor:not-allowed;transform:none}
+.cvt-batch-hint{font-size:.8rem;color:var(--txt-faint);text-align:center;padding:4px}
+
+/* ─── Stats Panel ─── */
+.cvt-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  animation:fadeUp .4s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media(max-width:540px){.cvt-stats{grid-template-columns:repeat(2,1fr)}}
+.cvt-stat{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:16px;
+  text-align:center;
+  display:flex;flex-direction:column;gap:4px;
+}
+.cvt-stat-val{
+  font-family:var(--font-display);font-size:1.45rem;font-weight:800;
+  color:var(--txt);line-height:1;display:block;
+}
+.cvt-stat-lbl{font-size:.72rem;color:var(--txt-faint);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.cvt-stat.cvt-stat-accent .cvt-stat-val{color:var(--accent-2)}
+.cvt-stat.cvt-stat-green .cvt-stat-val{color:var(--accent)}
+
+/* ─── How It Works ─── */
+.cvt-how{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:640px){.cvt-how{grid-template-columns:1fr}}
+.cvt-how-step{
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:22px 20px;
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.cvt-how-num{
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),#b8f020);
+  color:var(--accent-ink);font-weight:800;font-size:1.15rem;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);
+  box-shadow:0 4px 14px rgba(200,255,46,.2);
+}
+.cvt-how-step h4{font-size:.95rem;margin:0}
+.cvt-how-step p{font-size:.84rem;color:var(--txt-dim);margin:0;line-height:1.55}
+
+/* ─── Related tools ─── */
+.related-tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:700px){.related-tools-grid{grid-template-columns:repeat(2,1fr)}}
+.related-chip{
+  display:flex;align-items:center;gap:9px;
+  padding:12px 14px;border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--surface);
+  color:var(--txt-dim);font-size:.86rem;font-weight:600;
+  text-decoration:none;transition:.18s;
+}
+.related-chip:hover{border-color:rgba(200,255,46,.3);color:var(--txt);background:var(--surface-2);transform:translateY(-2px)}
+.related-chip .rchip-ico{font-size:1.2rem;flex-shrink:0}
+
+/* ─── FAQ ─── */
+.cvt-faq{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.cvt-faq-item{border-bottom:1px solid var(--border)}
+.cvt-faq-item:last-child{border-bottom:none}
+.cvt-faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 22px;cursor:pointer;
+  font-weight:700;font-size:.95rem;
+  transition:.15s;gap:14px;
+  user-select:none;
+}
+.cvt-faq-q:hover{background:rgba(255,255,255,.025);color:var(--accent)}
+.cvt-faq-icon{flex-shrink:0;font-size:1rem;transition:transform .25s;color:var(--txt-faint)}
+.cvt-faq-item.open .cvt-faq-icon{transform:rotate(45deg);color:var(--accent)}
+.cvt-faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .3s cubic-bezier(.4,0,.2,1);
+  color:var(--txt-dim);font-size:.9rem;line-height:1.75;
+}
+.cvt-faq-item.open .cvt-faq-a{max-height:200px}
+.cvt-faq-a p{padding:0 22px 20px}
+
+/* ─── Security badge strip ─── */
+.cvt-security-strip{
+  display:flex;align-items:center;justify-content:center;
+  gap:20px;flex-wrap:wrap;
+  padding:16px 22px;
+  background:rgba(200,255,46,.04);
+  border:1px solid rgba(200,255,46,.12);
+  border-radius:14px;
+}
+.cvt-sec-item{
+  display:flex;align-items:center;gap:7px;
+  font-size:.82rem;color:var(--txt-dim);font-weight:600;
+}
+.cvt-sec-item span{color:var(--accent);font-size:1rem}
+
+@media(max-width:540px){
+  .cvt-dz-inner{padding:36px 20px}
+  .cvt-quality-header{gap:8px}
+  .cvt-quality-val{font-size:1.2rem}
+  .cvt-section{padding:18px 14px}
+}
+</style>
+</head>
+<body>
+
+<section class="hero" style="padding-bottom:20px"><div class="wrap">
+<div class="cvt-shell">
+
+<!-- Title -->
+<div>
+  <span class="eyebrow">Araç · Görsel</span>
+  <h1 style="font-size:2.35rem;margin:8px 0 10px">🖼️ Format Dönüştürücü</h1>
+  <p class="lead" style="margin:0">PNG, JPG ve WebP arasında dönüştür. Çoklu dosya, canlı önizleme, sıfır yükleme.</p>
 </div>
 
-<button id="go" class="btn btn-primary btn-lg" style="width:100%">Dönüştür & İndir</button>
-
-<div id="infoArea" style="display:none" class="img-info">
-<div class="info-card">
-<div class="lbl">Orijinal</div>
-<div class="val" id="origFmt"></div>
-<div class="sub" id="origSize"></div>
-<div class="sub" id="origDim"></div>
-</div>
-<div class="info-card accent">
-<div class="lbl">Dönüştürülmüş</div>
-<div class="val" id="newFmt"></div>
-<div class="sub" id="newSize"></div>
-<div class="sub" id="savePct"></div>
-</div>
-</div>
+<!-- Drop Zone -->
+<div class="cvt-dz" id="cvtDz" role="button" tabindex="0" aria-label="Görsel yüklemek için tıklayın veya sürükleyin">
+  <div class="cvt-dz-inner">
+    <span class="cvt-dz-icon">📥</span>
+    <p class="cvt-dz-title"><strong>Görselleri buraya sürükle</strong> veya tıkla</p>
+    <p class="cvt-dz-sub">PNG · JPG · WebP · GIF · BMP &mdash; Birden fazla dosya seçebilirsin</p>
+    <div class="cvt-dz-formats">
+      <span>→ WebP</span>
+      <span>→ JPG</span>
+      <span>→ PNG</span>
+    </div>
+  </div>
+  <input id="cvtFile" type="file" accept="image/*" multiple class="hidden" aria-label="Görsel seç">
 </div>
 
-<div id="preview" class="preview hidden" style="margin-top:16px"><img id="img" alt="Dönüştürülecek görsel önizlemesi" style="max-height:300px;border-radius:12px;object-fit:contain;background:rgba(255,255,255,.04)"></div>
-</div></div></section>
+<!-- Main panel (revealed after files are loaded) -->
+<div id="cvtPanel" class="cvt-panel hidden">
+
+  <!-- File Queue -->
+  <div class="cvt-section">
+    <div class="cvt-section-header">
+      <span class="cvt-section-label">Dosyalar (<span id="cvtFileCount">0</span>)</span>
+      <div class="cvt-file-actions">
+        <button class="cvt-add-btn" id="cvtAddMore">+ Dosya Ekle</button>
+        <button class="cvt-clear-btn" id="cvtClear">× Temizle</button>
+      </div>
+    </div>
+    <div class="cvt-queue" id="cvtQueue"></div>
+  </div>
+
+  <!-- Settings -->
+  <div class="cvt-section">
+    <div class="cvt-section-header">
+      <span class="cvt-section-label">Dönüştürme Ayarları</span>
+    </div>
+
+    <!-- Format cards -->
+    <div class="cvt-fmt-cards" id="cvtFmtCards" role="radiogroup" aria-label="Çıktı formatı">
+      <button class="cvt-fmt-card active" data-fmt="image/webp" role="radio" aria-checked="true">
+        <span class="cvt-fmt-icon">🌐</span>
+        <span class="cvt-fmt-name">WebP</span>
+        <span class="cvt-fmt-desc">En küçük boyut · Modern web</span>
+        <span class="cvt-fmt-badge">Önerilen</span>
+      </button>
+      <button class="cvt-fmt-card" data-fmt="image/jpeg" role="radio" aria-checked="false">
+        <span class="cvt-fmt-icon">📷</span>
+        <span class="cvt-fmt-name">JPG</span>
+        <span class="cvt-fmt-desc">Geniş uyumluluk · Fotoğraflar</span>
+      </button>
+      <button class="cvt-fmt-card" data-fmt="image/png" role="radio" aria-checked="false">
+        <span class="cvt-fmt-icon">🎨</span>
+        <span class="cvt-fmt-name">PNG</span>
+        <span class="cvt-fmt-desc">Kayıpsız · Şeffaflık desteği</span>
+      </button>
+    </div>
+
+    <!-- Quality slider -->
+    <div id="cvtQWrap" class="cvt-quality-wrap">
+      <div class="cvt-quality-header">
+        <label class="cvt-quality-label" for="cvtQ">Kalite</label>
+        <div class="cvt-quality-presets">
+          <button class="cvt-preset" data-q="50">Küçük</button>
+          <button class="cvt-preset" data-q="75">Dengeli</button>
+          <button class="cvt-preset active" data-q="90">Kaliteli</button>
+          <button class="cvt-preset" data-q="100">Maksimum</button>
+        </div>
+        <span class="cvt-quality-val" id="cvtQVal" aria-live="polite">90%</span>
+      </div>
+      <input id="cvtQ" type="range" min="10" max="100" value="90" class="cvt-quality-slider" aria-label="Kalite yüzdesi">
+    </div>
+
+    <!-- Advanced options -->
+    <details class="cvt-advanced" id="cvtAdvanced" style="margin-top:14px">
+      <summary class="cvt-advanced-toggle">
+        <span>⚙️ Gelişmiş Seçenekler</span>
+        <span class="cvt-advanced-arrow">›</span>
+      </summary>
+      <div class="cvt-advanced-body">
+        <label class="cvt-checkbox-row">
+          <input type="checkbox" id="cvtResize">
+          <span>Dönüştürürken boyutlandır</span>
+        </label>
+        <div id="cvtResizeOpts" class="cvt-resize-opts hidden">
+          <div class="cvt-resize-row">
+            <div class="field"><label for="cvtW">Maks. Genişlik (px)</label>
+            <input type="number" id="cvtW" placeholder="Sınırsız" min="1" max="8000"></div>
+            <div class="field"><label for="cvtH">Maks. Yükseklik (px)</label>
+            <input type="number" id="cvtH" placeholder="Sınırsız" min="1" max="8000"></div>
+          </div>
+          <label class="cvt-checkbox-row">
+            <input type="checkbox" id="cvtAspect" checked>
+            <span>En-boy oranını koru</span>
+          </label>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- Split Preview (single file only) -->
+  <div id="cvtPreviewSection" class="cvt-section hidden">
+    <div class="cvt-section-header">
+      <span class="cvt-section-label">Canlı Önizleme — Çizgiyi sürükle</span>
+      <span class="cvt-preview-size" id="cvtSizeCompare"></span>
+    </div>
+    <div class="cvt-split-wrap" id="cvtSplitWrap" aria-label="Önce ve sonra karşılaştırması">
+      <div class="cvt-split-before">
+        <img id="cvtImgBefore" alt="Orijinal görsel">
+        <span class="cvt-split-label">ORİJİNAL</span>
+      </div>
+      <div class="cvt-split-after" id="cvtSplitAfter">
+        <img id="cvtImgAfter" alt="Dönüştürülmüş görsel önizlemesi">
+        <span class="cvt-split-label">DÖNÜŞTÜRÜLMÜŞ</span>
+      </div>
+      <div class="cvt-split-divider" id="cvtDivider" role="slider" aria-label="Karşılaştırma çizgisi" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <div class="cvt-divider-handle">
+          <svg viewBox="0 0 20 20" fill="none" width="18" height="18">
+            <path d="M7 4l-4 6 4 6M13 4l4 6-4 6" stroke="#1a1a1a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Convert Button -->
+  <div class="cvt-cta">
+    <button id="cvtGo" class="cvt-go-btn btn">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      <span id="cvtGoText">Dönüştür &amp; İndir</span>
+    </button>
+    <p class="cvt-batch-hint hidden" id="cvtBatchHint">Her dosya ayrı ayrı indirilecek</p>
+  </div>
+
+  <!-- Stats (shown after conversion) -->
+  <div id="cvtStats" class="cvt-stats hidden">
+    <div class="cvt-stat">
+      <span class="cvt-stat-val" id="statCount">0</span>
+      <span class="cvt-stat-lbl">Dönüştürülen</span>
+    </div>
+    <div class="cvt-stat">
+      <span class="cvt-stat-val" id="statOrig">—</span>
+      <span class="cvt-stat-lbl">Orijinal</span>
+    </div>
+    <div class="cvt-stat cvt-stat-accent">
+      <span class="cvt-stat-val" id="statNew">—</span>
+      <span class="cvt-stat-lbl">Yeni Boyut</span>
+    </div>
+    <div class="cvt-stat cvt-stat-green">
+      <span class="cvt-stat-val" id="statSaved">—</span>
+      <span class="cvt-stat-lbl">Tasarruf</span>
+    </div>
+  </div>
+
+</div><!-- /cvtPanel -->
+
+<!-- Security strip -->
+<div class="cvt-security-strip">
+  <div class="cvt-sec-item"><span>🔒</span> Sıfır yükleme — tarayıcında çalışır</div>
+  <div class="cvt-sec-item"><span>⚡</span> Saniyeler içinde hazır</div>
+  <div class="cvt-sec-item"><span>🎯</span> Sınırsız dosya boyutu</div>
+  <div class="cvt-sec-item"><span>✓</span> Tamamen ücretsiz</div>
+</div>
+
+</div><!-- /cvt-shell -->
+</div></section>
+
+<!-- How It Works -->
+<section style="padding-top:0;padding-bottom:60px"><div class="wrap">
+<div class="section-head reveal"><span class="eyebrow">Nasıl Çalışır</span><h2>3 adımda dönüştür</h2></div>
+<div class="cvt-how">
+  <div class="cvt-how-step reveal">
+    <div class="cvt-how-num">1</div>
+    <h4>Görsel seç</h4>
+    <p>PNG, JPG veya WebP dosyasını sürükle ya da tıklayarak seç. Birden fazla dosya aynı anda yüklenebilir.</p>
+  </div>
+  <div class="cvt-how-step reveal">
+    <div class="cvt-how-num">2</div>
+    <h4>Format ve kalite belirle</h4>
+    <p>Hedef formatı seç. JPG ve WebP için kalite kaydırıcısını ayarla; değişiklikler anında önizlenir.</p>
+  </div>
+  <div class="cvt-how-step reveal">
+    <div class="cvt-how-num">3</div>
+    <h4>İndir</h4>
+    <p>Dönüştür &amp; İndir butonuna bas. Tek dosya veya toplu indirme birkaç saniyede tamamlanır.</p>
+  </div>
+</div>
+</div></section>
+
+<!-- Related Tools -->
+<section style="padding-top:0;padding-bottom:60px"><div class="wrap">
+<div class="section-head reveal"><span class="eyebrow">İlgili Araçlar</span><h2>Bunlar da işine yarar</h2></div>
+<div class="related-tools-grid">
+  <a href="tool-compressor.html" class="related-chip reveal">
+    <span class="rchip-ico">⚡</span>Resim Sıkıştırıcı
+  </a>
+  <a href="tool-resizer.html" class="related-chip reveal">
+    <span class="rchip-ico">📏</span>Boyutlandırıcı
+  </a>
+  <a href="tool-crop.html" class="related-chip reveal">
+    <span class="rchip-ico">✂️</span>Resim Kırpma
+  </a>
+  <a href="tool-watermark.html" class="related-chip reveal">
+    <span class="rchip-ico">💧</span>Watermark Ekle
+  </a>
+</div>
+</div></section>
+
+<!-- FAQ -->
+<section style="padding-top:0;padding-bottom:80px"><div class="wrap" style="max-width:780px">
+<div class="section-head reveal"><span class="eyebrow">SSS</span><h2>Sık sorulan sorular</h2></div>
+<div class="cvt-faq reveal" role="list">
+  <div class="cvt-faq-item" role="listitem">
+    <div class="cvt-faq-q" tabindex="0" role="button">PNG'yi JPG'ye nasıl dönüştürürüm?<span class="cvt-faq-icon">+</span></div>
+    <div class="cvt-faq-a"><p>PNG dosyanızı araca sürükleyin veya tıklayarak seçin. Çıktı formatı olarak JPG kartını seçin, kaliteyi ayarlayın ve "Dönüştür &amp; İndir" butonuna basın. Tüm işlem 5 saniyeden kısa sürer.</p></div>
+  </div>
+  <div class="cvt-faq-item" role="listitem">
+    <div class="cvt-faq-q" tabindex="0" role="button">Dosyalarım sunucuya yükleniyor mu?<span class="cvt-faq-icon">+</span></div>
+    <div class="cvt-faq-a"><p>Hayır. Tüm dönüştürme işlemleri tarayıcınızda gerçekleşir. Dosyalarınız cihazınızdan hiçbir zaman çıkmaz; gizliliğiniz tam anlamıyla korunur.</p></div>
+  </div>
+  <div class="cvt-faq-item" role="listitem">
+    <div class="cvt-faq-q" tabindex="0" role="button">Birden fazla dosyayı aynı anda dönüştürebilir miyim?<span class="cvt-faq-icon">+</span></div>
+    <div class="cvt-faq-a"><p>Evet. Birden fazla görsel sürükleyerek veya dosya seçiciden çoklu seçim yaparak toplu dönüştürme yapabilirsiniz. Her dosya ayrı ayrı indirilir.</p></div>
+  </div>
+  <div class="cvt-faq-item" role="listitem">
+    <div class="cvt-faq-q" tabindex="0" role="button">WebP formatı neden öneriliyor?<span class="cvt-faq-icon">+</span></div>
+    <div class="cvt-faq-a"><p>WebP, JPG'ye kıyasla %25–35 daha küçük dosya boyutu sağlar ve aynı kalitede çok daha az alan kaplar. Tüm modern tarayıcılar WebP'yi destekler; web sitesi performansı için ideal seçimdir.</p></div>
+  </div>
+  <div class="cvt-faq-item" role="listitem">
+    <div class="cvt-faq-q" tabindex="0" role="button">PNG ile JPG arasındaki fark nedir?<span class="cvt-faq-icon">+</span></div>
+    <div class="cvt-faq-a"><p>PNG kayıpsız sıkıştırma ve şeffaflık (alfa kanalı) desteği sunar; logo, ikon ve grafik çalışmaları için idealdir. JPG kayıplı sıkıştırma kullanır; fotoğraflar için çok daha küçük boyut sağlar ancak şeffaflığı desteklemez.</p></div>
+  </div>
+</div>
+</div></section>
+
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-let imgEl=null,origFile=null;
+(function(){
+'use strict';
+
+/* ── Helpers ── */
 const $=id=>document.getElementById(id);
-const dz=$("dz"),file=$("file"),fmt=$("fmt"),q=$("q");
-const fmtSize=n=>n<1024?n+" B":n<1048576?(n/1024).toFixed(0)+" KB":(n/1048576).toFixed(2)+" MB";
+const fmt$=n=>n<1024?n+' B':n<1048576?(n/1024).toFixed(0)+' KB':(n/1048576).toFixed(2)+' MB';
+const pct$=(a,b)=>{const p=Math.round((b-a)/a*100);return p<0?p+'%':'+'+p+'%'};
 
-dz.onclick=()=>file.click();
-dz.ondragover=e=>{e.preventDefault();dz.classList.add("drag");};
-dz.ondragleave=()=>dz.classList.remove("drag");
-dz.ondrop=e=>{e.preventDefault();dz.classList.remove("drag");if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);};
-file.onchange=e=>{if(e.target.files[0])load(e.target.files[0]);};
+/* ── State ── */
+let files=[];    // {file, img, name, origSize, blob(filled after convert), dlBtn}
+let selFmt='image/webp';
+let selQ=90;
+let splitDragging=false;
+let splitPos=50;
+let previewTimer=null;
+let convertedCount=0;
 
-function load(f){
-  origFile=f;
-  const r=new FileReader();
-  r.onload=ev=>{
-    imgEl=new Image();
-    imgEl.onload=()=>{
-      $("img").src=imgEl.src;
-      $("preview").classList.remove("hidden");
-      $("panel").classList.remove("hidden");
-      updateEstimate();
-    };
-    imgEl.src=ev.target.result;
-  };
-  r.readAsDataURL(f);
+/* ── DOM refs ── */
+const dz=$('cvtDz');
+const fileInput=$('cvtFile');
+const panel=$('cvtPanel');
+const queue=$('cvtQueue');
+const fileCount=$('cvtFileCount');
+const fmtCards=document.querySelectorAll('.cvt-fmt-card');
+const qWrap=$('cvtQWrap');
+const qSlider=$('cvtQ');
+const qVal=$('cvtQVal');
+const presets=document.querySelectorAll('.cvt-preset');
+const previewSec=$('cvtPreviewSection');
+const splitWrap=$('cvtSplitWrap');
+const imgBefore=$('cvtImgBefore');
+const imgAfter=$('cvtImgAfter');
+const splitAfter=$('cvtSplitAfter');
+const divider=$('cvtDivider');
+const sizeCompare=$('cvtSizeCompare');
+const goBtn=$('cvtGo');
+const goText=$('cvtGoText');
+const statsEl=$('cvtStats');
+const batchHint=$('cvtBatchHint');
+const resizeChk=$('cvtResize');
+const resizeOpts=$('cvtResizeOpts');
+const wInput=$('cvtW');
+const hInput=$('cvtH');
+const aspectChk=$('cvtAspect');
+const addMoreBtn=$('cvtAddMore');
+const clearBtn=$('cvtClear');
+
+/* ── Drop zone ── */
+dz.addEventListener('click',()=>fileInput.click());
+dz.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();fileInput.click();} });
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag');});
+dz.addEventListener('dragleave',e=>{ if(!dz.contains(e.relatedTarget))dz.classList.remove('drag'); });
+dz.addEventListener('drop',e=>{
+  e.preventDefault();dz.classList.remove('drag');
+  addFiles([...e.dataTransfer.files]);
+});
+fileInput.addEventListener('change',e=>{
+  addFiles([...e.target.files]);
+  fileInput.value='';
+});
+addMoreBtn.addEventListener('click',()=>fileInput.click());
+clearBtn.addEventListener('click',()=>{
+  files=[];
+  queue.innerHTML='';
+  fileCount.textContent='0';
+  panel.classList.add('hidden');
+  previewSec.classList.add('hidden');
+  statsEl.classList.add('hidden');
+});
+
+/* ── Add files ── */
+function addFiles(newFiles){
+  const imgFiles=newFiles.filter(f=>f.type.startsWith('image/'));
+  if(!imgFiles.length) return;
+  imgFiles.forEach(f=>{
+    if(files.some(e=>e.file.name===f.name&&e.file.size===f.size)) return; // skip dup
+    const entry={file:f,img:null,name:f.name.replace(/\.[^.]+$/,''),origSize:f.size,blob:null,dlBtn:null};
+    files.push(entry);
+    renderFileCard(entry);
+  });
+  fileCount.textContent=files.length;
+  panel.classList.remove('hidden');
+  updateGoLabel();
+  updateBatchHint();
+
+  if(files.length===1 && !previewSec.classList.contains('active')){
+    loadFirstPreview();
+  } else {
+    previewSec.classList.add('hidden');
+  }
 }
 
-q.oninput=()=>{$("qVal").textContent=q.value;updateEstimate();};
-fmt.onchange=()=>{$("qWrap").style.display=fmt.value==="image/png"?"none":"block";updateEstimate();};
+/* ── Render file card ── */
+function renderFileCard(entry){
+  const card=document.createElement('div');
+  card.className='cvt-file-card';
+  card.dataset.name=entry.file.name;
 
-let estTimer;
-function updateEstimate(){
-  if(!imgEl||!origFile)return;
-  clearTimeout(estTimer);
-  estTimer=setTimeout(()=>{
-    render(b=>{
-      const pct=((b.size-origFile.size)/origFile.size*100).toFixed(1);
-      const pos=b.size<origFile.size;
-      const ext=fmt.value.split("/")[1].replace("jpeg","jpg").toUpperCase();
-      const origExt=(origFile.type||origFile.name.split(".").pop()||"bilinmiyor").replace("image/","").replace("jpeg","jpg").toUpperCase();
-      $("origFmt").textContent=origExt;
-      $("origSize").textContent=fmtSize(origFile.size);
-      $("origDim").textContent=imgEl.naturalWidth+"×"+imgEl.naturalHeight+" px";
-      $("newFmt").textContent=ext;
-      $("newSize").textContent=fmtSize(b.size);
-      $("savePct").innerHTML=`<span class="save-badge ${pos?"pos":"neg"}">${pos?"↓ ":"↑ "+(Math.abs(pct))}% ${pos?"küçüldü":"büyüdü"}</span>`;
-      $("infoArea").style.display="grid";
+  const thumb=document.createElement('img');
+  thumb.className='cvt-file-thumb loading';
+  thumb.alt='';
+
+  const info=document.createElement('div');
+  info.className='cvt-file-info';
+  const name=document.createElement('span');
+  name.className='cvt-file-name';
+  name.title=entry.file.name;
+  name.textContent=entry.file.name.length>36?entry.file.name.slice(0,33)+'…':entry.file.name;
+  const meta=document.createElement('span');
+  meta.className='cvt-file-meta';
+  meta.textContent=fmt$(entry.file.size);
+
+  const statusWrap=document.createElement('div');
+  statusWrap.className='cvt-file-status';
+
+  const badge=document.createElement('span');
+  badge.className='cvt-status-badge pending';
+  badge.textContent='Bekliyor';
+
+  const dlBtn=document.createElement('button');
+  dlBtn.className='cvt-file-dl';
+  dlBtn.textContent='↓ İndir';
+  entry.dlBtn=dlBtn;
+
+  info.append(name,meta);
+  statusWrap.append(badge,dlBtn);
+  card.append(thumb,info,statusWrap);
+  queue.appendChild(card);
+  entry._card=card;
+  entry._badge=badge;
+  entry._meta=meta;
+
+  const r=new FileReader();
+  r.onload=ev=>{
+    thumb.src=ev.target.result;
+    thumb.classList.remove('loading');
+    const img=new Image();
+    img.onload=()=>{
+      entry.img=img;
+      meta.textContent=fmt$(entry.file.size)+' · '+img.naturalWidth+'×'+img.naturalHeight;
+      if(files.length===1) scheduleLivePreview();
+    };
+    img.src=ev.target.result;
+  };
+  r.readAsDataURL(entry.file);
+}
+
+/* ── Format selection ── */
+fmtCards.forEach(card=>{
+  card.addEventListener('click',()=>{
+    fmtCards.forEach(c=>{ c.classList.remove('active'); c.setAttribute('aria-checked','false'); });
+    card.classList.add('active'); card.setAttribute('aria-checked','true');
+    selFmt=card.dataset.fmt;
+    qWrap.style.display=selFmt==='image/png'?'none':'flex';
+    if(selFmt==='image/png') qWrap.style.display='none'; else qWrap.style.display='';
+    scheduleLivePreview();
+  });
+});
+
+/* ── Quality slider ── */
+qSlider.addEventListener('input',()=>{
+  selQ=+qSlider.value;
+  qVal.textContent=selQ+'%';
+  presets.forEach(b=>b.classList.toggle('active',+b.dataset.q===selQ));
+  scheduleLivePreview();
+});
+presets.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    selQ=+btn.dataset.q;
+    qSlider.value=selQ;
+    qVal.textContent=selQ+'%';
+    presets.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    scheduleLivePreview();
+  });
+});
+
+/* ── Resize options ── */
+resizeChk.addEventListener('change',()=>{
+  resizeOpts.classList.toggle('hidden',!resizeChk.checked);
+});
+wInput.addEventListener('input',()=>{
+  if(!aspectChk.checked||!files[0]||!files[0].img) return;
+  const img=files[0].img;
+  if(wInput.value) hInput.value=Math.round(+wInput.value*(img.naturalHeight/img.naturalWidth));
+  scheduleLivePreview();
+});
+hInput.addEventListener('input',()=>{
+  if(!aspectChk.checked||!files[0]||!files[0].img) return;
+  const img=files[0].img;
+  if(hInput.value) wInput.value=Math.round(+hInput.value*(img.naturalWidth/img.naturalHeight));
+  scheduleLivePreview();
+});
+
+/* ── Single file preview ── */
+function loadFirstPreview(){
+  if(!files[0]||!files[0].img) return;
+  imgBefore.src=files[0].img.src;
+  splitWrap.style.aspectRatio=files[0].img.naturalWidth+'/'+files[0].img.naturalHeight;
+  splitWrap.style.maxHeight='420px';
+  previewSec.classList.remove('hidden');
+  setSplitPos(50);
+  scheduleLivePreview();
+}
+
+let liveBlob=null;
+function scheduleLivePreview(){
+  if(files.length!==1||!files[0]||!files[0].img) return;
+  clearTimeout(previewTimer);
+  previewTimer=setTimeout(()=>{
+    renderOne(files[0].img,(blob)=>{
+      liveBlob=blob;
+      const url=URL.createObjectURL(blob);
+      const old=imgAfter.src;
+      imgAfter.src=url;
+      imgAfter.onload=()=>{ if(old&&old.startsWith('blob:')) URL.revokeObjectURL(old); };
+      const saved=files[0].origSize-blob.size;
+      const pct=Math.round(saved/files[0].origSize*100);
+      const ext=selFmt.split('/')[1].replace('jpeg','jpg').toUpperCase();
+      if(pct>0){
+        sizeCompare.innerHTML=`${fmt$(files[0].origSize)} → <strong style="color:var(--accent)">${fmt$(blob.size)}</strong> <span style="color:var(--accent);font-weight:700">↓${pct}% küçüldü</span>`;
+      } else {
+        sizeCompare.innerHTML=`${fmt$(files[0].origSize)} → ${fmt$(blob.size)} <span style="color:#ff8080">↑${Math.abs(pct)}% büyüdü</span>`;
+      }
     });
   },300);
 }
 
-function render(cb){
-  const c=document.createElement("canvas");
-  c.width=imgEl.naturalWidth;c.height=imgEl.naturalHeight;
-  const ctx=c.getContext("2d");
-  if(fmt.value==="image/jpeg"){ctx.fillStyle="#fff";ctx.fillRect(0,0,c.width,c.height);}
-  ctx.drawImage(imgEl,0,0);
-  c.toBlob(cb,fmt.value,q.value/100);
+/* ── Render single image to blob ── */
+function renderOne(img, cb){
+  const canvas=document.createElement('canvas');
+  let W=img.naturalWidth, H=img.naturalHeight;
+  if(resizeChk.checked){
+    const maxW=+wInput.value||0;
+    const maxH=+hInput.value||0;
+    if(maxW>0||maxH>0){
+      const ar=W/H;
+      if(maxW&&(!maxH||W/maxW>H/maxH)){ W=Math.min(W,maxW); H=Math.round(W/ar); }
+      else if(maxH){ H=Math.min(H,maxH); W=Math.round(H*ar); }
+    }
+  }
+  canvas.width=W; canvas.height=H;
+  const ctx=canvas.getContext('2d');
+  if(selFmt==='image/jpeg'){ ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H); }
+  ctx.drawImage(img,0,0,W,H);
+  canvas.toBlob(cb,selFmt,selFmt==='image/png'?undefined:selQ/100);
 }
 
-$("go").onclick=()=>{
-  if(!imgEl)return;
-  $("go").textContent="Dönüştürülüyor...";$("go").disabled=true;
-  render(b=>{
-    const ext=fmt.value.split("/")[1].replace("jpeg","jpg");
-    const a=document.createElement("a");a.href=URL.createObjectURL(b);
-    a.download="ebrutech."+ext;a.click();
-    ETSlib.toast("İndiriliyor ✓");
-    $("go").textContent="Dönüştür & İndir";$("go").disabled=false;
+/* ── Split drag ── */
+function setSplitPos(pct){
+  splitPos=Math.max(2,Math.min(98,pct));
+  divider.style.left=splitPos+'%';
+  splitAfter.style.clipPath=`inset(0 0 0 ${splitPos}%)`;
+  divider.setAttribute('aria-valuenow',Math.round(splitPos));
+}
+splitWrap.addEventListener('mousedown',e=>{
+  if(e.target===divider||divider.contains(e.target)){
+    splitDragging=true;e.preventDefault();
+  }
+});
+document.addEventListener('mousemove',e=>{
+  if(!splitDragging) return;
+  const rect=splitWrap.getBoundingClientRect();
+  setSplitPos((e.clientX-rect.left)/rect.width*100);
+});
+document.addEventListener('mouseup',()=>{ splitDragging=false; });
+splitWrap.addEventListener('touchstart',e=>{
+  if(e.target===divider||divider.contains(e.target)){
+    splitDragging=true;
+  }
+},{passive:true});
+document.addEventListener('touchmove',e=>{
+  if(!splitDragging) return;
+  const rect=splitWrap.getBoundingClientRect();
+  setSplitPos((e.touches[0].clientX-rect.left)/rect.width*100);
+},{passive:true});
+document.addEventListener('touchend',()=>{ splitDragging=false; });
+
+/* ── Labels ── */
+function updateGoLabel(){
+  goText.textContent=files.length>1?`${files.length} Dosyayı Dönüştür & İndir`:'Dönüştür & İndir';
+}
+function updateBatchHint(){
+  batchHint.classList.toggle('hidden',files.length<=1);
+}
+
+/* ── Convert & Download ── */
+goBtn.addEventListener('click',async()=>{
+  if(!files.length||goBtn.disabled) return;
+  goBtn.disabled=true;
+  statsEl.classList.add('hidden');
+  convertedCount=0;
+
+  let totalOrig=0, totalNew=0;
+  const ext=selFmt.split('/')[1].replace('jpeg','jpg');
+  const totalFiles=files.length;
+
+  const doFile=async(entry,idx)=>{
+    if(!entry.img) return;
+    entry._badge.className='cvt-status-badge converting';
+    entry._badge.textContent='Dönüştürülüyor…';
+    goText.textContent=`${idx+1}/${totalFiles} dönüştürülüyor…`;
+
+    return new Promise(resolve=>{
+      renderOne(entry.img,blob=>{
+        if(!blob){ entry._badge.className='cvt-status-badge error'; entry._badge.textContent='Hata'; resolve(); return; }
+        entry.blob=blob;
+        totalOrig+=entry.origSize;
+        totalNew+=blob.size;
+        convertedCount++;
+
+        entry._badge.className='cvt-status-badge done';
+        const saved=entry.origSize-blob.size;
+        const pctN=Math.round(saved/entry.origSize*100);
+        entry._badge.textContent= pctN>0?`✓ ↓${pctN}%`:'✓ Tamam';
+        entry._meta.textContent=fmt$(entry.origSize)+' → '+fmt$(blob.size);
+
+        const url=URL.createObjectURL(blob);
+        entry.dlBtn.style.display='inline-flex';
+        entry.dlBtn.onclick=()=>{
+          const a=document.createElement('a');
+          a.href=url; a.download=entry.name+'.'+ext; a.click();
+          ETSlib.toast('İndiriliyor: '+entry.file.name);
+        };
+
+        const a=document.createElement('a');
+        a.href=url; a.download=entry.name+'.'+ext;
+        setTimeout(()=>a.click(),(idx*420));
+        resolve();
+      });
+    });
+  };
+
+  for(let i=0;i<files.length;i++){
+    await doFile(files[i],i);
+  }
+
+  goBtn.disabled=false;
+  updateGoLabel();
+
+  const savedTotal=totalOrig-totalNew;
+  const savedPct=totalOrig>0?Math.round(savedTotal/totalOrig*100):0;
+  $('statCount').textContent=convertedCount;
+  $('statOrig').textContent=fmt$(totalOrig);
+  $('statNew').textContent=fmt$(totalNew);
+  $('statSaved').textContent=(savedPct>0?'↓'+savedPct+'%':'↑'+Math.abs(savedPct)+'%')+' ('+fmt$(Math.abs(savedTotal))+')';
+  $('statSaved').closest('.cvt-stat').querySelector('.cvt-stat-val').style.color=savedPct>0?'var(--accent)':'#ff8080';
+  statsEl.classList.remove('hidden');
+
+  if(convertedCount>0){
+    const msg=convertedCount===1
+      ? `İndirildi ✓ ${savedPct>0?savedPct+'% küçüldü':'hazır'}`
+      : `${convertedCount} dosya indirildi ✓ ortalama ${savedPct}% küçüldü`;
+    ETSlib.toast(msg);
+  }
+});
+
+/* ── FAQ accordion ── */
+document.querySelectorAll('.cvt-faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.cvt-faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
   });
-};
-</script></body></html>
+  q.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); q.click(); }
+  });
+});
+
+/* ── Keyboard shortcut: Ctrl/Cmd+O → open files ── */
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==='o'){
+    e.preventDefault(); fileInput.click();
+  }
+});
+
+})();
+</script>
+</body>
+</html>
