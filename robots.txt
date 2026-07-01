@@ -6,8 +6,26 @@ Disallow: /giris.html
 Disallow: /admin.html
 Disallow: /kayit.html
 
-# URL parametre tuzakları — duplicate content engeli
+# Arama parametresi tuzakları — duplicate content engeli
 Disallow: /*?*print=
 Disallow: /*?*preview=
+Disallow: /*?*sort=
+Disallow: /*?*utm_
+Disallow: /*?*fbclid=
+Disallow: /*?*gclid=
+Disallow: /*?*session=
+
+# Yavaş tarayıcılar için bant genişliği koruması
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 30
+
+User-agent: DotBot
+Disallow: /
 
 Sitemap: https://ebrutechsystems.com/sitemap.xml

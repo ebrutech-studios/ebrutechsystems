@@ -1147,3 +1147,14 @@ button.faq-q{
 
 /* ===== Glow card hover ===== */
 .card:hover{box-shadow:0 0 0 1px rgba(200,255,46,.12),0 18px 52px -22px rgba(0,0,0,.7)}
+
+/* ===== Popular tools strip (tools.html) ===== */
+.popular-tools-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.popular-tools-row::-webkit-scrollbar{display:none}
+.pop-tool-card{display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;background:var(--card-bg);border:1px solid var(--card-border);text-decoration:none;color:inherit;flex:0 0 auto;min-width:190px;transition:border-color .2s,transform .2s}
+.pop-tool-card:hover{border-color:rgba(200,255,46,.35);transform:translateY(-2px)}
+.pop-ico{font-size:1.4rem;line-height:1;flex:none}
+.pop-info{display:flex;flex-direction:column;gap:2px;min-width:0}
+.pop-name{font-size:.85rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pop-stat{font-size:.72rem;color:var(--txt-dim)}
+.pop-rank{font-size:.75rem;font-weight:700;color:var(--accent);margin-left:auto;flex:none;opacity:.7}
