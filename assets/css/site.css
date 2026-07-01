@@ -1158,3 +1158,7 @@ button.faq-q{
 .pop-name{font-size:.85rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pop-stat{font-size:.72rem;color:var(--txt-dim)}
 .pop-rank{font-size:.75rem;font-weight:700;color:var(--accent);margin-left:auto;flex:none;opacity:.7}
+
+/* ===== Nav logo image ===== */
+.nav-logo{width:36px;height:36px;object-fit:contain;display:block;border-radius:8px}
+.brand .logo{display:none}
