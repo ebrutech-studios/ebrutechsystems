@@ -7,8 +7,8 @@
           "value": "filotakip.ebrutechsystems.com"
         }
       ],
-      "source": "/(.*)",
-      "destination": "/filo-takip/$1"
+      "source": "/:path*",
+      "destination": "/filo-takip/:path*"
     }
   ]
 }
