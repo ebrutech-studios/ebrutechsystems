@@ -445,7 +445,8 @@ function buildShell(){
       <div class="col"><h5>Ürün</h5>
         <a href="tools.html">Tüm Araçlar</a><a href="fiyatlandirma.html">Pro Üyelik</a><a href="giris.html">Giriş / Hesap</a></div>
       <div class="col"><h5>Stüdyo</h5>
-        <a href="hizmetler.html">Hizmetler</a><a href="fiyatlandirma.html">Paketler</a><a href="hakkimizda.html">Hakkımızda</a><a href="iletisim.html">İletişim</a></div>
+        <a href="hizmetler.html">Hizmetler</a><a href="fiyatlandirma.html">Paketler</a><a href="hakkimizda.html">Hakkımızda</a><a href="iletisim.html">İletişim</a>
+        <a href="https://filo.ebrutechsystems.com" target="_blank" rel="noopener noreferrer">Filo Takip</a></div>
       <div class="col"><h5>Yasal</h5>
         <a href="gizlilik.html">Gizlilik & KVKK</a><a href="kosullar.html">Kullanım Koşulları</a></div>
       <div class="col"><h5>İletişim</h5>

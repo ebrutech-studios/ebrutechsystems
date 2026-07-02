@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sürücü Paneli — Filo Takip</title>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="assets/css/filo.css">
+</head>
+<body>
+<header class="filo-head"><div class="wrap filo-nav">
+  <div class="filo-brand"><span class="logo">F</span><div>Filo Takip<small>Sürücü Paneli</small></div></div>
+  <div class="filo-user" id="userBox" hidden><span id="userLabel"></span><button id="logoutBtn" class="btn btn-ghost" type="button">Çıkış</button></div>
+</div></header>
+
+<main class="wrap">
+  <div id="loadingState" class="state-card">Oturum kontrol ediliyor…</div>
+  <div id="deniedState" class="state-card" hidden><h2>Erişim reddedildi</h2><p>Bu hesaba henüz bir araç atanmamış.</p><a href="giris.html" class="btn btn-ghost">Hesabı değiştir</a></div>
+  <div id="noVehicleState" class="state-card" hidden><h2>Henüz araç atanmadı</h2><p>Yöneticinizin size bir araç ataması gerekiyor.</p></div>
+
+  <div id="surucuApp" hidden>
+    <h1 id="vehiclePlaka">Aracım</h1>
+    <p class="lead" id="vehicleInfo"></p>
+
+    <div class="filo-card">
+      <h2>Konum güncelle</h2>
+      <p class="lead" style="margin-bottom:12px">Haritada bulunduğunuz noktaya tıklayın veya adres yazın, sonra kaydedin.</p>
+      <div id="filoMap"></div>
+      <form id="locationForm" style="margin-top:16px">
+        <div class="field"><label for="lAdres">Adres / açıklama</label><input id="lAdres" placeholder="Örn. D-100 Kartal mevkii"></div>
+        <div class="field"><label for="lNot">Not</label><input id="lNot" placeholder="Opsiyonel"></div>
+        <div class="field"><label for="lDurum">Durum</label>
+          <select id="lDurum"><option value="aktif">Yoldayım</option><option value="molada">Moladayım</option><option value="pasif">Görev dışı</option></select>
+        </div>
+        <p class="empty" id="lCoordInfo">Haritada bir noktaya tıklayarak koordinat seçebilirsiniz (opsiyonel).</p>
+        <button class="btn btn-primary" type="submit" style="width:100%">Konumu Kaydet</button>
+      </form>
+    </div>
+
+    <div class="filo-card">
+      <h2>Son güncellemelerim</h2>
+      <table>
+        <thead><tr><th>Zaman</th><th>Konum</th><th>Durum</th></tr></thead>
+        <tbody id="historyBody"><tr><td colspan="3" class="empty">Yükleniyor…</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script type="module" src="assets/js/firebase.js"></script>
+<script type="module" src="assets/js/surucu.js"></script>
+</body>
+</html>

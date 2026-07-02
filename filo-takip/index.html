@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Filo Takip — EbruTech</title>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/filo.css">
+</head>
+<body>
+<main>
+  <div class="state-card" id="routerState">Oturum kontrol ediliyor…</div>
+</main>
+<script type="module" src="assets/js/firebase.js"></script>
+<script type="module">
+  window.FiloAuth.onReady((user, role) => {
+    if(!user){ location.replace("giris.html"); return; }
+    if(role === "admin"){ location.replace("admin.html"); return; }
+    if(role === "surucu"){ location.replace("surucu.html"); return; }
+    document.getElementById("routerState").textContent = "Bu hesabın filo takip erişimi yok. Yönetici ile iletişime geçin.";
+  });
+</script>
+</body>
+</html>
