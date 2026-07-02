@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "has": [
+        {
+          "type": "host",
+          "value": "filotakip.ebrutechsystems.com"
+        }
+      ],
+      "source": "/(.*)",
+      "destination": "/filo-takip/$1"
+    }
+  ]
+}
