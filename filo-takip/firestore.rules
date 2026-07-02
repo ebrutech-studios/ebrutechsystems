@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    // Filo takip yöneticisi. Gerekirse burada e-postayı kendi hesabınla değiştir.
+    function isAdmin() {
+      return signedIn()
+        && request.auth.token.email == 'ebrutechstudios@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+
+    function owns(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function isFiloSurucu() {
+      return signedIn() && exists(/databases/$(database)/documents/filo_surucular/$(request.auth.uid));
+    }
+
+    match /filo_surucular/{uid} {
+      allow read: if isAdmin() || owns(uid);
+      allow write: if isAdmin();
+    }
+
+    match /filo_araclar/{aracId} {
+      allow read: if isAdmin() || (isFiloSurucu() && resource.data.surucuUid == request.auth.uid);
+      allow create, delete: if isAdmin();
+      allow update: if isAdmin()
+        || (isFiloSurucu()
+            && resource.data.surucuUid == request.auth.uid
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['sonKonum', 'durum']));
+
+      match /gecmis/{entryId} {
+        allow read: if isAdmin()
+          || (isFiloSurucu() && get(/databases/$(database)/documents/filo_araclar/$(aracId)).data.surucuUid == request.auth.uid);
+        allow create: if isAdmin()
+          || (isFiloSurucu()
+              && get(/databases/$(database)/documents/filo_araclar/$(aracId)).data.surucuUid == request.auth.uid);
+        allow update, delete: if false;
+      }
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

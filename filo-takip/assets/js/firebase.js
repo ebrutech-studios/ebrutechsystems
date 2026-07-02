@@ -1,7 +1,6 @@
 /* ===== Filo Takip — firebase.js =====
-   Firebase Authentication + Firestore.
-   Aynı Firebase projesini (ebrutech-studios) kullanır, ayrı koleksiyonlarla izole çalışır:
-   filo_surucular, filo_araclar (+ gecmis alt koleksiyonu).
+   Kendi bağımsız Firebase projesi (filotakip-355ea).
+   Ana site (ebrutech-studios) ile hiçbir kaynağı (Auth, Firestore, Hosting) paylaşmaz.
    ============================================ */
 import { initializeApp, deleteApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
@@ -14,14 +13,15 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDW6svTvPWWDCwmrfA0V7bG_q_tyRhfoN0",
-  authDomain: "ebrutech-studios.firebaseapp.com",
-  projectId: "ebrutech-studios",
-  storageBucket: "ebrutech-studios.firebasestorage.app",
-  messagingSenderId: "436820982742",
-  appId: "1:436820982742:web:4b00a78c64b3cb802f4277"
+  apiKey: "AIzaSyBGtBkfJcPczFJ0yUmhBeKH-MNt8EjIx0M",
+  authDomain: "filotakip-355ea.firebaseapp.com",
+  projectId: "filotakip-355ea",
+  storageBucket: "filotakip-355ea.firebasestorage.app",
+  messagingSenderId: "407618593375",
+  appId: "1:407618593375:web:f6cf6faf8d462b7ba8f1ea"
 };
 
+// Bu hesap otomatik olarak yönetici sayılır. Gerekirse kendi e-postanla değiştir.
 const ADMIN_EMAIL = "ebrutechstudios@gmail.com";
 
 const app = initializeApp(firebaseConfig, "filo");
