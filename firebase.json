@@ -1,42 +1,68 @@
 {
-  "hosting": {
-    "public": ".",
-    "ignore": [
-      "firebase.json",
-      "firestore.rules",
-      ".firebaserc",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "cleanUrls": false,
-    "trailingSlash": false,
-    "headers": [
-      {
-        "source": "**/*.@(js|css)",
-        "headers": [
-          { "key": "Cache-Control", "value": "public, max-age=86400" }
-        ]
-      },
-      {
-        "source": "**/*.@(jpg|jpeg|png|gif|webp|svg|ico|woff|woff2)",
-        "headers": [
-          { "key": "Cache-Control", "value": "public, max-age=604800" }
-        ]
-      },
-      {
-        "source": "**/*.html",
-        "headers": [
-          { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
-          { "key": "X-Content-Type-Options", "value": "nosniff" },
-          { "key": "X-Frame-Options", "value": "DENY" },
-          { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
-        ]
-      }
-    ],
-    "rewrites": [
-      { "source": "**", "destination": "/404.html" }
-    ]
-  },
+  "hosting": [
+    {
+      "target": "www",
+      "public": ".",
+      "ignore": [
+        "firebase.json",
+        "firestore.rules",
+        ".firebaserc",
+        "**/.*",
+        "**/node_modules/**",
+        "filo-takip/**"
+      ],
+      "cleanUrls": false,
+      "trailingSlash": false,
+      "headers": [
+        {
+          "source": "**/*.@(js|css)",
+          "headers": [
+            { "key": "Cache-Control", "value": "public, max-age=86400" }
+          ]
+        },
+        {
+          "source": "**/*.@(jpg|jpeg|png|gif|webp|svg|ico|woff|woff2)",
+          "headers": [
+            { "key": "Cache-Control", "value": "public, max-age=604800" }
+          ]
+        },
+        {
+          "source": "**/*.html",
+          "headers": [
+            { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+            { "key": "X-Content-Type-Options", "value": "nosniff" },
+            { "key": "X-Frame-Options", "value": "DENY" },
+            { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+          ]
+        }
+      ],
+      "rewrites": [
+        { "source": "**", "destination": "/404.html" }
+      ]
+    },
+    {
+      "target": "filo",
+      "public": "filo-takip",
+      "ignore": ["**/.*", "**/node_modules/**"],
+      "cleanUrls": false,
+      "trailingSlash": false,
+      "headers": [
+        {
+          "source": "**/*.html",
+          "headers": [
+            { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+            { "key": "X-Content-Type-Options", "value": "nosniff" },
+            { "key": "X-Frame-Options", "value": "DENY" },
+            { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+            { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+          ]
+        }
+      ],
+      "rewrites": [
+        { "source": "**", "destination": "/404.html" }
+      ]
+    }
+  ],
   "firestore": {
     "rules": "firestore.rules"
   }

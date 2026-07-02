@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giriş — Filo Takip</title>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/filo.css">
+</head>
+<body>
+<main>
+  <div class="filo-login-wrap">
+    <div class="filo-brand" style="justify-content:center;margin-bottom:24px"><span class="logo">F</span><div><div>Filo Takip</div><small>EbruTech Systems</small></div></div>
+    <div class="filo-card">
+      <h2>Giriş yap</h2>
+      <p id="loginMsg" class="filo-msg error" hidden></p>
+      <form id="loginForm">
+        <div class="field"><label for="email">E-posta</label><input id="email" type="email" required autocomplete="username"></div>
+        <div class="field"><label for="pass">Şifre</label><input id="pass" type="password" required autocomplete="current-password"></div>
+        <button class="btn btn-primary" type="submit" style="width:100%">Giriş Yap</button>
+      </form>
+    </div>
+  </div>
+</main>
+<script type="module" src="assets/js/firebase.js"></script>
+<script type="module" src="assets/js/giris.js"></script>
+</body>
+</html>

@@ -1,5 +1,13 @@
 {
   "projects": {
     "default": "ebrutech-studios"
+  },
+  "targets": {
+    "ebrutech-studios": {
+      "hosting": {
+        "www": ["ebrutech-studios"],
+        "filo": ["ebrutech-filo-takip"]
+      }
+    }
   }
 }

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yönetim Paneli — Filo Takip</title>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="assets/css/filo.css">
+</head>
+<body>
+<header class="filo-head"><div class="wrap filo-nav">
+  <div class="filo-brand"><span class="logo">F</span><div>Filo Takip<small>Yönetim Paneli</small></div></div>
+  <div class="filo-user" id="userBox" hidden><span id="userLabel"></span><button id="logoutBtn" class="btn btn-ghost" type="button">Çıkış</button></div>
+</div></header>
+
+<main class="wrap">
+  <div id="loadingState" class="state-card">Oturum kontrol ediliyor…</div>
+  <div id="deniedState" class="state-card" hidden><h2>Erişim reddedildi</h2><p>Bu hesap yönetici olarak yetkilendirilmemiş.</p><a href="giris.html" class="btn btn-ghost">Hesabı değiştir</a></div>
+
+  <div id="adminApp" hidden>
+    <h1>Araç filosu</h1>
+    <p class="lead">Araçları, sürücüleri ve son bilinen konumları buradan yönetin.</p>
+
+    <div class="grid-2">
+      <section class="filo-card">
+        <div class="toolbar"><h2 style="margin:0">Araçlar</h2></div>
+        <table id="vehicleTable">
+          <thead><tr><th>Plaka</th><th>Marka/Model</th><th>Sürücü</th><th>Durum</th><th>Son konum</th><th></th></tr></thead>
+          <tbody id="vehicleBody"><tr><td colspan="6" class="empty">Yükleniyor…</td></tr></tbody>
+        </table>
+        <div id="filoMap"></div>
+      </section>
+
+      <aside>
+        <div class="filo-card">
+          <h2>Konum gir (manuel)</h2>
+          <p class="lead" style="margin-bottom:12px">Haritadan tıklayarak konum seçin veya adres yazın.</p>
+          <form id="locationForm">
+            <div class="field"><label for="lVehicle">Araç</label><select id="lVehicle" required><option value="">Araç seçin</option></select></div>
+            <div class="field"><label for="lAdres">Adres / açıklama</label><input id="lAdres" placeholder="Örn. D-100 Kartal mevkii"></div>
+            <div class="field"><label for="lNot">Not</label><input id="lNot" placeholder="Opsiyonel"></div>
+            <div class="field"><label for="lDurum">Durum</label>
+              <select id="lDurum"><option value="aktif">aktif</option><option value="molada">molada</option><option value="pasif">pasif</option></select>
+            </div>
+            <p class="empty" id="lCoordInfo">Haritada bir noktaya tıklayarak koordinat seçebilirsiniz (opsiyonel).</p>
+            <button class="btn btn-primary" type="submit" style="width:100%">Konumu Kaydet</button>
+          </form>
+        </div>
+
+        <div class="filo-card">
+          <h2>Yeni araç ekle</h2>
+          <form id="vehicleForm">
+            <div class="field"><label for="vPlaka">Plaka</label><input id="vPlaka" required placeholder="34 ABC 123"></div>
+            <div class="form-row">
+              <div class="field"><label for="vMarka">Marka</label><input id="vMarka" placeholder="Ford"></div>
+              <div class="field"><label for="vModel">Model</label><input id="vModel" placeholder="Transit"></div>
+            </div>
+            <button class="btn btn-primary" type="submit" style="width:100%">Araç Ekle</button>
+          </form>
+        </div>
+
+        <div class="filo-card">
+          <h2>Sürücüler</h2>
+          <table id="driverTable">
+            <thead><tr><th>Ad</th><th>Telefon</th><th></th></tr></thead>
+            <tbody id="driverBody"><tr><td colspan="3" class="empty">Yükleniyor…</td></tr></tbody>
+          </table>
+        </div>
+
+        <div class="filo-card">
+          <h2>Yeni sürücü ekle</h2>
+          <p id="driverMsg" class="filo-msg error" hidden></p>
+          <form id="driverForm">
+            <div class="field"><label for="dAd">Ad Soyad</label><input id="dAd" required></div>
+            <div class="field"><label for="dTel">Telefon</label><input id="dTel" placeholder="05xx xxx xx xx"></div>
+            <div class="field"><label for="dEmail">E-posta (giriş için)</label><input id="dEmail" type="email" required></div>
+            <div class="field"><label for="dPass">Geçici şifre</label><input id="dPass" type="text" required minlength="6" placeholder="En az 6 karakter"></div>
+            <button class="btn btn-primary" type="submit" style="width:100%">Sürücü Hesabı Oluştur</button>
+          </form>
+        </div>
+      </aside>
+    </div>
+
+    <section class="filo-card" id="historyPanel" hidden>
+      <div class="toolbar"><h2 style="margin:0" id="historyTitle">Konum geçmişi</h2><button class="btn btn-ghost" id="closeHistory" type="button">Kapat</button></div>
+      <table>
+        <thead><tr><th>Zaman</th><th>Konum</th><th>Not</th><th>Durum</th></tr></thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+    </section>
+  </div>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script type="module" src="assets/js/firebase.js"></script>
+<script type="module" src="assets/js/admin.js"></script>
+</body>
+</html>
