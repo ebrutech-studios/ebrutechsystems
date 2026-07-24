@@ -4,6 +4,16 @@
       "has": [
         {
           "type": "host",
+          "value": "life.ebrutechsystems.com"
+        }
+      ],
+      "source": "/:path*",
+      "destination": "/life/:path*"
+    },
+    {
+      "has": [
+        {
+          "type": "host",
           "value": "filotakip.ebrutechsystems.com"
         }
       ],
