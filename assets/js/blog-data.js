@@ -693,7 +693,7 @@ window.BLOG_POSTS = [
 <h2>Güçlü şifre nasıl oluşturulur?</h2>
 <p>PDF şifresi en az <b>12 karakter</b>, büyük/küçük harf, rakam ve sembol içermelidir. Örneğin: <code>Tr!pdf2026@X</code>. <a href="tool-password.html">Şifre Üreticimizle</a> anında güvenli bir parola oluşturabilirsiniz — herhangi bir karakter kombinasyonunu özelleştirebilirsiniz.</p>
 <h2>PDF belgelerinizi yönetmek için</h2>
-<p>Birden fazla PDF'i birleştirmek, sıralamak veya tek dosyada paylaşmak için <a href="tool-pdf.html">PDF Birleştirici aracımızı</a> kullanabilirsiniz. Program kurulumu gerekmez, tüm işlem tarayıcıda gerçekleşir ve dosyalarınız cihazınızdan çıkmaz. Ayrıca PDF boyutu sorunuyla karşılaşıyorsanız <a href="tool-pdf-compress.html">PDF Sıkıştırıcı aracımız</a> yakında yayında olacak.</p>`
+<p>Birden fazla PDF'i birleştirmek, sıralamak veya tek dosyada paylaşmak için <a href="tool-pdf.html">PDF Birleştirici aracımızı</a> kullanabilirsiniz. Program kurulumu gerekmez, tüm işlem tarayıcıda gerçekleşir ve dosyalarınız cihazınızdan çıkmaz. PDF boyutu sorunuyla karşılaşıyorsanız ücretsiz <a href="tool-pdf-compress.html">PDF Sıkıştırıcı aracımızı</a> hemen kullanabilirsiniz.</p>`
   },
   {
     id: "whatsapp-fotograf-boyutu-kucultme",
