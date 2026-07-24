@@ -1,5 +1,22 @@
 {
+  "redirects": [
+    {
+      "source": "/life",
+      "destination": "/life/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
+    {
+      "has": [
+        {
+          "type": "host",
+          "value": "life.ebrutechsystems.com"
+        }
+      ],
+      "source": "/",
+      "destination": "/life/index.html"
+    },
     {
       "has": [
         {
@@ -9,6 +26,16 @@
       ],
       "source": "/:path*",
       "destination": "/life/:path*"
+    },
+    {
+      "has": [
+        {
+          "type": "host",
+          "value": "filotakip.ebrutechsystems.com"
+        }
+      ],
+      "source": "/",
+      "destination": "/filo-takip/index.html"
     },
     {
       "has": [
