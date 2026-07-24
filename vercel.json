@@ -1,24 +1,55 @@
 {
-  "rewrites": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "routes": [
     {
+      "src": "^/$",
       "has": [
         {
           "type": "host",
           "value": "life.ebrutechsystems.com"
         }
       ],
-      "source": "/:path*",
-      "destination": "/life/:path*"
+      "dest": "/life/index.html"
     },
     {
+      "src": "^/(.*)$",
+      "has": [
+        {
+          "type": "host",
+          "value": "life.ebrutechsystems.com"
+        }
+      ],
+      "dest": "/life/$1"
+    },
+    {
+      "src": "^/$",
       "has": [
         {
           "type": "host",
           "value": "filotakip.ebrutechsystems.com"
         }
       ],
-      "source": "/:path*",
-      "destination": "/filo-takip/:path*"
+      "dest": "/filo-takip/index.html"
+    },
+    {
+      "src": "^/(.*)$",
+      "has": [
+        {
+          "type": "host",
+          "value": "filotakip.ebrutechsystems.com"
+        }
+      ],
+      "dest": "/filo-takip/$1"
+    },
+    {
+      "src": "^/life$",
+      "status": 308,
+      "headers": {
+        "Location": "/life/"
+      }
+    },
+    {
+      "handle": "filesystem"
     }
   ]
 }
