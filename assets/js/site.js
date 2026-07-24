@@ -43,13 +43,13 @@ const TOOL_META = {
   vat:         {name:'KDV Hesaplama',         ico:'💰', href:'tool-vat.html',          free:true},
   loan:        {name:'Kredi Hesaplama',       ico:'🏦', href:'tool-loan.html',         free:true},
   unit:        {name:'Birim Dönüştürücü',    ico:'📐', href:'tool-unit.html',         free:true},
-  batch:       {name:'Toplu İşlem',           ico:'🗂️', href:'tool-batch.html',        free:false},
-  bgremove:    {name:'Arka Plan Kaldırıcı',  ico:'✂️', href:'tool-bgremove.html',     free:false},
-  'pdf2img':   {name:"PDF'den Resme",         ico:'📄', href:'tool-pdf2img.html',      free:false},
-  pdforganize: {name:'PDF Sayfa Düzenle',    ico:'📑', href:'tool-pdforganize.html',  free:false},
-  invoice:     {name:'Fatura Oluşturucu',    ico:'🧾', href:'tool-invoice.html',      free:false},
-  qrmenu:      {name:'QR Menü Oluşturucu',  ico:'📱', href:'tool-qrmenu.html',       free:false},
-  barcode:     {name:'Barkod Üreticisi',     ico:'▥',  href:'tool-barcode.html',      free:false},
+  batch:       {name:'Toplu İşlem',           ico:'🗂️', href:'tool-batch.html',        free:true},
+  bgremove:    {name:'Arka Plan Kaldırıcı',  ico:'✂️', href:'tool-bgremove.html',     free:true},
+  'pdf2img':   {name:"PDF'den Resme",         ico:'📄', href:'tool-pdf2img.html',      free:true},
+  pdforganize: {name:'PDF Sayfa Düzenle',    ico:'📑', href:'tool-pdforganize.html',  free:true},
+  invoice:     {name:'Fatura Oluşturucu',    ico:'🧾', href:'tool-invoice.html',      free:true},
+  qrmenu:      {name:'QR Menü Oluşturucu',  ico:'📱', href:'tool-qrmenu.html',       free:true},
+  barcode:     {name:'Barkod Üreticisi',     ico:'▥',  href:'tool-barcode.html',      free:true},
   timer:       {name:'Kronometre & Sayaç',   ico:'⏱️', href:'tool-timer.html',        free:true},
   percentage:  {name:'Yüzde Hesaplama',      ico:'%',  href:'tool-percentage.html',   free:true},
   slug:        {name:'URL Slug Oluşturucu',  ico:'🔗', href:'tool-slug.html',         free:true},
@@ -191,24 +191,22 @@ function initRevenueTracking(){
 }
 
 function injectToolRevenueCard(){
-  if(!isToolPage()||ETSlib.isPro()) return;
+  if(!isToolPage()) return;
   const key=getToolKey();
-  const meta=TOOL_META[key]||{};
-  if(meta.free===false) return;
   const target=document.querySelector('main section:last-of-type, body > section:last-of-type');
   if(!target||document.querySelector('.tool-revenue-card')) return;
   const card=document.createElement('aside');
   card.className='tool-revenue-card reveal';
-  card.setAttribute('aria-label','EbruTech Pro üyelik');
+  card.setAttribute('aria-label','EbruTech web sitesi hizmetleri');
   card.innerHTML=`
     <div>
-      <span class="eyebrow">Daha hızlı çalış</span>
-      <h2>Tek tek uğraşma, Pro ile toplu tamamla.</h2>
-      <p>Toplu görsel işleme, gelişmiş PDF araçları ve öncelikli destek. Taahhüt yok; aylık planı gerektiğinde yenilersin.</p>
+      <span class="eyebrow">İşletmenizi büyütün</span>
+      <h2>Araçlar ücretsiz; profesyonel web sitenizi biz kuralım.</h2>
+      <p>Sektörünüze özel, mobil uyumlu ve WhatsApp bağlantılı web sitesi. Hazır demoyu seçin, işletme bilgilerinizle yayına alalım.</p>
     </div>
     <div class="tool-revenue-actions">
-      <div><strong>149₺</strong><span>/ ay</span></div>
-      <a href="fiyatlandirma.html?ref=tool-${key}" class="btn btn-primary">Pro'yu incele →</a>
+      <div><strong>2.500₺</strong><span>'den başlayan</span></div>
+      <a href="hazir-siteler.html?ref=tool-${key}" class="btn btn-primary">Hazır siteleri gör →</a>
     </div>`;
   target.after(card);
   initReveal();
@@ -533,7 +531,7 @@ function buildShell(){
         <p style="color:var(--txt-dim);font-size:.9rem">Tarayıcıda çalışan profesyonel görsel araçlar ve KOBİ'lere özel tasarım & yazılım çözümleri.</p>
       </div>
       <div class="col"><h5>Ürün</h5>
-        <a href="tools.html">Tüm Araçlar</a><a href="fiyatlandirma.html">Pro Üyelik</a><a href="giris.html">Giriş / Hesap</a></div>
+        <a href="tools.html">Tüm Araçlar</a><a href="hazir-siteler.html">Hazır Siteler</a><a href="giris.html">Giriş / Hesap</a></div>
       <div class="col"><h5>Stüdyo</h5>
         <a href="hizmetler.html">Hizmetler</a><a href="fiyatlandirma.html">Paketler</a><a href="hakkimizda.html">Hakkımızda</a><a href="iletisim.html">İletişim</a>
         <a href="https://filo.ebrutechsystems.com" target="_blank" rel="noopener noreferrer">Filo Takip</a></div>
@@ -586,7 +584,7 @@ function buildShell(){
     if(!navAuth) return;
     if(e.detail.user){
       const name=e.detail.user.displayName||e.detail.user.email.split("@")[0];
-      navAuth.textContent=e.detail.isPro?("★ "+name):name;
+      navAuth.textContent=name;
       navAuth.href="giris.html";
     }else{
       navAuth.textContent="Giriş Yap"; navAuth.href="giris.html";
@@ -737,7 +735,7 @@ function initRelatedTools(){
         return `<a class="card tool-card reveal" href="${t.href}">
           <span class="ico">${t.ico}</span>
           <h3>${t.name}</h3>
-          <div class="tags"><span class="tag ${t.free?'tag-ok':'tag-pro'}">${t.free?'Ücretsiz':'Pro'}</span></div>
+          <div class="tags"><span class="tag tag-ok">Ücretsiz</span></div>
         </a>`;
       }).join('')}
     </div>
@@ -897,68 +895,6 @@ function initFavorites(){
   }
 }
 
-/* ═══════════════════════════════════════════════
-   13. PRO UPSELL MODAL
-   ═══════════════════════════════════════════════ */
-function initProModal(){
-  const PRO_FEATURES=[
-    'Toplu (batch) görsel işleme — sınırsız',
-    'Watermark\'sız yüksek çözünürlük çıktısı',
-    'Arka Plan Kaldırıcı (AI destekli)',
-    'PDF sayfa düzenleme ve dönüştürme',
-    'Fatura, barkod ve QR menü araçları',
-    'Öncelikli WhatsApp desteği'
-  ];
-
-  const overlay=document.createElement('div');
-  overlay.className='pro-modal-overlay';
-  overlay.setAttribute('role','dialog');
-  overlay.setAttribute('aria-modal','true');
-  overlay.innerHTML=`
-<div class="pro-modal" id="proModalBox">
-  <button class="pro-modal-close" id="proModalClose" aria-label="Kapat">✕</button>
-  <div class="pro-modal-badge">⭐ Pro Özellik</div>
-  <h2>Bu araç Pro üyelere özel</h2>
-  <div class="pro-modal-tool-name" id="proModalToolName"></div>
-  <ul class="pro-modal-features">${PRO_FEATURES.map(f=>`<li>${f}</li>`).join('')}</ul>
-  <div class="pro-modal-price-box">
-    <strong>149₺</strong><span>/ ay</span>
-    <div style="font-size:.78rem;color:var(--txt-faint);margin-top:4px">veya 1.490₺/yıl · 2 ay bedava</div>
-  </div>
-  <div class="pro-modal-actions">
-    <a id="proModalWa" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-wa" style="justify-content:center">WhatsApp'tan Pro Al →</a>
-    <a href="fiyatlandirma.html" class="btn btn-ghost" style="justify-content:center">Planları Karşılaştır</a>
-  </div>
-</div>`;
-  document.body.appendChild(overlay);
-
-  function open(toolName,toolIco){
-    const nameEl=document.getElementById('proModalToolName');
-    if(nameEl) nameEl.innerHTML=(toolIco||'🔒')+' <span>'+toolName+'</span>';
-    const waEl=document.getElementById('proModalWa');
-    if(waEl) waEl.href=ETSlib.wa('Merhaba! Pro üyelik hakkında bilgi almak istiyorum. Araç: '+toolName);
-    overlay.classList.add('open');
-    document.body.style.overflow='hidden';
-    setTimeout(()=>document.getElementById('proModalClose')&&document.getElementById('proModalClose').focus(),50);
-  }
-  function close(){
-    overlay.classList.remove('open');
-    document.body.style.overflow='';
-  }
-  document.getElementById('proModalClose').addEventListener('click',close);
-  overlay.addEventListener('click',function(e){if(e.target===overlay) close();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('open')) close();});
-
-  document.querySelectorAll('.card.locked, [data-pro="true"]').forEach(card=>{
-    card.addEventListener('click',function(e){
-      e.preventDefault();
-      const title=card.querySelector('h3');
-      const ico=card.querySelector('.ico');
-      open(title?title.textContent:'Pro Araç', ico?ico.textContent:'🔒');
-    });
-  });
-}
-
 function initRecentToolsFooter(){
   let recent;
   try{ recent=JSON.parse(localStorage.getItem('ets-recent')||'[]'); }
@@ -1014,7 +950,6 @@ document.addEventListener("DOMContentLoaded",()=>{
   injectFavicon();
   initWaFloat();
   initKvkk();
-  initProModal();
   injectToolBadge();
   injectToolRevenueCard();
   trackToolUse();

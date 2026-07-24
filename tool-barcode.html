@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Barkod Üretici — EAN, CODE128 (Pro) — EbruTech Studios</title>
-<meta name="description" content="Barkod Üretici — EAN, CODE128 (Pro). Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
+<title>Ücretsiz Barkod Üretici — EAN ve CODE128 | EbruTech Studios</title>
+<meta name="description" content="EAN, CODE128 ve diğer formatlarda ücretsiz barkod oluşturun, PNG olarak indirin.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-barcode.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EbruTech Studios">
-<meta property="og:title" content="Barkod Üretici — EAN, CODE128 (Pro) — EbruTech Studios">
-<meta property="og:description" content="Barkod Üretici — EAN, CODE128 (Pro). Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
+<meta property="og:title" content="Ücretsiz Barkod Üretici — EbruTech Studios">
+<meta property="og:description" content="EAN ve CODE128 formatlarında ücretsiz barkod oluşturun.">
 <meta property="og:url" content="https://ebrutechsystems.com/tool-barcode.html">
 <meta property="og:image" content="https://ebrutechsystems.com/assets/brand-og.png">
 <meta property="og:locale" content="tr_TR">
@@ -28,16 +28,13 @@
 {"@context":"https://schema.org","@type":"WebApplication","name":"Barkod Üretici","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-barcode.html"}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":'Barkod Üretici — EAN, CODE128 (Pro) — EbruTech Studios',"url":"https://ebrutechsystems.com/tool-barcode.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"147","bestRating":"5","worstRating":"1"},"author":{"@type":"Organization","name":"EbruTech Studios","url":"https://ebrutechsystems.com"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Ücretsiz Barkod Üretici — EbruTech Studios","url":"https://ebrutechsystems.com/tool-barcode.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"147","bestRating":"5","worstRating":"1"},"author":{"@type":"Organization","name":"EbruTech Studios","url":"https://ebrutechsystems.com"}}
 </script>
 </head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
-<span class="eyebrow">Pro Araç · İşletme</span><h1 style="font-size:2.2rem">▥ Barkod Üreticisi</h1>
+<span class="eyebrow">Ücretsiz Araç · İşletme</span><h1 style="font-size:2.2rem">▥ Barkod Üreticisi</h1>
 <p class="lead" style="margin:14px 0 26px">Ürünleriniz için barkod oluşturun. CODE128, EAN-13 ve daha fazlası. PNG indirin.</p>
-<div id="gate" class="card hidden" style="text-align:center;padding:40px">
-<div style="font-size:2.4rem;margin-bottom:10px">🔒</div><h3 id="gateTitle">Yükleniyor...</h3>
-<p id="gateDesc" style="color:var(--txt-dim);margin:8px 0 20px"></p><div id="gateBtns" class="row" style="max-width:380px;margin:0 auto"></div></div>
-<div id="tool" class="hidden"><div class="controls">
+<div id="tool"><div class="controls">
 <div class="field"><label>Barkod İçeriği</label><input id="val" value="1234567890" placeholder="Ürün kodu / numara"></div>
 <div class="row">
   <div class="field"><label>Barkod Tipi</label><select id="type">
@@ -57,15 +54,6 @@
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-function applyGate(user,isPro){const gate=document.getElementById("gate"),tool=document.getElementById("tool");
-const t=document.getElementById("gateTitle"),d=document.getElementById("gateDesc"),b=document.getElementById("gateBtns");
-if(isPro){gate.classList.add("hidden");tool.classList.remove("hidden");gen();return;}
-gate.classList.remove("hidden");tool.classList.add("hidden");
-if(!user){t.textContent="Giriş yapman gerekiyor";d.textContent="Bu araç Pro üyelere özel. Önce giriş yap.";
-b.innerHTML='<a href="giris.html" class="btn btn-primary">Giriş Yap</a><a href="fiyatlandirma.html" class="btn btn-ghost">Pro Nedir?</a>';}
-else{t.textContent="Bu araç Pro üyelere özel";d.textContent="Hesabın var ama Pro değil. WhatsApp\u0027tan ulaş.";
-b.innerHTML='<a href="fiyatlandirma.html" class="btn btn-primary">Pro\u0027ya Geç</a>';}}
-document.addEventListener("ets-auth",(e)=>applyGate(e.detail.user,e.detail.isPro));
 const err=document.getElementById("err");
 const bcPreview=document.getElementById("bcPreview");
 function gen(){
@@ -94,4 +82,5 @@ document.getElementById("dl").onclick=()=>{
     const a=document.createElement("a");a.href=c.toDataURL("image/png");a.download="ebrutech-barkod.png";a.click();ETSlib.toast("İndiriliyor ✓");};
   img.src="data:image/svg+xml;base64,"+btoa(unescape(encodeURIComponent(xml)));
 };
+gen();
 </script></body></html>
