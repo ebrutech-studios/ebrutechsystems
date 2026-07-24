@@ -1149,3 +1149,29 @@ button.faq-q{
 
 /* ===== Glow card hover ===== */
 .card:hover{box-shadow:0 0 0 1px rgba(200,255,46,.12),0 18px 52px -22px rgba(0,0,0,.7)}
+
+/* ===== Revenue conversion card ===== */
+.tool-revenue-card{
+  max-width:1120px;
+  margin:18px auto 72px;
+  padding:26px 30px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+  border:1px solid rgba(200,255,46,.22);
+  border-radius:18px;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(200,255,46,.12),transparent 34%),
+    var(--bg-2);
+  box-shadow:0 22px 60px -34px rgba(0,0,0,.9);
+}
+.tool-revenue-card h2{font-size:1.45rem;margin:6px 0 7px}
+.tool-revenue-card p{color:var(--txt-dim);font-size:.9rem;max-width:650px;margin:0}
+.tool-revenue-actions{display:flex;align-items:center;gap:18px;flex:none}
+.tool-revenue-actions strong{font-family:var(--font-display);font-size:1.65rem;color:var(--accent)}
+.tool-revenue-actions span{color:var(--txt-faint);font-size:.8rem;margin-left:3px}
+@media(max-width:760px){
+  .tool-revenue-card{margin:12px 16px 58px;padding:22px;align-items:flex-start;flex-direction:column}
+  .tool-revenue-actions{width:100%;justify-content:space-between;flex-wrap:wrap}
+}

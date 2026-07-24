@@ -114,7 +114,11 @@ const TOOL_BASE = {
 function baseCount(key){ return TOOL_BASE[key]||0; }
 
 const ETSlib = {
-  wa(msg){return `https://wa.me/${ETS.whatsapp}?text=${encodeURIComponent(msg)}`;},
+  wa(msg){
+    const ref=getSalesAttribution();
+    const suffix=ref&&ref.code?`\n\nBaşvuru kodu: ${ref.code}`:'';
+    return `https://wa.me/${ETS.whatsapp}?text=${encodeURIComponent(msg+suffix)}`;
+  },
   isPro(){ return !!(window.ETSAuth && window.ETSAuth.isPro); },
   toast(msg){
     let t=document.querySelector(".toast");
@@ -123,6 +127,92 @@ const ETSlib = {
     clearTimeout(this._tt);this._tt=setTimeout(()=>t.classList.remove("show"),2600);
   }
 };
+
+/* ── Satış atfı: kampanya kaynağını WhatsApp siparişine kadar taşır ── */
+function getSalesAttribution(){
+  try{
+    const saved=JSON.parse(localStorage.getItem('ets-sales-attribution')||'null');
+    if(saved&&saved.code) return saved;
+  }catch(e){}
+  return null;
+}
+
+function initSalesAttribution(){
+  try{
+    const params=new URLSearchParams(location.search);
+    const source=params.get('utm_source')||params.get('ref');
+    const medium=params.get('utm_medium')||'site';
+    const campaign=params.get('utm_campaign')||'organik';
+    let data=getSalesAttribution();
+    if(source||!data){
+      const token=Math.random().toString(36).slice(2,6).toUpperCase();
+      data={
+        source:source||'direkt',
+        medium,
+        campaign,
+        landing:location.pathname.split('/').pop()||'index.html',
+        code:`ET-${Date.now().toString(36).slice(-5).toUpperCase()}-${token}`
+      };
+      localStorage.setItem('ets-sales-attribution',JSON.stringify(data));
+    }
+  }catch(e){}
+}
+
+function trackRevenueIntent(kind,label,value){
+  const detail={event:'generate_lead',kind,label,value:value||0,path:location.pathname};
+  try{
+    const history=JSON.parse(localStorage.getItem('ets-revenue-intents')||'[]');
+    history.unshift({...detail,at:new Date().toISOString()});
+    localStorage.setItem('ets-revenue-intents',JSON.stringify(history.slice(0,30)));
+  }catch(e){}
+  if(typeof window.gtag==='function'){
+    window.gtag('event','generate_lead',{
+      currency:'TRY',
+      value:value||0,
+      lead_source:kind,
+      lead_label:label
+    });
+  }
+}
+
+function initRevenueTracking(){
+  document.addEventListener('click',e=>{
+    const link=e.target.closest('a');
+    if(!link) return;
+    const href=link.getAttribute('href')||'';
+    if(href.includes('wa.me/')){
+      trackRevenueIntent('whatsapp',link.textContent.trim().slice(0,80),Number(link.dataset.value)||0);
+    }else if(href.includes('fiyatlandirma.html')){
+      trackRevenueIntent('pricing',link.textContent.trim().slice(0,80),0);
+    }else if(href.includes('hazir-siteler.html')){
+      trackRevenueIntent('ready_site',link.textContent.trim().slice(0,80),2500);
+    }
+  });
+}
+
+function injectToolRevenueCard(){
+  if(!isToolPage()||ETSlib.isPro()) return;
+  const key=getToolKey();
+  const meta=TOOL_META[key]||{};
+  if(meta.free===false) return;
+  const target=document.querySelector('main section:last-of-type, body > section:last-of-type');
+  if(!target||document.querySelector('.tool-revenue-card')) return;
+  const card=document.createElement('aside');
+  card.className='tool-revenue-card reveal';
+  card.setAttribute('aria-label','EbruTech Pro üyelik');
+  card.innerHTML=`
+    <div>
+      <span class="eyebrow">Daha hızlı çalış</span>
+      <h2>Tek tek uğraşma, Pro ile toplu tamamla.</h2>
+      <p>Toplu görsel işleme, gelişmiş PDF araçları ve öncelikli destek. Taahhüt yok; aylık planı gerektiğinde yenilersin.</p>
+    </div>
+    <div class="tool-revenue-actions">
+      <div><strong>149₺</strong><span>/ ay</span></div>
+      <a href="fiyatlandirma.html?ref=tool-${key}" class="btn btn-primary">Pro'yu incele →</a>
+    </div>`;
+  target.after(card);
+  initReveal();
+}
 
 /* ── Araç sayfası algılama ── */
 function getToolKey(){
@@ -916,14 +1006,17 @@ function disablePwaShell(){
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
+  initSalesAttribution();
   buildShell();
   hardenNewTabLinks();
+  initRevenueTracking();
   initReveal();
   injectFavicon();
   initWaFloat();
   initKvkk();
   initProModal();
   injectToolBadge();
+  injectToolRevenueCard();
   trackToolUse();
   initToolCounter();
   initToolReviews();
