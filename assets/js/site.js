@@ -30,6 +30,7 @@ const TOOL_META = {
   qr:          {name:'QR Kod Üretici',        ico:'🔳', href:'tool-qr.html',           free:true},
   palette:     {name:'Renk Paleti Çıkarıcı', ico:'🎨', href:'tool-palette.html',      free:true},
   social:      {name:'Sosyal Medya Boyut',    ico:'📱', href:'tool-social.html',       free:true},
+  'ig-boyut':  {name:'Instagram Boyut Aracı', ico:'📐', href:'tool-ig-boyut.html',     free:true},
   json:        {name:'JSON Formatlayıcı',     ico:'{}', href:'tool-json.html',         free:true},
   base64:      {name:'Base64 Encode/Decode',  ico:'🔐', href:'tool-base64.html',       free:true},
   color:       {name:'Renk Kodu Dönüştür',   ico:'🌈', href:'tool-color.html',        free:true},
@@ -61,6 +62,9 @@ const TOOL_META = {
   gradient:    {name:'CSS Gradient Üretici', ico:'🌈', href:'tool-gradient.html',     free:true},
   regex:       {name:'Regex Test Aracı',     ico:'.*',  href:'tool-regex.html',        free:true},
   timestamp:   {name:'Timestamp Dönüştürücü',ico:'⏰', href:'tool-timestamp.html',    free:true},
+  'pdf-compress': {name:'PDF Sıkıştırıcı',    ico:'📦', href:'tool-pdf-compress.html',free:true},
+  'metadata-remover': {name:'Fotoğraf Metadata Silici',ico:'🕵️',href:'tool-metadata-remover.html',free:true},
+  text2pdf:    {name:"Metinden PDF",           ico:'📝', href:'tool-text2pdf.html',    free:true},
 };
 
 
@@ -78,6 +82,7 @@ const TOOL_BASE = {
   qr:           2743,
   palette:       712,
   social:        934,
+  'ig-boyut':       0,
   batch:         387,
   bgremove:      521,
   json:         1891,
@@ -109,6 +114,9 @@ const TOOL_BASE = {
   invoice:       389,
   qrmenu:        312,
   barcode:       345,
+  'pdf-compress': 0,
+  'metadata-remover': 0,
+  text2pdf:       0,
 };
 
 function baseCount(key){ return TOOL_BASE[key]||0; }
