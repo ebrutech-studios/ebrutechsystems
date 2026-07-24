@@ -1,4 +1,4 @@
-const CACHE = "ebrulife-v1.2.1";
+const CACHE = "ebrulife-v1.2.2";
 const CORE = [
   "/",
   "/index.html",

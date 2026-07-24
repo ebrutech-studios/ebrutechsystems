@@ -627,6 +627,10 @@ select:focus {
   .main.has-ad-rail {
     position: relative;
     max-width: 1560px;
+  }
+  .main.has-ad-rail:has(
+      .desktop-ad-rail .ad-shell:not([data-ad-state="unconfigured"])
+    ) {
     padding-right: 364px;
   }
   .desktop-ad-rail {
