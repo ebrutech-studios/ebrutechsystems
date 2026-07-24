@@ -85,7 +85,7 @@
         <li>PDF araçları erişimi</li>
         <li>Öncelikli WhatsApp desteği</li>
       </ul>
-      <a id="buy-monthly" class="btn btn-wa" data-value="149" target="_blank">WhatsApp'tan Pro Al</a>
+      <a id="buy-monthly" href="#pro-siparis" class="btn btn-wa" data-plan="monthly" data-value="149">Pro Siparişi Oluştur</a>
     </div>
 
     <div class="plan reveal" id="yearlyPlan">
@@ -98,10 +98,48 @@
         <li>Yeni araçlara erken erişim</li>
         <li>Yıllık fiyat kilidi</li>
       </ul>
-      <a id="buy-yearly" class="btn btn-ghost" data-value="1490" target="_blank">WhatsApp'tan Yıllık Al</a>
+      <a id="buy-yearly" href="#pro-siparis" class="btn btn-ghost" data-plan="yearly" data-value="1490">Yıllık Sipariş Oluştur</a>
     </div>
   </div>
   <p style="text-align:center;color:var(--txt-faint);font-size:.86rem;margin-top:20px">Pro üyelik için WhatsApp'tan iletişime geçin. Ödeme sonrası hesabınız Pro olarak işaretlenir; <a href="giris.html" style="color:var(--accent)">giriş yaparak</a> tüm Pro araçlara erişirsiniz.</p>
+</div></section>
+
+<section id="pro-siparis" class="pro-order-section"><div class="wrap">
+  <div class="pro-order-card reveal">
+    <div class="pro-order-copy">
+      <span class="eyebrow">Pro Sipariş</span>
+      <h2>Hesabını doğru bilgilerle aktive edelim.</h2>
+      <p>Planını seç, Pro yapılacak hesap e-postasını yaz. Hazır sipariş özeti WhatsApp'ta açılır; ödeme bilgilerini oradan iletiriz.</p>
+      <ol class="pro-order-steps">
+        <li><span>1</span> Sipariş bilgilerini gönder</li>
+        <li><span>2</span> Havale/EFT ödemesini tamamla</li>
+        <li><span>3</span> Hesabın aynı iş günü Pro olsun</li>
+      </ol>
+    </div>
+    <form id="proOrderForm" class="pro-order-form" novalidate>
+      <div class="field">
+        <label for="orderPlan">Üyelik planı</label>
+        <select id="orderPlan" required>
+          <option value="monthly">Pro Aylık — 149₺</option>
+          <option value="yearly">Pro Yıllık — 1.490₺</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="orderEmail">Pro yapılacak hesap e-postası</label>
+        <input id="orderEmail" type="email" inputmode="email" autocomplete="email" placeholder="ornek@mail.com" required>
+        <small>Henüz hesabın yoksa önce <a href="giris.html">ücretsiz hesap oluştur</a>.</small>
+      </div>
+      <label class="pro-order-consent">
+        <input id="orderConsent" type="checkbox" required>
+        <span><a href="kosullar.html" target="_blank">Kullanım koşullarını</a> ve dijital hizmetin ödeme sonrası aktive edileceğini kabul ediyorum.</span>
+      </label>
+      <p id="orderError" class="pro-order-error" role="alert" aria-live="polite"></p>
+      <button type="submit" class="btn btn-wa btn-lg" data-value="149">
+        WhatsApp'ta Siparişi Tamamla →
+      </button>
+      <small class="pro-order-note">Kart bilgisi istemiyoruz. Otomatik yenileme veya gizli ücret yoktur.</small>
+    </form>
+  </div>
 </div></section>
 
 <section style="padding-top:10px"><div class="wrap">
@@ -192,8 +230,7 @@
   const lblY=document.getElementById('lblYearly');
   const priceEl=document.getElementById('proPriceDisplay');
   const periodEl=document.getElementById('proPricePeriod');
-  const buyMonthly=document.getElementById('buy-monthly');
-  const buyYearly=document.getElementById('buy-yearly');
+  const primaryBuy=document.getElementById('buy-monthly');
   if(!tog) return;
   function update(){
     const yearly=tog.checked;
@@ -203,21 +240,73 @@
       priceEl.childNodes[0].textContent=yearly?'1.490₺':'149₺';
       if(periodEl) periodEl.textContent=yearly?'/ yıl':'/ ay';
     }
-    if(buyMonthly) buyMonthly.style.display=yearly?'none':'';
-    if(buyYearly) buyYearly.style.display=yearly?'':'none';
+    if(primaryBuy){
+      primaryBuy.dataset.plan=yearly?'yearly':'monthly';
+      primaryBuy.dataset.value=yearly?'1490':'149';
+      primaryBuy.textContent=yearly?'Yıllık Sipariş Oluştur':'Pro Siparişi Oluştur';
+    }
   }
   tog.addEventListener('change',update);
   update();
 })();
 document.addEventListener("DOMContentLoaded",()=>{
   const link=(id,urun)=>{const el=document.getElementById(id);if(el){el.href=ETSlib.wa("Merhaba EbruTech Studios! "+urun+" hakkında bilgi almak ve sipariş vermek istiyorum.");el.target="_blank";}};
-  link("buy-monthly","Pro Aylık üyelik (149₺/ay)");
-  link("buy-yearly","Pro Yıllık üyelik (1.490₺/yıl)");
   link("pkg-kartvizit","Kartvizit Tasarımı paketi (250₺)");
   link("pkg-logo","Logo Tasarımı paketi (750₺)");
   link("pkg-web","Tek Sayfa Web paketi (2.500₺)");
   link("pkg-sosyal","Sosyal Medya Seti paketi (500₺)");
   document.getElementById("wa-quote").href=ETSlib.wa("Merhaba EbruTech Studios, özel bir proje için teklif almak istiyorum.");
+  const orderForm=document.getElementById('proOrderForm');
+  const orderPlan=document.getElementById('orderPlan');
+  const orderEmail=document.getElementById('orderEmail');
+  const orderConsent=document.getElementById('orderConsent');
+  const orderError=document.getElementById('orderError');
+  const orderSubmit=orderForm&&orderForm.querySelector('button[type="submit"]');
+  document.querySelectorAll('[data-plan]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(orderPlan) orderPlan.value=btn.dataset.plan;
+      if(orderSubmit) orderSubmit.dataset.value=btn.dataset.plan==='yearly'?'1490':'149';
+    });
+  });
+  document.addEventListener('ets-auth',e=>{
+    if(e.detail.user&&orderEmail&&!orderEmail.value) orderEmail.value=e.detail.user.email||'';
+  });
+  if(orderPlan){
+    orderPlan.addEventListener('change',()=>{
+      if(orderSubmit) orderSubmit.dataset.value=orderPlan.value==='yearly'?'1490':'149';
+    });
+  }
+  if(orderForm){
+    orderForm.addEventListener('submit',e=>{
+      e.preventDefault();
+      orderError.textContent='';
+      const email=orderEmail.value.trim().toLowerCase();
+      if(!orderEmail.validity.valid){
+        orderError.textContent='Lütfen geçerli bir hesap e-postası yazın.';
+        orderEmail.focus();
+        return;
+      }
+      if(!orderConsent.checked){
+        orderError.textContent='Devam etmek için kullanım koşullarını kabul edin.';
+        orderConsent.focus();
+        return;
+      }
+      const yearly=orderPlan.value==='yearly';
+      const plan=yearly?'Pro Yıllık':'Pro Aylık';
+      const price=yearly?'1.490₺ / yıl':'149₺ / ay';
+      const msg=[
+        'Merhaba EbruTech Studios, Pro üyelik siparişimi oluşturmak istiyorum.',
+        '',
+        `Plan: ${plan}`,
+        `Tutar: ${price}`,
+        `Hesap e-postası: ${email}`,
+        '',
+        'Ödeme bilgilerini paylaşabilir misiniz?'
+      ].join('\n');
+      trackRevenueIntent('pro_order',plan,yearly?1490:149);
+      window.open(ETSlib.wa(msg),'_blank','noopener,noreferrer');
+    });
+  }
   document.querySelectorAll('.faq-q').forEach(btn=>{
     btn.addEventListener('click',()=>{
       const item=btn.closest('.faq-item');
