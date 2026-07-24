@@ -6,6 +6,7 @@ import {
   exportData,
   importData,
   reset,
+  getStorageError,
 } from "./store.js";
 import { modules, nav } from "./config.js";
 import {
@@ -17,6 +18,7 @@ import {
 let state = load(),
   view = document.body.dataset.view || "dashboard",
   editing = null,
+  formView = null,
   filter = "all",
   query = "";
 const $ = (s) => document.querySelector(s),
@@ -77,23 +79,113 @@ function shell() {
         ? "Ayarlar"
         : modules[view]?.title || "EbruLife";
   $("#themeToggle").onclick = () => {
+    const previous = state.settings.theme;
     state.settings.theme =
       document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    save(state);
+    if (!save(state)) {
+      state.settings.theme = previous;
+      storageMessage();
+    }
     applyTheme();
   };
   markRecent();
 }
 function markRecent() {
   if (["dashboard", "settings"].includes(view)) return;
+  if (!Array.isArray(state.recent)) state.recent = [];
   state.recent = [view, ...state.recent.filter((x) => x !== view)].slice(0, 5);
-  save(state);
+  if (!save(state)) storageMessage();
 }
-function toast(msg) {
+function toast(msg, type = "success") {
   const t = $("#toast");
+  if (!t) {
+    alert(msg);
+    return;
+  }
   t.textContent = msg;
+  t.dataset.type = type;
   t.classList.add("show");
-  setTimeout(() => t.classList.remove("show"), 2300);
+  setTimeout(() => t.classList.remove("show"), 3200);
+}
+function storageMessage() {
+  toast(
+    "Kayıt cihazınıza yazılamadı. Tarayıcı depolama iznini ve boş alanı kontrol edin.",
+    "error",
+  );
+}
+function persist(success) {
+  if (!save(state)) {
+    storageMessage();
+    return false;
+  }
+  if (success) toast(success);
+  return true;
+}
+function ensureModal() {
+  let modal = $("#recordModal");
+  if (!modal) {
+    modal = document.createElement("dialog");
+    modal.className = "modal";
+    modal.id = "recordModal";
+    modal.innerHTML =
+      '<div class="modal-box"><div class="modal-head"><h2 id="modalTitle"></h2><button class="icon-btn" type="button" data-close-modal aria-label="Kapat">×</button></div><form class="form-grid" id="recordForm"></form></div>';
+    document.body.appendChild(modal);
+  }
+  const form = modal.querySelector("#recordForm"),
+    title = modal.querySelector("#modalTitle");
+  if (!form || !title) {
+    toast(
+      "Kayıt formu hazırlanamadı. Sayfayı yenileyip tekrar deneyin.",
+      "error",
+    );
+    return null;
+  }
+  modal
+    .querySelectorAll("[data-close-modal],.modal-head .icon-btn")
+    .forEach((b) => {
+      b.removeAttribute("onclick");
+      b.onclick = () => closeModal(modal);
+    });
+  if (!modal.dataset.bound) {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal(modal);
+    });
+    modal.addEventListener("close", () => setAdsSuspended(false));
+    modal.addEventListener("cancel", () => setAdsSuspended(false));
+    modal.dataset.bound = "true";
+  }
+  return { modal, form, title };
+}
+function showModal(modal) {
+  setAdsSuspended(true);
+  try {
+    if (typeof modal.showModal === "function") modal.showModal();
+    else {
+      modal.setAttribute("open", "");
+      modal.classList.add("modal-fallback");
+      document.body.classList.add("modal-open");
+    }
+  } catch (error) {
+    setAdsSuspended(false);
+    console.error("EbruLife modal açma hatası:", error);
+    toast("Form açılamadı. Sayfayı yenileyip tekrar deneyin.", "error");
+  }
+}
+function closeModal(modal = $("#recordModal")) {
+  if (!modal) {
+    setAdsSuspended(false);
+    return;
+  }
+  try {
+    if (typeof modal.close === "function" && modal.open) modal.close();
+    else modal.removeAttribute("open");
+  } catch (error) {
+    console.error("EbruLife modal kapatma hatası:", error);
+    modal.removeAttribute("open");
+  }
+  modal.classList.remove("modal-fallback");
+  document.body.classList.remove("modal-open");
+  setAdsSuspended(false);
 }
 function empty(label) {
   return `<div class="empty"><b>Henüz kayıt yok</b>${esc(label)} ekleyerek başlayın.</div>`;
@@ -240,8 +332,13 @@ function stats() {
   ];
 }
 function renderModule() {
-  const m = modules[view],
-    arr = state[view];
+  const m = modules[view];
+  if (!m) {
+    toast("Modül yüklenemedi.", "error");
+    return;
+  }
+  if (!Array.isArray(state[view])) state[view] = [];
+  const arr = state[view];
   document.title = `${m.title} — EbruLife`;
   $("#content").classList.add("has-ad-rail");
   $("#content").innerHTML =
@@ -252,7 +349,7 @@ function renderModule() {
         `<div class="card metric"><span>${x[0]}</span><strong>${x[1]}</strong></div>`,
     )
     .join("");
-  $("#addBtn").onclick = () => openForm();
+  $("#addBtn").onclick = () => openForm(null, view);
   $("#search").oninput = (e) => {
     query = e.target.value.toLocaleLowerCase("tr-TR");
     renderRecords();
@@ -349,40 +446,59 @@ function habitWeek(r) {
   return `<div class="habit-week">${cells.join("")}</div>`;
 }
 function action(id, act) {
-  const arr = state[view],
+  if (!Array.isArray(state[view])) state[view] = [];
+  const before = JSON.stringify(state[view]),
+    arr = state[view],
     r = arr.find((x) => x.id === id);
-  if (!r) return;
+  if (!r) {
+    toast("Kayıt bulunamadı. Sayfayı yenileyin.", "error");
+    return;
+  }
   if (act === "delete") {
     if (!confirm("Bu kaydı silmek istediğinize emin misiniz?")) return;
     state[view] = arr.filter((x) => x.id !== id);
   } else if (act === "edit") {
-    openForm(r);
+    openForm(r, view);
     return;
   } else if (act === "toggle") r.done = !r.done;
   else if (act === "cancel") r.cancelled = !r.cancelled;
   else if (act === "habit") {
-    r.history = r.history || [];
+    r.history = Array.isArray(r.history) ? r.history : [];
     r.history = r.history.includes(today())
       ? r.history.filter((x) => x !== today())
       : [...r.history, today()];
   }
-  save(state);
+  if (!persist("Değişiklik kaydedildi.")) {
+    state[view] = JSON.parse(before);
+    return;
+  }
   renderModule();
-  toast("Değişiklik kaydedildi.");
 }
-function openForm(record = null) {
+function openForm(record = null, targetView = view) {
+  const refs = ensureModal(),
+    m = modules[targetView];
+  if (!refs || !m) {
+    toast("Bu bölüm için kayıt formu bulunamadı.", "error");
+    return;
+  }
   editing = record?.id || null;
-  const m = modules[view],
-    form = $("#recordForm"),
-    modal = $("#recordModal");
-  $("#modalTitle").textContent = record ? `${m.title} kaydını düzenle` : m.add;
-  form.innerHTML =
+  formView = targetView;
+  refs.title.textContent = record ? `${m.title} kaydını düzenle` : m.add;
+  refs.form.innerHTML =
     m.fields.map((f) => fieldHtml(f, record?.[f[0]])).join("") +
-    '<div class="form-actions"><button type="button" class="btn secondary" id="cancelForm">Vazgeç</button><button class="btn">Kaydet</button></div>';
-  $("#cancelForm").onclick = () => modal.close();
-  form.onsubmit = submitForm;
-  setAdsSuspended(true);
-  modal.showModal();
+    '<div class="form-actions"><button type="button" class="btn secondary" id="cancelForm">Vazgeç</button><button class="btn" type="submit">Kaydet</button></div>';
+  refs.form.querySelector("#cancelForm").onclick = () => closeModal(refs.modal);
+  refs.form.onsubmit = submitForm;
+  if (targetView === "tasks" && !record) {
+    const date = refs.form.elements.date;
+    if (date) date.value = today();
+  }
+  showModal(refs.modal);
+  requestAnimationFrame(() =>
+    refs.form
+      .querySelector("input:not([type=checkbox]),textarea,select")
+      ?.focus(),
+  );
 }
 function fieldHtml(f, val) {
   const [name, label, type, required, opts] = f,
@@ -401,40 +517,66 @@ function fieldHtml(f, val) {
 }
 function submitForm(e) {
   e.preventDefault();
-  const fd = new FormData(e.target),
-    m = modules[view],
+  const form = e.currentTarget,
+    target = formView,
+    m = modules[target];
+  if (!form || !target || !m) {
+    toast("Kayıt formu geçersiz. Sayfayı yenileyin.", "error");
+    return;
+  }
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    toast("Lütfen zorunlu alanları doldurun.", "error");
+    return;
+  }
+  if (!Array.isArray(state[target])) state[target] = [];
+  const fd = new FormData(form),
     obj = { id: editing || uid(), created: new Date().toISOString() };
-  for (const f of m.fields)
-    obj[f[0]] =
+  for (const f of m.fields) {
+    const value =
       f[2] === "checkbox"
         ? fd.has(f[0])
         : safe(fd.get(f[0]), f[2] === "textarea" ? 5000 : 250);
-  if (view === "goals") {
-    obj.progress = Math.min(100, Number(obj.progress));
+    if (f[3] && f[2] !== "checkbox" && !value) {
+      toast(`${f[1]} alanı zorunludur.`, "error");
+      form.elements[f[0]]?.focus();
+      return;
+    }
+    obj[f[0]] = value;
+  }
+  if (target === "goals") {
+    obj.progress = Math.min(100, Math.max(0, Number(obj.progress)));
     if (obj.start && obj.target && obj.target < obj.start) {
-      alert("Hedef tarihi başlangıç tarihinden önce olamaz.");
+      toast("Hedef tarihi başlangıç tarihinden önce olamaz.", "error");
       return;
     }
   }
   if (
-    view === "warranties" &&
+    target === "warranties" &&
     obj.purchaseDate &&
     obj.expiry < obj.purchaseDate
   ) {
-    alert("Garanti bitişi satın alma tarihinden önce olamaz.");
+    toast("Garanti bitişi satın alma tarihinden önce olamaz.", "error");
     return;
   }
-  if (view === "notes") obj.updated = today();
-  if (view === "habits")
-    obj.history = state[view].find((x) => x.id === editing)?.history || [];
-  const idx = state[view].findIndex((x) => x.id === editing);
-  if (idx >= 0)
-    ((obj.created = state[view][idx].created), (state[view][idx] = obj));
-  else state[view].unshift(obj);
-  save(state);
-  $("#recordModal").close();
-  renderModule();
-  toast("Kayıt güvenle cihazınıza kaydedildi.");
+  if (target === "notes") obj.updated = today();
+  if (target === "habits")
+    obj.history = state[target].find((x) => x.id === editing)?.history || [];
+  const before = JSON.stringify(state[target]),
+    idx = state[target].findIndex((x) => x.id === editing);
+  if (idx >= 0) {
+    obj.created = state[target][idx].created;
+    state[target][idx] = obj;
+  } else state[target].unshift(obj);
+  if (!persist("Kayıt güvenle cihazınıza kaydedildi.")) {
+    state[target] = JSON.parse(before);
+    return;
+  }
+  closeModal();
+  editing = null;
+  formView = null;
+  if (view === "dashboard") dashboard();
+  else renderModule();
 }
 function cta(v) {
   const map = {
@@ -462,6 +604,12 @@ function cta(v) {
   return `<aside class="card cta" style="margin-top:24px"><h2>${x[0]}</h2><p>${x[1]}</p><a class="btn secondary" href="${x[2]}">EbruTech hizmetlerini incele →</a></aside>`;
 }
 function dashboard() {
+  state.tasks = Array.isArray(state.tasks) ? state.tasks : [];
+  state.events = Array.isArray(state.events) ? state.events : [];
+  state.subscriptions = Array.isArray(state.subscriptions)
+    ? state.subscriptions
+    : [];
+  state.goals = Array.isArray(state.goals) ? state.goals : [];
   const name = state.settings.name ? `, ${esc(state.settings.name)}` : "",
     tasks = state.tasks.filter((x) => !x.done && x.date === today()),
     events = [...state.events]
@@ -481,7 +629,7 @@ function dashboard() {
   $("#content").classList.add("has-ad-rail");
   $("#content").innerHTML =
     `<div class="heading"><div><h1>Merhaba${name} 👋</h1><p>${new Date().toLocaleDateString("tr-TR", { weekday: "long", day: "numeric", month: "long" })} · Hayatını tek yerden düzenle.</p></div><button class="btn" id="quickTask">+ Hızlı görev</button></div><div class="grid g4"><div class="card metric"><span>Bugünkü görev</span><strong>${tasks.length}</strong></div><div class="card metric"><span>Aktif hedef</span><strong>${goals.length}</strong></div><div class="card metric"><span>Yaklaşan özel gün</span><strong>${events.length}</strong></div><div class="card metric"><span>Aktif abonelik</span><strong>${state.subscriptions.filter((x) => !x.cancelled).length}</strong></div></div>${AdComponent.TopBanner()}<div class="grid g2" style="margin-top:16px"><section class="card"><h2>Bugünkü görevler</h2>${mini(tasks, "Bugün için görev yok.")}</section><section class="card"><h2>Yaklaşan özel günler</h2>${mini(events, "Yaklaşan özel gün yok.", (r) => `${eventDays(r)} gün`)}</section><section class="card"><h2>Aktif hedefler</h2>${mini(goals, "Aktif hedef yok.", (r) => `%${r.progress || 0}`)}</section><section class="card"><h2>Yaklaşan ödemeler</h2>${mini(subs, "Yaklaşan ödeme yok.", (r) => money(r.amount, r.currency))}</section></div><section class="card cta"><h2>“${q}”</h2><p>Verileriniz bu cihazda kalır. Kayıpları önlemek için Ayarlar bölümünden düzenli yedek alın.</p><div class="actions"><a class="btn secondary" href="ayarlar.html">Yedekleme ve ayarlar</a><a class="btn secondary" href="../hizmetler.html">Özel sistem yaptır</a></div></section>${AdComponent.FooterAd()}${AdComponent.SidebarAd()}`;
-  $("#quickTask").onclick = () => (location.href = "gorevler.html");
+  $("#quickTask").onclick = () => openForm(null, "tasks");
   initAds();
 }
 function mini(arr, msg, side = () => "") {
@@ -507,7 +655,8 @@ function settings() {
   $("#weekStart").value = state.settings.weekStart;
   $("#settingsForm").onsubmit = (e) => {
     e.preventDefault();
-    const f = new FormData(e.target);
+    const previous = { ...state.settings },
+      f = new FormData(e.target);
     state.settings = {
       ...state.settings,
       name: safe(f.get("name"), 60),
@@ -516,9 +665,11 @@ function settings() {
       weekStart: f.get("weekStart"),
       notifications: f.has("notifications"),
     };
-    save(state);
+    if (!persist("Ayarlar kaydedildi.")) {
+      state.settings = previous;
+      return;
+    }
     applyTheme();
-    toast("Ayarlar kaydedildi.");
   };
   $("#exportBtn").onclick = () => exportData(state);
   $("#importFile").onchange = async (e) => {
@@ -530,13 +681,18 @@ function settings() {
       return;
     e.target.disabled = true;
     try {
-      state = await importData(e.target.files[0]);
-      save(state);
+      const imported = await importData(e.target.files[0]),
+        previous = state;
+      state = imported;
+      if (!persist("Yedek içe aktarıldı.")) {
+        state = previous;
+        return;
+      }
       applyTheme();
-      toast("Yedek içe aktarıldı.");
       setTimeout(() => location.reload(), 700);
     } catch (err) {
-      alert(err.message);
+      console.error("EbruLife içe aktarma hatası:", err);
+      toast(err.message || "Yedek içe aktarılamadı.", "error");
     } finally {
       e.target.disabled = false;
     }
@@ -545,8 +701,8 @@ function settings() {
     if (
       confirm("Tüm EbruLife verileri kalıcı olarak silinecek. Emin misiniz?")
     ) {
-      reset();
-      location.reload();
+      if (reset()) location.reload();
+      else storageMessage();
     }
   };
 }
@@ -607,14 +763,13 @@ function injectSchema() {
 applyTheme();
 shell();
 injectSchema();
+ensureModal();
 if (view === "dashboard") dashboard();
 else if (view === "settings") settings();
 else renderModule();
-const recordModal = $("#recordModal");
-recordModal?.addEventListener("close", () => setAdsSuspended(false));
-recordModal?.addEventListener("cancel", () => setAdsSuspended(false));
-recordModal?.addEventListener("click", (e) => {
-  if (e.target === recordModal) recordModal.close();
-});
+if (getStorageError()) setTimeout(storageMessage, 0);
 if ("serviceWorker" in navigator)
-  navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+  navigator.serviceWorker
+    .register("./service-worker.js", { updateViaCache: "none" })
+    .then((r) => r.update())
+    .catch((error) => console.error("EbruLife service worker hatası:", error));
