@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Fatura ve Fiş Oluşturucu (Pro) — EbruTech Studios</title>
-<meta name="description" content="Fatura ve Fiş Oluşturucu (Pro). İşletme bilgileri, logo, iskonto, belge tipi ve otomatik kayıt. Tarayıcıda çalışır, hızlı ve güvenli.">
+<title>Ücretsiz Fatura ve Fiş Oluşturucu — EbruTech Studios</title>
+<meta name="description" content="Ücretsiz fatura, fiş, teklif ve proforma oluşturun. İşletme bilgileri, logo, iskonto ve PDF indirme desteği.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-invoice.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EbruTech Studios">
-<meta property="og:title" content="Fatura ve Fiş Oluşturucu (Pro) — EbruTech Studios">
+<meta property="og:title" content="Ücretsiz Fatura ve Fiş Oluşturucu — EbruTech Studios">
 <meta property="og:description" content="İşletme bilgileri, logo, iskonto, belge tipi ve otomatik kayıt ile profesyonel fatura/fiş hazırlayın.">
 <meta property="og:url" content="https://ebrutechsystems.com/tool-invoice.html">
 <meta property="og:image" content="https://ebrutechsystems.com/assets/brand-og.png">
@@ -39,21 +39,17 @@
 @media(max-width:560px){.ln,.ln-head{grid-template-columns:1fr 50px 70px 50px 74px 26px;gap:4px}.ln input{padding:7px;font-size:.78rem}}
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Fatura ve Fiş Oluşturucu (Pro)","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-invoice.html"}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Ücretsiz Fatura ve Fiş Oluşturucu","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-invoice.html"}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":'Fatura ve Fiş Oluşturucu (Pro) — EbruTech Studios',"url":"https://ebrutechsystems.com/tool-invoice.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"204","bestRating":"5","worstRating":"1"},"author":{"@type":"Organization","name":"EbruTech Studios","url":"https://ebrutechsystems.com"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Ücretsiz Fatura ve Fiş Oluşturucu — EbruTech Studios","url":"https://ebrutechsystems.com/tool-invoice.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"204","bestRating":"5","worstRating":"1"},"author":{"@type":"Organization","name":"EbruTech Studios","url":"https://ebrutechsystems.com"}}
 </script>
 </head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
-<span class="eyebrow">Pro Araç · İşletme</span><h1 style="font-size:2.2rem">🧾 Fatura / Fiş Oluşturucu</h1>
+<span class="eyebrow">Ücretsiz Araç · İşletme</span><h1 style="font-size:2.2rem">🧾 Fatura / Fiş Oluşturucu</h1>
 <p class="lead" style="margin:14px 0 26px">Profesyonel fatura, fiş, teklif veya proforma hazırla. İşletme bilgilerin, logon ve iskonto dahil — PDF indir. Bilgilerin tarayıcında otomatik saklanır.</p>
 
-<div id="gate" class="card hidden" style="text-align:center;padding:40px">
-<div style="font-size:2.4rem;margin-bottom:10px">🔒</div><h3 id="gateTitle">Yükleniyor...</h3>
-<p id="gateDesc" style="color:var(--txt-dim);margin:8px 0 20px"></p><div id="gateBtns" class="row" style="max-width:380px;margin:0 auto"></div></div>
-
-<div id="tool" class="hidden"><div class="controls">
+<div id="tool"><div class="controls">
 
   <div class="field"><label>Belge Tipi</label>
   <select id="tip"><option value="FATURA">Fatura</option><option value="FİŞ">Fiş</option><option value="TEKLİF">Teklif</option><option value="PROFORMA FATURA">Proforma Fatura</option></select></div>
@@ -94,16 +90,6 @@
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-function applyGate(user,isPro){const gate=document.getElementById("gate"),tool=document.getElementById("tool");
-const t=document.getElementById("gateTitle"),d=document.getElementById("gateDesc"),b=document.getElementById("gateBtns");
-if(isPro){gate.classList.add("hidden");tool.classList.remove("hidden");return;}
-gate.classList.remove("hidden");tool.classList.add("hidden");
-if(!user){t.textContent="Giriş yapman gerekiyor";d.textContent="Bu araç Pro üyelere özel. Önce giriş yap.";
-b.innerHTML='<a href="giris.html" class="btn btn-primary">Giriş Yap</a><a href="fiyatlandirma.html" class="btn btn-ghost">Pro Nedir?</a>';}
-else{t.textContent="Bu araç Pro üyelere özel";d.textContent="Hesabın var ama Pro değil. WhatsApp\u0027tan ulaş.";
-b.innerHTML='<a href="fiyatlandirma.html" class="btn btn-primary">Pro\u0027ya Geç</a>';}}
-document.addEventListener("ets-auth",(e)=>applyGate(e.detail.user,e.detail.isPro));
-
 const KEY="ets_fatura_v2";
 const $=id=>document.getElementById(id);
 const lines=$("lines");

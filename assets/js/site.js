@@ -43,13 +43,13 @@ const TOOL_META = {
   vat:         {name:'KDV Hesaplama',         ico:'💰', href:'tool-vat.html',          free:true},
   loan:        {name:'Kredi Hesaplama',       ico:'🏦', href:'tool-loan.html',         free:true},
   unit:        {name:'Birim Dönüştürücü',    ico:'📐', href:'tool-unit.html',         free:true},
-  batch:       {name:'Toplu İşlem',           ico:'🗂️', href:'tool-batch.html',        free:false},
-  bgremove:    {name:'Arka Plan Kaldırıcı',  ico:'✂️', href:'tool-bgremove.html',     free:false},
-  'pdf2img':   {name:"PDF'den Resme",         ico:'📄', href:'tool-pdf2img.html',      free:false},
-  pdforganize: {name:'PDF Sayfa Düzenle',    ico:'📑', href:'tool-pdforganize.html',  free:false},
-  invoice:     {name:'Fatura Oluşturucu',    ico:'🧾', href:'tool-invoice.html',      free:false},
-  qrmenu:      {name:'QR Menü Oluşturucu',  ico:'📱', href:'tool-qrmenu.html',       free:false},
-  barcode:     {name:'Barkod Üreticisi',     ico:'▥',  href:'tool-barcode.html',      free:false},
+  batch:       {name:'Toplu İşlem',           ico:'🗂️', href:'tool-batch.html',        free:true},
+  bgremove:    {name:'Arka Plan Kaldırıcı',  ico:'✂️', href:'tool-bgremove.html',     free:true},
+  'pdf2img':   {name:"PDF'den Resme",         ico:'📄', href:'tool-pdf2img.html',      free:true},
+  pdforganize: {name:'PDF Sayfa Düzenle',    ico:'📑', href:'tool-pdforganize.html',  free:true},
+  invoice:     {name:'Fatura Oluşturucu',    ico:'🧾', href:'tool-invoice.html',      free:true},
+  qrmenu:      {name:'QR Menü Oluşturucu',  ico:'📱', href:'tool-qrmenu.html',       free:true},
+  barcode:     {name:'Barkod Üreticisi',     ico:'▥',  href:'tool-barcode.html',      free:true},
   timer:       {name:'Kronometre & Sayaç',   ico:'⏱️', href:'tool-timer.html',        free:true},
   percentage:  {name:'Yüzde Hesaplama',      ico:'%',  href:'tool-percentage.html',   free:true},
   slug:        {name:'URL Slug Oluşturucu',  ico:'🔗', href:'tool-slug.html',         free:true},
@@ -114,7 +114,11 @@ const TOOL_BASE = {
 function baseCount(key){ return TOOL_BASE[key]||0; }
 
 const ETSlib = {
-  wa(msg){return `https://wa.me/${ETS.whatsapp}?text=${encodeURIComponent(msg)}`;},
+  wa(msg){
+    const ref=getSalesAttribution();
+    const suffix=ref&&ref.code?`\n\nBaşvuru kodu: ${ref.code}`:'';
+    return `https://wa.me/${ETS.whatsapp}?text=${encodeURIComponent(msg+suffix)}`;
+  },
   isPro(){ return !!(window.ETSAuth && window.ETSAuth.isPro); },
   toast(msg){
     let t=document.querySelector(".toast");
@@ -123,6 +127,90 @@ const ETSlib = {
     clearTimeout(this._tt);this._tt=setTimeout(()=>t.classList.remove("show"),2600);
   }
 };
+
+/* ── Satış atfı: kampanya kaynağını WhatsApp siparişine kadar taşır ── */
+function getSalesAttribution(){
+  try{
+    const saved=JSON.parse(localStorage.getItem('ets-sales-attribution')||'null');
+    if(saved&&saved.code) return saved;
+  }catch(e){}
+  return null;
+}
+
+function initSalesAttribution(){
+  try{
+    const params=new URLSearchParams(location.search);
+    const source=params.get('utm_source')||params.get('ref');
+    const medium=params.get('utm_medium')||'site';
+    const campaign=params.get('utm_campaign')||'organik';
+    let data=getSalesAttribution();
+    if(source||!data){
+      const token=Math.random().toString(36).slice(2,6).toUpperCase();
+      data={
+        source:source||'direkt',
+        medium,
+        campaign,
+        landing:location.pathname.split('/').pop()||'index.html',
+        code:`ET-${Date.now().toString(36).slice(-5).toUpperCase()}-${token}`
+      };
+      localStorage.setItem('ets-sales-attribution',JSON.stringify(data));
+    }
+  }catch(e){}
+}
+
+function trackRevenueIntent(kind,label,value){
+  const detail={event:'generate_lead',kind,label,value:value||0,path:location.pathname};
+  try{
+    const history=JSON.parse(localStorage.getItem('ets-revenue-intents')||'[]');
+    history.unshift({...detail,at:new Date().toISOString()});
+    localStorage.setItem('ets-revenue-intents',JSON.stringify(history.slice(0,30)));
+  }catch(e){}
+  if(typeof window.gtag==='function'){
+    window.gtag('event','generate_lead',{
+      currency:'TRY',
+      value:value||0,
+      lead_source:kind,
+      lead_label:label
+    });
+  }
+}
+
+function initRevenueTracking(){
+  document.addEventListener('click',e=>{
+    const link=e.target.closest('a');
+    if(!link) return;
+    const href=link.getAttribute('href')||'';
+    if(href.includes('wa.me/')){
+      trackRevenueIntent('whatsapp',link.textContent.trim().slice(0,80),Number(link.dataset.value)||0);
+    }else if(href.includes('fiyatlandirma.html')){
+      trackRevenueIntent('pricing',link.textContent.trim().slice(0,80),0);
+    }else if(href.includes('hazir-siteler.html')){
+      trackRevenueIntent('ready_site',link.textContent.trim().slice(0,80),2500);
+    }
+  });
+}
+
+function injectToolRevenueCard(){
+  if(!isToolPage()) return;
+  const key=getToolKey();
+  const target=document.querySelector('main section:last-of-type, body > section:last-of-type');
+  if(!target||document.querySelector('.tool-revenue-card')) return;
+  const card=document.createElement('aside');
+  card.className='tool-revenue-card reveal';
+  card.setAttribute('aria-label','EbruTech web sitesi hizmetleri');
+  card.innerHTML=`
+    <div>
+      <span class="eyebrow">İşletmenizi büyütün</span>
+      <h2>Araçlar ücretsiz; profesyonel web sitenizi biz kuralım.</h2>
+      <p>Sektörünüze özel, mobil uyumlu ve WhatsApp bağlantılı web sitesi. Hazır demoyu seçin, işletme bilgilerinizle yayına alalım.</p>
+    </div>
+    <div class="tool-revenue-actions">
+      <div><strong>2.500₺</strong><span>'den başlayan</span></div>
+      <a href="hazir-siteler.html?ref=tool-${key}" class="btn btn-primary">Hazır siteleri gör →</a>
+    </div>`;
+  target.after(card);
+  initReveal();
+}
 
 /* ── Araç sayfası algılama ── */
 function getToolKey(){
@@ -443,7 +531,7 @@ function buildShell(){
         <p style="color:var(--txt-dim);font-size:.9rem">Tarayıcıda çalışan profesyonel görsel araçlar ve KOBİ'lere özel tasarım & yazılım çözümleri.</p>
       </div>
       <div class="col"><h5>Ürün</h5>
-        <a href="tools.html">Tüm Araçlar</a><a href="fiyatlandirma.html">Pro Üyelik</a><a href="giris.html">Giriş / Hesap</a></div>
+        <a href="tools.html">Tüm Araçlar</a><a href="hazir-siteler.html">Hazır Siteler</a><a href="giris.html">Giriş / Hesap</a></div>
       <div class="col"><h5>Stüdyo</h5>
         <a href="hizmetler.html">Hizmetler</a><a href="fiyatlandirma.html">Paketler</a><a href="hakkimizda.html">Hakkımızda</a><a href="iletisim.html">İletişim</a>
         <a href="https://filo.ebrutechsystems.com" target="_blank" rel="noopener noreferrer">Filo Takip</a></div>
@@ -496,7 +584,7 @@ function buildShell(){
     if(!navAuth) return;
     if(e.detail.user){
       const name=e.detail.user.displayName||e.detail.user.email.split("@")[0];
-      navAuth.textContent=e.detail.isPro?("★ "+name):name;
+      navAuth.textContent=name;
       navAuth.href="giris.html";
     }else{
       navAuth.textContent="Giriş Yap"; navAuth.href="giris.html";
@@ -647,7 +735,7 @@ function initRelatedTools(){
         return `<a class="card tool-card reveal" href="${t.href}">
           <span class="ico">${t.ico}</span>
           <h3>${t.name}</h3>
-          <div class="tags"><span class="tag ${t.free?'tag-ok':'tag-pro'}">${t.free?'Ücretsiz':'Pro'}</span></div>
+          <div class="tags"><span class="tag tag-ok">Ücretsiz</span></div>
         </a>`;
       }).join('')}
     </div>
@@ -807,68 +895,6 @@ function initFavorites(){
   }
 }
 
-/* ═══════════════════════════════════════════════
-   13. PRO UPSELL MODAL
-   ═══════════════════════════════════════════════ */
-function initProModal(){
-  const PRO_FEATURES=[
-    'Toplu (batch) görsel işleme — sınırsız',
-    'Watermark\'sız yüksek çözünürlük çıktısı',
-    'Arka Plan Kaldırıcı (AI destekli)',
-    'PDF sayfa düzenleme ve dönüştürme',
-    'Fatura, barkod ve QR menü araçları',
-    'Öncelikli WhatsApp desteği'
-  ];
-
-  const overlay=document.createElement('div');
-  overlay.className='pro-modal-overlay';
-  overlay.setAttribute('role','dialog');
-  overlay.setAttribute('aria-modal','true');
-  overlay.innerHTML=`
-<div class="pro-modal" id="proModalBox">
-  <button class="pro-modal-close" id="proModalClose" aria-label="Kapat">✕</button>
-  <div class="pro-modal-badge">⭐ Pro Özellik</div>
-  <h2>Bu araç Pro üyelere özel</h2>
-  <div class="pro-modal-tool-name" id="proModalToolName"></div>
-  <ul class="pro-modal-features">${PRO_FEATURES.map(f=>`<li>${f}</li>`).join('')}</ul>
-  <div class="pro-modal-price-box">
-    <strong>149₺</strong><span>/ ay</span>
-    <div style="font-size:.78rem;color:var(--txt-faint);margin-top:4px">veya 1.490₺/yıl · 2 ay bedava</div>
-  </div>
-  <div class="pro-modal-actions">
-    <a id="proModalWa" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-wa" style="justify-content:center">WhatsApp'tan Pro Al →</a>
-    <a href="fiyatlandirma.html" class="btn btn-ghost" style="justify-content:center">Planları Karşılaştır</a>
-  </div>
-</div>`;
-  document.body.appendChild(overlay);
-
-  function open(toolName,toolIco){
-    const nameEl=document.getElementById('proModalToolName');
-    if(nameEl) nameEl.innerHTML=(toolIco||'🔒')+' <span>'+toolName+'</span>';
-    const waEl=document.getElementById('proModalWa');
-    if(waEl) waEl.href=ETSlib.wa('Merhaba! Pro üyelik hakkında bilgi almak istiyorum. Araç: '+toolName);
-    overlay.classList.add('open');
-    document.body.style.overflow='hidden';
-    setTimeout(()=>document.getElementById('proModalClose')&&document.getElementById('proModalClose').focus(),50);
-  }
-  function close(){
-    overlay.classList.remove('open');
-    document.body.style.overflow='';
-  }
-  document.getElementById('proModalClose').addEventListener('click',close);
-  overlay.addEventListener('click',function(e){if(e.target===overlay) close();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('open')) close();});
-
-  document.querySelectorAll('.card.locked, [data-pro="true"]').forEach(card=>{
-    card.addEventListener('click',function(e){
-      e.preventDefault();
-      const title=card.querySelector('h3');
-      const ico=card.querySelector('.ico');
-      open(title?title.textContent:'Pro Araç', ico?ico.textContent:'🔒');
-    });
-  });
-}
-
 function initRecentToolsFooter(){
   let recent;
   try{ recent=JSON.parse(localStorage.getItem('ets-recent')||'[]'); }
@@ -916,14 +942,16 @@ function disablePwaShell(){
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
+  initSalesAttribution();
   buildShell();
   hardenNewTabLinks();
+  initRevenueTracking();
   initReveal();
   injectFavicon();
   initWaFloat();
   initKvkk();
-  initProModal();
   injectToolBadge();
+  injectToolRevenueCard();
   trackToolUse();
   initToolCounter();
   initToolReviews();

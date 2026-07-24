@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PDF Sayfa Düzenleme (Pro) — EbruTech Studios</title>
-<meta name="description" content="PDF Sayfa Düzenleme (Pro). Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
+<title>Ücretsiz PDF Sayfa Düzenleme — EbruTech Studios</title>
+<meta name="description" content="PDF sayfalarını ücretsiz sıralayın, silin ve yeniden kaydedin. Tarayıcıda çalışır.">
 <link rel="canonical" href="https://ebrutechsystems.com/tool-pdforganize.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EbruTech Studios">
-<meta property="og:title" content="PDF Sayfa Düzenleme (Pro) — EbruTech Studios">
-<meta property="og:description" content="PDF Sayfa Düzenleme (Pro). Tarayıcıda çalışır, dosyalarınız cihazınızdan çıkmaz, hızlı ve güvenli. EbruTech Studios ücretsiz online araçları.">
+<meta property="og:title" content="Ücretsiz PDF Sayfa Düzenleme — EbruTech Studios">
+<meta property="og:description" content="PDF sayfalarını ücretsiz sıralayın, silin ve yeniden kaydedin.">
 <meta property="og:url" content="https://ebrutechsystems.com/tool-pdforganize.html">
 <meta property="og:image" content="https://ebrutechsystems.com/assets/brand-og.png">
 <meta property="og:locale" content="tr_TR">
@@ -25,20 +25,16 @@
 <meta name="theme-color" content="#10140a">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1633221257137505" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script><script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"PDF Sayfa Düzenleme (Pro)","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-pdforganize.html"}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Ücretsiz PDF Sayfa Düzenleme","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"url":"https://ebrutechsystems.com/tool-pdforganize.html"}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":'PDF Sayfa Düzenleme (Pro) — EbruTech Studios',"url":"https://ebrutechsystems.com/tool-pdforganize.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"235","bestRating":"5","worstRating":"1"},"author":{"@type":"Organization","name":"EbruTech Studios","url":"https://ebrutechsystems.com"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Ücretsiz PDF Sayfa Düzenleme — EbruTech Studios","url":"https://ebrutechsystems.com/tool-pdforganize.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"TRY"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"235","bestRating":"5","worstRating":"1"},"author":{"@type":"Organization","name":"EbruTech Studios","url":"https://ebrutechsystems.com"}}
 </script>
 </head><body>
 <section class="hero" style="padding-bottom:30px"><div class="wrap"><div class="tool-shell">
-<span class="eyebrow">Pro Araç</span><h1 style="font-size:2.2rem">📑 PDF Sayfa Düzenleyici</h1>
+<span class="eyebrow">Ücretsiz Araç</span><h1 style="font-size:2.2rem">📑 PDF Sayfa Düzenleyici</h1>
 <p class="lead" style="margin:14px 0 26px">PDF sayfalarını sırala, sil, yeni PDF olarak indir. Tarayıcıda çalışır.</p>
-<div id="gate" class="card hidden" style="text-align:center;padding:40px">
-<div style="font-size:2.4rem;margin-bottom:10px">🔒</div><h3 id="gateTitle">Yükleniyor...</h3>
-<p id="gateDesc" style="color:var(--txt-dim);margin:8px 0 20px"></p>
-<div id="gateBtns" class="row" style="max-width:380px;margin:0 auto"></div></div>
-<div id="tool" class="hidden">
+<div id="tool">
 <div class="dropzone" id="dz"><div class="ico">📥</div><p><b>PDF seç</b> veya sürükle</p><input id="file" type="file" accept="application/pdf" class="hidden"></div>
 <ul id="list" class="controls" style="list-style:none;padding:0"></ul>
 <button id="go" class="btn btn-primary hidden">Yeni PDF Oluştur & İndir</button>
@@ -47,18 +43,6 @@
 <script type="module" src="assets/js/firebase.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-function applyGate(user,isPro){
-  const gate=document.getElementById("gate"),tool=document.getElementById("tool");
-  const t=document.getElementById("gateTitle"),d=document.getElementById("gateDesc"),b=document.getElementById("gateBtns");
-  if(isPro){gate.classList.add("hidden");tool.classList.remove("hidden");return;}
-  gate.classList.remove("hidden");tool.classList.add("hidden");
-  if(!user){t.textContent="Giriş yapman gerekiyor";d.textContent="Bu araç Pro üyelere özel. Önce giriş yap.";
-    b.innerHTML='<a href="giris.html" class="btn btn-primary">Giriş Yap</a><a href="fiyatlandirma.html" class="btn btn-ghost">Pro Nedir?</a>';}
-  else{t.textContent="Bu araç Pro üyelere özel";d.textContent="Hesabın var ama Pro değil. Pro\u0027ya geçmek için WhatsApp\u0027tan ulaş.";
-    b.innerHTML='<a href="fiyatlandirma.html" class="btn btn-primary">Pro\u0027ya Geç</a>';}
-}
-document.addEventListener("ets-auth",(e)=>applyGate(e.detail.user,e.detail.isPro));
-
 let srcBytes=null,order=[];
 const dz=document.getElementById("dz"),file=document.getElementById("file"),list=document.getElementById("list"),go=document.getElementById("go");
 dz.onclick=()=>file.click();
