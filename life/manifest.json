@@ -1,0 +1,15 @@
+{
+  "name": "EbruLife — Hayatını tek yerden düzenle",
+  "short_name": "EbruLife",
+  "description": "Ücretsiz kişisel yaşam planlayıcı ve online yaşam asistanı.",
+  "start_url": "/app.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0c111d",
+  "theme_color": "#5064f7",
+  "lang": "tr",
+  "categories": ["lifestyle", "productivity"],
+  "icons": [
+    {"src":"/assets/icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
